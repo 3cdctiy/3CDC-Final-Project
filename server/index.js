@@ -7,8 +7,11 @@ const expressSession = require('express-session');
 const cons = require('consolidate');
 const passport = require('passport');
 const FacebookStrategy = require('passport-facebook').Strategy;
-const mongoose = require('mongoose');
+
 require('dotenv').config();
+require('handlebars');
+
+console.log(__dirname);
 
 const User = require('./models/user');
 
@@ -48,16 +51,16 @@ passport.use(new FacebookStrategy({
   }
 ));
 
-
-
 app.set('view engine', 'hbs');
 app.set('views', __dirname + '/views')
+
+const mongoose = require('mongoose');
 
 mongoose.connect(process.env.MONGO_URL);
 
 // Stubbed login example
 app.get('/',(req,res) =>{
-  res.render('index')
+  res.render('index', {token: req.user.token})
 })
 
 // Stubbed login example
@@ -74,7 +77,7 @@ app.get('/getUser',(req,res) =>{
 app.get('/auth/facebook', passport.authenticate('facebook'));
 
 app.get('/auth/facebook/callback', passport.authenticate('facebook', { 
-	successRedirect: '/getUser',
+	successRedirect: '/',
 	failureRedirect: '/login' 
 }));
 
