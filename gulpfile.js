@@ -45,13 +45,13 @@ var sassOptions = {
 // --------------------------------------------------
 gulp.task('css', () => {
 	return gulp.src('./app/sass/*.scss')
+		.pipe(plumber({
+			errorHanlder: notify.onError("Error: <%= error.message %>")
+		}))
 		.pipe(sass(sassOptions))
 		.pipe(autoprefixer('last 2 versions'))
 		.pipe(minifyCss())
 		.pipe(gulp.dest('./dist/css/'))
-		.pipe(plumber({
-			errorHanlder: notify.onError("Error: <%= error.message %>")
-		}))
 });
 
 
