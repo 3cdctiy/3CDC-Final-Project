@@ -61,6 +61,7 @@ app.get('/login',(req,res) =>{
 
 // Stubbed dashboard example
 app.get('/dashboard',(req,res) =>{
+  if(req.user) { console.log('login success')}
 	res.render('dashboard',{user:req.user})
 })
 
@@ -76,7 +77,7 @@ passport.serializeUser(function(user, done) {
 });
 
 passport.deserializeUser(function(id, done) {
-  Person.findById(id, function(err, user) {
+  User.findById(id, function(err, user) {
     done(err, user);
   });
 });
