@@ -38,8 +38,9 @@ passport.use(new FacebookStrategy({
 
   	User.findOrCreate({facebookID:profile.id}, function(err, user) {
       if (err) { return done(err); }
-
+      
       user.name = profile.displayName;
+      user.token = accessToken;
       user.save();
 
       done(null, user);
@@ -55,20 +56,25 @@ app.set('views', __dirname + '/views')
 mongoose.connect(process.env.MONGO_URL);
 
 // Stubbed login example
+app.get('/',(req,res) =>{
+  res.render('index')
+})
+
+// Stubbed login example
 app.get('/login',(req,res) =>{
 	res.render('login')
 })
 
 // Stubbed dashboard example
-app.get('/dashboard',(req,res) =>{
-  if(req.user) { console.log('login success')}
-	res.render('dashboard',{user:req.user})
+app.get('/getUser',(req,res) =>{
+  res.json(req.user.token);
+	// res.json(req.user);
 })
 
 app.get('/auth/facebook', passport.authenticate('facebook'));
 
 app.get('/auth/facebook/callback', passport.authenticate('facebook', { 
-	successRedirect: '/dashboard',
+	successRedirect: '/getUser',
 	failureRedirect: '/login' 
 }));
 

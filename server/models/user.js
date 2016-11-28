@@ -5,8 +5,8 @@ const Schema        = mongoose.Schema;
 const findOrCreate  = require('mongoose-findorcreate');
 
 var userSchema = Schema({
-  name    : String,
-  posts : [{ type: Schema.Types.ObjectId, ref: 'Post' }],
+  name: String,
+  token: String,
   facebookID: String
 });
 
