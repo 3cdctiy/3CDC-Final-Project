@@ -47,6 +47,81 @@ function createJWT(user) {
 }
 
 
+// /*
+//  |--------------------------------------------------------------------------
+//  | GET /api/me
+//  |--------------------------------------------------------------------------
+//  */
+// app.get('/api/me', ensureAuthenticated, function(req, res) {
+//   User.findById(req.user, function(err, user) {
+//     res.send(user);
+//   });
+// });
+
+
+//  |--------------------------------------------------------------------------
+//  | PUT /api/me
+//  |--------------------------------------------------------------------------
+ 
+// app.put('/api/me', ensureAuthenticated, function(req, res) {
+//   User.findById(req.user, function(err, user) {
+//     if (!user) {
+//       return res.status(400).send({ message: 'User not found' });
+//     }
+//     user.displayName = req.body.displayName || user.displayName;
+//     user.email = req.body.email || user.email;
+//     user.save(function(err) {
+//       res.status(200).end();
+//     });
+//   });
+// });
+
+
+/*
+ |--------------------------------------------------------------------------
+ | Log in with Email
+ |--------------------------------------------------------------------------
+ */
+app.post('/auth/login', function(req, res) {
+  User.findOne({ email: req.body.email }, '+password', function(err, user) {
+    if (!user) {
+      return res.status(401).send({ message: 'Invalid email and/or password' });
+    }
+    user.comparePassword(req.body.password, function(err, isMatch) {
+      if (!isMatch) {
+        return res.status(401).send({ message: 'Invalid email and/or password' });
+      }
+      res.send({ token: createJWT(user) });
+    });
+  });
+});
+
+/*
+ |--------------------------------------------------------------------------
+ | Create Email and Password Account
+ |--------------------------------------------------------------------------
+ */
+app.post('/auth/signup', function(req, res) {
+  User.findOne({ email: req.body.email }, function(err, existingUser) {
+    if (existingUser) {
+      return res.status(409).send({ message: 'Email is already taken' });
+    }
+    var user = new User({
+      displayName: req.body.displayName,
+      email: req.body.email,
+      password: req.body.password
+    });
+    user.save(function(err, result) {
+      if (err) {
+        res.status(500).send({ message: err.message });
+      }
+      res.send({ token: createJWT(result) });
+    });
+  });
+});
+
+
+
 /*
  |--------------------------------------------------------------------------
  | Login with Facebook
@@ -149,48 +224,53 @@ app.post('/auth/twitter', function(req, res) {
         oauth: profileOauth,
         json: true
       }, function(err, response, profile) {
-        console.log(profile);
+        // console.log(profile);
         // Step 5a. Link user accounts.
-        if (req.header('Authorization')) {
-          User.findOne({ twitter: profile.id }, function(err, existingUser) {
-            if (existingUser) {
-              return res.status(409).send({ message: 'There is already a Twitter account that belongs to you' });
-            }
-            console.log('log line 159')
-            var token = req.header('Authorization').split(' ')[1];
-            var payload = jwt.decode(token, config.TOKEN_SECRET);
+        // if (req.header('Authorization')) {
+        //   User.findOne({ twitter: profile.id }, function(err, existingUser) {
+        //     if (existingUser) {
+        //       return res.status(409).send({ message: 'There is already a Twitter account that belongs to you' });
+        //     }
+        //     console.log('log line 159')
+        //     var token = req.header('Authorization').split(' ')[1];
+        //     var payload = jwt.decode(token, process.env.TOKEN_SECRET);
 
-            User.findById(payload.sub, function(err, user) {
-              if (!user) {
-                return res.status(400).send({ message: 'User not found' });
-              }
+        //     User.findById(payload.sub, function(err, user) {
+        //       if (!user) {
+        //         return res.status(400).send({ message: 'User not found' });
+        //       }
 
-              user.twitter = profile.id;
-              user.email = profile.email;
-              user.displayName = user.displayName || profile.name;
-              user.picture = user.picture || profile.profile_image_url_https.replace('_normal', '');
-              user.save(function(err) {
-                res.send({ token: createJWT(user) });
-              });
-            });
+        //       user.twitter = profile.id;
+        //       user.email = profile.email;
+        //       user.displayName = user.displayName || profile.name;
+        //       user.picture = user.picture || profile.profile_image_url_https.replace('_normal', '');
+        //       user.save(function(err) {
+        //         res.send({ token: createJWT(user) });
+        //       });
+        //     });
+        //   });
+        // }
+         // else {
+
+        // Step 5b. Create a new user account or return an existing one.
+        User.findOrCreate({ twitter: profile.id }, (err, user) => {
+          console.log(user);
+
+          if (err) {
+            return done(err); 
+          }
+
+          console.log('populating user data')
+          // var user = new User();
+          user.twitter      = profile.id;
+          user.email        = profile.email;
+          user.displayName  = profile.name;
+          // user.picture = profile.profile_image_url_https.replace('_normal', '');
+          user.save(function() {
+            res.send({ token: createJWT(user) });
           });
-        } else {
-          // Step 5b. Create a new user account or return an existing one.
-          User.findOrCreate({ twitter: profile.id }, function(err, existingUser) {
-            if (existingUser) {
-              return res.send({ token: createJWT(existingUser) });
-            }
-
-            // var user = new User();
-            user.twitter = profile.id;
-            user.email = profile.email;
-            user.displayName = profile.name;
-            // user.picture = profile.profile_image_url_https.replace('_normal', '');
-            user.save(function() {
-              res.send({ token: createJWT(user) });
-            });
-          });
-        }
+        });
+        // }
       });
     });
   }
