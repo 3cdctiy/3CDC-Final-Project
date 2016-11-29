@@ -154,12 +154,9 @@ app.post('/auth/facebook', function(req, res) {
 
         User.findOrCreate({facebook:profile.id}, (err, user) => {
           if (err) { 
-<<<<<<< HEAD
-            console.log(err)
-            return done(err); 
-=======
+
             return console.log(err); 
->>>>>>> 5ab2b1624f5aa7ce5abd387a2ed892d94df79f49
+
           }
 
           user.displayName = profile.name;          
@@ -262,12 +259,9 @@ app.post('/auth/twitter', function(req, res) {
         // Step 5b. Create a new user account or return an existing one.
         User.findOrCreate({ twitter: profile.id }, (err, user) => {
           if (err) {
-<<<<<<< HEAD
-            console.log(err)
-            return done(err); 
-=======
+
             return console.log(err); 
->>>>>>> 5ab2b1624f5aa7ce5abd387a2ed892d94df79f49
+
           }
 
           user.twitter      = profile.id;
