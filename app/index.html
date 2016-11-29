@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="app">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title></title>
+	<title>New Years Eve Blast</title>
 
 	<!-- Materialize CSS -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
@@ -11,19 +11,31 @@
 	<!-- Site Styles -->
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 
-	<!-- Font(s) -->
-	<link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
-
 </head>
-<body>
+<body ng-cloak>
 
 	<!-- Body Content -->
-	<h1>Welcome</h1>
+	<div class="container">
+		<div class="row">
+			<div class="col s12">
+				<main ui-view></main>
+			</div>
+		</div>
+	</div>
 
 
 
 	<!-- Lodash -->
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.16.4/lodash.min.js"></script>
+
+	<!-- Angular 1.5.8 -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.js"></script>
+
+	<!-- UI Router -->
+	<script src="http://unpkg.com/angular-ui-router/release/angular-ui-router.min.js"></script>
+
+	<!-- Satellizer CDN -->
+	<script src="https://cdn.jsdelivr.net/satellizer/0.15.5/satellizer.min.js"></script>
 
 	<!-- JQuery -->
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -33,6 +45,11 @@
 
 	<!-- Main JavaScript File -->
 	<script src="js/main.js"></script>
+	<script src="js/factories/FApi.js"></script>
+	<script src="js/factories/FLocalStorage.js"></script>
+	<script src="js/factories/FAuthentication.js"></script>
+	<script src="js/controllers/CAuthentication.js"></script>
+	<script src="js/controllers/CMain.js"></script>
 
 </body>
 </html>

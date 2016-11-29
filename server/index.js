@@ -7,13 +7,18 @@ const expressSession = require('express-session');
 const cons = require('consolidate');
 const passport = require('passport');
 const FacebookStrategy = require('passport-facebook').Strategy;
+const logger = require('morgan');
+const jwt = require('jwt-simple');
+const request = require('request');
+const mongoose = require('mongoose');
+const moment = require('moment');
 
 require('dotenv').config();
 require('handlebars');
 
 console.log(__dirname);
 
-const User = require('./models/user');
+var User = require('./models/user');
 
 app.use(cors());
 
@@ -23,93 +28,73 @@ app.use(bodyParser.urlencoded({
   extended: true
 })); 
 
-app.use(expressSession({
-    secret: 'crackalackin',
-    resave: true,
-    saveUninitialized: true
-}));
-
-app.use(passport.initialize());
-app.use(passport.session());
-
-passport.use(new FacebookStrategy({
-    clientID: process.env.FACEBOOK_CLIENT_ID,
-    clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
-    callbackURL: "http://localhost:5000/auth/facebook/callback"
-  },
-  function(accessToken, refreshToken, profile, done) {
-
-  	User.findOrCreate({facebookID:profile.id}, function(err, user) {
-      if (err) { return done(err); }
-      
-      user.name = profile.displayName;
-      user.token = accessToken;
-      user.save();
-
-      done(null, user);
-    });
-  }
-));
-
-app.set('view engine', 'hbs');
-app.set('views', __dirname + '/views')
-
-const mongoose = require('mongoose');
-
 mongoose.connect(process.env.MONGO_URL);
 
-// Stubbed login example
-app.get('/',(req,res) =>{
-  res.render('index', {token: req.user.token})
-})
 
-// Stubbed login example
-app.get('/login',(req,res) =>{
-	res.render('login')
-})
+/*
+ |--------------------------------------------------------------------------
+ | Generate JSON Web Token
+ |--------------------------------------------------------------------------
+ */
+function createJWT(user) {
+  var payload = {
+    sub: user._id,
+    iat: moment().unix(),
+    exp: moment().add(14, 'days').unix()
+  };
+  return jwt.encode(payload, process.env.TOKEN_SECRET);
+}
 
-// Stubbed dashboard example
-app.get('/getUser',(req,res) =>{
-  res.json(req.user.token);
-	// res.json(req.user);
-})
 
-app.get('/auth/facebook', passport.authenticate('facebook'));
+/*
+ |--------------------------------------------------------------------------
+ | Login with Facebook
+ |--------------------------------------------------------------------------
+ */
+app.post('/auth/facebook', function(req, res) {
+  var fields = ['id', 'email', 'first_name', 'last_name', 'link', 'name'];
+  var accessTokenUrl = 'https://graph.facebook.com/v2.5/oauth/access_token';
+  var graphApiUrl = 'https://graph.facebook.com/v2.5/me?fields=' + fields.join(',');
+  var params = {
+    code: req.body.code,
+    client_id: req.body.clientId,
+    client_secret: process.env.FACEBOOK_CLIENT_SECRET,
+    redirect_uri: req.body.redirectUri
+  };
 
-app.get('/auth/facebook/callback', passport.authenticate('facebook', { 
-	successRedirect: '/',
-	failureRedirect: '/login' 
-}));
+  // Step 1. Exchange authorization code for access token.
+  request.get({ url: accessTokenUrl, qs: params, json: true }, function(err, response, accessToken) {
+    if (response.statusCode !== 200) {
+      return res.status(500).send({ message: accessToken.error.message });
+    }
 
-passport.serializeUser(function(user, done) {
-  done(null, user.id);
-});
+    // Step 2. Retrieve profile information about the current user.
+    request.get({ url: graphApiUrl, qs: accessToken, json: true }, function(err, response, profile) {
+      if (response.statusCode !== 200) {
+        return res.status(500).send({ message: profile.error.message });
+      }
 
-passport.deserializeUser(function(id, done) {
-  User.findById(id, function(err, user) {
-    done(err, user);
+        console.log(profile)
+
+        User.findOrCreate({facebook:profile.id}, (err, user) => {
+          if (err) { 
+            return done(err); 
+          }
+
+          user.displayName = profile.name;          
+          user.email = profile.email;
+          user.facebook = profile.id;
+
+          user.save(function() {
+            var token = createJWT(user);
+            res.send({ token: token });
+          });
+        });
+    });
   });
 });
 
 
-
-// View restricted to authenticated users
-// app.post('',isAuthenticated,(req, res) => {
-	
-// })
-
-// View open to all
-// app.post('',(req, res) => {
-	
-// })
-
-
-
-function isAuthenticated(req, res, next) {
-    if (req.user)
-        return next();
-    res.redirect('/login');
-}
 
 const port = process.env.PORT || 5000;
 
