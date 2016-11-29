@@ -6,8 +6,12 @@ const findOrCreate  = require('mongoose-findorcreate');
 const bcrypt = require('bcryptjs');
 
 var userSchema = new Schema({
+	email: {
+		type: String,
+		unique: true,
+		required: true
+	},
 	displayName: String, 
-	// email: String,
 	facebook: String,
 	twitter: String,
 });

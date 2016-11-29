@@ -228,7 +228,7 @@ app.post('/auth/twitter', function(req, res) {
         oauth: profileOauth,
         json: true
       }, function(err, response, profile) {
-        // console.log(profile);
+        console.log(profile);
         // Step 5a. Link user accounts.
         // if (req.header('Authorization')) {
         //   User.findOne({ twitter: profile.id }, function(err, existingUser) {
@@ -259,13 +259,12 @@ app.post('/auth/twitter', function(req, res) {
         // Step 5b. Create a new user account or return an existing one.
         User.findOrCreate({ twitter: profile.id }, (err, user) => {
           if (err) {
-
+            console.log('An error is about to be thrown at you')
             return console.log(err); 
-
           }
 
           user.twitter      = profile.id;
-          user.email        = null;
+          user.email        = profile.email;
           user.displayName  = profile.name;
 
           console.log(user);
