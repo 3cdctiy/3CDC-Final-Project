@@ -78,6 +78,15 @@
 		  oauthType: '2.0',
 		  popupOptions: { width: 580, height: 400 }
     });
+
+	 $authProvider.twitter({
+	   url: 'http://localhost:8000/auth/twitter',
+	   authorizationEndpoint: 'https://api.twitter.com/oauth/authenticate',
+	   redirectUri: window.location.origin + '/',
+	   oauthType: '1.0',
+	   popupOptions: { width: 495, height: 645 }
+	 });
+
 	}
 
 })();

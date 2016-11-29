@@ -8,7 +8,8 @@ const bcrypt = require('bcryptjs');
 var userSchema = new Schema({
 	displayName: String, 
 	email: String,
-  facebook: String,
+  	facebook: String,
+  	twitter: String,
 });
 
 // userSchema.pre('save', function(next) {

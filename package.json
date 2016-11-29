@@ -70,6 +70,7 @@
     "mongoose-findorcreate": "^0.1.2",
     "morgan": "^1.7.0",
     "nodemon": "^1.11.0",
+    "querystring": "^0.2.0",
     "request": "^2.79.0",
     "satellizer": "^0.15.5"
   }
