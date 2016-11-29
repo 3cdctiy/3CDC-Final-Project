@@ -75,6 +75,8 @@
 	  // ------------------------------------------------------------
 		// Satellizer Authentication Providers
 		// ------------------------------------------------------------
+		$authProvider.signupUrl = 'http://localhost:8000/auth/signup';
+
     $authProvider.facebook({
       clientId: '950583835073331',
       name: 'facebook',

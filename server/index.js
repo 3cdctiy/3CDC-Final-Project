@@ -254,14 +254,10 @@ app.post('/auth/twitter', function(req, res) {
 
         // Step 5b. Create a new user account or return an existing one.
         User.findOrCreate({ twitter: profile.id }, (err, user) => {
-          console.log(user);
-
           if (err) {
             return done(err); 
           }
 
-          console.log('populating user data')
-          // var user = new User();
           user.twitter      = profile.id;
           user.email        = profile.email;
           user.displayName  = profile.name;
