@@ -82,43 +82,43 @@ function createJWT(user) {
  | Log in with Email
  |--------------------------------------------------------------------------
  */
-app.post('/auth/login', function(req, res) {
-  User.findOne({ email: req.body.email }, '+password', function(err, user) {
-    if (!user) {
-      return res.status(401).send({ message: 'Invalid email and/or password' });
-    }
-    user.comparePassword(req.body.password, function(err, isMatch) {
-      if (!isMatch) {
-        return res.status(401).send({ message: 'Invalid email and/or password' });
-      }
-      res.send({ token: createJWT(user) });
-    });
-  });
-});
+// app.post('/auth/login', function(req, res) {
+//   User.findOne({ email: req.body.email }, '+password', function(err, user) {
+//     if (!user) {
+//       return res.status(401).send({ message: 'Invalid email and/or password' });
+//     }
+//     user.comparePassword(req.body.password, function(err, isMatch) {
+//       if (!isMatch) {
+//         return res.status(401).send({ message: 'Invalid email and/or password' });
+//       }
+//       res.send({ token: createJWT(user) });
+//     });
+//   });
+// });
 
 /*
  |--------------------------------------------------------------------------
  | Create Email and Password Account
  |--------------------------------------------------------------------------
  */
-app.post('/auth/signup', function(req, res) {
-  User.findOne({ email: req.body.email }, function(err, existingUser) {
-    if (existingUser) {
-      return res.status(409).send({ message: 'Email is already taken' });
-    }
-    var user = new User({
-      displayName: req.body.displayName,
-      email: req.body.email,
-      password: req.body.password
-    });
-    user.save(function(err, result) {
-      if (err) {
-        res.status(500).send({ message: err.message });
-      }
-      res.send({ token: createJWT(result) });
-    });
-  });
-});
+// app.post('/auth/signup', function(req, res) {
+//   User.findOne({ email: req.body.email }, function(err, existingUser) {
+//     if (existingUser) {
+//       return res.status(409).send({ message: 'Email is already taken' });
+//     }
+//     var user = new User({
+//       displayName: req.body.displayName,
+//       email: req.body.email,
+//       password: req.body.password
+//     });
+//     user.save(function(err, result) {
+//       if (err) {
+//         res.status(500).send({ message: err.message });
+//       }
+//       res.send({ token: createJWT(result) });
+//     });
+//   });
+// });
 
 
 
@@ -154,13 +154,19 @@ app.post('/auth/facebook', function(req, res) {
 
         User.findOrCreate({facebook:profile.id}, (err, user) => {
           if (err) { 
+<<<<<<< HEAD
             console.log(err)
             return done(err); 
+=======
+            return console.log(err); 
+>>>>>>> 5ab2b1624f5aa7ce5abd387a2ed892d94df79f49
           }
 
           user.displayName = profile.name;          
           user.email = profile.email;
           user.facebook = profile.id;
+
+          console.log(user);
 
           user.save(function() {
             var token = createJWT(user);
@@ -256,13 +262,19 @@ app.post('/auth/twitter', function(req, res) {
         // Step 5b. Create a new user account or return an existing one.
         User.findOrCreate({ twitter: profile.id }, (err, user) => {
           if (err) {
+<<<<<<< HEAD
             console.log(err)
             return done(err); 
+=======
+            return console.log(err); 
+>>>>>>> 5ab2b1624f5aa7ce5abd387a2ed892d94df79f49
           }
 
           user.twitter      = profile.id;
-          user.email        = profile.email;
+          user.email        = null;
           user.displayName  = profile.name;
+
+          console.log(user);
           // user.picture = profile.profile_image_url_https.replace('_normal', '');
           user.save(function() {
             res.send({ token: createJWT(user) });
