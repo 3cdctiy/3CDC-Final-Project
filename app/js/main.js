@@ -68,7 +68,7 @@
     $authProvider.facebook({
       clientId: '950583835073331',
       name: 'facebook',
-		  url: 'http://localhost:5000/auth/facebook',
+		  url: 'http://localhost:8000/auth/facebook',
 		  authorizationEndpoint: 'https://www.facebook.com/v2.5/dialog/oauth',
 		  redirectUri: window.location.origin + '/',
 		  requiredUrlParams: ['display', 'scope'],
