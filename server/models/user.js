@@ -7,7 +7,8 @@ const findOrCreate  = require('mongoose-findorcreate');
 var userSchema = Schema({
   name: String,
   token: String,
-  facebookID: String
+  facebookID: String,
+  twitterID: String
 });
 
 userSchema.plugin(findOrCreate);

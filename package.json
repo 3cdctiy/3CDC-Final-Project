@@ -59,6 +59,7 @@
     "mongoose-findorcreate": "^0.1.2",
     "nodemon": "^1.11.0",
     "passport": "^0.3.2",
-    "passport-facebook": "^2.1.1"
+    "passport-facebook": "^2.1.1",
+    "passport-twitter": "^1.0.4"
   }
 }
