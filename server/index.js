@@ -154,6 +154,7 @@ app.post('/auth/facebook', function(req, res) {
 
         User.findOrCreate({facebook:profile.id}, (err, user) => {
           if (err) { 
+            console.log(err)
             return done(err); 
           }
 
@@ -255,6 +256,7 @@ app.post('/auth/twitter', function(req, res) {
         // Step 5b. Create a new user account or return an existing one.
         User.findOrCreate({ twitter: profile.id }, (err, user) => {
           if (err) {
+            console.log(err)
             return done(err); 
           }
 
