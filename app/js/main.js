@@ -10,6 +10,9 @@
 	function appConfig($stateProvider, $urlRouterProvider, $authProvider, toastrConfig)
 	{
 
+		// ------------------------------------------------------------
+		// Angular Toast Configurations
+		// ------------------------------------------------------------
 		angular.extend(toastrConfig, {
 	    iconClasses: {
 	      error: 'toast-error',
@@ -18,6 +21,8 @@
 	      warning: 'toast-warning'
 	    }
 	  });
+
+
 
 		// ------------------------------------------------------------
 		// Satellizer Resolve Options
@@ -62,7 +67,7 @@
 	  {
 	  	url: 					'/login',
 	  	templateUrl: 	'partials/login.html',
-	  	controller: 	'CAuthentication',
+	  	controller: 	'CLogin',
 	  	controllerAs: 'controller',
 	  	resolve: {
         skipIfLoggedIn: skipIfLoggedIn
@@ -85,6 +90,7 @@
 		// Satellizer Authentication Providers
 		// ------------------------------------------------------------
 		$authProvider.signupUrl = 'http://localhost:8000/auth/signup';
+		$authProvider.loginUrl = 'http://localhost:8000/auth/login';
 
     $authProvider.facebook({
       clientId: '950583835073331',
