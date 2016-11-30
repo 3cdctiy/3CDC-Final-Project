@@ -3,12 +3,21 @@
 	'use strict';
 
 	angular
-	.module('app', ['ui.router', 'satellizer'])
+	.module('app', ['ui.router', 'ngAnimate', 'toastr', 'satellizer'])
 	.config(appConfig);
 
-	appConfig.$inject = ['$stateProvider', '$urlRouterProvider', '$authProvider'];
-	function appConfig($stateProvider, $urlRouterProvider, $authProvider)
+	appConfig.$inject = ['$stateProvider', '$urlRouterProvider', '$authProvider', 'toastrConfig'];
+	function appConfig($stateProvider, $urlRouterProvider, $authProvider, toastrConfig)
 	{
+
+		angular.extend(toastrConfig, {
+	    iconClasses: {
+	      error: 'toast-error',
+	      info: 'toast-info',
+	      success: 'toast-success',
+	      warning: 'toast-warning'
+	    }
+	  });
 
 		// ------------------------------------------------------------
 		// Satellizer Resolve Options

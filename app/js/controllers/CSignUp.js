@@ -4,7 +4,7 @@
 
   angular
     .module('app')
-    .controller('CSignUp', function($scope, $auth, $location)
+    .controller('CSignUp', function($scope, $auth, $location, toastr)
     {
 
       let vm = this;
@@ -14,10 +14,10 @@
           .then(function(response) {
             $auth.setToken(response);
             $location.path('/');
-            console.log('You have successfully created a new account and have been signed-in');
+            toastr.info('You have successfully created a new account and have been signed-in');
           })
           .catch(function(response) {
-            console.log(response.data.message);
+            toastr.error(response.data.message);
           });
       };
 
