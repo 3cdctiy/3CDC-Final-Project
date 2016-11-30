@@ -19,11 +19,9 @@
 	    	$auth.login(vm.user)
 	      .then(function() {
 	        toastr.success('You have successfully signed in!');
-	        vm.user = FFormUtilities.resetForm();
 	        $location.path('/');
 	      })
 	      .catch(function(error) {
-	      	console.log(error);
 	        toastr.error(error.data.message, error.status);
 	      });
 	    } else {

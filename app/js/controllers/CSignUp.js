@@ -15,8 +15,9 @@
     // Name: signup
     // Client side signup form handling
     // ------------------------------------------------------------
-    vm.signup = function() {
-      $auth.signup(vm.user)
+    vm.signup = function(isValid) {
+      if(isValid) {
+        $auth.signup(vm.user)
         .then(function(response) {
           $auth.setToken(response);
           $location.path('/');
@@ -25,6 +26,9 @@
         .catch(function(response) {
           toastr.error(response.data.message);
         });
+      } else {
+        toastr.error('Please ensure all form fields are valid', 'Invalid Form Fields');
+      }
     };
 
   })

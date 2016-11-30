@@ -62,6 +62,13 @@ img {
 	background-color: $color-warn;
 }
 
+.input-error {
+	font-size: 0.8em;
+	color: $color-error;
+	position: absolute;
+	bottom: 0;
+}
+
 // Form invalid styles
 form {
 	input,
@@ -76,9 +83,7 @@ form {
 	input[type=datetime-local]:focus:not([readonly]),
 	input[type=tel]:focus:not([readonly]),
 	input[type=number]:focus:not([readonly]),
-	input[type=search]:focus:not([readonly]),
-
-	input[type=password]:focus:not([readonly])+label {
+	input[type=search]:focus:not([readonly]) {
 	 	&.ng-dirty {
 			&.ng-invalid {
 				border-bottom: 1px solid $color-error;
@@ -87,6 +92,32 @@ form {
 		}
 	}
 }
+
+.password-strength-indicator {
+  position: absolute;
+  top: 10px;
+  right: 0;
+  width: 5px;
+  padding: 0 15px;
+}
+
+.password-strength-indicator span {
+  display: block;
+  width: 5px;
+  height: 5px;
+  margin-bottom: 2px;
+  background: #ebeef1;
+  border-radius: 5px;
+}
+
+[class^='ion-'] {
+  font-size: 1.2em;
+}
+
+.has-feedback .form-control {
+  padding-left: 42.5px;
+}
+
 
 
 

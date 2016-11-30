@@ -135,15 +135,11 @@ app.post('/auth/signup', function(req, res) {
       return res.status(409).send({ message: 'Email is already taken' });
     }
 
-    console.log('pass: ' + req.body.password)
-
     var user = new User({
       displayName: req.body.displayName,
       email: req.body.email,
       password: req.body.password
     });
-
-    console.log(user);
 
     user.save(function(err, result) {
       if (err) {
@@ -185,7 +181,7 @@ app.post('/auth/facebook', function(req, res) {
 
       if (req.header('Authorization')) {
         // Step 3a. Link user accounts.
-        User.findOne({ facebook: profile.id }, function(err, existingUser) {
+        User.findOne({ email: req.body.email }, function(err, existingUser) {
           if (existingUser) {
             return res.status(409).send({ message: 'There is already a Facebook account that belongs to you' });
           }
@@ -209,7 +205,7 @@ app.post('/auth/facebook', function(req, res) {
         });
       } else {
         // Step 3b. Create a new user account or return an existing one.
-        User.findOne({ facebook: profile.id }, function(err, existingUser) {
+        User.findOne({ email: req.body.email }, function(err, existingUser) {
           if (existingUser) {
             var token = createJWT(existingUser);
             return res.send({ token: token });
@@ -285,7 +281,7 @@ app.post('/auth/twitter', function(req, res) {
 
         // Step 5a. Link user accounts.
         if (req.header('Authorization')) {
-          User.findOne({ twitter: profile.id }, function(err, existingUser) {
+          User.findOne({ email: req.body.email }, function(err, existingUser) {
             if (existingUser) {
               return res.status(409).send({ message: 'There is already a Twitter account that belongs to you' });
             }
@@ -308,7 +304,7 @@ app.post('/auth/twitter', function(req, res) {
           });
         } else {
           // Step 5b. Create a new user account or return an existing one.
-          User.findOne({ twitter: profile.id }, function(err, existingUser) {
+          User.findOne({ email: req.body.email }, function(err, existingUser) {
             if (existingUser) {
               return res.send({ token: createJWT(existingUser) });
             }
