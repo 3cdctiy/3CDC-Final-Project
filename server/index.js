@@ -111,7 +111,7 @@ app.put('/api/me', ensureAuthenticated, function(req, res) {
  |--------------------------------------------------------------------------
  */
 app.post('/auth/login', function(req, res) {
-  User.findOne({ email: req.body.email }, '+password', function(err, user) {
+  User.findOne({ email: req.body.email }, 'password', function(err, user) {
     if (!user) {
       return res.status(401).send({ message: 'Invalid email and/or password' });
     }
