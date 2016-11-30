@@ -15,7 +15,6 @@ const moment = require('moment');
 const qs = require('querystring');
 
 require('dotenv').config();
-require('handlebars');
 
 console.log(__dirname);
 
@@ -33,11 +32,10 @@ mongoose.connect(process.env.MONGO_URL);
 
 
 
-/*
- |--------------------------------------------------------------------------
- | Login Required Middleware
- |--------------------------------------------------------------------------
- */
+// ------------------------------------------------------------
+// Name: ensureAuthenticated
+// Middleware that ensures a user is logged in to progress
+// ------------------------------------------------------------
 function ensureAuthenticated(req, res, next) {
   if (!req.header('Authorization')) {
     return res.status(401).send({ message: 'Please make sure your request has an Authorization header' });
@@ -61,11 +59,10 @@ function ensureAuthenticated(req, res, next) {
 
 
 
-/*
- |--------------------------------------------------------------------------
- | Generate JSON Web Token
- |--------------------------------------------------------------------------
- */
+// ------------------------------------------------------------
+// Name: createJWT
+// Generates a JSON Web Token
+// ------------------------------------------------------------
 function createJWT(user) {
   var payload = {
     sub: user._id,
@@ -76,11 +73,11 @@ function createJWT(user) {
 }
 
 
-// /*
-//  |--------------------------------------------------------------------------
-//  | GET /api/me
-//  |--------------------------------------------------------------------------
-//  */
+
+// ------------------------------------------------------------
+// GET: /api/me
+// Returns logged in user's details
+// ------------------------------------------------------------
 app.get('/api/me', ensureAuthenticated, function(req, res) {
   User.findById(req.user, function(err, user) {
     res.send(user);
@@ -88,9 +85,11 @@ app.get('/api/me', ensureAuthenticated, function(req, res) {
 });
 
 
-//  |--------------------------------------------------------------------------
-//  | PUT /api/me
-//  |-------------------------------------------------------------------------- 
+
+// ------------------------------------------------------------
+// PUT: /api/me
+// Updates logged in user's details
+// ------------------------------------------------------------
 app.put('/api/me', ensureAuthenticated, function(req, res) {
   User.findById(req.user, function(err, user) {
     if (!user) {
@@ -105,11 +104,11 @@ app.put('/api/me', ensureAuthenticated, function(req, res) {
 });
 
 
-/*
- |--------------------------------------------------------------------------
- | Log in with Email
- |--------------------------------------------------------------------------
- */
+
+// ------------------------------------------------------------
+// POST: /auth/login
+// Log into app with email
+// ------------------------------------------------------------
 app.post('/auth/login', function(req, res) {
   User.findOne({ email: req.body.email }, 'password', function(err, user) {
     if (!user) {
@@ -124,11 +123,12 @@ app.post('/auth/login', function(req, res) {
   });
 });
 
-/*
- |--------------------------------------------------------------------------
- | Create Email and Password Account
- |--------------------------------------------------------------------------
- */
+
+
+// ------------------------------------------------------------
+// POST: /auth/signup
+// Create new email and password Account
+// ------------------------------------------------------------
 app.post('/auth/signup', function(req, res) {
   User.findOne({ email: req.body.email }, function(err, existingUser) {
     if (existingUser) {
@@ -156,11 +156,10 @@ app.post('/auth/signup', function(req, res) {
 
 
 
-/*
- |--------------------------------------------------------------------------
- | Login with Facebook
- |--------------------------------------------------------------------------
- */
+// ------------------------------------------------------------
+// POST: /auth/facebook
+// Login with Facebook
+// ------------------------------------------------------------
 app.post('/auth/facebook', function(req, res) {
   var fields = ['id', 'email', 'first_name', 'last_name', 'link', 'name'];
   var accessTokenUrl = 'https://graph.facebook.com/v2.5/oauth/access_token';
@@ -184,9 +183,8 @@ app.post('/auth/facebook', function(req, res) {
         return res.status(500).send({ message: profile.error.message });
       }
 
-        console.log(profile)
-
       if (req.header('Authorization')) {
+        // Step 3a. Link user accounts.
         User.findOne({ facebook: profile.id }, function(err, existingUser) {
           if (existingUser) {
             return res.status(409).send({ message: 'There is already a Facebook account that belongs to you' });
@@ -210,7 +208,7 @@ app.post('/auth/facebook', function(req, res) {
           });
         });
       } else {
-        // Step 3. Create a new user account or return an existing one.
+        // Step 3b. Create a new user account or return an existing one.
         User.findOne({ facebook: profile.id }, function(err, existingUser) {
           if (existingUser) {
             var token = createJWT(existingUser);
@@ -222,44 +220,20 @@ app.post('/auth/facebook', function(req, res) {
           user.email        = profile.email;
           user.facebook     = profile.id;
 
-          console.log(user);
-
           user.save(function() {
             var token = createJWT(user);
             res.send({ token: token });
           });
         });
       }
-
-
-        // User.findOrCreate({facebook:profile.id}, (err, user) => {
-        //   if (err) { 
-
-        //     return console.log(err); 
-
-        //   }
-
-        //   user.displayName = profile.name;          
-        //   user.email = profile.email;
-        //   user.facebook = profile.id;
-
-        //   console.log(user);
-
-        //   user.save(function() {
-        //     var token = createJWT(user);
-        //     res.send({ token: token });
-        //   });
-        // });
     });
   });
 });
 
-/*
- |--------------------------------------------------------------------------
- | Login with Twitter
- |--------------------------------------------------------------------------
- */
-
+// ------------------------------------------------------------
+// POST: /auth/twitter
+// Login with Twitter
+// ------------------------------------------------------------
 app.post('/auth/twitter', function(req, res) {
   var requestTokenUrl = 'https://api.twitter.com/oauth/request_token';
   var accessTokenUrl = 'https://api.twitter.com/oauth/access_token';
@@ -308,7 +282,6 @@ app.post('/auth/twitter', function(req, res) {
         oauth: profileOauth,
         json: true
       }, function(err, response, profile) {
-        console.log(profile);
 
         // Step 5a. Link user accounts.
         if (req.header('Authorization')) {
@@ -349,60 +322,17 @@ app.post('/auth/twitter', function(req, res) {
             });
           });
         }
-
-        // Step 5a. Link user accounts.
-        // if (req.header('Authorization')) {
-        //   User.findOne({ twitter: profile.id }, function(err, existingUser) {
-        //     if (existingUser) {
-        //       return res.status(409).send({ message: 'There is already a Twitter account that belongs to you' });
-        //     }
-        //     console.log('log line 159')
-        //     var token = req.header('Authorization').split(' ')[1];
-        //     var payload = jwt.decode(token, process.env.TOKEN_SECRET);
-
-        //     User.findById(payload.sub, function(err, user) {
-        //       if (!user) {
-        //         return res.status(400).send({ message: 'User not found' });
-        //       }
-
-        //       user.twitter = profile.id;
-        //       user.email = profile.email;
-        //       user.displayName = user.displayName || profile.name;
-        //       user.picture = user.picture || profile.profile_image_url_https.replace('_normal', '');
-        //       user.save(function(err) {
-        //         res.send({ token: createJWT(user) });
-        //       });
-        //     });
-        //   });
-        // }
-         // else {
-
-        // // Step 5b. Create a new user account or return an existing one.
-        // User.findOrCreate({ twitter: profile.id }, (err, user) => {
-        //   if (err) {
-        //     console.log('An error is about to be thrown at you')
-        //     return console.log(err); 
-        //   }
-
-        //   user.twitter      = profile.id;
-        //   user.email        = profile.email;
-        //   user.displayName  = profile.name;
-
-        //   console.log(user);
-        //   // user.picture = profile.profile_image_url_https.replace('_normal', '');
-        //   user.save(function() {
-        //     res.send({ token: createJWT(user) });
-        //   });
-        // });
-        // }
       });
     });
   }
 });
 
 
+
+// Get or Set port #
 const port = process.env.PORT || 8000;
 
+// Initiate server 
 app.listen(port, () => {
   console.log('Server running on port ' + port + '!');
 })

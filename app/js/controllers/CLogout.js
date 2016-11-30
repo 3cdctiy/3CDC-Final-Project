@@ -8,6 +8,12 @@
     
     let vm = this;
 
+
+
+    // ------------------------------------------------------------
+		// Name: logout
+		// Logs user out, and redirects to login page
+		// ------------------------------------------------------------
     vm.logout = function() {
 			$auth.logout();
 			$location.path('/login');

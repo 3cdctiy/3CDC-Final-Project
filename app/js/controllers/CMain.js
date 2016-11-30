@@ -3,14 +3,14 @@
 	'use strict';
 
 	angular
-		.module('app')
-		.controller('CMain', function($state, $stateParams, $auth, $location)
-		{
+	.module('app')
+	.controller('CMain', function($state, $stateParams, $auth, $location)
+	{
 
-			let vm = this;
+		let vm = this;
 
-			
+		
 
-		})
+	})
 
 })();

@@ -11,7 +11,7 @@
 
 			// ------------------------------------------------------------
 			// Name: set
-			// Abstract: Handling function to save to localStorage
+			// Handling function to save to localStorage
 			// ------------------------------------------------------------
 			const set = function(name, data)
 			{
@@ -32,7 +32,7 @@
 
 			// ------------------------------------------------------------
 			// Name: get
-			// Abstract: Handling function to get from localStorage
+			// Handling function to get from localStorage
 			// ------------------------------------------------------------
 			const get = function(name)
 			{

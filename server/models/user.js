@@ -26,16 +26,12 @@ var userSchema = new Schema({
 
 // userSchema pre-save password encryption
 userSchema.pre('save', function(next) {
-	console.log('user schema pre')
   var user = this;
   if (!user.isModified('password')) {
-  	console.log('line 25 return')
     return next();
   }
   bcrypt.genSalt(10, function(err, salt) {
-  	console.log('line 29 salt')
     bcrypt.hash(user.password, salt, function(err, hash) {
-    	console.log('hash: ' + hash)
       user.password = hash;
       next();
     });
@@ -46,11 +42,7 @@ userSchema.pre('save', function(next) {
 
 // userSchema password comparison
 userSchema.methods.comparePassword = function(password, done) {
-	console.log(this);
   bcrypt.compare(password, this.password, function(err, isMatch) {
-  	console.log('pass: ' + password)
-  	console.log('thispass: ' + this.password)
-  	console.log('passMatch: ' + isMatch)
     done(err, isMatch);
   });
 };
