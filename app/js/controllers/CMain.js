@@ -4,15 +4,12 @@
 
 	angular
 		.module('app')
-		.controller('CMain', function($state, $stateParams, $auth, $location, FAuthentication)
+		.controller('CMain', function($state, $stateParams, $auth, $location)
 		{
 
 			let vm = this;
 
-			vm.logout = function() {
-				FAuthentication.logoutUser();
-				$location.path('/login');
-			}
+			
 
 		})
 

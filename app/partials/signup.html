@@ -1,5 +1,9 @@
 <form ng-submit="controller.signup()">
 	<div class="input-field col s6">
+    <input id="name" type="text" class="validate" ng-model="controller.user.name">
+    <label for="name">Name</label>
+  </div>
+	<div class="input-field col s6">
     <input id="email" type="email" class="validate" ng-model="controller.user.email">
     <label for="email">Email</label>
   </div>
