@@ -1,8 +1,5 @@
 @import 'bourbon/bourbon';
-
-// --------------------------------------------------
-// Variables
-// --------------------------------------------------
+@import '_variables.scss';
 
 
 
@@ -50,19 +47,30 @@ img {
 
 // Toast Styles
 .toast-success {
-	background-color: green;
+	background-color: $color-success;
 }
 
 .toast-error {
-	background-color: red;
+	background-color: $color-error;
 }
 
 .toast-info {
-	background-color: blue;
+	background-color: $color-info;
 }
 
 .toast-warning {
-	background-color: orange;
+	background-color: $color-warn;
+}
+
+form {
+	input,
+	textarea {
+	 	.ng-dirty {
+			&.ng-invalid {
+				border-bottom: 1px solid $color-error;
+			}
+		}
+	}
 }
 
 
