@@ -5,8 +5,6 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const expressSession = require('express-session');
 const cons = require('consolidate');
-// const passport = require('passport');
-// const FacebookStrategy = require('passport-facebook').Strategy;
 const logger = require('morgan');
 const jwt = require('jwt-simple');
 const request = require('request');
@@ -28,6 +26,7 @@ app.use(bodyParser.urlencoded({
   extended: true
 })); 
 
+mongoose.Promise = global.Promise;
 mongoose.connect(process.env.MONGO_URL);
 
 
@@ -82,6 +81,10 @@ app.get('/api/me', ensureAuthenticated, function(req, res) {
   User.findById(req.user, function(err, user) {
     res.send(user);
   });
+});
+
+app.get('/', ensureAuthenticated, function(req, res) {
+  res.send("TEST");
 });
 
 
