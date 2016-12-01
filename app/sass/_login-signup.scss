@@ -1,0 +1,24 @@
+.social-logins {
+	margin: 40px 0 20px;
+
+	.btn {
+		width: 100%;
+		margin-bottom: 10px;
+
+		&.facebook {
+			background-color: $color-facebook;
+
+			&:hover {
+				background-color: lighten($color-facebook, 10);
+			}
+		}
+
+		&.twitter {
+			background-color: $color-twitter;
+
+			&:hover {
+				background-color: lighten($color-twitter, 10);
+			}
+		}
+	}
+}
