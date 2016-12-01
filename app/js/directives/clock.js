@@ -13,9 +13,7 @@ angular.module('app')
 
         function getTimeRemaining(endtime) {
           var t = Date.parse(endtime) - Date.parse(new Date()); //get the differenc between the end time and the current time
-          console.log(t);
           var d = new Date();
-          console.log(d);
           var seconds = Math.floor((t / 1000) % 60); //converts returned milliseconds to seconds 
           var minutes = Math.floor((t / 1000 / 60) % 60); //converts returned milliseconds to minutes
           var hours = Math.floor((t / (1000 * 60 * 60)) % 24); //converts returned milliseconds to hours
