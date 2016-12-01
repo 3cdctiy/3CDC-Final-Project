@@ -62,16 +62,62 @@ img {
 	background-color: $color-warn;
 }
 
+.input-error {
+	font-size: 0.8em;
+	color: $color-error;
+	position: absolute;
+	bottom: 0;
+}
+
+// Form invalid styles
 form {
 	input,
-	textarea {
-	 	.ng-dirty {
+	textarea,
+	input[type=text]:focus:not([readonly]),
+	input[type=password]:focus:not([readonly]),
+	input[type=email]:focus:not([readonly]),
+	input[type=url]:focus:not([readonly]),
+	input[type=time]:focus:not([readonly]),
+	input[type=date]:focus:not([readonly]),
+	input[type=datetime]:focus:not([readonly]),
+	input[type=datetime-local]:focus:not([readonly]),
+	input[type=tel]:focus:not([readonly]),
+	input[type=number]:focus:not([readonly]),
+	input[type=search]:focus:not([readonly]) {
+	 	&.ng-dirty {
 			&.ng-invalid {
 				border-bottom: 1px solid $color-error;
+				box-shadow: 0 1px 0 0 $color-error;
 			}
 		}
 	}
 }
+
+.password-strength-indicator {
+  position: absolute;
+  top: 10px;
+  right: 0;
+  width: 5px;
+  padding: 0 15px;
+}
+
+.password-strength-indicator span {
+  display: block;
+  width: 5px;
+  height: 5px;
+  margin-bottom: 2px;
+  background: #ebeef1;
+  border-radius: 5px;
+}
+
+[class^='ion-'] {
+  font-size: 1.2em;
+}
+
+.has-feedback .form-control {
+  padding-left: 42.5px;
+}
+
 
 
 

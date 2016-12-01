@@ -3,7 +3,7 @@
 	'use strict';
 
 	angular
-	.module('app', ['ui.router', 'ngAnimate', 'toastr', 'satellizer'])
+	.module('app', ['ui.router', 'ngAnimate', 'ngMessages', 'toastr', 'satellizer'])
 	.config(appConfig);
 
 	appConfig.$inject = ['$stateProvider', '$urlRouterProvider', '$authProvider', 'toastrConfig'];
