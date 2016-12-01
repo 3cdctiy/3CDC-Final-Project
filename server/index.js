@@ -81,7 +81,7 @@ app.get('/api/me', ensureAuthenticated, function(req, res) {
   });
 });
 
-app.get('/', ensureAuthenticated, function(req, res) {
+app.get('/', function(req, res) {
   res.send("TEST");
 });
 
