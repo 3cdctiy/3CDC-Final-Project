@@ -13,6 +13,11 @@ const moment = require('moment');
 const qs = require('querystring');
 
 
+app.set('views',__dirname+'../../app/');
+app.engine('html',cons.mustache);
+app.set('view engine','html');
+
+
 
 var User = require('./models/user');
 
@@ -324,7 +329,7 @@ app.post('/auth/twitter', function(req, res) {
 
 
 app.get('/', function(req, res) {
-  res.render('../../app/index.html')
+  res.render('index')
 });
 
 
