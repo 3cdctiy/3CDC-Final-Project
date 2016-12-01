@@ -73,16 +73,16 @@
         skipIfLoggedIn: skipIfLoggedIn
       }
 	  })
-	  .state('signup', 
-	  {
-      url: 					'/signup',
-      templateUrl: 	'partials/signup.html',
-      controller: 	'CSignUp',
-      controllerAs: 'controller',
-      resolve: {
-        skipIfLoggedIn: skipIfLoggedIn
-      }
-    })
+	  // .state('signup', 
+	  // {
+   //    url: 					'/signup',
+   //    templateUrl: 	'partials/signup.html',
+   //    controller: 	'CSignUp',
+   //    controllerAs: 'controller',
+   //    resolve: {
+   //      skipIfLoggedIn: skipIfLoggedIn
+   //    }
+   //  })
 
 
 
