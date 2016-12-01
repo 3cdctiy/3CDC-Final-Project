@@ -83,7 +83,7 @@
         skipIfLoggedIn: skipIfLoggedIn
       }
       })
-      state('about', 
+      .state('about', 
 	  {
       url: 					'/about',
       templateUrl: 	'partials/about.html',
