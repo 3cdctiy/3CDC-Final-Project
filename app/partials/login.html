@@ -8,10 +8,10 @@
 		</div>
 		<div class="col s12 m6 offset-m3">
 			<ul class="tabs tabs-fixed-width">
-        <li class="tab"><a href="#login">Login</a></li>
-        <li class="tab"><a class="active" href="#signup">Sign Up</a></li>
+        <li class="tab"><a class="active" href="#showLogin">Login</a></li>
+        <li class="tab"><a href="#showSignup">Sign Up</a></li>
       </ul>
-			<div id="login">
+			<div id="showLogin">
 				<!-- Login Form -->
 				<form novalidate class="login-form" name="loginForm" ng-submit="controller.login(loginForm.$valid, loginForm)">
 					<!-- Email -->
@@ -48,7 +48,7 @@
 				</form>
 				<!-- /loginForm -->
 			</div>
-			<div id="signup" ng-controller="CSignUp as signup">
+			<div id="showSignup" ng-controller="CSignUp as signup">
 				<!-- Signup Form -->
 				<form novalidate name="signupForm" ng-submit="signup.signup(signupForm.$valid)">
 					<!-- Name -->
