@@ -13,7 +13,7 @@ const moment = require('moment');
 const qs = require('querystring');
 
 
-app.set('views',__dirname+'/../../app');
+app.set('views',__dirname+'/views');
 app.engine('html',cons.mustache);
 app.set('view engine','html');
 
