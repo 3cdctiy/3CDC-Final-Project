@@ -82,7 +82,17 @@
       resolve: {
         skipIfLoggedIn: skipIfLoggedIn
       }
-    })
+      })
+      state('about', 
+	  {
+      url: 					'/about',
+      templateUrl: 	'partials/about.html',
+      controller: 	'CMain',
+      controllerAs: 'controller',
+      // resolve: {
+      //   skipIfLoggedIn: skipIfLoggedIn
+      // }
+      })
 
 
 
