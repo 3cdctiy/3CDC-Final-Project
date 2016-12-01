@@ -1,19 +1,36 @@
 <div class="container">
 	<div class="row">
 		<div class="col s12">
-			<button ng-click="authenticate('facebook')" class="btn">Sign in with Facebook</button>		<!-- Facebook Sign in -->
-			<button ng-click="authenticate('twitter')" class="btn">Sign in with Twitter</button>			<!-- Twitter Sign in -->
+			<button ng-click="controller.authenticate('facebook')" class="btn">Sign in with Facebook</button>		<!-- Facebook Sign in -->
+			<button ng-click="controller.authenticate('twitter')" class="btn">Sign in with Twitter</button>			<!-- Twitter Sign in -->
 			<!-- Login Form -->
-			<form name="loginForm" ng-submit="controller.login()">
+			<form novalidate name="loginForm" ng-submit="controller.login(loginForm.$valid, loginForm)">
 				<!-- Email -->
 				<div class="input-field col s6">
-			    <input id="email" type="email" class="validate" ng-model="controller.user.email">
+			    <input id="email" 
+			    			 type="email" 
+			    			 class="validate" 
+			    			 name="email"
+			    			 ng-model="controller.user.email"
+			    			 ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/"
+			    			 ng-minlength="5"
+			    			 ng-maxlength="50"
+			    			 required>
 			    <label for="email">Email</label>
+			    <span ng-show="!loginForm.email.$valid && loginForm.email.$dirty" class="input-error">Please enter a valid email</span>
 			  </div>
 			  <!-- Password -->
 			  <div class="input-field col s6">
-			    <input password-strength id="password" type="password" class="validate" ng-model="controller.user.password">
+			    <input id="password" 
+			    			 type="password" 
+			    			 class="validate" 
+			    			 name="password"
+			    			 ng-model="controller.user.password"
+			    			 ng-minlength="6"
+			    			 ng-maxlength="50"
+			    			 required>
 			    <label for="password">Password</label>
+			    <span ng-show="!loginForm.password.$valid && loginForm.password.$dirty" class="input-error">Password is invalid</span>
 			  </div>
 			  <!-- Submit Button -->
 			  <button class="btn waves-effect waves-light" type="submit" name="action">Login

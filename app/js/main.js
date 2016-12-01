@@ -3,7 +3,7 @@
 	'use strict';
 
 	angular
-	.module('app', ['ui.router', 'ngAnimate', 'toastr', 'satellizer'])
+	.module('app', ['ui.router', 'ngAnimate', 'ngMessages', 'toastr', 'satellizer'])
 	.config(appConfig);
 
 	appConfig.$inject = ['$stateProvider', '$urlRouterProvider', '$authProvider', 'toastrConfig'];
@@ -82,7 +82,17 @@
       resolve: {
         skipIfLoggedIn: skipIfLoggedIn
       }
-    })
+      })
+      state('about', 
+	  {
+      url: 					'/about',
+      templateUrl: 	'partials/about.html',
+      controller: 	'CMain',
+      controllerAs: 'controller',
+      // resolve: {
+      //   skipIfLoggedIn: skipIfLoggedIn
+      // }
+      })
 
 
 

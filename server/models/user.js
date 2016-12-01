@@ -17,7 +17,10 @@ var userSchema = new Schema({
 		type: String,
 		required: true
 	},
-	displayName: String, 
+	displayName: {
+		type: String,
+		required: true
+	},
 	facebook: String,
 	twitter: String,
 });

@@ -1,5 +1,5 @@
-angular.module('MyApp')
-  .directive('DPasswordMatch', function() {
+angular.module('app')
+  .directive('passwordMatch', function() {
     return {
       require: 'ngModel',
       scope: {
