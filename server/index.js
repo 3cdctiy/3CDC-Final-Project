@@ -28,6 +28,7 @@ app.use(bodyParser.urlencoded({
   extended: true
 })); 
 
+mongoose.Promise = global.Promise;
 mongoose.connect(process.env.MONGO_URL);
 
 
