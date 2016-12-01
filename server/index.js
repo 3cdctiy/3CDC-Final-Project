@@ -17,6 +17,8 @@ app.set('views',__dirname+'/views');
 app.engine('html',cons.mustache);
 app.set('view engine','html');
 
+app.use(express.static(path.join(__dirname,'app')))
+
 
 
 var User = require('./models/user');
