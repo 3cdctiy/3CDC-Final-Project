@@ -324,7 +324,7 @@ app.post('/auth/twitter', function(req, res) {
 
 
 app.get('/', function(req, res) {
-  res.json("TEST");
+  res.render('../../app/index.html')
 });
 
 
