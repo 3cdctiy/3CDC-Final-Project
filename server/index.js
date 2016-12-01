@@ -329,7 +329,7 @@ app.post('/auth/twitter', function(req, res) {
 
 
 app.get('/', function(req, res) {
-  res.render('index')
+  res.render('index.html')
 });
 
 
