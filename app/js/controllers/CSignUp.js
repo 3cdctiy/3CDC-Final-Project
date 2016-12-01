@@ -4,12 +4,12 @@
 
   angular
   .module('app')
-  .controller('CSignUp', function($scope, $auth, $location, toastr)
+  .controller('CSignUp', function($scope, $auth, $location, toastr, FGremlin)
   {
 
     let vm = this;
 
-
+    FGremlin.unleash();
 
     // ------------------------------------------------------------
     // Name: signup

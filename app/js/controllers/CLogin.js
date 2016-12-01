@@ -4,11 +4,11 @@
 
 	angular
 	.module('app')
-  .controller('CLogin', function($scope, $auth, $location, toastr, FFormUtilities) {
+  .controller('CLogin', function($scope, $auth, $location, toastr, FFormUtilities, FGremlin) {
 
   	let vm = this;
 
-
+  	FGremlin.unleash();
 
 		// ------------------------------------------------------------
 		// Name: login
