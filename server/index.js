@@ -12,9 +12,7 @@ const mongoose = require('mongoose');
 const moment = require('moment');
 const qs = require('querystring');
 
-require('dotenv').config();
 
-console.log(__dirname);
 
 var User = require('./models/user');
 
@@ -82,6 +80,8 @@ app.get('/api/me', ensureAuthenticated, function(req, res) {
     res.send(user);
   });
 });
+
+
 
 
 
@@ -320,6 +320,11 @@ app.post('/auth/twitter', function(req, res) {
       });
     });
   }
+});
+
+
+app.get('/', function(req, res) {
+  res.json("TEST");
 });
 
 
