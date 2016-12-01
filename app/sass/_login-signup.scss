@@ -23,7 +23,18 @@
 	}
 }
 
-.login-form {
+.tabs {
+
+	.tab {
+
+		a {
+			cursor: pointer;
+		}
+	}
+}
+
+.login-form,
+.signup-form {
 	
 	input {
 		margin-bottom: 20px;
