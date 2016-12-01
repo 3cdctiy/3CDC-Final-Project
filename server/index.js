@@ -81,9 +81,7 @@ app.get('/api/me', ensureAuthenticated, function(req, res) {
   });
 });
 
-app.get('/', function(req, res) {
-  res.send("TEST");
-});
+
 
 
 
@@ -322,6 +320,11 @@ app.post('/auth/twitter', function(req, res) {
       });
     });
   }
+});
+
+
+app.get('/', function(req, res) {
+  res.json("TEST");
 });
 
 
