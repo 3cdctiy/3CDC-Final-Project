@@ -12,7 +12,7 @@ const mongoose = require('mongoose');
 const moment = require('moment');
 const qs = require('querystring');
 
-require('dotenv').config();
+// require('dotenv').config();
 
 console.log(__dirname);
 
