@@ -57,10 +57,10 @@
 		{
 			url: 					'/',
 			templateUrl: 	'partials/home.html',
-			controller: 	'CMain',
+			controller: 	'CLogin',
 	    controllerAs: 'controller',
 	    resolve: {
-        loginRequired: loginRequired
+        loginRequired: skipIfLoggedIn
       }
 	  })
 	  .state('login',
