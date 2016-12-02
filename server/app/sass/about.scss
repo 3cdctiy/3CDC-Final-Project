@@ -1,3 +1,5 @@
+@import '_variables.scss';
+
 // general text colors
 body{
 	background-color: #141414;
@@ -11,14 +13,14 @@ body{
 	}
 
 	h4{
-		color: #81D8D0;
+		color: $color-link;
 	}
 
 	a{
-		color: #81D8D0;
+		color: $color-link;
 
 		&:hover{
-			color: #bef7f1;
+			color: $color-link-hover;
 			text-decoration: none;
 		}
 	}
@@ -39,7 +41,7 @@ body{
 		background-position: center;
 		height: 18rem;
 		padding: 1.2rem;
-		border-radius: 5px;
+		// border-radius: 5px;
 		position: relative;
 		top: 50%;
 		transform: translateY(28%);
