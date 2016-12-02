@@ -47,28 +47,34 @@
 		// ------------------------------------------------------------
 		// Angular State Routes
 		// ------------------------------------------------------------
-		$stateProvider.state('home', {
+		$stateProvider.state('landing', {
 			url: '/',
-			templateUrl: '../partials/home.html',
+			templateUrl: '../partials/landingpage.html',
 			controller: 'CLogin',
-			controllerAs: 'controller',
-			resolve: {
-					loginRequired: loginRequired
-			}
-		}).state('login', {
-			url: '/login',
-			templateUrl: '../partials/login.html',
-			controller: 'CLogin',
-			controllerAs: 'controller',
-			resolve: {
-					skipIfLoggedIn: skipIfLoggedIn
-			}
-		}).state('about', {
-			url: '/about',
-			templateUrl: '../partials/about.html',
-			controller: 'CMain',
 			controllerAs: 'controller'
 		});
+		// .state('home', {
+		// 	url: '/',
+		// 	templateUrl: '../partials/home.html',
+		// 	controller: 'CLogin',
+		// 	controllerAs: 'controller',
+		// 	resolve: {
+		// 			loginRequired: loginRequired
+		// 	}
+		// }).state('login', {
+		// 	url: '/login',
+		// 	templateUrl: '../partials/login.html',
+		// 	controller: 'CLogin',
+		// 	controllerAs: 'controller',
+		// 	resolve: {
+		// 			skipIfLoggedIn: skipIfLoggedIn
+		// 	}
+		// }).state('about', {
+		// 	url: '/about',
+		// 	templateUrl: '../partials/about.html',
+		// 	controller: 'CMain',
+		// 	controllerAs: 'controller'
+		// })
 
 		// ------------------------------------------------------------
 		// Satellizer Authentication Providers
