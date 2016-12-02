@@ -73,31 +73,24 @@
         skipIfLoggedIn: skipIfLoggedIn
       }
 	  })
-	  // .state('signup', 
-	  // {
-   //    url: 					'/signup',
-   //    templateUrl: 	'partials/signup.html',
-   //    controller: 	'CSignUp',
-   //    controllerAs: 'controller',
-   //    resolve: {
-   //      skipIfLoggedIn: skipIfLoggedIn
-   //    }
-   //  })
 
 
 
 	  // ------------------------------------------------------------
 		// Satellizer Authentication Providers
 		// ------------------------------------------------------------
-		$authProvider.signupUrl = 'http://localhost:8000/auth/signup';
-		$authProvider.loginUrl = 'http://localhost:8000/auth/login';
+		let domain = 'http://localhost:8000';
+		let redirect = window.location.origin + '/';
+
+		$authProvider.signupUrl = domain + '/auth/signup';
+		$authProvider.loginUrl = domain + '/auth/login';
 
     $authProvider.facebook({
       clientId: '950583835073331',
       name: 'facebook',
-		  url: 'http://localhost:8000/auth/facebook',
+		  url: domain + '/auth/facebook',
 		  authorizationEndpoint: 'https://www.facebook.com/v2.5/dialog/oauth',
-		  redirectUri: window.location.origin + '/',
+		  redirectUri: redirect,
 		  requiredUrlParams: ['display', 'scope'],
 		  scope: ['email'],
 		  scopeDelimiter: ',',
@@ -107,9 +100,9 @@
     });
 
 	 $authProvider.twitter({
-	   url: 'http://localhost:8000/auth/twitter',
+	   url: domain + '/auth/twitter',
 	   authorizationEndpoint: 'https://api.twitter.com/oauth/authenticate',
-	   redirectUri: window.location.origin + '/',
+	   redirectUri: redirect,
 	   oauthType: '1.0',
 	   popupOptions: { width: 495, height: 645 }
 	 });
