@@ -25,10 +25,8 @@
 		var skipIfLoggedIn = ['$q', '$auth', function ($q, $auth) {
 			var deferred = $q.defer();
 			if ($auth.isAuthenticated()) {
-					console.log('authenticated');
 					deferred.reject();
 			} else {
-				console.log('unauthenticated');
 					deferred.resolve();
 			}
 
@@ -38,10 +36,8 @@
 		var loginRequired = ['$q', '$location', '$auth', function ($q, $location, $auth) {
 			var deferred = $q.defer();
 			if ($auth.isAuthenticated()) {
-				console.log('authenticated');
 					deferred.resolve();
 			} else {
-				console.log('unauthenticated');
 					$location.path('/login');
 			}
 				
