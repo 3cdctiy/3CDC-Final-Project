@@ -4,6 +4,11 @@ module.exports = function(karma) {
       files: [
 				'node_modules/angular/angular.js',
 	    	'node_modules/angular-mocks/angular-mocks.js',
+	    	'node_modules/angular-ui-router/release/angular-ui-router.js',
+	      'node_modules/angular-animate/angular-animate.js',
+	      'node_modules/angular-messages/angular-messages.js',
+	      'node_modules/angular-toastr/dist/angular-toastr.js',
+	      'node_modules/satellizer/dist/satellizer.js',
 	      'app/js/main.js',
 				'app/js/controllers/*.js',
 				'app/js/factories/*.js',
@@ -16,6 +21,6 @@ module.exports = function(karma) {
 				'karma-firefox-launcher',
 			],
       frameworks: ['mocha', 'chai'],
-      singleRun: false
+      singleRun: true 	// change back to false
     });
 };
