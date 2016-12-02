@@ -23,10 +23,14 @@ const del           = require('del');
 const plumber       = require('gulp-plumber');
 const notify        = require('gulp-notify');
 
-const siteRoot      = 'dist/';
-const sassFiles     = 'app/sass/**/*.scss';
-const cssFiles      = 'app/css/**/*.?(s)css';
-const jsFiles       = 'app/js/**/*.js';
+const siteRoot      = 'server/views/';
+const siteDist      = 'server/app/dist/';
+const sassFiles     = 'server/app/sass/**/*.scss';
+const cssFiles      = 'server/app/css/**/*.?(s)css';
+const jsFiles       = 'server/app/js/**/*.js';
+
+
+
 
 
 
@@ -44,24 +48,24 @@ var sassOptions = {
 // Gulp Tasks
 // --------------------------------------------------
 gulp.task('css', () => {
-	return gulp.src('./app/sass/*.scss')
+	return gulp.src(sassFiles)
 		.pipe(plumber({
 			errorHanlder: notify.onError("Error: <%= error.message %>")
 		}))
 		.pipe(sass(sassOptions))
 		.pipe(autoprefixer('last 2 versions'))
 		.pipe(minifyCss())
-		.pipe(gulp.dest('./dist/css/'))
+		.pipe(gulp.dest(siteDist + 'css/'))
 });
 
 
 
 gulp.task('images', () => {
-	return gulp.src('app/images/**/*.+(png|jpg|gif|svg)')
+	return gulp.src('./server/app/images/**/*.+(png|jpg|gif|svg)')
 		.pipe(cache(imagemin({
 		interlaced:true
 		})))
-		.pipe(gulp.dest('dist/images'))
+		.pipe(gulp.dest(siteDist + 'images'))
 		.pipe(plumber({
 			errorHanlder: notify.onError("Error: <%= error.message %>")
 		}))
@@ -75,7 +79,7 @@ gulp.task('babel', () => {
       presets: ['es2015']
     }))
     .on('error', console.error.bind(console))
-    .pipe(gulp.dest('dist/js/'))
+    .pipe(gulp.dest(siteDist + 'js/'))
 	.pipe(plumber({
 		errorHanlder: notify.onError("Error: <%= error.message %>")
 	}))
@@ -83,9 +87,9 @@ gulp.task('babel', () => {
 
 
 
-gulp.task('html', () => {
-  gulp.src('./app/**/*.html')
-    .pipe(gulp.dest('./dist/'))
+gulp.task('partials', () => {
+  gulp.src('server/app/partials/*.html')
+    .pipe(gulp.dest(siteDist + 'partials'))
 	.pipe(plumber({
 		errorHanlder: notify.onError("Error: <%= error.message %>")
 	}))
@@ -93,9 +97,20 @@ gulp.task('html', () => {
 
 
 
+// Index needs to stay in views -- so not needed
+// gulp.task('views', () => {
+//   gulp.src('server/views/*.html')
+//     .pipe(gulp.dest('server/app/'))
+// 	.pipe(plumber({
+// 		errorHanlder: notify.onError("Error: <%= error.message %>")
+// 	}))
+// })
+
+
+
 gulp.task('fonts', () => {
-  return gulp.src('app/fonts/**/*')
-    .pipe(gulp.dest('dist/fonts'))
+  return gulp.src('server/app/dist/fonts/**/*')
+    .pipe(gulp.dest(siteDist + 'fonts'))
 	.pipe(plumber({
 		errorHanlder: notify.onError("Error: <%= error.message %>")
 	}))
@@ -104,15 +119,16 @@ gulp.task('fonts', () => {
 
 
 gulp.task('serve', () => {
-  browserSync.init({
-    files: [siteRoot + '/**'],
-    port: 3000,
-    server: {
-      baseDir: siteRoot
-    }
-  });
+  // browserSync.init({
+  //   files: ['server/' + '/**'],
+  //   port: 3000,
+  //   server: {
+  //     baseDir: siteRoot
+  //   }
+  // });
 
-  gulp.watch('app/**/*.html', ['html'])
+  // gulp.watch('server/views/*.html' ['views'])
+  gulp.watch('server/app/partials/**/*.html', ['partials'])
   gulp.watch(sassFiles, ['css'])
   gulp.watch(jsFiles, ['babel']);
 });
@@ -120,7 +136,7 @@ gulp.task('serve', () => {
 
 
 gulp.task('clean:dist', function() {
-  return del.sync('dist');
+  return del.sync('server/app/dist');
 });
 
 
@@ -135,7 +151,7 @@ gulp.task('finished', function() {
 // --------------------------------------------------
 // Build Sequences
 // --------------------------------------------------
-gulp.task('build', ['css', 'images', 'babel', 'html', 'fonts', 'serve']);
+gulp.task('build', ['css', 'images', 'babel', 'partials', 'fonts', 'serve']);
 
 
 
