@@ -1,3 +1,4 @@
+// general text colors
 body{
 	background-color: #141414;
 
@@ -22,7 +23,9 @@ body{
 		}
 	}
 }
+// general text colors
 
+// layout styles
 .person{
 
 	.description{
@@ -43,7 +46,9 @@ body{
 
   	}
 }
+// layout styles
 
+// links headshot images
 .tom{
 	.headshot{
 		background-image: url('../images/tom.jpg');
@@ -69,7 +74,9 @@ body{
 		float: right;
 	}
 }
+// links headshot images
 
+// layout styling on screen less than 600px
 @media (max-width: 600px){
 	h2{
 		text-align: center;
@@ -96,9 +103,12 @@ body{
 		}
 	}
 
+	// Centers headshots
 	.michael, .john{
 		.headshot{
 			float: none;
 		}
 	}
+	// Centers headshots
 }
+// layout styling on screen less than 600px
