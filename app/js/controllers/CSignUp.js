@@ -4,7 +4,7 @@
 
   angular
   .module('app')
-  .controller('CSignUp', function($scope, $auth, $location, toastr)
+  .controller('CSignUp', function($auth, $location, toastr)
   {
 
     let vm = this;
@@ -16,7 +16,8 @@
     // Client side signup form handling
     // ------------------------------------------------------------
     vm.signup = function(isValid) {
-      if(isValid) {
+      try {
+        if(!isValid) { throw new Error ('Please ensure all form fields are valid') }
         $auth.signup(vm.user)
         .then(function(response) {
           $auth.setToken(response);
@@ -26,8 +27,8 @@
         .catch(function(response) {
           toastr.error(response.data.message);
         });
-      } else {
-        toastr.error('Please ensure all form fields are valid', 'Invalid Form Fields');
+      } catch(error) {
+        toastr.error(error.message, error.name);
       }
     };
 

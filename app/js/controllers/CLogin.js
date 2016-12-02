@@ -4,7 +4,7 @@
 
 	angular
 	.module('app')
-  .controller('CLogin', function($scope, $auth, $location, toastr, FFormUtilities) {
+  .controller('CLogin', function($auth, $location, toastr, FFormUtilities) {
 
   	let vm = this;
 
@@ -19,7 +19,8 @@
 		// Client side login form handling
 		// ------------------------------------------------------------
     vm.login = function(isValid, loginForm) {
-	    if(isValid) {
+	    try {
+	    	if(!isValid) { throw new Error('Invalid form fields'); }
 	    	$auth.login(vm.user)
 	      .then(function() {
 	        toastr.success('You have successfully signed in!');
@@ -27,9 +28,9 @@
 	      })
 	      .catch(function(error) {
 	        toastr.error(error.data.message, error.status);
-	      });
-	    } else {
-	    	toastr.error('Please ensure you\'ve entered a valid email and password', 'Invalid Form Fields');
+	      })
+	    } catch(error) {
+	    	toastr.error(error.message, error.name);
 	    }
 	  };
 
