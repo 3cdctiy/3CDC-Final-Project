@@ -4,7 +4,7 @@
 
   angular
   .module('app')
-  .controller('CLogout', function($scope, $location, $auth) {
+  .controller('CLogout', function($location, $auth) {
     
     let vm = this;
 
