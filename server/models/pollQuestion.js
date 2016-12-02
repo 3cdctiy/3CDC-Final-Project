@@ -14,7 +14,7 @@ var pollQuestionSchema = new Schema({
 		required: true,
 	},
 	pollQuestionSortOrder: {
-		type: Int,
+		type: Number,
 		unique: true,
 		required: true,
 	},
@@ -24,4 +24,4 @@ var pollQuestionSchema = new Schema({
 
 
 
-module.exports = mongoose.model('PollQuestion', userSchema);
+module.exports = mongoose.model('PollQuestion', pollQuestionSchema);

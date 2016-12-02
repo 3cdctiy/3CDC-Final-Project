@@ -22,7 +22,9 @@ app.set('view engine','html');
 
 app.use(express.static(path.join(__dirname,'app')))
 
-var User = require('./models/user');
+const User          = require('./models/user');
+const PollQuestion  = require('./models/pollQuestion');
+const PollOption    = require('./models/pollOption');
 
 app.use(cors());
 
@@ -36,6 +38,59 @@ mongoose.Promise = global.Promise;
 mongoose.connect(process.env.MONGO_URL);
 
 
+
+// ------------------------------------------------------------
+// ------------------------------------------------------------
+//
+// POLL API
+//
+// ------------------------------------------------------------
+// ------------------------------------------------------------
+
+// ------------------------------------------------------------
+// GET: /api/polls
+// Returns all poll questions
+// ------------------------------------------------------------
+app.get('/api/polls', (req, res) => {
+  let promise = PollQuestion
+    .find()
+    // .populate('_comments')
+    // .sort({ date: -1 })
+    .exec((err, response) => {
+      if (err) return res.send(err);
+      res.json(response);
+    })
+})
+
+
+
+// ------------------------------------------------------------
+// GET: /api/polls
+// Returns all poll questions
+// ------------------------------------------------------------
+app.get('/api/polls', () => {
+  let pollQuestion = new PollQuestion({
+    // Poll data
+  });
+
+  pollQuestion.save((err) => {
+    if (err) {
+      res.send({error:err});
+      return;
+    };
+    res.send({success:"Poll question successfully added"})
+  });
+})
+
+
+
+// ------------------------------------------------------------
+// ------------------------------------------------------------
+//
+// AUTHENTICATION
+//
+// ------------------------------------------------------------
+// ------------------------------------------------------------
 
 // ------------------------------------------------------------
 // Name: ensureAuthenticated
@@ -88,8 +143,6 @@ app.get('/api/me', ensureAuthenticated, function(req, res) {
     res.send(user);
   });
 });
-
-
 
 
 

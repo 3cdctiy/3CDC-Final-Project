@@ -13,11 +13,11 @@ var pollOptionSchema = new Schema({
 		required: true,
 	},
 	pollOptionSelectCount: {
-		type: Int,
+		type: Number,
 		required: true,
 	},
 	pollOptionSortOrder: {
-		type: Int,
+		type: Number,
 		required: true,
 	},
 	_pollQuestions: {type: Schema.Types.ObjectId, ref: 'PollQuestion'}
@@ -25,4 +25,4 @@ var pollOptionSchema = new Schema({
 
 
 
-module.exports = mongoose.model('PollOption', userSchema);
+module.exports = mongoose.model('PollOption', pollOptionSchema);
