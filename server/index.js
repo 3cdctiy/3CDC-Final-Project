@@ -11,8 +11,16 @@ const request = require('request');
 const mongoose = require('mongoose');
 const moment = require('moment');
 const qs = require('querystring');
+const path = require('path');
 
 require('dotenv').config();
+
+
+app.set('views',__dirname+'/views');
+app.engine('html',cons.mustache);
+app.set('view engine','html');
+
+app.use(express.static(path.join(__dirname,'app')))
 
 var User = require('./models/user');
 
@@ -80,6 +88,8 @@ app.get('/api/me', ensureAuthenticated, function(req, res) {
     res.send(user);
   });
 });
+
+
 
 
 
@@ -318,6 +328,11 @@ app.post('/auth/twitter', function(req, res) {
       });
     });
   }
+});
+
+
+app.get('/', function(req, res) {
+  res.render('index.html')
 });
 
 
