@@ -127,7 +127,7 @@ gulp.task('serve', () => {
   //   }
   // });
 
-  // gulp.watch('server/views/*.html' ['views'])
+  // gulp.watch('server/views/*.html' ['build'])
   gulp.watch('server/app/partials/**/*.html', ['partials'])
   gulp.watch(sassFiles, ['css'])
   gulp.watch(jsFiles, ['babel']);

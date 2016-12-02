@@ -9,9 +9,9 @@ module.exports = function(karma) {
 	      'node_modules/angular-messages/angular-messages.js',
 	      'node_modules/angular-toastr/dist/angular-toastr.js',
 	      'node_modules/satellizer/dist/satellizer.js',
-	      'app/js/main.js',
-				'app/js/controllers/*.js',
-				'app/js/factories/*.js',
+	      'server/app/dist/js/main.js',
+				'server/app/dist/js/controllers/*.js',
+				'server/app/dist/js/factories/*.js',
 				'tests/*.spec.js',
       ],
 			'plugins' : [
