@@ -19,7 +19,7 @@ var pollQuestionSchema = new Schema({
 		required: true,
 	},
 	_pollOptions: [{type: Schema.Types.ObjectId, ref: 'PollOptions'}],
-	_pollUser: [{type: Schema.Types.ObjectId, ref: 'User'}]
+	_pollUser: {type: Schema.Types.ObjectId, ref: 'User'}
 });
 
 
