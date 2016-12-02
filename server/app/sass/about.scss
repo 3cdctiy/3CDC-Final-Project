@@ -1,3 +1,5 @@
+@import '_variables.scss';
+
 // general text colors
 body{
 	background-color: #141414;
@@ -8,17 +10,19 @@ body{
 
 	h2{
 		text-align: center;
+		font-weight: 300;
 	}
 
 	h4{
-		color: #81D8D0;
+		color: $color-link;
+		font-weight: 300;
 	}
 
 	a{
-		color: #81D8D0;
+		color: $color-link;
 
 		&:hover{
-			color: #bef7f1;
+			color: $color-link-hover;
 			text-decoration: none;
 		}
 	}
@@ -39,7 +43,7 @@ body{
 		background-position: center;
 		height: 18rem;
 		padding: 1.2rem;
-		border-radius: 5px;
+		// border-radius: 5px;
 		position: relative;
 		top: 50%;
 		transform: translateY(28%);
