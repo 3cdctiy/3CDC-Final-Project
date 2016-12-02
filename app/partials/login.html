@@ -8,47 +8,10 @@
 		</div>
 		<div class="col s12 m6 offset-m3">
 			<ul class="tabs tabs-fixed-width">
+				<li class="tab"><a ng-click="controller.showLogin = false" ng-class="{'active': !controller.showLogin}">Sign Up</a></li>
         <li class="tab"><a ng-click="controller.showLogin = true" ng-class="{'active': controller.showLogin}">Login</a></li>
-        <li class="tab"><a ng-click="controller.showLogin = false" ng-class="{'active': !controller.showLogin}">Sign Up</a></li>
       </ul>
-			<div ng-show="controller.showLogin">
-				<!-- Login Form -->
-				<form novalidate class="login-form" name="loginForm" ng-submit="controller.login(loginForm.$valid, loginForm)">
-					<!-- Email -->
-					<div class="input-field">
-				    <input id="email" 
-				    			 type="email" 
-				    			 class="validate" 
-				    			 name="email"
-				    			 ng-model="controller.user.email"
-				    			 ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/"
-				    			 ng-minlength="5"
-				    			 ng-maxlength="50"
-				    			 required>
-				    <label for="email">Email</label>
-				    <span ng-show="!loginForm.email.$valid && loginForm.email.$dirty" class="input-error">Please enter a valid email</span>
-				  </div>
-				  <!-- Password -->
-				  <div class="input-field">
-				    <input id="password" 
-				    			 type="password" 
-				    			 class="validate" 
-				    			 name="password"
-				    			 ng-model="controller.user.password"
-				    			 ng-minlength="6"
-				    			 ng-maxlength="50"
-				    			 required>
-				    <label for="password">Password</label>
-				    <span ng-show="!loginForm.password.$valid && loginForm.password.$dirty" class="input-error">Password is invalid</span>
-				  </div>
-				  <!-- Submit Button -->
-				  <button class="btn waves-effect waves-light" type="submit" name="action">Login
-				    <i class="material-icons right">lock_open</i>
-				  </button>
-				</form>
-				<!-- /loginForm -->
-			</div>
-			<div ng-show="!controller.showLogin" ng-controller="CSignUp as signup">
+      <div ng-show="!controller.showLogin" ng-controller="CSignUp as signup">
 				<!-- Signup Form -->
 				<form novalidate class="signup-form" name="signupForm" ng-submit="signup.signup(signupForm.$valid)">
 					<!-- Name -->
@@ -131,6 +94,43 @@
 				  </button>
 				</form>
 				<!-- /signupForm -->
+			</div>
+			<div ng-show="controller.showLogin">
+				<!-- Login Form -->
+				<form novalidate class="login-form" name="loginForm" ng-submit="controller.login(loginForm.$valid, loginForm)">
+					<!-- Email -->
+					<div class="input-field">
+				    <input id="email" 
+				    			 type="email" 
+				    			 class="validate" 
+				    			 name="email"
+				    			 ng-model="controller.user.email"
+				    			 ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/"
+				    			 ng-minlength="5"
+				    			 ng-maxlength="50"
+				    			 required>
+				    <label for="email">Email</label>
+				    <span ng-show="!loginForm.email.$valid && loginForm.email.$dirty" class="input-error">Please enter a valid email</span>
+				  </div>
+				  <!-- Password -->
+				  <div class="input-field">
+				    <input id="password" 
+				    			 type="password" 
+				    			 class="validate" 
+				    			 name="password"
+				    			 ng-model="controller.user.password"
+				    			 ng-minlength="6"
+				    			 ng-maxlength="50"
+				    			 required>
+				    <label for="password">Password</label>
+				    <span ng-show="!loginForm.password.$valid && loginForm.password.$dirty" class="input-error">Password is invalid</span>
+				  </div>
+				  <!-- Submit Button -->
+				  <button class="btn waves-effect waves-light" type="submit" name="action">Login
+				    <i class="material-icons right">lock_open</i>
+				  </button>
+				</form>
+				<!-- /loginForm -->
 			</div>
 		</div>
 		</div>

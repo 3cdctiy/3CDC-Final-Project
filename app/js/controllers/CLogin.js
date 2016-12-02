@@ -10,6 +10,9 @@
 
   	vm.showLogin = false;
 
+  	// Initialize tabs
+  	$('ul.tabs').tabs();
+
 
 		// ------------------------------------------------------------
 		// Name: login
