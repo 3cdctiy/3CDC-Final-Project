@@ -14,8 +14,6 @@ const qs = require('querystring');
 
 require('dotenv').config();
 
-console.log(__dirname);
-
 var User = require('./models/user');
 
 app.use(cors());
