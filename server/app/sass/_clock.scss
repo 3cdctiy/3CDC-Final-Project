@@ -1,6 +1,7 @@
-#clockdiv {
-	font-size: 3.2rem;
-	font-family: 'Roboto', sans-serif;
-	font-weight: 400;
-	text-align: center;
+@import '_variables.scss';
+.teal-divider {
+  height: 180px;
+  width: 2px;
+  background-color: $color-link;
+  display: inline-block;
 }
