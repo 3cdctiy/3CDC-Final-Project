@@ -97,6 +97,9 @@ body {
       }
     }
   }
+  i {
+     padding-right: 10px;
+  }
 }
 
 .input-field {
@@ -152,18 +155,24 @@ body {
   }
 }
 
+
+
 .sponsors {
   background-color: white;
   color: #040404;
   text-align: center;
-  padding-top: 20px;
+  padding-top: 112px;
   padding-bottom: 15px;
   img.iron-yard-logo {
-    max-width: 150px;
-    max-height: 150px;
+    // max-width: 150px;
+    // max-height: 150px;
   }
   .3cdc-sponsor {
     margin-top: 30px;
+    margin-bottom: -20px;
+  }
+  .iron-yard-sponsor {
+     margin-top: -87px
   }
   i {
     padding: 20px;
