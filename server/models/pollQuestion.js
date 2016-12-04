@@ -16,9 +16,8 @@ var pollQuestionSchema = new Schema({
 	pollQuestionSortOrder: {
 		type: Number,
 		unique: true,
-		required: true,
 	},
-	_pollOptions: [{type: Schema.Types.ObjectId, ref: 'PollOptions'}],
+	_pollOptions: [{type: Schema.Types.ObjectId, ref: 'PollOption'}],
 	_pollUser: {type: Schema.Types.ObjectId, ref: 'User'}
 });
 

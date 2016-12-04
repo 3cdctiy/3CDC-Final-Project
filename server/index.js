@@ -52,33 +52,121 @@ mongoose.connect(process.env.MONGO_URL);
 // Returns all poll questions
 // ------------------------------------------------------------
 app.get('/api/polls', (req, res) => {
-  let promise = PollQuestion
-    .find()
-    // .populate('_comments')
-    // .sort({ date: -1 })
-    .exec((err, response) => {
-      if (err) return res.send(err);
-      res.json(response);
-    })
+  PollQuestion
+  .find()
+  .populate('_pollOptions')
+  .sort({ pollQuestionSortOrder: 1 })
+  .exec((err, response) => {
+    if (err) return res.send(err);
+    res.json(response);
+  })
 })
 
 
 
 // ------------------------------------------------------------
-// GET: /api/polls
-// Returns all poll questions
+// POST: /api/poll
+// Adds a new question to the database
 // ------------------------------------------------------------
-app.get('/api/polls', () => {
-  let pollQuestion = new PollQuestion({
-    // Poll data
-  });
+app.post('/api/poll', (req, res) => {
 
-  pollQuestion.save((err) => {
-    if (err) {
-      res.send({error:err});
-      return;
-    };
-    res.send({success:"Poll question successfully added"})
+  PollQuestion
+  .findOne({})
+  .sort('-pollQuestionSortOrder')  // give me the max
+  .exec(function (err, response) {
+
+    // Initiate newSortIndex as 1
+    let newSortIndex = 1;
+    
+    // Was anything found?
+    if(response !== null) {
+      // Yes, did response come back with number?
+      if(typeof response.pollQuestionSortOrder === Number) {
+        // Yes, add response number to newSortIndex
+        newSortIndex += response.pollQuestionSortOrder;
+        console.log('newSortIndex = ' + newSortIndex)
+      }
+    }
+
+    // Load new PollQuestion object
+    let pollQuestion = new PollQuestion({
+      pollQuestion: req.body.pollQuestion,
+      pollQuestionSortOrder: newSortIndex,
+      _pollUser: '5841f3d1af6f48a01b9f8f71'
+    });
+
+    // Save if no errors
+    pollQuestion.save((err) => {
+      if (err) {
+        res.send({error:err});
+        return;
+      };
+      res.send({success:"Poll question successfully added"})
+    });
+
+  });
+})
+
+
+
+// ------------------------------------------------------------
+// POST: /api/poll/option
+// Adds a new poll option to a question
+// ------------------------------------------------------------
+app.post('/api/poll/option', (req, res) => {
+
+  PollQuestion
+  .findOne({})
+  .populate({path: '_pollOptions', options: { sort: { 'pollOptionSortOrder': -1 } } })
+  .exec(function (err, response) {
+
+    // let pollQuestionID = req.body.id;
+    let pollQuestionID = req.body.pollQuestionID;
+
+    // Initiate newSortIndex as 1
+    let newSortIndex = 1;
+    
+    // Was anything found?
+    if(response !== null) {
+      // Yes, did response come back with number?
+      if(typeof response.pollOptionSortOrder === Number) {
+        // Yes, add response number to newSortIndex
+        newSortIndex = response.pollOptionSortOrder + newSortIndex;
+      }
+    }
+
+    // Load new PollQuestion object
+    let pollOption = new PollOption({
+      pollOption: req.body.pollOption,
+      pollOptionSelectCount: 0,                     // Initially set to zero
+      pollOptionSortOrder: newSortIndex,
+      _pollQuestions: pollQuestionID
+    });
+
+    // Save if no errors
+    pollOption.save((err) => {
+      if (err) {
+        res.send({error:err});
+        return;
+      };
+
+      PollQuestion
+      .findById(pollQuestionID)
+      .populate('_pollOptions')
+      .exec((err, question) => {
+        console.log(question);
+        question._pollOptions.push(pollOption);
+        question.save(function(err,response){
+          if (err) {
+            res.send({error:err});
+            return;
+          };
+
+          res.send({success:"Poll option successfully added"})
+        });
+      })
+    });
+
   });
 })
 

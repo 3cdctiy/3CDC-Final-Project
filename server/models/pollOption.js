@@ -1,4 +1,4 @@
-// The Poll Options model
+// The Poll Option model
 
 const mongoose      = require('mongoose');
 const Schema        = mongoose.Schema;
@@ -20,7 +20,7 @@ var pollOptionSchema = new Schema({
 		type: Number,
 		required: true,
 	},
-	_pollQuestions: {type: Schema.Types.ObjectId, ref: 'PollQuestion'}
+	_pollQuestion: {type: Schema.Types.ObjectId, ref: 'PollQuestion'}
 });
 
 
