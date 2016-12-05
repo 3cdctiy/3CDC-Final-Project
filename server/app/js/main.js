@@ -52,7 +52,9 @@
 			templateUrl: '../partials/landingpage.html',
 			controller: 'CLogin',
 			controllerAs: 'controller'
-		});
+		})
+
+		$stateProvider.state('otherwise',{url:'/otherwise'});
 
 		  $locationProvider.html5Mode(true);
 		// .state('home', {

@@ -56,6 +56,8 @@
 			controllerAs: 'controller'
 		});
 
+		$stateProvider.state('otherwise', { url: '/otherwise' });
+
 		$locationProvider.html5Mode(true);
 		// .state('home', {
 		// 	url: '/',
