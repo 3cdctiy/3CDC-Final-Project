@@ -17,7 +17,6 @@ body {
   background-size: cover;
 }
 
-
 // .social-info {
 //   background-color: black;
 //   position: relative;
@@ -98,7 +97,7 @@ body {
     }
   }
   i {
-     padding-right: 10px;
+    padding-right: 10px;
   }
 }
 
@@ -116,12 +115,12 @@ body {
     margin-top: 60px;
   }
   .clock-display {
-    font-size: 120px;
+     font-size: 120px;
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
     text-align: center;
   }
-  .clock-components {
+  .clock-container {
     text-align: center;
     font-size: 120px;
     margin-top: 60px;
@@ -129,19 +128,7 @@ body {
       font-size: 24px;
       margin-top: -20px;
     }
-    .clock-days {
-      border-right: 2px solid $colorAccent;
-      padding: 8px;
-      margin-bottom: 100px;
-      padding-bottom: 42px;
-    }
-    .clock-hours {
-      border-right: 2px solid $colorAccent;
-      padding: 8px;
-      margin-bottom: 100px;
-      padding-bottom: 42px;
-    }
-    .clock-minutes {
+    .clock-components {
       border-right: 2px solid $colorAccent;
       padding: 8px;
       margin-bottom: 100px;
@@ -154,8 +141,6 @@ body {
     margin-bottom: 40px;
   }
 }
-
-
 
 .sponsors {
   background-color: white;
@@ -172,11 +157,23 @@ body {
     margin-bottom: -20px;
   }
   .iron-yard-sponsor {
-     margin-top: -87px
+    margin-top: -87px
   }
   i {
     padding: 20px;
     color: #D8D8D8;
     font-size: 23px;
+    text-shadow: 1px 1px 1px #9FA1A4;
+  }
+}
+
+//media queries
+@media screen and (max-width: 800px) {
+  .clock-components {
+    border-right: 2px solid $colorAccent;
+    padding: 4px 4px 20px 4px;
+    margin-bottom: 80px;
+    // padding-bottom: 22px;
+    font-size: 50px;
   }
 }
