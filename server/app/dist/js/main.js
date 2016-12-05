@@ -7,7 +7,7 @@
 	angular.module('app', ['ui.router', 'ngAnimate', 'ngMessages', 'toastr', 'satellizer']).config(appConfig);
 
 	appConfig.$inject = ['$stateProvider', '$urlRouterProvider', '$authProvider', 'toastrConfig'];
-	function appConfig($stateProvider, $urlRouterProvider, $authProvider, toastrConfig) {
+	function appConfig($stateProvider, $urlRouterProvider, $authProvider, toastrConfig, $locationProvider) {
 
 		// ------------------------------------------------------------
 		// Angular Toast Configurations
@@ -35,7 +35,7 @@
 			return deferred.promise;
 		}];
 
-		var loginRequired = ['$q', '$location', '$auth', function ($q, $location, $locationProvider, $auth) {
+		var loginRequired = ['$q', '$location', '$auth', function ($q, $location, $auth) {
 			var deferred = $q.defer();
 			if ($auth.isAuthenticated()) {
 				deferred.resolve();
@@ -54,7 +54,7 @@
 			templateUrl: '../partials/landingpage.html',
 			controller: 'CLogin',
 			controllerAs: 'controller'
-		}).state('Home', {
+		}).state('landing', {
 			url: '',
 			templateUrl: '../partials/landingpage.html',
 			controller: 'CLogin',
