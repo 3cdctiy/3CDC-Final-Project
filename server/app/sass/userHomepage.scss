@@ -25,13 +25,13 @@ body{
 	margin-top: 1.8rem;
 
 	h4{
-		font-size: 1.3rem;
+		font-size: 1.6rem;
 		margin-bottom: 0;
 	}
 
-	h1{
-		font-size: 5rem;
-		margin-top: -20px;
+	#clockdiv{
+		color: $color-link;
+		font-weight: 300;
 	}
 }
 
@@ -75,6 +75,10 @@ body{
 		#button{
 			float: left;
 			background-color: $color-link;
+
+			&:active{
+				color: darken($color-link, 20%)
+			}
 		}
 	}
 }
@@ -87,6 +91,10 @@ body{
 		.collapsible-header{
 			background-color: $color-background;
 			color: $color-text;
+
+			&:focus{
+				color: $color-link;
+			}
 		}
 
 		.collection{
