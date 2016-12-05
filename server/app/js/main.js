@@ -4,7 +4,7 @@
 
 	angular.module('app', ['ui.router', 'ngAnimate', 'ngMessages', 'toastr', 'satellizer']).config(appConfig);
 
-	appConfig.$inject = ['$stateProvider', '$urlRouterProvider', '$authProvider', 'toastrConfig'];
+	appConfig.$inject = ['$stateProvider', '$urlRouterProvider', '$authProvider', 'toastrConfig','$locationProvider'];
 	function appConfig($stateProvider, $urlRouterProvider, $authProvider, toastrConfig, $locationProvider) {
 
 		// ------------------------------------------------------------
