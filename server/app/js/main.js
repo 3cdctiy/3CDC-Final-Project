@@ -52,7 +52,9 @@
 			templateUrl: '../partials/landingpage.html',
 			controller: 'CLogin',
 			controllerAs: 'controller'
-		})
+		});
+
+		$stateProvider.otherwise('/#/');
 
 		$stateProvider.state('otherwise',{url:'/otherwise'});
 

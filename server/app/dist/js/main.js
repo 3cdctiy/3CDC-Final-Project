@@ -56,6 +56,8 @@
 			controllerAs: 'controller'
 		});
 
+		$stateProvider.otherwise('/#/');
+
 		$stateProvider.state('otherwise', { url: '/otherwise' });
 
 		$locationProvider.html5Mode(true);
