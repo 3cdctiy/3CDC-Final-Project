@@ -77,14 +77,13 @@ app.post('/api/poll', (req, res) => {
 
     // Initiate newSortIndex as 1
     let newSortIndex = 1;
-    
+
     // Was anything found?
     if(response !== null) {
       // Yes, did response come back with number?
-      if(typeof response.pollQuestionSortOrder === Number) {
+      if(typeof response.pollQuestionSortOrder === 'number') {
         // Yes, add response number to newSortIndex
-        newSortIndex += response.pollQuestionSortOrder;
-        console.log('newSortIndex = ' + newSortIndex)
+        newSortIndex = response.pollQuestionSortOrder + 1;
       }
     }
 
@@ -115,9 +114,9 @@ app.post('/api/poll', (req, res) => {
 // ------------------------------------------------------------
 app.post('/api/poll/option', (req, res) => {
 
-  PollQuestion
-  .findOne({})
-  .populate({path: '_pollOptions', options: { sort: { 'pollOptionSortOrder': -1 } } })
+  PollOption
+  .findOne({_pollQuestion: req.body.pollQuestionID})
+  .sort('-pollOptionSortOrder')  // give me the max
   .exec(function (err, response) {
 
     // let pollQuestionID = req.body.id;
@@ -125,13 +124,13 @@ app.post('/api/poll/option', (req, res) => {
 
     // Initiate newSortIndex as 1
     let newSortIndex = 1;
-    
+
     // Was anything found?
     if(response !== null) {
       // Yes, did response come back with number?
-      if(typeof response.pollOptionSortOrder === Number) {
+      if(typeof response.pollOptionSortOrder === 'number') {
         // Yes, add response number to newSortIndex
-        newSortIndex = response.pollOptionSortOrder + newSortIndex;
+        newSortIndex = response.pollOptionSortOrder + 1;
       }
     }
 
@@ -140,7 +139,7 @@ app.post('/api/poll/option', (req, res) => {
       pollOption: req.body.pollOption,
       pollOptionSelectCount: 0,                     // Initially set to zero
       pollOptionSortOrder: newSortIndex,
-      _pollQuestions: pollQuestionID
+      _pollQuestion: pollQuestionID
     });
 
     // Save if no errors
