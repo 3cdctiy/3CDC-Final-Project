@@ -47,16 +47,20 @@
 		// ------------------------------------------------------------
 		// Angular State Routes
 		// ------------------------------------------------------------
-		$stateProvider.state('landing', {
+		$stateProvider
+		.state('landing', {
 			url: '/',
 			templateUrl: '../partials/landingpage.html',
 			controller: 'CLogin',
 			controllerAs: 'controller'
-		});
+		})
+		.state('Home', {
+			url: '',
+			templateUrl: '../partials/landingpage.html',
+			controller: 'CLogin',
+			controllerAs: 'controller'
+		})
 
-		$stateProvider.otherwise('/#/');
-
-		$stateProvider.state('otherwise',{url:'/otherwise'});
 
 		  $locationProvider.html5Mode(true);
 		// .state('home', {
