@@ -66,14 +66,18 @@ app.get('/api/polls', (req, res) => {
 
 // ------------------------------------------------------------
 // POST: /api/poll
-// Adds a new question to the database
+// Adds a new question and it's options to the database
 // ------------------------------------------------------------
 app.post('/api/poll', (req, res) => {
 
+  // --------------------
+  // Step 1: Save Poll Question
+  // --------------------
   PollQuestion
   .findOne({})
   .sort('-pollQuestionSortOrder')  // give me the max
   .exec(function (err, response) {
+    if (err) return res.send(err);
 
     // Initiate newSortIndex as 1
     let newSortIndex = 1;
@@ -87,87 +91,97 @@ app.post('/api/poll', (req, res) => {
       }
     }
 
-    // Load new PollQuestion object
-    let pollQuestion = new PollQuestion({
+    // Build pollQuestion object
+    let pollQuestion = {
       pollQuestion: req.body.pollQuestion,
       pollQuestionSortOrder: newSortIndex,
-      _pollUser: '5841f3d1af6f48a01b9f8f71'
-    });
+      _pollUser: '5841f3d1af6f48a01b9f8f71',
+      _pollOptions: []
+    };
 
-    // Save if no errors
-    pollQuestion.save((err) => {
+    // Insert pollQuestion
+    PollQuestion.collection.insert(pollQuestion, callback)
+
+    // Callback response
+    function callback(err, docs) {
       if (err) {
-        res.send({error:err});
-        return;
-      };
-      res.send({success:"Poll question successfully added"})
-    });
+        res.send({error:err})
+      } else {
 
-  });
-})
+        // --------------------
+        // Step 2: Save Poll Options
+        // --------------------
+        let pollQuestionID = docs.ops[0]._id;
+        let pollOptions    = JSON.parse(req.body.pollOptions);
+        let pollOptionList = [];
 
-
-
-// ------------------------------------------------------------
-// POST: /api/poll/option
-// Adds a new poll option to a question
-// ------------------------------------------------------------
-app.post('/api/poll/option', (req, res) => {
-
-  PollOption
-  .findOne({_pollQuestion: req.body.pollQuestionID})
-  .sort('-pollOptionSortOrder')  // give me the max
-  .exec(function (err, response) {
-
-    // let pollQuestionID = req.body.id;
-    let pollQuestionID = req.body.pollQuestionID;
-
-    // Initiate newSortIndex as 1
-    let newSortIndex = 1;
-
-    // Was anything found?
-    if(response !== null) {
-      // Yes, did response come back with number?
-      if(typeof response.pollOptionSortOrder === 'number') {
-        // Yes, add response number to newSortIndex
-        newSortIndex = response.pollOptionSortOrder + 1;
-      }
-    }
-
-    // Load new PollQuestion object
-    let pollOption = new PollOption({
-      pollOption: req.body.pollOption,
-      pollOptionSelectCount: 0,                     // Initially set to zero
-      pollOptionSortOrder: newSortIndex,
-      _pollQuestion: pollQuestionID
-    });
-
-    // Save if no errors
-    pollOption.save((err) => {
-      if (err) {
-        res.send({error:err});
-        return;
-      };
-
-      // Save option's ObjectID in PollQuestion for referencing
-      PollQuestion
-      .findById(pollQuestionID)
-      .populate('_pollOptions')
-      .exec((err, question) => {
-        question._pollOptions.push(pollOption);
-        question.save(function(err,response){
-          if (err) {
-            res.send({error:err});
-            return;
+        pollOptions.forEach((option, index) => {
+          // Load new PollQuestion object
+          let pollOption = {
+            pollOption: pollOptions[index].pollOption,
+            pollOptionSelectCount: 0,                     // Initially set to zero
+            pollOptionSortOrder: index + 1,
+            _pollQuestion: pollQuestionID
           };
 
-          res.send({success:"Poll option successfully added"})
-        });
-      })
-    });
+          pollOptionList.push(pollOption);
+        })
 
+        PollOption.collection.insert(pollOptionList, callback);
+
+        function callback(err, docs) {
+          if (err) {
+            res.send({error:err})
+          } else {
+            // Save option's ObjectID in PollQuestion for referencing
+            PollQuestion
+            .findById(pollQuestionID)
+            .populate('_pollOptions')
+            .exec((err, question) => {
+              question._pollOptions = docs.ops;
+              question.save(function(err,response){
+                if (err) {
+                  res.send({error:err});
+                  return;
+                };
+
+                res.send({success:"Poll options successfully added"})
+              });
+            })
+          }
+        }
+      }
+    }
   });
 })
+
+
+
+// ------------------------------------------------------------
+// POST: /api/poll/update
+// Updates a question on the database
+// ------------------------------------------------------------
+// app.post('/api/poll/update', (req, res) => {
+
+//   PollQuestion
+//   .findById(req.body.pollQuestionID)
+//   .exec(function (err, response) {
+//     if (err) return res.send(err);
+
+//     // Update fields
+//     response.pollQuestion           = req.body.pollQuestion;
+
+//     // Save if no errors
+//     response.save((err) => {
+//       if (err) {
+//         res.send({error:err});
+//         return;
+//       };
+//       res.send({success:"Poll question successfully added"})
+//     });
+
+//   });
+// })
 
 
 
