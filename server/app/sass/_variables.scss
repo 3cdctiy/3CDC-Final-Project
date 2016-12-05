@@ -1,17 +1,19 @@
 // --------------------------------------------------
 // Variables
 // --------------------------------------------------
-
 // Temporary color values
-$color-success: green;
-$color-error: 	red;
-$color-warn: 		orange;
-$color-info: 		blue;
-
+$color-success: #CFDB00;
+$color-error: red;
+$color-warn: red;
+$color-info: blue;
 // Social Media Colors
-$color-facebook: 	#3b5998;
-$color-twitter: 	#55acee;
-
+$color-facebook: #3b5998;
+$color-twitter: #55acee;
 // Text Colors
 $color-link: #0abab5;
 $color-link-hover: lighten($color-link, 20%);
+// 3CDC Color Theme
+$color-primary1: #007297;
+$color-primary2: #004D71;
+$color-primary3: #57C1E8;
+$color-accent: #CFDB00;
