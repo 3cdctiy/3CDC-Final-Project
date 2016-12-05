@@ -33,7 +33,7 @@
 			return deferred.promise;
 		}];
 
-		var loginRequired = ['$q', '$location', '$auth', function ($q, $location, $auth) {
+		var loginRequired = ['$q', '$location', '$auth', function ($q, $location,$locationProvider, $auth) {
 			var deferred = $q.defer();
 			if ($auth.isAuthenticated()) {
 					deferred.resolve();
@@ -53,6 +53,8 @@
 			controller: 'CLogin',
 			controllerAs: 'controller'
 		});
+
+		  $locationProvider.html5Mode(true);
 		// .state('home', {
 		// 	url: '/',
 		// 	templateUrl: '../partials/home.html',
