@@ -54,7 +54,7 @@
 			controller: 'CLogin',
 			controllerAs: 'controller'
 		})
-		.state('landing', {
+		.state('landing2', {
 			url: '',
 			templateUrl: '../partials/landingpage.html',
 			controller: 'CLogin',
