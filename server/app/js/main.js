@@ -89,7 +89,7 @@
 		// ------------------------------------------------------------
 		// Satellizer Authentication Providers
 		// ------------------------------------------------------------
-		var domain = 'http://localhost:8000';
+		var domain = window.location.origin;
 		var redirect = window.location.origin + '/';
 
 		$authProvider.signupUrl = domain + '/auth/signup';
