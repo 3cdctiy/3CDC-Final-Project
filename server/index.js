@@ -150,11 +150,11 @@ app.post('/api/poll/option', (req, res) => {
         return;
       };
 
+      // Save option's ObjectID in PollQuestion for referencing
       PollQuestion
       .findById(pollQuestionID)
       .populate('_pollOptions')
       .exec((err, question) => {
-        console.log(question);
         question._pollOptions.push(pollOption);
         question.save(function(err,response){
           if (err) {
