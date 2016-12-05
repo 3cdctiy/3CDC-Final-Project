@@ -307,7 +307,10 @@ app.post('/auth/twitter', function(req, res) {
               user.email        = profile.email;
               user.displayName  = profile.name;
               user.save(function(err) {
-                if(err) res.send({error:err});
+                if(err) {
+                res.send({error:err});
+                return false;
+              }
                 res.send({ token: createJWT(user) });
               });
             });
@@ -324,7 +327,10 @@ app.post('/auth/twitter', function(req, res) {
             user.email        = profile.email;
             user.displayName  = profile.name;
             user.save(function(err) {
-              if(err) res.send({error:err});
+              if(err) {
+                res.send({error:err});
+                return false;
+              }
               res.send({ token: createJWT(user) });
             });
           });
