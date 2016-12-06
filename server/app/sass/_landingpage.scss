@@ -257,28 +257,37 @@
      }
      
      //media queries
-     @media screen and (max-width: 850px) {
+     @media screen and (max-width: 890px) {
        #days,
        #hours,
        #minutes,
        #seconds {
-         font-size: 90px;
+         font-size: 90px !important;
        }
      }
      
-     @media screen and (max-width: 530px) {
+     @media screen and (max-width: 600px) {
        #days,
        #hours,
        #minutes,
        #seconds {
-         font-size: 60px;
+         font-size: 60px !important;
        }
-       .clock-unit-label {
-         font-size: 12px !important;
+       .top-box {
+         margin-top: 10px;
+       }
+       .main-info-content {
+         padding: 2px 15px 130px;
+       }
+       .social-info-content {
+         padding: 12px 53px 0 53px;
        }
        .clock-components {
          padding: 0 !important;
          font-size: 60px !important;
+       }
+       .clock-unit-label {
+         font-size: 12px !important;
        }
      }
      
@@ -289,8 +298,15 @@
        #seconds {
          font-size: 30px !important;
        }
-       .clock-unit-label {
-         display: none;
+       .top-box {
+         margin-top: 0;
+       }
+       img.fs-logo {
+         max-width: 25% !important;
+       }
+       .main-info,
+       .social-info {
+         width: 100%;
        }
        .clock-components {
          padding: 0 !important;
@@ -300,7 +316,9 @@
        .clock-days,
        .clock-hours,
        .clock-minutes {
-        // border: none !important;
+         // border: none !important;
        }
-
+       .clock-unit-label {
+         display: none;
+       }
      }
