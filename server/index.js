@@ -353,8 +353,6 @@ app.post('/auth/facebook', function(req, res) {
         return res.status(500).send({ message: profile.error.message });
       }
 
-      console.log(profile);
-
       if (req.header('Authorization')) {
         // Step 3a. Link user accounts.
         User.findOne({ email: req.body.email }, function(err, existingUser) {
@@ -462,8 +460,6 @@ app.post('/auth/twitter', function(req, res) {
         oauth: profileOauth,
         json: true
       }, function(err, response, profile) {
-
-        console.log(profile);
 
         // Step 5a. Link user accounts.
         if (req.header('Authorization')) {
