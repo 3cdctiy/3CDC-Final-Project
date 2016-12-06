@@ -22,7 +22,7 @@ var userSchema = new Schema({
 	},
 	facebook: String,
 	twitter: String,
-	_pollQuestions: [{type: Schema.Types.ObjectId, ref: 'PollQuestion'}],
+	_pollOptions: [{type: Schema.Types.ObjectId, ref: 'PollOption'}],
 });
 
 

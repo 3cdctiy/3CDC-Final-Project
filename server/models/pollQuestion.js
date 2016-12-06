@@ -18,7 +18,6 @@ var pollQuestionSchema = new Schema({
 		unique: true,
 	},
 	_pollOptions: [{type: Schema.Types.ObjectId, ref: 'PollOption'}],
-	_pollUser: {type: Schema.Types.ObjectId, ref: 'User'}
 });
 
 

@@ -95,7 +95,6 @@ app.post('/api/poll', (req, res) => {
     let pollQuestion = {
       pollQuestion: req.body.pollQuestion,
       pollQuestionSortOrder: newSortIndex,
-      _pollUser: '5841f3d1af6f48a01b9f8f71',
       _pollOptions: []
     };
 
@@ -175,15 +174,19 @@ app.post('/api/poll/vote', (req, res) => {
         return;
       };
 
-      // User
-      // .findById(req.body.userID)
-      // .exec((err, user) => {
-      //   let userVoteInstance = {
-          
-      //   }
-      // })
+      User
+      .findById(req.body.userID)
+      .exec((err, user) => {
+        user._pollOptions.push(response);
+        user.save(function(err, response){
+          if (err) {
+            res.send({error:err});
+            return;
+          }
 
-      res.send({success:"Vote successfully counted"})
+          res.send({success:"Vote successfully counted"})
+        })
+      })
     });
   })
 })
