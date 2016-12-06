@@ -97,7 +97,7 @@
      .social-logins {
        margin: 3px 0 20px;
        .btn {
-         width: 80%;
+         width: 100%;
          margin-bottom: 10px;
          display: inline-block;
          &.facebook {
@@ -124,6 +124,14 @@
      
      button {
        margin-bottom: 12px;
+       border-radius: 5px;
+
+       &.submit {
+         background-color: $color-accent;
+         &:hover {
+           background-color: darken($color-accent, 10);
+         }
+       }
      }
      
      .email {
@@ -133,15 +141,18 @@
      
      .tweet-us {
        padding-bottom: 12px;
+       p {
+         margin-top: 60px;
+       }
+     }
+     
+     .button-border-radius {
+       border-radius: 8px;
      }
      
      .container-fluid {
        width: 100%;
        background-color: $color-primary2;
-     }
-     
-     .submit {
-       margin-left: 36%;
      }
      
      .countdown-clock {

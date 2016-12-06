@@ -32,13 +32,13 @@
                 <!-- Social Media Buttons -->
                 <div class="col s12 m6">
                   <div class="social-logins">
-                    <button ng-click="controller.authenticate('facebook')" class="btn waves-effect waves-light facebook"><i class="fa fa-facebook" aria-hidden="true"></i>Sign in with Facebook</button>
+                    <button ng-click="controller.authenticate('facebook')" class="btn waves-effect waves-light facebook button-border-radius"><i class="fa fa-facebook" aria-hidden="true"></i>Sign in with Facebook</button>
                   </div>
                 </div>
                 <!-- Facebook Sign in -->
                 <div class="col s12 m6">
                   <div class="social-logins">
-                    <button ng-click="controller.authenticate('twitter')" class="btn waves-effect waves-light twitter"><i class="fa fa-twitter" aria-hidden="true"></i>Sign in with Twitter</button>
+                    <button ng-click="controller.authenticate('twitter')" class="btn waves-effect waves-light twitter button-border-radius"><i class="fa fa-twitter" aria-hidden="true"></i>Sign in with Twitter</button>
                   </div>
                 </div>
                 <!-- Twitter Sign in -->
@@ -89,9 +89,8 @@
                       <span ng-show="!signupForm.passwordMatch.$valid && signupForm.passwordMatch.$dirty" class="input-error">Passwords must match</span>
                     </div>
                     <!-- Submit Button -->
-                    <button class="btn waves-effect waves-light submit" type="submit" name="action">
-                      Submit
-                      <i class="material-icons right">send</i>
+                    <button class="btn waves-effect waves-light submit col s12 m6 offset-m3 button-border-radius" type="submit" name="action">
+                      <i class="fa fa-paper-plane-o" aria-hidden="true"></i> Submit
                     </button>
                     <div class="tweet-us">
                       <p>Tweet to us using #NYE513</p>
