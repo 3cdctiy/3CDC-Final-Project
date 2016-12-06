@@ -294,20 +294,31 @@ app.post('/auth/login', function(req, res) {
 // ------------------------------------------------------------
 app.post('/auth/signup', function(req, res) {
   User.findOne({ email: req.body.email }, function(err, existingUser) {
+    // Does user already exist?
     if (existingUser) {
+      // Let user know email is already used
       return res.status(409).send({ message: 'Email is already taken' });
     }
 
+    // Build uesr
     var user = new User({
       displayName: req.body.displayName,
       email: req.body.email,
       password: req.body.password
     });
 
+    // Was no password saved?
+    if(!user.password) {
+      // Let user know password is required
+      return res.status(401).send({ message: 'A password is required' });
+    }
+
+    // Save user
     user.save(function(err, result) {
       if (err) {
         res.status(500).send({ message: err.message });
       }
+      // Send user their token
       res.send({ token: createJWT(result) });
     });
   });
@@ -360,7 +371,10 @@ app.post('/auth/facebook', function(req, res) {
             user.displayName = profile.name;          
             user.email       = profile.email;
             user.facebook    = profile.id;
-            user.save(function() {
+            user.save(function(err) {
+              if (err) {
+                res.status(500).send({ message: err.message });
+              }
               var token = createJWT(user);
               res.send({ token: token });
             });
@@ -379,7 +393,10 @@ app.post('/auth/facebook', function(req, res) {
           user.email        = profile.email;
           user.facebook     = profile.id;
 
-          user.save(function() {
+          user.save(function(err) {
+            if (err) {
+              res.status(500).send({ message: err.message });
+            }
             var token = createJWT(user);
             res.send({ token: token });
           });
@@ -461,6 +478,9 @@ app.post('/auth/twitter', function(req, res) {
               user.email        = profile.email;
               user.displayName  = profile.name;
               user.save(function(err) {
+                if (err) {
+                  res.status(500).send({ message: err.message });
+                }
                 res.send({ token: createJWT(user) });
               });
             });
@@ -476,7 +496,10 @@ app.post('/auth/twitter', function(req, res) {
             user.twitter      = profile.id;
             user.email        = profile.email;
             user.displayName  = profile.name;
-            user.save(function() {
+            user.save(function(err) {
+              if (err) {
+                res.status(500).send({ message: err.message });
+              }
               res.send({ token: createJWT(user) });
             });
           });
