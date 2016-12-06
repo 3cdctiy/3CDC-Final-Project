@@ -7,7 +7,7 @@ angular.module('app')
         location: '@'
       },
       link: function(vm, element, attrs) {
-        var deadline = 'December 31 2016'; //set end date, in this case New Year's Day
+        var deadline = 'January 1 2017'; //set end date, in this case New Year's Day
         var expirationTime = 1483160400000; //epoch time of expiration date (Dec 31, 00:00:00)
         var currentTime = Date.now(); //get current time
 

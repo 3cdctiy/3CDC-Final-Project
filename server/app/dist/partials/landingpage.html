@@ -1,177 +1,178 @@
 <div class="landingpage-wrapper">
-     <div class="row">
-          <div class="background-image">
-               <div class="col s12 m8 offset-m2 top-box">
-                    <div class="container main-info">
-                         <div class="row">
-                              <div class="col s12">
-                                   <img src="/images/fountainSquare_logo.svg" alt="Fountain Square Logo" class="fs-logo">
-                                   <div class="main-info-content">
-                                        <h3 class="invited">You&#8217;re Invited</h3>
-                                        <img src="/images/NYE513.png" alt="#NYE513" class="nye-logo responsive-img">
-                                        <h3 class="location">Fountain Square<br> December 31, 2016 @ 8PM</h3>
-                                        <h6 class="slogan">Sign Up. Show Up. Spread Cheer!</h6>
-                                        <div class="row">
-                                             <div class="col s12 m8 offset-m2">
-                                                  <div class="event-info">
-                                                       <p>Sign up to use our app during the #NYE513 event on Fountain Square to engage in fun and games while ringing in the New Year in Cincinnati. If you’d like to know more about The Iron Yard Front-End Web Development graduates or our work, please join us on Demo Day to see what we’ve been up to.</p>
-                                                  </div>
-                                             </div>
-                                        </div>
-                                   </div>
-                              </div>
-                         </div>
+  <div class="row">
+    <div class="background-image">
+      <div class="col s12 m8 offset-m2 top-box">
+        <div class="main-info">
+          <div class="row">
+            <div class="col s12">
+              <img src="/images/fountainSquare_logo.svg" alt="Fountain Square Logo" class="fs-logo">
+              <div class="main-info-content">
+                <h3 class="invited">You&#8217;re Invited</h3>
+                <img src="/images/NYE513.png" alt="#NYE513" class="nye-logo responsive-img">
+                <h3 class="location">Fountain Square<br> December 31, 2016 @ 8PM</h3>
+                <h6 class="slogan">Sign Up. Show Up. Spread Cheer!</h6>
+                <div class="row">
+                  <div class="col s12 m10 offset-m1">
+                    <div class="event-info">
+                      <p>Sign up to use our app during the #NYE513 event on Fountain Square to engage in fun and games while ringing in the New Year in Cincinnati. Our team is currently work through the details for a few additional surprises and possibly even some user rewards! If you’d like to know more about The Iron Yard Front-End Web Development graduates or our work, please join us on <a href="https://www.eventbrite.com/e/the-iron-yard-demo-day-tickets-28835784608?aff=demoday2" target="_blank" class="demo-day-link">Demo Day</a> to see what we’ve been up to.</p>
                     </div>
-               </div>
-               <div class="container">
-                    <div class="row">
-                         <div class="col s12 m6 offset-m3 social-info">
-                              <div class="row">
-                                   <div class="social-info-content">
-                                        <p>Sign up for EARLY ACCESS to our #NYE513 event application!</p>
-                                        <!-- Social Media Buttons -->
-                                        <div class="col s12 m6">
-                                             <div class="social-logins">
-                                                  <button ng-click="controller.authenticate('facebook')" class="btn waves-effect waves-light facebook"><i class="fa fa-facebook" aria-hidden="true"></i>Sign in with Facebook</button>
-                                             </div>
-                                        </div>
-                                        <!-- Facebook Sign in -->
-                                        <div class="col s12 m6">
-                                             <div class="social-logins">
-                                                  <button ng-click="controller.authenticate('twitter')" class="btn waves-effect waves-light twitter"><i class="fa fa-twitter" aria-hidden="true"></i>Sign in with Twitter</button>
-                                             </div>
-                                        </div>
-                                        <!-- Twitter Sign in -->
-                                        <!-- Signup Form -->
-                                        <div class="col s12" ng-controller="CSignUp as signup">
-                                             <form novalidate class="signup-form" name="signupForm" ng-submit="signup.signup(signupForm.$valid)">
-                                                  <p class="email">or signup using EMAIL below</p>
-                                                  <!-- Name -->
-                                                  <div class="input-field">
-                                                       <input id="name" type="text" class="validate" name="name" ng-model="signup.user.displayName" ng-pattern="/^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u" ng-minlength="1" ng-maxlength="50" required>
-                                                       <label for="name">Name</label>
-                                                       <!-- Input Errors -->
-                                                       <div class="help-block" ng-messages="signupForm.name.$error" ng-if="signupForm.name.$touched">
-                                                            <span class="input-error" ng-message="pattern">Invalid characters in name.</span>
-                                                            <span class="input-error" ng-message="minlength">Name is too short.</span>
-                                                            <span class="input-error" ng-message="maxlength">Name is too long.</span>
-                                                            <span class="input-error" ng-message="required">Your name is required.</span>
-                                                       </div>
-                                                  </div>
-                                                  <!-- Email -->
-                                                  <div class="input-field">
-                                                       <input id="email" type="email" class="validate" name="email" ng-model="signup.user.email" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" ng-minlength="5" ng-maxlength="50" required>
-                                                       <label for="email">Email</label>
-                                                       <!-- Input Errors -->
-                                                       <div class="help-block" ng-messages="signupForm.email.$error" ng-if="signupForm.email.$touched">
-                                                            <span class="input-error" ng-message="pattern">Please enter a valid email</span>
-                                                            <span class="input-error" ng-message="minlength">Email is too short.</span>
-                                                            <span class="input-error" ng-message="maxlength">Email is too long.</span>
-                                                            <span class="input-error" ng-message="required">Your email is required.</span>
-                                                       </div>
-                                                  </div>
-                                                  <!-- Password 1 -->
-                                                  <div class="input-field">
-                                                       <input id="password" type="password" class="validate" name="password" ng-model="signup.user.password" ng-minlength="6" ng-maxlength="50" required>
-                                                       <label for="password">Password</label>
-                                                       <!-- Input Errors -->
-                                                       <div class="help-block" ng-messages="signupForm.password.$error" ng-if="signupForm.password.$touched">
-                                                            <span class="input-error" ng-message="minlength">Password is too short.</span>
-                                                            <span class="input-error" ng-message="maxlength">Password is too long.</span>
-                                                            <span class="input-error" ng-message="required">Your password is required.</span>
-                                                       </div>
-                                                  </div>
-                                                  <!-- Password 2 (Match Check) -->
-                                                  <div class="input-field">
-                                                       <input password-match="signup.user.password" id="confirmPassword" type="password" class="validate" name="passwordMatch" ng-model="signup.confirmPassword" ng-minlength="6" ng-maxlength="50" required>
-                                                       <label for="confirmPassword">Confirm Password</label>
-                                                       <!-- Input Error -->
-                                                       <span ng-show="!signupForm.passwordMatch.$valid && signupForm.passwordMatch.$dirty" class="input-error">Passwords must match</span>
-                                                  </div>
-                                                  <!-- Submit Button -->
-                                                  <button class="btn waves-effect waves-light" type="submit" name="action">
-                                                       Submit
-                                                       <i class="material-icons right">send</i>
-                                                  </button>
-                                                  <div class="tweet-us">
-                                                       <p>Tweet to us using #NYE513</p>
-                                                  </div>
-                                             </form>
-                                        </div>
-                                        <!-- /signupForm -->
-                                   </div>
-                              </div>
-                         </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col s12 m8 offset-m2 social-info">
+            <div class="row">
+              <div class="social-info-content">
+                <p>Sign up for EARLY ACCESS to our #NYE513 event application!</p>
+                <!-- Social Media Buttons -->
+                <div class="col s12 m6">
+                  <div class="social-logins">
+                    <button ng-click="controller.authenticate('facebook')" class="btn waves-effect waves-light facebook button-border-radius"><i class="fa fa-facebook" aria-hidden="true"></i>Sign in with Facebook</button>
+                  </div>
+                </div>
+                <!-- Facebook Sign in -->
+                <div class="col s12 m6">
+                  <div class="social-logins">
+                    <button ng-click="controller.authenticate('twitter')" class="btn waves-effect waves-light twitter button-border-radius"><i class="fa fa-twitter" aria-hidden="true"></i>Sign in with Twitter</button>
+                  </div>
+                </div>
+                <!-- Twitter Sign in -->
+                <!-- Signup Form -->
+                <div class="col s12">
+                  <form novalidate class="signup-form" name="signupForm" ng-submit="signup.signup(signupForm.$valid)">
+                    <p class="email">or signup using EMAIL below</p>
+                    <!-- Name -->
+                    <div class="input-field">
+                      <input id="name" type="text" class="validate" name="name" ng-model="signup.user.displayName" ng-pattern="/^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u" ng-minlength="1" ng-maxlength="50" required>
+                      <label for="name">Name</label>
+                      <!-- Input Errors -->
+                      <div class="help-block" ng-messages="signupForm.name.$error" ng-if="signupForm.name.$touched">
+                        <span class="input-error" ng-message="pattern">Invalid characters in name.</span>
+                        <span class="input-error" ng-message="minlength">Name is too short.</span>
+                        <span class="input-error" ng-message="maxlength">Name is too long.</span>
+                        <span class="input-error" ng-message="required">Your name is required.</span>
+                      </div>
                     </div>
-               </div>
+                    <!-- Email -->
+                    <div class="input-field">
+                      <input id="email" type="email" class="validate" name="email" ng-model="signup.user.email" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" ng-minlength="5" ng-maxlength="50" required>
+                      <label for="email">Email</label>
+                      <!-- Input Errors -->
+                      <div class="help-block" ng-messages="signupForm.email.$error" ng-if="signupForm.email.$touched">
+                        <span class="input-error" ng-message="pattern">Please enter a valid email</span>
+                        <span class="input-error" ng-message="minlength">Email is too short.</span>
+                        <span class="input-error" ng-message="maxlength">Email is too long.</span>
+                        <span class="input-error" ng-message="required">Your email is required.</span>
+                      </div>
+                    </div>
+                    <!-- Password 1 -->
+                    <div class="input-field">
+                      <input id="password" type="password" class="validate" name="password" ng-model="signup.user.password" ng-minlength="6" ng-maxlength="50" required>
+                      <label for="password">Password</label>
+                      <!-- Input Errors -->
+                      <div class="help-block" ng-messages="signupForm.password.$error" ng-if="signupForm.password.$touched">
+                        <span class="input-error" ng-message="minlength">Password is too short.</span>
+                        <span class="input-error" ng-message="maxlength">Password is too long.</span>
+                        <span class="input-error" ng-message="required">Your password is required.</span>
+                      </div>
+                    </div>
+                    <!-- Password 2 (Match Check) -->
+                    <div class="input-field">
+                      <input password-match="signup.user.password" id="confirmPassword" type="password" class="validate" name="passwordMatch" ng-model="signup.confirmPassword" ng-minlength="6" ng-maxlength="50" required>
+                      <label for="confirmPassword">Confirm Password</label>
+                      <!-- Input Error -->
+                      <span ng-show="!signupForm.passwordMatch.$valid && signupForm.passwordMatch.$dirty" class="input-error">Passwords must match</span>
+                    </div>
+                    <!-- Submit Button -->
+                    <button class="btn waves-effect waves-light submit col s12 m6 offset-m3 button-border-radius" type="submit" name="action">
+                      <i class="fa fa-paper-plane-o" aria-hidden="true"></i> Submit
+                    </button>
+                    <div class="tweet-us">
+                      <p>Tweet to us using #NYE513</p>
+                    </div>
+                  </form>
+                </div>
+                <!-- /signupForm -->
+              </div>
+            </div>
           </div>
-     </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 </div>
 </div>
-<div class="container">
-     <div class="row">
-          <div class="col s12 countdown-clock">
-               <h1 class="countdown-title">Countdown to 2017</h1>
-               <clocklanding class="clock-display"></clocklanding>
-               <div class="col s12 countdown-credit">
-                    <p class=""> This #NYE513 application was developed by The Iron Yard Front-End Web Development graduates of Cohort 2. Available for hire January 2017. Wink, wink – cheers!</p>
-               </div>
-          </div>
-     </div>
+<div class="col s12 container-fluid">
+  <div class="container">
+    <div class="row no-margin">
+      <div class="col s12 countdown-clock">
+        <h1 class="countdown-title">Countdown to 2017</h1>
+        <clocklanding class="clock-display"></clocklanding>
+        <div class="col s12 countdown-credit">
+          <p class=""> This #NYE513 application was developed by The Iron Yard Front-End Web Development graduates of Cohort 2. Available for hire January 2017. Wink, wink – cheers!</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 </div>
 </div>
 <div class="col s12 sponsors">
-     <div class="container">
-          <div class="row no-margin">
-               <div class="col s12 m6 sponsor-info iron-yard-sponsor">
-                    <div class="col s12 sponsor-logo-container">
-                         <!-- <div class="col s6 offset-s3"> -->
-                         <img src="/images/TIY-Logo-500px.png" alt="iron-yard-logo" class="sponsor-image  responsive-img">
-                         <!-- iron-yard-logo -->
-                         <!-- </div> -->
-                    </div>
-                    <div class="col s12 sponsor-content">
-                         <p>212-214 East Eighth Street, 2nd Floor</p>
-                         <p>Cincinnati, OH 45202 | (513) 301-2875</p>
-                    </div>
-                    <ul class="social-links">
-                         <a href="https://www.linkedin.com/company/the-iron-yard">
-                              <li><i class="fa fa-linkedin-square" aria-hidden="true"></i></li>
-                         </a>
-                         <a href="https://www.facebook.com/The-Iron-Yard-Cincinnati-698454486961891/?fref=ts">
-                              <li><i class="fa fa-twitter" aria-hidden="true"></i></li>
-                         </a>
-                         <a href="https://twitter.com/theironyard?lang=en">
-                              <li><i class="fa fa-facebook" aria-hidden="true"></i></li>
-                         </a>
-                    </ul>
-               </div>
-               <div class="col s12 m6 sponsor-info 3cdc-sponsor">
-                    <div class="col s12 sponsor-logo-container">
-                         <!-- <div class="col s6 offset-s3"> -->
-                         <img src="/images/3CDC-logo.png" alt="3cdc-logo" class="sponsor-image threecdc responsive-img">
-                         <!-- 3cdc-logo -->
-                         <!-- </div> -->
-                    </div>
-                    <div class="col s12 sponsor-content">
-                         <p>1201 Walnut Street Floor 4, Cincinnati, OH 45202</p>
-                         <p>Cincinnati, OH 45202 | (513) 621-4400</p>
-                    </div>
-                    <ul class="social-links">
-                         <a href="https://www.linkedin.com/company/3cdc">
-                              <li><i class="fa fa-linkedin-square" aria-hidden="true"></i></li>
-                         </a>
-                         <a href="">
-                              <li><i class="fa fa-twitter" aria-hidden="true"></i></li>
-                         </a>
-                         <a href="">
-                              <li><i class="fa fa-facebook" aria-hidden="true"></i></li>
-                         </a>
-                    </ul>
-               </div>
-          </div>
-     </div>
+  <div class="container">
+    <div class="row no-margin">
+      <div class="col s12 m6 sponsor-info iron-yard-sponsor">
+        <div class="col s12 sponsor-logo-container">
+          <!-- <div class="col s6 offset-s3"> -->
+          <img src="/images/TIY-Logo-500px.png" alt="iron-yard-logo" class="sponsor-image  responsive-img">
+          <!-- iron-yard-logo -->
+          <!-- </div> -->
+        </div>
+        <div class="col s12 sponsor-content">
+          <p>212-214 East Eighth Street, 2nd Floor</p>
+          <p>Cincinnati, OH 45202 &nbsp; | &nbsp; (513) 301-2875</p>
+        </div>
+        <ul class="social-links">
+          <a href="https://www.linkedin.com/company/the-iron-yard">
+            <li><i class="fa fa-linkedin-square" aria-hidden="true"></i></li>
+          </a>
+          <a href="https://twitter.com/theironyard?lang=en">
+            <li><i class="fa fa-twitter" aria-hidden="true"></i></li>
+          </a>
+          <a href="https://www.facebook.com/The-Iron-Yard-Cincinnati-698454486961891/?fref=ts">
+            <li><i class="fa fa-facebook" aria-hidden="true"></i></li>
+          </a>
+        </ul>
+      </div>
+      <div class="col s12 m6 sponsor-info 3cdc-sponsor">
+        <div class="col s12 sponsor-logo-container">
+          <!-- <div class="col s6 offset-s3"> -->
+          <img src="/images/3CDC-logo.png" alt="3cdc-logo" class="sponsor-image threecdc responsive-img">
+          <!-- 3cdc-logo -->
+          <!-- </div> -->
+        </div>
+        <div class="col s12 sponsor-content">
+          <p>1201 Walnut Street Floor 4, Cincinnati, OH 45202</p>
+          <p>Cincinnati, OH 45202 &nbsp; | &nbsp; (513) 621-4400</p>
+        </div>
+        <ul class="social-links">
+          <a href="https://www.linkedin.com/company/3cdc">
+            <li><i class="fa fa-linkedin-square" aria-hidden="true"></i></li>
+          </a>
+          <a href="https://twitter.com/myfountainsqr">
+            <li><i class="fa fa-twitter" aria-hidden="true"></i></li>
+          </a>
+          <a href="https://www.facebook.com/MyFountainSquare/">
+            <li><i class="fa fa-facebook" aria-hidden="true"></i></li>
+          </a>
+        </ul>
+      </div>
+    </div>
+  </div>
 </div>
 </div>
