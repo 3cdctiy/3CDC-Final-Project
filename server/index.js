@@ -120,6 +120,7 @@ app.post('/api/poll', (req, res) => {
             pollOption: pollOptions[index].pollOption,
             pollOptionSelectCount: 0,                     // Initially set to zero
             pollOptionSortOrder: index + 1,
+            isActiveQuestion: false,
             _pollQuestion: pollQuestionID
           };
 

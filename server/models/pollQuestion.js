@@ -17,6 +17,10 @@ var pollQuestionSchema = new Schema({
 		type: Number,
 		unique: true,
 	},
+	isActiveQuestion: {
+		type: Boolean,
+		required: true
+	},
 	_pollOptions: [{type: Schema.Types.ObjectId, ref: 'PollOption'}],
 });
 
