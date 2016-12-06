@@ -374,6 +374,7 @@ app.post('/auth/facebook', function(req, res) {
             user.save(function(err) {
               if (err) {
                 res.status(500).send({ message: err.message });
+                return false;
               }
               var token = createJWT(user);
               res.send({ token: token });
@@ -396,6 +397,7 @@ app.post('/auth/facebook', function(req, res) {
           user.save(function(err) {
             if (err) {
               res.status(500).send({ message: err.message });
+              return false;
             }
             var token = createJWT(user);
             res.send({ token: token });
@@ -480,6 +482,7 @@ app.post('/auth/twitter', function(req, res) {
               user.save(function(err) {
                 if (err) {
                   res.status(500).send({ message: err.message });
+                  return false;
                 }
                 res.send({ token: createJWT(user) });
               });
@@ -499,6 +502,7 @@ app.post('/auth/twitter', function(req, res) {
             user.save(function(err) {
               if (err) {
                 res.status(500).send({ message: err.message });
+                return false;
               }
               res.send({ token: createJWT(user) });
             });
