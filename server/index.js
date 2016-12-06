@@ -167,7 +167,11 @@ app.post('/api/poll/vote', (req, res) => {
   PollOption
   .findById(req.body.pollOptionID)
   .exec((err, option) => {
+
+    // Increment poll option select count
     option.pollOptionSelectCount += 1;
+
+    // Initiate save to database
     option.save(function(err,response){
       if (err) {
         res.send({error:err});
@@ -177,7 +181,11 @@ app.post('/api/poll/vote', (req, res) => {
       User
       .findById(req.body.userID)
       .exec((err, user) => {
+
+        // Add option selection to user account
         user._pollOptions.push(response);
+
+        // Save option selection to database
         user.save(function(err, response){
           if (err) {
             res.send({error:err});
