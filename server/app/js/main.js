@@ -4,8 +4,8 @@
 
 	angular.module('app', ['ui.router', 'ngAnimate', 'ngMessages', 'toastr', 'satellizer']).config(appConfig);
 
-	appConfig.$inject = ['$stateProvider', '$urlRouterProvider', '$authProvider', 'toastrConfig'];
-	function appConfig($stateProvider, $urlRouterProvider, $authProvider, toastrConfig) {
+	appConfig.$inject = ['$stateProvider', '$urlRouterProvider', '$authProvider', 'toastrConfig','$locationProvider'];
+	function appConfig($stateProvider, $urlRouterProvider, $authProvider, toastrConfig, $locationProvider) {
 
 		// ------------------------------------------------------------
 		// Angular Toast Configurations
@@ -47,12 +47,22 @@
 		// ------------------------------------------------------------
 		// Angular State Routes
 		// ------------------------------------------------------------
-		$stateProvider.state('landing', {
+		$stateProvider
+		.state('landing', {
 			url: '/',
 			templateUrl: '../partials/landingpage.html',
 			controller: 'CLogin',
 			controllerAs: 'controller'
-		});
+		})
+		.state('landing2', {
+			url: '',
+			templateUrl: '../partials/landingpage.html',
+			controller: 'CLogin',
+			controllerAs: 'controller'
+		})
+
+
+		  $locationProvider.html5Mode(true);
 		// .state('home', {
 		// 	url: '/',
 		// 	templateUrl: '../partials/home.html',
@@ -79,7 +89,7 @@
 		// ------------------------------------------------------------
 		// Satellizer Authentication Providers
 		// ------------------------------------------------------------
-		var domain = 'http://localhost:8000';
+		var domain = window.location.origin;
 		var redirect = window.location.origin + '/';
 
 		$authProvider.signupUrl = domain + '/auth/signup';
