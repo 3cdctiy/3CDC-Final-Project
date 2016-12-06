@@ -160,6 +160,37 @@ app.post('/api/poll', (req, res) => {
 
 
 // ------------------------------------------------------------
+// POST: /api/poll/vote
+// Increments an options vote count by 1
+// ------------------------------------------------------------
+app.post('/api/poll/vote', (req, res) => {
+
+  PollOption
+  .findById(req.body.pollOptionID)
+  .exec((err, option) => {
+    option.pollOptionSelectCount += 1;
+    option.save(function(err,response){
+      if (err) {
+        res.send({error:err});
+        return;
+      };
+
+      // User
+      // .findById(req.body.userID)
+      // .exec((err, user) => {
+      //   let userVoteInstance = {
+          
+      //   }
+      // })
+
+      res.send({success:"Vote successfully counted"})
+    });
+  })
+})
+
+
+
+// ------------------------------------------------------------
 // POST: /api/poll/update
 // Updates a question on the database
 // ------------------------------------------------------------
