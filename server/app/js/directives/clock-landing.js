@@ -57,7 +57,7 @@ angular.module('app')
         }
 
 
-        startClock('clockdiv', deadline); //start the clock and pass in the ID of the HTML element and the deadline time
+        startClock('clockdivlanding', deadline); //start the clock and pass in the ID of the HTML element and the deadline time
 
       }
     }

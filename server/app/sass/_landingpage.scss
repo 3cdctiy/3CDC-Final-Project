@@ -269,12 +269,20 @@
        }
      }
      
-     @media screen and (max-width: 600px) {
+     @media screen and (max-width: 750px) {
        #days,
        #hours,
        #minutes,
        #seconds {
-         font-size: 60px !important;
+         font-size: 70px !important;
+       }
+     }
+     
+     @media screen and (max-width: 600px) {
+       #clockdiv {
+         font-size: 50px !important;
+         text-align: center;
+         vertical-align: middle;
        }
        .top-box {
          margin-top: 10px;
@@ -282,6 +290,10 @@
        .main-info-content {
          padding: 2px 15px 130px;
        }
+       // .main-info,
+       // .social-info {
+       //   width: 100% !important;
+       // }
        .social-info-content {
          padding: 12px 53px 0 53px;
        }
@@ -307,21 +319,9 @@
        img.fs-logo {
          max-width: 25% !important;
        }
-       .main-info,
-       .social-info {
-         width: 100%;
-       }
        .clock-components {
          padding: 0 !important;
          margin: 0 !important;
          font-size: 30px !important;
-       }
-       .clock-days,
-       .clock-hours,
-       .clock-minutes {
-         // border: none !important;
-       }
-       .clock-unit-label {
-         display: none;
        }
      }

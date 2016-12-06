@@ -61,7 +61,7 @@ angular.module('app').directive('clocklanding', function () {
         var timeinterval = setInterval(updateClock, 1000); //update the clock ever second
       }
 
-      startClock('clockdiv', deadline); //start the clock and pass in the ID of the HTML element and the deadline time
+      startClock('clockdivlanding', deadline); //start the clock and pass in the ID of the HTML element and the deadline time
     }
   };
 });
