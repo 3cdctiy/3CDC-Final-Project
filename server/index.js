@@ -22,7 +22,9 @@ app.set('view engine','html');
 
 app.use(express.static(path.join(__dirname,'app')))
 
-var User = require('./models/user');
+const User          = require('./models/user');
+const PollQuestion  = require('./models/pollQuestion');
+const PollOption    = require('./models/pollOption');
 
 app.use(cors());
 
@@ -36,6 +38,193 @@ mongoose.Promise = global.Promise;
 mongoose.connect(process.env.MONGO_URL);
 
 
+
+// ------------------------------------------------------------
+// ------------------------------------------------------------
+//
+// POLL API
+//
+// ------------------------------------------------------------
+// ------------------------------------------------------------
+
+// ------------------------------------------------------------
+// GET: /api/polls
+// Returns all poll questions
+// ------------------------------------------------------------
+app.get('/api/polls', (req, res) => {
+  PollQuestion
+  .find()
+  .populate('_pollOptions')
+  .sort({ pollQuestionSortOrder: 1 })
+  .exec((err, response) => {
+    if (err) return res.send(err);
+    res.json(response);
+  })
+})
+
+
+
+// ------------------------------------------------------------
+// POST: /api/poll
+// Adds a new question and it's options to the database
+// ------------------------------------------------------------
+app.post('/api/poll', (req, res) => {
+
+  // --------------------
+  // Step 1: Save Poll Question
+  // --------------------
+  PollQuestion
+  .findOne({})
+  .sort('-pollQuestionSortOrder')  // give me the max
+  .exec(function (err, response) {
+    if (err) return res.send(err);
+
+    // Initiate newSortIndex as 1
+    let newSortIndex = 1;
+
+    // Was anything found?
+    if(response !== null) {
+      // Yes, did response come back with number?
+      if(typeof response.pollQuestionSortOrder === 'number') {
+        // Yes, add response number to newSortIndex
+        newSortIndex = response.pollQuestionSortOrder + 1;
+      }
+    }
+
+    // Build pollQuestion object
+    let pollQuestion = {
+      pollQuestion: req.body.pollQuestion,
+      pollQuestionSortOrder: newSortIndex,
+      _pollUser: '5841f3d1af6f48a01b9f8f71',
+      _pollOptions: []
+    };
+
+    // Insert pollQuestion
+    PollQuestion.collection.insert(pollQuestion, callback)
+
+    // Callback response
+    function callback(err, docs) {
+      if (err) {
+        res.send({error:err})
+      } else {
+
+        // --------------------
+        // Step 2: Save Poll Options
+        // --------------------
+        let pollQuestionID = docs.ops[0]._id;
+        let pollOptions    = JSON.parse(req.body.pollOptions);
+        let pollOptionList = [];
+
+        pollOptions.forEach((option, index) => {
+          // Load new PollQuestion object
+          let pollOption = {
+            pollOption: pollOptions[index].pollOption,
+            pollOptionSelectCount: 0,                     // Initially set to zero
+            pollOptionSortOrder: index + 1,
+            _pollQuestion: pollQuestionID
+          };
+
+          // Push into array
+          pollOptionList.push(pollOption);
+        })
+
+        // Insert array to PollOption collection
+        PollOption.collection.insert(pollOptionList, callback);
+
+        function callback(err, docs) {
+          if (err) {
+            res.send({error:err})
+          } else {
+            // Save option's ObjectID in PollQuestion for referencing
+            PollQuestion
+            .findById(pollQuestionID)
+            .populate('_pollOptions')
+            .exec((err, question) => {
+              question._pollOptions = docs.ops;
+              question.save(function(err,response){
+                if (err) {
+                  res.send({error:err});
+                  return;
+                };
+
+                res.send({success:"Poll options successfully added"})
+              });
+            })
+          }
+        }
+      }
+    }
+  });
+})
+
+
+
+// ------------------------------------------------------------
+// POST: /api/poll/vote
+// Increments an options vote count by 1
+// ------------------------------------------------------------
+app.post('/api/poll/vote', (req, res) => {
+
+  PollOption
+  .findById(req.body.pollOptionID)
+  .exec((err, option) => {
+    option.pollOptionSelectCount += 1;
+    option.save(function(err,response){
+      if (err) {
+        res.send({error:err});
+        return;
+      };
+
+      // User
+      // .findById(req.body.userID)
+      // .exec((err, user) => {
+      //   let userVoteInstance = {
+          
+      //   }
+      // })
+
+      res.send({success:"Vote successfully counted"})
+    });
+  })
+})
+
+
+
+// ------------------------------------------------------------
+// POST: /api/poll/update
+// Updates a question on the database
+// ------------------------------------------------------------
+// app.post('/api/poll/update', (req, res) => {
+
+//   PollQuestion
+//   .findById(req.body.pollQuestionID)
+//   .exec(function (err, response) {
+//     if (err) return res.send(err);
+
+//     // Update fields
+//     response.pollQuestion           = req.body.pollQuestion;
+
+//     // Save if no errors
+//     response.save((err) => {
+//       if (err) {
+//         res.send({error:err});
+//         return;
+//       };
+//       res.send({success:"Poll question successfully added"})
+//     });
+
+//   });
+// })
+
+
+
+// ------------------------------------------------------------
+// ------------------------------------------------------------
+//
+// AUTHENTICATION
+//
+// ------------------------------------------------------------
+// ------------------------------------------------------------
 
 // ------------------------------------------------------------
 // Name: ensureAuthenticated
@@ -91,8 +280,6 @@ app.get('/api/me', ensureAuthenticated, function(req, res) {
 
 
 
-
-
 // ------------------------------------------------------------
 // PUT: /api/me
 // Updates logged in user's details
@@ -138,20 +325,31 @@ app.post('/auth/login', function(req, res) {
 // ------------------------------------------------------------
 app.post('/auth/signup', function(req, res) {
   User.findOne({ email: req.body.email }, function(err, existingUser) {
+    // Does user already exist?
     if (existingUser) {
+      // Let user know email is already used
       return res.status(409).send({ message: 'Email is already taken' });
     }
 
+    // Build uesr
     var user = new User({
       displayName: req.body.displayName,
       email: req.body.email,
       password: req.body.password
     });
 
+    // Was no password saved?
+    if(!user.password) {
+      // Let user know password is required
+      return res.status(401).send({ message: 'A password is required' });
+    }
+
+    // Save user
     user.save(function(err, result) {
       if (err) {
         res.status(500).send({ message: err.message });
       }
+      // Send user their token
       res.send({ token: createJWT(result) });
     });
   });
@@ -204,7 +402,11 @@ app.post('/auth/facebook', function(req, res) {
             user.displayName = profile.name;          
             user.email       = profile.email;
             user.facebook    = profile.id;
-            user.save(function() {
+            user.save(function(err) {
+              if (err) {
+                res.status(500).send({ message: err.message });
+                return false;
+              }
               var token = createJWT(user);
               res.send({ token: token });
             });
@@ -223,7 +425,11 @@ app.post('/auth/facebook', function(req, res) {
           user.email        = profile.email;
           user.facebook     = profile.id;
 
-          user.save(function() {
+          user.save(function(err) {
+            if (err) {
+              res.status(500).send({ message: err.message });
+              return false;
+            }
             var token = createJWT(user);
             res.send({ token: token });
           });
@@ -305,6 +511,10 @@ app.post('/auth/twitter', function(req, res) {
               user.email        = profile.email;
               user.displayName  = profile.name;
               user.save(function(err) {
+                if (err) {
+                  res.status(500).send({ message: err.message });
+                  return false;
+                }
                 res.send({ token: createJWT(user) });
               });
             });
@@ -320,7 +530,11 @@ app.post('/auth/twitter', function(req, res) {
             user.twitter      = profile.id;
             user.email        = profile.email;
             user.displayName  = profile.name;
-            user.save(function() {
+            user.save(function(err) {
+              if (err) {
+                res.status(500).send({ message: err.message });
+                return false;
+              }
               res.send({ token: createJWT(user) });
             });
           });

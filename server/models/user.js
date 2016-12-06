@@ -14,8 +14,7 @@ var userSchema = new Schema({
 		required: true
 	},
 	password: {
-		type: String,
-		required: true
+		type: String
 	},
 	displayName: {
 		type: String,
@@ -23,6 +22,7 @@ var userSchema = new Schema({
 	},
 	facebook: String,
 	twitter: String,
+	_pollQuestions: [{type: Schema.Types.ObjectId, ref: 'PollQuestion'}],
 });
 
 

@@ -14,14 +14,13 @@ var pollQuestionSchema = new Schema({
 		required: true,
 	},
 	pollQuestionSortOrder: {
-		type: Int,
+		type: Number,
 		unique: true,
-		required: true,
 	},
-	_pollOptions: [{type: Schema.Types.ObjectId, ref: 'PollOptions'}],
-	_pollUser: [{type: Schema.Types.ObjectId, ref: 'User'}]
+	_pollOptions: [{type: Schema.Types.ObjectId, ref: 'PollOption'}],
+	_pollUser: {type: Schema.Types.ObjectId, ref: 'User'}
 });
 
 
 
-module.exports = mongoose.model('PollQuestion', userSchema);
+module.exports = mongoose.model('PollQuestion', pollQuestionSchema);
