@@ -278,6 +278,15 @@
        }
      }
      
+     @media screen and (max-width: 628px) {
+       .clock-unit-label {
+         line-height: 2.2;
+       }
+       .clock-components {
+         line-height: 1;
+       }
+     }
+     
      @media screen and (max-width: 600px) {
        #clockdiv {
          font-size: 50px !important;
