@@ -17,6 +17,22 @@
 				// Name: login
 				// Client side login form handling
 				// ------------------------------------------------------------
+				vm.isLoggedIn = function (isValid, loginForm) {
+						try {
+								if ($auth.isAuthenticated()) {
+										return true;
+								} else {
+										return false;
+								}
+						} catch (error) {
+								toastr.error(error.message, error.name);
+						}
+				};
+
+				// ------------------------------------------------------------
+				// Name: login
+				// Client side login form handling
+				// ------------------------------------------------------------
 				vm.login = function (isValid, loginForm) {
 						try {
 								if (!isValid) {
