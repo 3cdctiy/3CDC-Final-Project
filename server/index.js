@@ -124,9 +124,11 @@ app.post('/api/poll', (req, res) => {
             _pollQuestion: pollQuestionID
           };
 
+          // Push into array
           pollOptionList.push(pollOption);
         })
 
+        // Insert array to PollOption collection
         PollOption.collection.insert(pollOptionList, callback);
 
         function callback(err, docs) {
