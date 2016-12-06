@@ -20,6 +20,14 @@ var userSchema = new Schema({
 		type: String,
 		required: true
 	},
+	isCheckedIn: {
+		type: Boolean,
+		required: true
+	},
+	isAdministrator: {
+		type: Boolean,
+		required: true
+	},
 	facebook: String,
 	twitter: String,
 	_pollOptions: [{type: Schema.Types.ObjectId, ref: 'PollOption'}],

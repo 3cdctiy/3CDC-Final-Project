@@ -346,7 +346,9 @@ app.post('/auth/signup', function(req, res) {
     var user = new User({
       displayName: req.body.displayName,
       email: req.body.email,
-      password: req.body.password
+      password: req.body.password,
+      isCheckedIn: false,
+      isAdministrator: false
     });
 
     // Was no password saved?
@@ -410,9 +412,9 @@ app.post('/auth/facebook', function(req, res) {
               return res.status(400).send({ message: 'User not found' });
             }
 
-            user.displayName = profile.name;          
-            user.email       = profile.email;
-            user.facebook    = profile.id;
+            user.displayName      = profile.name;          
+            user.email            = profile.email;
+            user.facebook         = profile.id;
             user.save(function(err) {
               if (err) {
                 res.status(500).send({ message: err.message });
@@ -431,10 +433,12 @@ app.post('/auth/facebook', function(req, res) {
             return res.send({ token: token });
           }
           
-          var user          = new User();
-          user.displayName  = profile.name;          
-          user.email        = profile.email;
-          user.facebook     = profile.id;
+          var user              = new User();
+          user.displayName      = profile.name;          
+          user.email            = profile.email;
+          user.facebook         = profile.id;
+          user.isCheckedIn      = false;
+          user.isAdministrator  = false;
 
           user.save(function(err) {
             if (err) {
@@ -537,10 +541,13 @@ app.post('/auth/twitter', function(req, res) {
               return res.send({ token: createJWT(existingUser) });
             }
 
-            var user          = new User();
-            user.twitter      = profile.id;
-            user.email        = profile.email;
-            user.displayName  = profile.name;
+            var user              = new User();
+            user.twitter          = profile.id;
+            user.email            = profile.email;
+            user.displayName      = profile.name;
+            user.isCheckedIn      = false;
+            user.isAdministrator  = false;
+
             user.save(function(err) {
               if (err) {
                 res.status(500).send({ message: err.message });
