@@ -84,7 +84,7 @@ body {
       font-weight: 700;
       font-size: 14px;
       line-height: 27px;
-      margin-bottom: 0px;
+      margin-bottom: 24px;
     }
     .demo-day-link {
       color: white;
@@ -94,6 +94,9 @@ body {
     padding: 2px 45px 130px;
   }
 }
+
+
+/*LOG-IN USING SOCIAL MEDIA*/
 
 .social-info {
   background-color: #000;
@@ -175,6 +178,9 @@ button {
   margin-top: 15px;
 }
 
+
+/*COUNTDOWN CLOCK*/
+
 .container-fluid {
   width: 100%;
   background-color: $color-primary2;
@@ -229,7 +235,16 @@ button {
   .clock-divider {
     vertical-align: text-bottom;
   }
+  .tiy-credit {
+    color: $color-primary3;
+    a {
+      color: $color-accent;
+    }
+  }
 }
+
+
+/*FOOTER*/
 
 .sponsors {
   background-color: white;
@@ -276,12 +291,15 @@ button {
 }
 
 h5.address {
-    margin-bottom: 20px;
-    font-size: 12px;
-    font-weight: 400;
-    margin-top: 20px;
-    color: $color-primary2;
-    line-height: 5px;
+  margin-bottom: 20px;
+  font-size: 12px;
+  font-weight: 400;
+  margin-top: 20px;
+  color: $color-primary2;
+  line-height: 5px;
+  a {
+    color: $color-primary1;
+  }
 }
 
 //media queries
