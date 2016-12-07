@@ -8,7 +8,7 @@ body {
   // background-color: black;
   font-family: 'Roboto', sans-serif; //400,400i,700,900
   color: white;
-  background-image: url("/images/shutterstock_315631490_rev3.jpg");
+  background-image: url("/images/shutterstock_315631490_large.jpg");
   background-repeat: no-repeat;
   background-size: content;
   background-position: top center;
@@ -106,10 +106,6 @@ body {
   margin: -16px 60px 320px;
 }
 
-// p {
-//   text-align: center;
-//   font-size: 14px;
-// }
 .social-info-content {
   padding-left: 53px;
   padding-right: 53px;
@@ -188,8 +184,23 @@ button {
 
 /*SUCCESSFULLY LOGGED-IN USING SOCIAL MEDIA*/
 
+.thank-you {
+  text-align: center;
+  padding-top: 18px;
+  font-size: 16px;
+  margin-bottom: 33px;
+}
+
+.fakebook {
+  margin-bottom: 33px;
+}
+
 
 /*COUNTDOWN CLOCK*/
+
+.landingpage-wrapper {
+  margin-top: -45px;
+}
 
 .container-fluid {
   width: 100%;
@@ -247,6 +258,7 @@ button {
   }
   .tiy-credit {
     color: $color-primary3;
+    text-align: center;
     a {
       color: $color-accent;
     }
@@ -336,6 +348,10 @@ h5.address {
 }
 
 @media screen and (max-width: 750px) {
+  body {
+    background-image: url("/images/shutterstock_315631490_large.jpg");
+    background-size: cover;
+  }
   #days,
   #hours,
   #minutes,
@@ -386,13 +402,71 @@ h5.address {
   }
 }
 
-@media screen and (max-width: 375px) {
+@media screen and (max-width: 320px) {
+  #top-box-mobile {
+    padding: 0px;
+  }
+  #social-info-mobile {
+    padding: 0px;
+  }
+  .main-info .event-info p {
+    font-size: 14px !important;
+  }
+  .main-info {
+    margin-top: 165px;
+  }
+  .main-info .main-info-content img.hunt-logo {
+    max-width: 81%;
+    margin-top: 9px;
+  }
+  .main-info .event-info p {
+    font-size: 13px;
+    line-height: 23px;
+    margin-bottom: 24px;
+  }
+  .main-info .main-info-content h3 {
+    line-height: 25px;
+    font-size: 24px;
+    margin-bottom: 3px;
+    margin-top: 5px;
+  }
+  .main-info .main-info-content h3.location {
+    font-size: 14px;
+    margin-top: -2px;
+  }
+  .thank-you {
+    text-align: center;
+    padding: 10px 44px 0px;
+  }
+  .main-info .main-info-content .nye-logo {
+    max-width: 51%;
+    margin-top: 20px;
+  }
+  .main-info .main-info-content h6.slogan {
+    font-size: 20px;
+    line-height: 22px;
+    margin-bottom: 18px;
+    margin-top: -1px;
+  }
+  .main-info .main-info-content h3.presents {
+    color: #004D71;
+    font-size: 14px;
+    margin-top: 0px;
+  }
+  .main-info .main-info-content h3 {
+    font-size: 24px;
+  }
+  .container-fluid,
+  .countdown-clock {
+    background-color: #004D71;
+    margin-top: -103px;
+  }
   #days,
   #hours,
   #minutes,
   #seconds,
   .clock-divider {
-    font-size: 30px !important;
+    font-size: 53px !important;
   }
   .top-box {
     margin-top: 0;
@@ -406,17 +480,14 @@ h5.address {
     font-size: 30px !important;
   }
   .countdown-clock .countdown-title {
-    text-align: center;
-    font-size: 18px;
-    text-transform: uppercase;
-    color: #CFDB00;
-    margin-top: 24px;
-    font-weight: 700;
-    letter-spacing: 5px;
-    margin-bottom: 14px;
+    font-size: 16px;
+    margin-bottom: -16px;
   }
   p {
     font-size: 12px;
+    line-height: 22px;
+    margin-top: 4px;
+    margin-bottom: 30px;
   }
   .social-info {
     background-color: #000;

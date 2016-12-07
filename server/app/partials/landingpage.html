@@ -1,9 +1,8 @@
 <link rel="stylesheet" href="dist/css/landingpage.css">
-
 <div class="landingpage-wrapper">
   <div class="row">
     <div class="background-image">
-      <div class="col s12 m10 offset-m1 l8 offset-l2 top-box">
+      <div class="col s12 m10 offset-m1 l8 offset-l2 top-box" id="top-box-mobile">
         <div class="main-info">
           <div class="row">
             <div class="col s12">
@@ -30,13 +29,13 @@
       <div class="row">
         <div class="col s12 m10 offset-m1 l8 offset-l2">
           <div class="social-info">
-            <div class="row">
+            <div class="row" id="social-info-mobile">
               <div ng-show="controller.isLoggedIn()">
-                <p>Thank you for logging in!</p>
+                <p class="thank-you">Thank you for signing up – please check back often for updates!</p>
                 <div class="col s12 center"><a href="https://twitter.com/intent/tweet?button_hashtag=NYE513" class="twitter-hashtag-button" data-size="large" data-show-count="false">Tweet #NYE513</a>
                   <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
                 </div>
-                <div class="fb-like col s12 center" data-href="http://www.nye513.com" data-layout="button" data-action="like" data-size="large" data-show-faces="true" data-share="true">
+                <div class="fb-like col s12 center fakebook" data-href="http://www.nye513.com" data-layout="button" data-action="like" data-size="large" data-show-faces="true" data-share="true">
                 </div>
               </div>
               <div class="social-info-content" ng-hide="controller.isLoggedIn()">
@@ -103,7 +102,7 @@
                     <div class="input-field">
                       <p class="update-agreement">
                         <input type="checkbox" id="updates" checked />
-                        <label for="updates">Update agreement goes here</label>
+                        <label for="updates">Yep! Keep me updated on all things The Iron Yard.</label>
                       </p>
                     </div>
                     <!-- Submit Button -->
