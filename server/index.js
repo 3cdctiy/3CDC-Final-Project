@@ -46,21 +46,13 @@ mongoose.connect(process.env.MONGO_URL);
 //
 // ------------------------------------------------------------
 // ------------------------------------------------------------
+const API = require('./api/api');
 
 // ------------------------------------------------------------
 // GET: /api/polls
 // Returns all poll questions
 // ------------------------------------------------------------
-app.get('/api/polls', (req, res) => {
-  PollQuestion
-  .find()
-  .populate('_pollOptions')
-  .sort({ pollQuestionSortOrder: 1 })
-  .exec((err, response) => {
-    if (err) return res.send(err);
-    res.json(response);
-  })
-})
+app.get('/api/polls', API.getAll);
 
 
 
@@ -68,94 +60,7 @@ app.get('/api/polls', (req, res) => {
 // POST: /api/poll
 // Adds a new question and it's options to the database
 // ------------------------------------------------------------
-app.post('/api/poll', (req, res) => {
-
-  // --------------------
-  // Step 1: Save Poll Question
-  // --------------------
-  PollQuestion
-  .findOne({})
-  .sort('-pollQuestionSortOrder')  // give me the max
-  .exec(function (err, response) {
-    if (err) return res.send(err);
-
-    // Initiate newSortIndex as 1
-    let newSortIndex = 1;
-
-    // Was anything found?
-    if(response !== null) {
-      // Yes, did response come back with number?
-      if(typeof response.pollQuestionSortOrder === 'number') {
-        // Yes, add response number to newSortIndex
-        newSortIndex = response.pollQuestionSortOrder + 1;
-      }
-    }
-
-    // Build pollQuestion object
-    let pollQuestion = {
-      pollQuestion: req.body.pollQuestion,
-      pollQuestionSortOrder: newSortIndex,
-      _pollOptions: []
-    };
-
-    // Insert pollQuestion
-    PollQuestion.collection.insert(pollQuestion, callback)
-
-    // Callback response
-    function callback(err, docs) {
-      if (err) {
-        res.send({error:err})
-      } else {
-
-        // --------------------
-        // Step 2: Save Poll Options
-        // --------------------
-        let pollQuestionID = docs.ops[0]._id;
-        let pollOptions    = JSON.parse(req.body.pollOptions);
-        let pollOptionList = [];
-
-        pollOptions.forEach((option, index) => {
-          // Load new PollQuestion object
-          let pollOption = {
-            pollOption: pollOptions[index].pollOption,
-            pollOptionSelectCount: 0,                     // Initially set to zero
-            pollOptionSortOrder: index + 1,
-            isActiveQuestion: false,
-            _pollQuestion: pollQuestionID
-          };
-
-          // Push into array
-          pollOptionList.push(pollOption);
-        })
-
-        // Insert array to PollOption collection
-        PollOption.collection.insert(pollOptionList, callback);
-
-        function callback(err, docs) {
-          if (err) {
-            res.send({error:err})
-          } else {
-            // Save option's ObjectID in PollQuestion for referencing
-            PollQuestion
-            .findById(pollQuestionID)
-            .populate('_pollOptions')
-            .exec((err, question) => {
-              question._pollOptions = docs.ops;
-              question.save(function(err,response){
-                if (err) {
-                  res.send({error:err});
-                  return;
-                };
-
-                res.send({success:"Poll options successfully added"})
-              });
-            })
-          }
-        }
-      }
-    }
-  });
-})
+app.post('/api/poll', API.postQuestion);
 
 
 
@@ -163,70 +68,15 @@ app.post('/api/poll', (req, res) => {
 // POST: /api/poll/vote
 // Increments an options vote count by 1
 // ------------------------------------------------------------
-app.post('/api/poll/vote', (req, res) => {
-
-  PollOption
-  .findById(req.body.pollOptionID)
-  .exec((err, option) => {
-
-    // Increment poll option select count
-    option.pollOptionSelectCount += 1;
-
-    // Initiate save to database
-    option.save(function(err,response){
-      if (err) {
-        res.send({error:err});
-        return;
-      };
-
-      User
-      .findById(req.body.userID)
-      .exec((err, user) => {
-
-        // Add option selection to user account
-        user._pollOptions.push(response);
-
-        // Save option selection to database
-        user.save(function(err, response){
-          if (err) {
-            res.send({error:err});
-            return;
-          }
-
-          res.send({success:"Vote successfully counted"})
-        })
-      })
-    });
-  })
-})
+app.post('/api/poll/vote', API.voteQuestion);
 
 
 
 // ------------------------------------------------------------
-// POST: /api/poll/update
-// Updates a question on the database
+// POST: /api/poll/toggle
+// Toggles a question's isActiveQuestion state
 // ------------------------------------------------------------
-// app.post('/api/poll/update', (req, res) => {
-
-//   PollQuestion
-//   .findById(req.body.pollQuestionID)
-//   .exec(function (err, response) {
-//     if (err) return res.send(err);
-
-//     // Update fields
-//     response.pollQuestion           = req.body.pollQuestion;
-
-//     // Save if no errors
-//     response.save((err) => {
-//       if (err) {
-//         res.send({error:err});
-//         return;
-//       };
-//       res.send({success:"Poll question successfully added"})
-//     });
-
-//   });
-// })
+app.post('/api/poll/toggle', API.toggleIsActive);
 
 
 

@@ -22,11 +22,11 @@ var userSchema = new Schema({
 	},
 	isCheckedIn: {
 		type: Boolean,
-		required: true
+		default: false
 	},
 	isAdministrator: {
 		type: Boolean,
-		required: true
+		default: false
 	},
 	facebook: String,
 	twitter: String,
