@@ -4,8 +4,8 @@
 
 	angular.module('app', ['ui.router', 'ngAnimate', 'ngMessages', 'toastr', 'satellizer']).config(appConfig);
 
-	appConfig.$inject = ['$stateProvider', '$urlRouterProvider', '$authProvider', 'toastrConfig'];
-	function appConfig($stateProvider, $urlRouterProvider, $authProvider, toastrConfig) {
+	appConfig.$inject = ['$stateProvider', '$urlRouterProvider', '$authProvider', 'toastrConfig','$locationProvider'];
+	function appConfig($stateProvider, $urlRouterProvider, $authProvider, toastrConfig, $locationProvider) {
 
 		// ------------------------------------------------------------
 		// Angular Toast Configurations
@@ -47,33 +47,39 @@
 		// ------------------------------------------------------------
 		// Angular State Routes
 		// ------------------------------------------------------------
-		$stateProvider.state('home', {
+		$locationProvider.html5Mode(true);
+
+		$stateProvider
+		.state('landing', {
 			url: '/',
-			templateUrl: '../partials/home.html',
+			templateUrl: '../partials/landingpage.html',
 			controller: 'CLogin',
-			controllerAs: 'controller',
-			resolve: {
-					loginRequired: loginRequired
-			}
-		}).state('login', {
-			url: '/login',
-			templateUrl: '../partials/login.html',
+			controllerAs: 'controller'
+		})
+		.state('landing2', {
+			url: '',
+			templateUrl: '../partials/landingpage.html',
 			controller: 'CLogin',
-			controllerAs: 'controller',
-			resolve: {
-					skipIfLoggedIn: skipIfLoggedIn
-			}
-		}).state('about', {
-			url: '/about',
-			templateUrl: '../partials/about.html',
-			controller: 'CMain',
 			controllerAs: 'controller'
 		}).state('admin', {
 			url: '/admin',
 			templateUrl: '../partials/admin.html',
 			controller: 'CAdmin',
 			controllerAs: 'controller'
-		});
+		}).state('home', {
+			url: '/home',
+			templateUrl: '../partials/home.html',
+			controller: 'CLogin',
+			controllerAs: 'controller',
+			resolve: {
+					loginRequired: loginRequired
+			}
+		}).state('about', {
+			url: '/about',
+			templateUrl: '../partials/about.html',
+			controller: 'CMain',
+			controllerAs: 'controller'
+		})
 
 		// ------------------------------------------------------------
 		// Satellizer Authentication Providers

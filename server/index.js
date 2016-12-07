@@ -108,7 +108,7 @@ function ensureAuthenticated(req, res, next) {
 
   var payload = null;
   try {
-    payload = jwt.decode(token, config.TOKEN_SECRET);
+    payload = jwt.decode(token, process.env.TOKEN_SECRET);
   }
   catch (err) {
     return res.status(401).send({ message: err.message });
@@ -264,7 +264,7 @@ app.post('/auth/facebook', function(req, res) {
           }
 
           var token = req.header('Authorization').split(' ')[1];
-          var payload = jwt.decode(token, config.TOKEN_SECRET);
+          var payload = jwt.decode(token, process.env.TOKEN_SECRET);
 
           User.findById(payload.sub, function(err, user) {
             if (!user) {
@@ -374,7 +374,7 @@ app.post('/auth/twitter', function(req, res) {
             }
 
             var token = req.header('Authorization').split(' ')[1];
-            var payload = jwt.decode(token, config.TOKEN_SECRET);
+            var payload = jwt.decode(token, process.env.TOKEN_SECRET);
 
             User.findById(payload.sub, function(err, user) {
               if (!user) {
@@ -420,6 +420,8 @@ app.post('/auth/twitter', function(req, res) {
     });
   }
 });
+
+app.get('/polls')
 
 
 app.get('/', function(req, res) {

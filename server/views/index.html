@@ -1,12 +1,18 @@
 <!DOCTYPE html>
 <html ng-app="app">
+
 <head>
 	<meta charset="utf-8">
+     <base href="/">
+
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>New Years Eve Blast</title>
 
 	<!--Import Google Icon Font-->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+	<!--Import Google Font-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,700,900" rel="stylesheet">
 
 	<!-- Angular Toastr -->
 	<link rel="stylesheet" href="https://unpkg.com/angular-toastr/dist/angular-toastr.css" />
@@ -14,9 +20,34 @@
 	<!-- Materialize CSS -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
 
+	<!-- Import Fontawesome Icons -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">	
+
 	<!-- Site Styles -->
 	<link rel="stylesheet" type="text/css" href="dist/css/main.css">
+     <!-- Google Analytics -->
+     <script>
+       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+       })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
+       ga('create', 'UA-88645713-1', 'auto');
+       ga('send', 'pageview');
+     </script>
+
+     <!-- Facebook Like button -->
+     <div id="fb-root"></div>
+     <script>(function(d, s, id) {
+       var js, fjs = d.getElementsByTagName(s)[0];
+       if (d.getElementById(id)) return;
+       js = d.createElement(s); js.id = id;
+       js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8&appId=950583835073331";
+       fjs.parentNode.insertBefore(js, fjs);
+     }(document, 'script', 'facebook-jssdk'));</script>
+</head>     
+
+<<<<<<< HEAD
 </head>
 <body ng-cloak>
 
@@ -65,6 +96,42 @@
 	<script src="dist/js/controllers/CLogout.js"></script>
 	<script src="dist/js/controllers/CMain.js"></script>
 	<script src="dist/js/controllers/CAdmin.js"></script>
+=======
+>>>>>>> landingPage
 
+<body ng-cloak>
+     <!-- Body Content -->
+     <main ui-view></main>
+     <!-- Lodash -->
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.16.4/lodash.min.js"></script>
+     <!-- JQuery -->
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+     <!-- Materialize JS -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+     <!-- Angular 1.5.8 -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.js"></script>
+     <!-- Angular UI Router -->
+     <script src="https://unpkg.com/angular-ui-router/release/angular-ui-router.min.js"></script>
+     <!-- Angular Animate -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular-animate.js"></script>
+     <!-- Angular Messages -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-messages/1.5.9/angular-messages.js"></script>
+     <!-- Angular Toastr -->
+     <script src="https://unpkg.com/angular-toastr/dist/angular-toastr.tpls.js"></script>
+     <!-- Satellizer CDN -->
+     <script src="https://cdn.jsdelivr.net/satellizer/0.15.5/satellizer.min.js"></script>
+     <!-- Main JavaScript File -->
+     <script src="dist/js/main.js"></script>
+     <script src="dist/js/directives/passwordMatch.js"></script>
+     <script src="dist/js/directives/clock.js"></script>
+     <script src="dist/js/directives/clock-landing.js"></script>
+     <script src="dist/js/factories/FApi.js"></script>
+     <script src="dist/js/factories/FLocalStorage.js"></script>
+     <script src="dist/js/factories/FFormUtilities.js"></script>
+     <script src="dist/js/controllers/CSignUp.js"></script>
+     <script src="dist/js/controllers/CLogin.js"></script>
+     <script src="dist/js/controllers/CLogout.js"></script>
+     <script src="dist/js/controllers/CMain.js"></script>
 </body>
+
 </html>
