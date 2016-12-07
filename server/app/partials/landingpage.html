@@ -1,7 +1,7 @@
 <div class="landingpage-wrapper">
   <div class="row">
     <div class="background-image">
-      <div class="col s12 m8 offset-m2 top-box">
+      <div class="col s12 m10 offset-m1 l8 offset-l2 top-box">
         <div class="main-info">
           <div class="row">
             <div class="col s12">
@@ -24,92 +24,92 @@
           </div>
         </div>
       </div>
-      <div class="container">
-        <div class="row">
-          <div class="col s12 m8 offset-m2 social-info">
-            <div class="row">
-              <div ng-show="controller.isLoggedIn()">
-                <p>Thank you for logging in!</p>
-                <div class="col s12 center"><a href="https://twitter.com/intent/tweet?button_hashtag=NYE513" class="twitter-hashtag-button" data-size="large" data-show-count="false">Tweet #NYE513</a>
-                  <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-                </div>
-                <div class="fb-like col s12 center" data-href="http://www.nye513.com" data-layout="button" data-action="like" data-size="large" data-show-faces="true" data-share="true">
-                </div>
-              </div>
-              <div class="social-info-content" ng-hide="controller.isLoggedIn()">
-                <p>Sign up for EARLY ACCESS to our #NYE513 event application!</p>
-                <!-- Social Media Buttons -->
-                <div class="col s12 m6">
-                  <div class="social-logins">
-                    <button ng-click="controller.authenticate('facebook')" class="btn waves-effect waves-light facebook button-border-radius"><i class="fa fa-facebook" aria-hidden="true"></i>Sign in with Facebook</button>
+      <div class="row">
+        <div class="col s12 m10 offset-m1 l8 offset-l2">
+            <div class="social-info">
+              <div class="row">
+                <div ng-show="controller.isLoggedIn()">
+                  <p>Thank you for logging in!</p>
+                  <div class="col s12 center"><a href="https://twitter.com/intent/tweet?button_hashtag=NYE513" class="twitter-hashtag-button" data-size="large" data-show-count="false">Tweet #NYE513</a>
+                    <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+                  </div>
+                  <div class="fb-like col s12 center" data-href="http://www.nye513.com" data-layout="button" data-action="like" data-size="large" data-show-faces="true" data-share="true">
                   </div>
                 </div>
-                <!-- Facebook Sign in -->
-                <div class="col s12 m6">
-                  <div class="social-logins">
-                    <button ng-click="controller.authenticate('twitter')" class="btn waves-effect waves-light twitter button-border-radius"><i class="fa fa-twitter" aria-hidden="true"></i>Sign in with Twitter</button>
+                <div class="social-info-content" ng-hide="controller.isLoggedIn()">
+                  <p>Sign up for EARLY ACCESS to our #NYE513 event application!</p>
+                  <!-- Social Media Buttons -->
+                  <div class="col s12 m6">
+                    <div class="social-logins">
+                      <button ng-click="controller.authenticate('facebook')" class="btn waves-effect waves-light facebook button-border-radius"><i class="fa fa-facebook" aria-hidden="true"></i>Sign in with Facebook</button>
+                    </div>
                   </div>
+                  <!-- Facebook Sign in -->
+                  <div class="col s12 m6">
+                    <div class="social-logins">
+                      <button ng-click="controller.authenticate('twitter')" class="btn waves-effect waves-light twitter button-border-radius"><i class="fa fa-twitter" aria-hidden="true"></i>Sign in with Twitter</button>
+                    </div>
+                  </div>
+                  <!-- Twitter Sign in -->
+                  <!-- Signup Form -->
+                  <div class="col s12" ng-controller="CSignUp as signup">
+                    <form novalidate class="signup-form" name="signupForm" ng-submit="signup.signup(signupForm.$valid)">
+                      <p class="email">or signup using EMAIL below</p>
+                      <!-- Name -->
+                      <div class="input-field">
+                        <input id="name" type="text" class="validate" name="name" ng-model="signup.user.displayName" ng-pattern="/^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u" ng-minlength="1" ng-maxlength="50" required>
+                        <label for="name">Name</label>
+                        <!-- Input Errors -->
+                        <div class="help-block" ng-messages="signupForm.name.$error" ng-if="signupForm.name.$touched">
+                          <span class="input-error" ng-message="pattern">Invalid characters in name.</span>
+                          <span class="input-error" ng-message="minlength">Name is too short.</span>
+                          <span class="input-error" ng-message="maxlength">Name is too long.</span>
+                          <span class="input-error" ng-message="required">Your name is required.</span>
+                        </div>
+                      </div>
+                      <!-- Email -->
+                      <div class="input-field">
+                        <input id="email" type="email" class="validate" name="email" ng-model="signup.user.email" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" ng-minlength="5" ng-maxlength="50" required>
+                        <label for="email">Email</label>
+                        <!-- Input Errors -->
+                        <div class="help-block" ng-messages="signupForm.email.$error" ng-if="signupForm.email.$touched">
+                          <span class="input-error" ng-message="pattern">Please enter a valid email</span>
+                          <span class="input-error" ng-message="minlength">Email is too short.</span>
+                          <span class="input-error" ng-message="maxlength">Email is too long.</span>
+                          <span class="input-error" ng-message="required">Your email is required.</span>
+                        </div>
+                      </div>
+                      <!-- Password 1 -->
+                      <div class="input-field">
+                        <input id="password" type="password" class="validate" name="password" ng-model="signup.user.password" ng-minlength="6" ng-maxlength="50" required>
+                        <label for="password">Password</label>
+                        <!-- Input Errors -->
+                        <div class="help-block" ng-messages="signupForm.password.$error" ng-if="signupForm.password.$touched">
+                          <span class="input-error" ng-message="minlength">Password is too short.</span>
+                          <span class="input-error" ng-message="maxlength">Password is too long.</span>
+                          <span class="input-error" ng-message="required">Your password is required.</span>
+                        </div>
+                      </div>
+                      <!-- Password 2 (Match Check) -->
+                      <div class="input-field">
+                        <input password-match="signup.user.password" id="confirmPassword" type="password" class="validate" name="passwordMatch" ng-model="signup.confirmPassword" ng-minlength="6" ng-maxlength="50" required>
+                        <label for="confirmPassword">Confirm Password</label>
+                        <!-- Input Error -->
+                        <span ng-show="!signupForm.passwordMatch.$valid && signupForm.passwordMatch.$dirty" class="input-error">Passwords must match</span>
+                      </div>
+                      <!-- Submit Button -->
+                      <button class="btn waves-effect waves-light submit col s12 m6 offset-m3 button-border-radius signup-button" type="submit" name="action">
+                        <i class="fa fa-paper-plane-o" aria-hidden="true"></i> Submit
+                      </button>
+                      <div class="tweet-us">
+                        <p>Tweet to us using #NYE513</p>
+                      </div>
+                    </form>
+                  </div>
+                  <!-- /signupForm -->
                 </div>
-                <!-- Twitter Sign in -->
-                <!-- Signup Form -->
-                <div class="col s12" ng-controller="CSignUp as signup">
-                  <form novalidate class="signup-form" name="signupForm" ng-submit="signup.signup(signupForm.$valid)">
-                    <p class="email">or signup using EMAIL below</p>
-                    <!-- Name -->
-                    <div class="input-field">
-                      <input id="name" type="text" class="validate" name="name" ng-model="signup.user.displayName" ng-pattern="/^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u" ng-minlength="1" ng-maxlength="50" required>
-                      <label for="name">Name</label>
-                      <!-- Input Errors -->
-                      <div class="help-block" ng-messages="signupForm.name.$error" ng-if="signupForm.name.$touched">
-                        <span class="input-error" ng-message="pattern">Invalid characters in name.</span>
-                        <span class="input-error" ng-message="minlength">Name is too short.</span>
-                        <span class="input-error" ng-message="maxlength">Name is too long.</span>
-                        <span class="input-error" ng-message="required">Your name is required.</span>
-                      </div>
-                    </div>
-                    <!-- Email -->
-                    <div class="input-field">
-                      <input id="email" type="email" class="validate" name="email" ng-model="signup.user.email" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" ng-minlength="5" ng-maxlength="50" required>
-                      <label for="email">Email</label>
-                      <!-- Input Errors -->
-                      <div class="help-block" ng-messages="signupForm.email.$error" ng-if="signupForm.email.$touched">
-                        <span class="input-error" ng-message="pattern">Please enter a valid email</span>
-                        <span class="input-error" ng-message="minlength">Email is too short.</span>
-                        <span class="input-error" ng-message="maxlength">Email is too long.</span>
-                        <span class="input-error" ng-message="required">Your email is required.</span>
-                      </div>
-                    </div>
-                    <!-- Password 1 -->
-                    <div class="input-field">
-                      <input id="password" type="password" class="validate" name="password" ng-model="signup.user.password" ng-minlength="6" ng-maxlength="50" required>
-                      <label for="password">Password</label>
-                      <!-- Input Errors -->
-                      <div class="help-block" ng-messages="signupForm.password.$error" ng-if="signupForm.password.$touched">
-                        <span class="input-error" ng-message="minlength">Password is too short.</span>
-                        <span class="input-error" ng-message="maxlength">Password is too long.</span>
-                        <span class="input-error" ng-message="required">Your password is required.</span>
-                      </div>
-                    </div>
-                    <!-- Password 2 (Match Check) -->
-                    <div class="input-field">
-                      <input password-match="signup.user.password" id="confirmPassword" type="password" class="validate" name="passwordMatch" ng-model="signup.confirmPassword" ng-minlength="6" ng-maxlength="50" required>
-                      <label for="confirmPassword">Confirm Password</label>
-                      <!-- Input Error -->
-                      <span ng-show="!signupForm.passwordMatch.$valid && signupForm.passwordMatch.$dirty" class="input-error">Passwords must match</span>
-                    </div>
-                    <!-- Submit Button -->
-                    <button class="btn waves-effect waves-light submit col s12 m6 offset-m3 button-border-radius" type="submit" name="action">
-                      <i class="fa fa-paper-plane-o" aria-hidden="true"></i> Submit
-                    </button>
-                    <div class="tweet-us">
-                      <p>Tweet to us using #NYE513</p>
-                    </div>
-                  </form>
-                </div>
-                <!-- /signupForm -->
               </div>
             </div>
-          </div>
         </div>
       </div>
     </div>

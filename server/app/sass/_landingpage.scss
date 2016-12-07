@@ -91,7 +91,8 @@ body {
   background-color: #000;
   position: relative;
   top: -165px;
-  margin-bottom: 274px;
+  padding: 15px 0;
+  margin: 15px 60px 274px;
 }
 
 p {
@@ -152,6 +153,8 @@ button {
 
 .tweet-us {
   padding-bottom: 12px;
+  clear: both;
+
   p {
     margin-top: 49px;
     text-align: center;
@@ -161,6 +164,10 @@ button {
 
 .button-border-radius {
   border-radius: 8px;
+}
+
+.signup-button {
+  margin-top: 15px;
 }
 
 .container-fluid {
@@ -283,12 +290,43 @@ button {
   }
 }
 
+@media screen and (max-width: 800px) {
+  .main-info {
+
+    .main-info-content {
+
+      h3.location {
+        font-size: 18px;
+      }
+    }
+  }
+
+  .social-info {
+    margin-bottom: 60px;
+  }
+}
+
 @media screen and (max-width: 750px) {
   #days,
   #hours,
   #minutes,
   #seconds {
     font-size: 70px !important;
+  }
+
+  .social-info {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .main-info {
+    .main-info-content {
+      padding: 2px 0px 130px;
+
+      h3.location {
+        font-size: 18px;
+      }
+    }
   }
 }
 
@@ -310,13 +348,7 @@ button {
   .top-box {
     margin-top: 10px;
   }
-  .main-info-content {
-    padding: 2px 15px 130px;
-  }
-  // .main-info,
-  // .social-info {
-  //   width: 100% !important;
-  // }
+  
   .social-info-content {
     padding: 12px 53px 0 53px;
   }
