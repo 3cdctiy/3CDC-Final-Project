@@ -1,5 +1,15 @@
 <link rel="stylesheet" href="dist/css/landingpage.css">
 
+<div id="getUpdates" class="modal">
+  <div class="modal-content">
+    <h5>Do you want to get information on The Iron Yard?</h5>
+  </div>
+  <div class="modal-footer">
+    <a ng-click="controller.submitGetUpdates(false)"  class="modal-action modal-close waves-effect waves-green btn-flat">No thanks</a>
+    <a ng-click="controller.submitGetUpdates(true)" class="modal-action modal-close waves-effect waves-green btn-flat">Sign me up!</a>
+  </div>
+</div>
+
 <div class="landingpage-wrapper">
   <div class="row">
     <div class="background-image">
@@ -102,8 +112,8 @@
                     </div>
                     <div class="input-field">
                       <p class="update-agreement">
-                        <input type="checkbox" id="updates" checked />
-                        <label for="updates">Update agreement goes here</label>
+                        <input type="checkbox" id="updates" ng-model="signup.user.getUpdates" />
+                        <label for="updates">Yep! Keep me updated on all things The Iron Yard.</label>
                       </p>
                     </div>
                     <!-- Submit Button -->

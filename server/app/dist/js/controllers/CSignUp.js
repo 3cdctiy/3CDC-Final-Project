@@ -8,6 +8,10 @@
 
     var vm = this;
 
+    vm.user = {
+      getUpdates: true
+    };
+
     // ------------------------------------------------------------
     // Name: signup
     // Client side signup form handling
