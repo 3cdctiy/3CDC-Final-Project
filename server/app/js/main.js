@@ -81,6 +81,12 @@
 			controller: 'CLogin',
 			controllerAs: 'controller'
 		})
+		.state('billboard', {
+			url: '/admin/billboard',
+			templateUrl: '../partials/billboard.html',
+			controller: 'CBillboard',
+			controllerAs: 'controller'
+		})
 
 		// $locationProvider.html5Mode(true);
 
