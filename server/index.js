@@ -57,6 +57,14 @@ app.get('/api/polls', API.getAll);
 
 
 // ------------------------------------------------------------
+// GET: /api/polls/active
+// Returns all active poll questions
+// ------------------------------------------------------------
+app.get('/api/polls/active', API.getAllActive);
+
+
+
+// ------------------------------------------------------------
 // POST: /api/poll
 // Adds a new question and it's options to the database
 // ------------------------------------------------------------

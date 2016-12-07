@@ -22,6 +22,24 @@ exports.getAll = ((req, res) => {
 
 
 // ------------------------------------------------------------
+// Name: getAllActive
+// Returns all active poll questions
+// ------------------------------------------------------------
+exports.getAllActive = ((req, res) => {
+  PollQuestion
+  .find()
+  .populate('_pollOptions')
+  .where('isActiveQuestion').equals(true)
+  .sort({ pollQuestionSortOrder: 1 })
+  .exec((err, response) => {
+    if (err) return res.send(err);
+    res.json(response);
+  })
+})
+
+
+
+// ------------------------------------------------------------
 // Name: postQuestion
 // Adds a new question and it's options to the database
 // ------------------------------------------------------------
