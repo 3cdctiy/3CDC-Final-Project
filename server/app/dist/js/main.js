@@ -49,46 +49,38 @@
 		// ------------------------------------------------------------
 		// Angular State Routes
 		// ------------------------------------------------------------
-		$stateProvider.state('landing', {
-			url: '/',
-			templateUrl: '../partials/landingpage.html',
-			controller: 'CLogin',
-			controllerAs: 'controller'
-		}).state('landing2', {
-			url: '',
-			templateUrl: '../partials/landingpage.html',
-			controller: 'CLogin',
-			controllerAs: 'controller'
-		}).state('admin', {
+		$stateProvider.state('admin', {
 			url: '/admin',
 			templateUrl: '../partials/admin.html',
 			controller: 'CAdmin',
 			controllerAs: 'controller'
+		}).state('home', {
+			url: '/home',
+			templateUrl: '../partials/home.html',
+			controller: 'CLogin',
+			controllerAs: 'controller',
+			resolve: {
+				loginRequired: loginRequired
+			}
+		}).state('about', {
+			url: '/about',
+			templateUrl: '../partials/about.html',
+			controller: 'CMain',
+			controllerAs: 'controller'
+		}).state('landing', {
+			url: '/',
+			templateUrl: '../partials/landingpage.html',
+			controller: 'CLogin',
+			controllerAs: 'controller'
 		});
-
-		$locationProvider.html5Mode(true);
-		// .state('home', {
-		// 	url: '/',
-		// 	templateUrl: '../partials/home.html',
+		// .state('landing2', {
+		// 	url: '',
+		// 	templateUrl: '../partials/landingpage.html',
 		// 	controller: 'CLogin',
-		// 	controllerAs: 'controller',
-		// 	resolve: {
-		// 			loginRequired: loginRequired
-		// 	}
-		// }).state('login', {
-		// 	url: '/login',
-		// 	templateUrl: '../partials/login.html',
-		// 	controller: 'CLogin',
-		// 	controllerAs: 'controller',
-		// 	resolve: {
-		// 			skipIfLoggedIn: skipIfLoggedIn
-		// 	}
-		// }).state('about', {
-		// 	url: '/about',
-		// 	templateUrl: '../partials/about.html',
-		// 	controller: 'CMain',
 		// 	controllerAs: 'controller'
 		// })
+
+		// $locationProvider.html5Mode(true);
 
 		// ------------------------------------------------------------
 		// Satellizer Authentication Providers
