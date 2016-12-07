@@ -1,4 +1,3 @@
-
 /*GLOBAL STYLES*/
 
 @import '_variables.scss';
@@ -39,18 +38,18 @@ body {
       max-width: 60%;
     }
     .nye-logo {
-    max-width: 35%;
-    margin-top: 32px;
+      max-width: 35%;
+      margin-top: 32px;
     }
     h3 {
-    letter-spacing: 1.4px;
-    line-height: 29px;
-    font-weight: 700;
-    font-size: 24px;
-    text-transform: uppercase;
-    color: #004D71;
-    margin-bottom: 3px;
-    margin-top: 15px;
+      letter-spacing: 1.4px;
+      line-height: 29px;
+      font-weight: 700;
+      font-size: 24px;
+      text-transform: uppercase;
+      color: #004D71;
+      margin-bottom: 3px;
+      margin-top: 15px;
     }
     h3.location {
       margin-top: 10px;
@@ -89,10 +88,10 @@ body {
 }
 
 .social-info {
-    background-color: #000;
-    position: relative;
-    top: -165px;
-    margin-bottom: 274px;
+  background-color: #000;
+  position: relative;
+  top: -165px;
+  margin-bottom: 274px;
 }
 
 p {
@@ -147,8 +146,8 @@ button {
 
 .email {
   margin-top: -7px;
-    padding-bottom: 11px;
-      text-align: center;
+  padding-bottom: 11px;
+  text-align: center;
 }
 
 .tweet-us {
@@ -214,6 +213,9 @@ button {
     padding: 8px;
     margin-bottom: 20px;
     padding-bottom: 42px;
+  }
+  .clock-divider {
+     vertical-align: text-bottom;
   }
 }
 
@@ -331,7 +333,8 @@ button {
   #days,
   #hours,
   #minutes,
-  #seconds {
+  #seconds,
+  .clock-divider {
     font-size: 30px !important;
   }
   .top-box {
@@ -365,4 +368,3 @@ button {
     margin-bottom: 0;
   }
 }
-
