@@ -1,0 +1,27 @@
+<link rel="stylesheet" type="text/css" href="dist/css/admin.css">
+
+<div class="row">
+
+    <div class="col s3 sidebar">
+      <ul class="poll-list">
+      	<li ng-repeat="poll in controller.pollList" ng-click="controller.getSelectedPoll(poll)">
+      		<h4 class="question-header">Poll {{ poll.pollQuestionSortOrder }}</h4>
+      		<p class="question">{{ poll.pollQuestion }}</p>
+      	</li>
+      </ul>
+    </div>
+
+    <div class="col s9 main-content">
+			<div class="control-panel">
+				<a class="waves-effect waves-light btn-large">Toggle Open</a>
+				<a class="waves-effect waves-light btn-large">Toggle Focus</a>
+			</div>
+			<div class="container">
+				<h4>{{ controller.openPollQuestion }}</h4>
+				<p ng-repeat="option in controller.openPollOptions">
+					{{ option.pollOption }}
+				</p>
+			</div>
+    </div>
+
+  </div>

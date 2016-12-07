@@ -7,21 +7,23 @@
 		.factory('FApi', function($http)
 		{
 
+			const domain = "http://localhost:8000/";
+
 			
 
 			// ------------------------------------------------------------
-			// Name: functionName
-			// desc...
+			// Name: getAllPolls
+			// Returns all poll questions and options
 			// ------------------------------------------------------------
-			// const functionName = function()
-			// {
-			// 	let call = $http({
-			// 		method: 'GET',
-			// 		url: ``,						// API Url
-			// 	})
+			const getAllPolls = function()
+			{
+				let call = $http({
+					method: 'GET',
+					url: domain + `api/polls/`,
+				})
 
-			// 	return call;
-			// }
+				return call;
+			}
 
 
 
@@ -43,7 +45,7 @@
 
 
 			return {
-				
+				getAllPolls,
 			}
 
 

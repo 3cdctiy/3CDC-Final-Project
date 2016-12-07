@@ -68,6 +68,11 @@
 			templateUrl: '../partials/about.html',
 			controller: 'CMain',
 			controllerAs: 'controller'
+		}).state('admin', {
+			url: '/admin',
+			templateUrl: '../partials/admin.html',
+			controller: 'CAdmin',
+			controllerAs: 'controller'
 		});
 
 		// ------------------------------------------------------------

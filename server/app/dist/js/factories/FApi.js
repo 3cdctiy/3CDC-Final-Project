@@ -6,20 +6,20 @@
 
 	angular.module('app').factory('FApi', function ($http) {
 
-		// ------------------------------------------------------------
-		// Name: functionName
-		// desc...
-		// ------------------------------------------------------------
-		// const functionName = function()
-		// {
-		// 	let call = $http({
-		// 		method: 'GET',
-		// 		url: ``,						// API Url
-		// 	})
+		var domain = "http://localhost:8000/";
 
-		// 	return call;
-		// }
+		// ------------------------------------------------------------
+		// Name: getAllPolls
+		// Returns all poll questions and options
+		// ------------------------------------------------------------
+		var getAllPolls = function getAllPolls() {
+			var call = $http({
+				method: 'GET',
+				url: domain + 'api/polls/'
+			});
 
+			return call;
+		};
 
 		// ------------------------------------------------------------
 		// Name: functionName
@@ -37,6 +37,8 @@
 		// }
 
 
-		return {};
+		return {
+			getAllPolls: getAllPolls
+		};
 	});
 })();
