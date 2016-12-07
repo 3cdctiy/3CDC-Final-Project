@@ -8,9 +8,9 @@ body {
   // background-color: black;
   font-family: 'Roboto', sans-serif; //400,400i,700,900
   color: white;
-  background-image: url("/images/shutterstock_315631490_rev2.png");
+  background-image: url("/images/shutterstock_315631490_rev3.jpg");
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: content;
   background-position: top center;
   background-color: white;
 }
@@ -27,6 +27,7 @@ body {
   background-color: rgba(87, 193, 232, .85);
   text-align: center;
   position: relative;
+  margin-top: 0px;
   // max-width: 58%;
   .fs-logo {
     color: #fff;
@@ -36,23 +37,29 @@ body {
   .main-info-content {
     img.hunt-logo {
       max-width: 60%;
+      margin-top: 9px;
     }
     .nye-logo {
       max-width: 35%;
-      margin-top: 32px;
+      margin-top: 44px;
     }
     h3 {
       letter-spacing: 1.4px;
-      line-height: 29px;
+      line-height: 25px;
       font-weight: 700;
-      font-size: 24px;
+      font-size: 29px;
       text-transform: uppercase;
-      color: #004D71;
+      color: white;
       margin-bottom: 3px;
       margin-top: 15px;
     }
     h3.location {
       margin-top: 10px;
+    }
+    h3.presents {
+      color: $color-primary2;
+      font-size: 16px;
+      margin-top: -3px;
     }
     h1 {
       font-weight: 700;
@@ -60,11 +67,11 @@ body {
     }
     h6.slogan {
       font-weight: 700;
-      font-size: 18px;
+      font-size: 16px;
       line-height: 26px;
       letter-spacing: 2px;
       text-transform: uppercase;
-      margin-bottom: 15px;
+      margin-bottom: 5px;
       margin-top: 0px;
     }
   }
@@ -77,6 +84,7 @@ body {
       font-weight: 700;
       font-size: 14px;
       line-height: 27px;
+      margin-bottom: 0px;
     }
     .demo-day-link {
       color: white;
@@ -91,8 +99,8 @@ body {
   background-color: #000;
   position: relative;
   top: -165px;
-  padding: 15px 0;
-  margin: 15px 60px 274px;
+  padding: 15px 0 5px;
+  margin: 15px 60px 350px;
 }
 
 p {
@@ -103,7 +111,6 @@ p {
 .social-info-content {
   padding-left: 53px;
   padding-right: 53px;
-  padding-top: 12px;
 }
 
 .social-logins {
@@ -152,9 +159,7 @@ button {
 }
 
 .tweet-us {
-  padding-bottom: 12px;
   clear: both;
-
   p {
     margin-top: 49px;
     text-align: center;
@@ -222,18 +227,8 @@ button {
     padding-bottom: 42px;
   }
   .clock-divider {
-     vertical-align: text-bottom;
+    vertical-align: text-bottom;
   }
-}
-
-.countdown-credit {
-  padding: 0 85px;
-  text-align: center;
-  margin-bottom: 20px;
-  font-size: 14px;
-  font-weight: 400;
-  margin-top: 20px;
-  color: $color-primary3;
 }
 
 .sponsors {
@@ -280,6 +275,15 @@ button {
   }
 }
 
+h5.address {
+    margin-bottom: 20px;
+    font-size: 12px;
+    font-weight: 400;
+    margin-top: 20px;
+    color: $color-primary2;
+    line-height: 5px;
+}
+
 //media queries
 @media screen and (max-width: 890px) {
   #days,
@@ -292,15 +296,12 @@ button {
 
 @media screen and (max-width: 800px) {
   .main-info {
-
     .main-info-content {
-
       h3.location {
         font-size: 18px;
       }
     }
   }
-
   .social-info {
     margin-bottom: 60px;
   }
@@ -313,16 +314,13 @@ button {
   #seconds {
     font-size: 70px !important;
   }
-
   .social-info {
     margin-left: 0;
     margin-right: 0;
   }
-
   .main-info {
     .main-info-content {
       padding: 2px 0px 130px;
-
       h3.location {
         font-size: 18px;
       }
@@ -348,7 +346,6 @@ button {
   .top-box {
     margin-top: 10px;
   }
-  
   .social-info-content {
     padding: 12px 53px 0 53px;
   }
