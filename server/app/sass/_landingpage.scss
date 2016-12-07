@@ -31,25 +31,25 @@ body {
   .fs-logo {
     color: #fff;
     max-width: 10%;
-    margin-top: 64px;
+    margin-top: 35px;
   }
   .main-info-content {
     img.hunt-logo {
       max-width: 60%;
     }
     .nye-logo {
-      max-width: 35%;
-      margin-top: 61px;
+    max-width: 35%;
+    margin-top: 32px;
     }
     h3 {
-      letter-spacing: 1.4px;
-      line-height: 40px;
-      font-weight: 700;
-      font-size: 33px;
-      text-transform: uppercase;
-      color: $color-primary2;
-      margin-bottom: 3px;
-      margin-top: 30px;
+    letter-spacing: 1.4px;
+    line-height: 29px;
+    font-weight: 700;
+    font-size: 24px;
+    text-transform: uppercase;
+    color: #004D71;
+    margin-bottom: 3px;
+    margin-top: 15px;
     }
     h3.location {
       margin-top: 10px;
@@ -60,11 +60,12 @@ body {
     }
     h6.slogan {
       font-weight: 700;
-      font-size: 24px;
+      font-size: 18px;
       line-height: 26px;
       letter-spacing: 2px;
       text-transform: uppercase;
       margin-bottom: 15px;
+      margin-top: 0px;
     }
   }
   .event-info {
@@ -74,8 +75,8 @@ body {
     p {
       color: #004D71;
       font-weight: 700;
-      font-size: 18px;
-      line-height: 36px;
+      font-size: 14px;
+      line-height: 27px;
     }
     .demo-day-link {
       color: white;
@@ -87,15 +88,15 @@ body {
 }
 
 .social-info {
-  background-color: black;
-  position: relative;
-  top: -165px;
-  margin-bottom: 488px;
+    background-color: #000;
+    position: relative;
+    top: -165px;
+    margin-bottom: 274px;
 }
 
 p {
   text-align: center;
-  font-size: 18px;
+  font-size: 12px;
 }
 
 .social-info-content {
@@ -145,16 +146,16 @@ button {
 
 .email {
   margin-top: -7px;
-  padding-bottom: 18px;
-  text-align: center;
+    padding-bottom: 11px;
+      text-align: center;
 }
 
 .tweet-us {
   padding-bottom: 12px;
   p {
-    margin-top: 60px;
+    margin-top: 49px;
     text-align: center;
-    font-size: 18px;
+    font-size: 14px;
   }
 }
 
