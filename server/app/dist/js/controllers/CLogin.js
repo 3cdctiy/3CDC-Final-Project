@@ -19,11 +19,8 @@
 
 				var checkOpenModal = function checkOpenModal() {
 						if ($auth.isAuthenticated()) {
-								var payload = $auth.getPayload();
-								console.log(payload);
 								var promise = FApi.getUserUpdateStatus();
 								promise.then(function (response) {
-										console.log(response);
 										var user = response.data;
 										userID = response.data._id;
 
@@ -84,7 +81,6 @@
 								toastr.success('You have successfully signed in with ' + provider + '!');
 								$location.path('/');
 						}).catch(function (error) {
-								console.log(error);
 								if (error.message) {
 										// Satellizer promise reject error.
 										toastr.error(error.message);
@@ -116,5 +112,7 @@
 								toastr.error(response.data.message);
 						});
 				};
+
+				checkOpenModal();
 		});
 })();

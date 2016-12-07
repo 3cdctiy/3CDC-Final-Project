@@ -21,11 +21,8 @@
 
   	const checkOpenModal = function() {
   		if ($auth.isAuthenticated()) {
-	      let payload = $auth.getPayload();
-	      console.log(payload);
 	      let promise = FApi.getUserUpdateStatus();
 	      promise.then(response => {
-	      	console.log(response);
 	        let user = response.data;
 	        userID = response.data._id;
 
@@ -94,7 +91,6 @@
         $location.path('/');
       })
       .catch(function(error) {
-      	console.log(error)
         if (error.message) {
           // Satellizer promise reject error.
           toastr.error(error.message);
@@ -128,6 +124,8 @@
         toastr.error(response.data.message);
       })
     }
+
+    checkOpenModal();
 
   });
 
