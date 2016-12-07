@@ -47,9 +47,28 @@
 		// ------------------------------------------------------------
 		// Angular State Routes
 		// ------------------------------------------------------------
-		$locationProvider.html5Mode(true);
-
 		$stateProvider
+		.state('admin', {
+			url: '/admin',
+			templateUrl: '../partials/admin.html',
+			controller: 'CAdmin',
+			controllerAs: 'controller'
+		})
+		.state('home', {
+			url: '/home',
+			templateUrl: '../partials/home.html',
+			controller: 'CLogin',
+			controllerAs: 'controller',
+			resolve: {
+					loginRequired: loginRequired
+			}
+		})
+		.state('about', {
+			url: '/about',
+			templateUrl: '../partials/about.html',
+			controller: 'CMain',
+			controllerAs: 'controller'
+		})
 		.state('landing', {
 			url: '/',
 			templateUrl: '../partials/landingpage.html',
@@ -61,25 +80,9 @@
 			templateUrl: '../partials/landingpage.html',
 			controller: 'CLogin',
 			controllerAs: 'controller'
-		}).state('admin', {
-			url: '/admin',
-			templateUrl: '../partials/admin.html',
-			controller: 'CAdmin',
-			controllerAs: 'controller'
-		}).state('home', {
-			url: '/home',
-			templateUrl: '../partials/home.html',
-			controller: 'CLogin',
-			controllerAs: 'controller',
-			resolve: {
-					loginRequired: loginRequired
-			}
-		}).state('about', {
-			url: '/about',
-			templateUrl: '../partials/about.html',
-			controller: 'CMain',
-			controllerAs: 'controller'
 		})
+
+		// $locationProvider.html5Mode(true);
 
 		// ------------------------------------------------------------
 		// Satellizer Authentication Providers

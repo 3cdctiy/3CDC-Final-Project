@@ -49,19 +49,8 @@
 		// ------------------------------------------------------------
 		// Angular State Routes
 		// ------------------------------------------------------------
-		$locationProvider.html5Mode(true);
 
-		$stateProvider.state('landing', {
-			url: '/',
-			templateUrl: '../partials/landingpage.html',
-			controller: 'CLogin',
-			controllerAs: 'controller'
-		}).state('landing2', {
-			url: '',
-			templateUrl: '../partials/landingpage.html',
-			controller: 'CLogin',
-			controllerAs: 'controller'
-		}).state('admin', {
+		$stateProvider.state('admin', {
 			url: '/admin',
 			templateUrl: '../partials/admin.html',
 			controller: 'CAdmin',
@@ -79,7 +68,19 @@
 			templateUrl: '../partials/about.html',
 			controller: 'CMain',
 			controllerAs: 'controller'
+		}).state('landing', {
+			url: '/',
+			templateUrl: '../partials/landingpage.html',
+			controller: 'CLogin',
+			controllerAs: 'controller'
+		}).state('landing2', {
+			url: '',
+			templateUrl: '../partials/landingpage.html',
+			controller: 'CLogin',
+			controllerAs: 'controller'
 		});
+
+		// $locationProvider.html5Mode(true);
 
 		// ------------------------------------------------------------
 		// Satellizer Authentication Providers
