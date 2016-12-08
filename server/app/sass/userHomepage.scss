@@ -71,7 +71,7 @@ body{
 				a{
 					color: $color-text;
 					&:active{
-						color: $color-link;
+						background-color: $color-link;
 					}
 				}
 			}

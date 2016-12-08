@@ -66,6 +66,11 @@
 			}
 		}
 
+		vm.vote = function(pollId,optionId){
+			alert(pollId);
+			alert(optionId);
+		}
+
 		
 
 		// vm.openPoll = function(poll) {

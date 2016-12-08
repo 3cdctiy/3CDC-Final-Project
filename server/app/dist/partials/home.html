@@ -20,13 +20,15 @@
 		<!-- current question -->
 		<div id='currentQuestion' class="col s12">
 			<div ng-repeat="poll in controller.openPolls">
-	      		<h4>{{poll.pollQuestion}}</h4>
-	      		<div id='answers'>
-					<ul class="collection z-depth-1">
-						<li class="collection-item" ng-repeat="option in poll._pollOptions"><a>{{option.pollOption}}</a></li>
-					</ul>
-					<a id='button' class="waves-effect waves-light btn">submit</a>
-				</div>
+		      		<h4>{{poll.pollQuestion}}</h4>
+		      		<p>tap one to vote</p>
+		      		<div id='answers'>
+						<ul class="collection z-depth-1">
+							<li ng-click="controller.vote(poll._id,option._id)" class="collection-item" ng-repeat="option in poll._pollOptions">
+								<a>{{option.pollOption}}</a>
+							</li>
+						</ul>
+					</div>
 	    	</div>
 		</div>
 		<!-- current question -->
