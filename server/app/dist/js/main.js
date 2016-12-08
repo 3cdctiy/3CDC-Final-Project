@@ -49,7 +49,6 @@
 		// ------------------------------------------------------------
 		// Angular State Routes
 		// ------------------------------------------------------------
-
 		$stateProvider.state('admin', {
 			url: '/admin',
 			templateUrl: '../partials/admin.html',
