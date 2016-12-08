@@ -182,6 +182,9 @@ button {
   padding-bottom: 15px;
   margin: 0 auto;
   text-align: center;
+  label {
+    color: #666666;
+  }
 }
 
 [type="checkbox"]:checked + label::before {
