@@ -1,22 +1,32 @@
-.sidebar {
+.admin-viewport {
+	width: 100%;
+	height: 100vh;
+	overflow: hidden;
 
-	.poll-list {
-		list-style: none;
-		max-height: 100vh;
-		overflow-y: scroll;
+	.sidebar {
 
-		li {
-			margin-bottom: 15px;
+		.poll-list {
+			list-style: none;
+			max-height: 100vh;
+			overflow-y: scroll;
 
-			.question-header,
-			.question {
-				margin: 0;
-			}
+			li {
+				margin-bottom: 15px;
 
-			.question {
-				max-height: 45px;
-				overflow: hidden;
+				.question-header,
+				.question {
+					margin: 0;
+				}
+
+				.question {
+					max-height: 45px;
+					overflow: hidden;
+				}
 			}
 		}
+	}
+
+	.control-panel {
+		padding: 40px;
 	}
 }
