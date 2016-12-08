@@ -57,7 +57,7 @@
 		}).state('home', {
 			url: '/home',
 			templateUrl: '../partials/home.html',
-			controller: 'CLogin',
+			controller: 'CHome',
 			controllerAs: 'controller',
 			resolve: {
 				loginRequired: loginRequired
