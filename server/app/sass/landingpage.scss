@@ -404,10 +404,51 @@ h5.address {
 /* MEDIA QUERIES : Materialize Breakpoint Mobile Devices <= 600px */
 
 @media screen and (max-width: 600px) {
+  .main-info {
+    margin-top: 190px;
+  }
+  .main-info .fs-logo {
+    max-width: 12%;
+  }
+  .main-info .main-info-content img.hunt-logo {
+    max-width: 58%;
+  }
+  .main-info .main-info-content h3 {
+    font-size: 33px;
+    margin-bottom: 3px;
+    margin-top: 8px;
+    line-height: 34px;
+  }
+  .main-info .main-info-content .nye-logo {
+    max-width: 38%;
+    margin-top: 39px;
+  }
+  .main-info .main-info-content h6.slogan {
+    font-size: 18px;
+    line-height: 26px;
+    margin-bottom: 5px;
+    margin-top: 4px;
+  }
+  .row .remove-padding {
+    padding: 0px;
+  }
+  .social-info {
+    margin-bottom: -206px;
+  }
+  .countdown-clock .countdown-title {
+    font-size: 27px;
+    margin-top: 29px;
+    margin-bottom: -5px;
+  }
   #clockdiv {
     font-size: 50px !important;
     text-align: center;
     vertical-align: middle;
+  }
+  .countdown-clock .tiy-credit {
+    font-size: 15px;
+    line-height: 33px;
+    margin-bottom: 35px;
   }
   .top-box {
     margin-top: 10px;
