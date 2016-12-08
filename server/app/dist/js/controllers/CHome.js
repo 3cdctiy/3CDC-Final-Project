@@ -38,5 +38,7 @@
 		};
 
 		getAllPolls();
+
+		console.log(vm.pollList);
 	});
 })();
