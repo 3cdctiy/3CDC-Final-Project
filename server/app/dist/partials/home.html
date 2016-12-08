@@ -19,18 +19,15 @@
 
 		<!-- current question -->
 		<div id='currentQuestion' class="col s12">
-			<h4>Current poll here</h4>
-
-			<div id='answers'>
-				<ul class="collection z-depth-1">
-					<li class="collection-item"><a>A. Choice 1</a></li>
-					<li class="collection-item"><a>B. Choice 2</a></li>
-					<li class="collection-item"><a>C. Choice 3</a></li>
-					<li class="collection-item"><a>D. Choice 4</a></li>
-				</ul>
-				<a id='button' class="waves-effect waves-light btn">submit</a>
-			</div>
-			
+			<div ng-repeat="poll in controller.openPolls">
+	      		<h4>{{poll.pollQuestion}}</h4>
+	      		<div id='answers'>
+					<ul class="collection z-depth-1">
+						<li class="collection-item" ng-repeat="option in poll._pollOptions"><a>{{option.pollOption}}</a></li>
+					</ul>
+					<a id='button' class="waves-effect waves-light btn">submit</a>
+				</div>
+	    	</div>
 		</div>
 		<!-- current question -->
 

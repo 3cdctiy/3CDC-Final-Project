@@ -40,7 +40,7 @@ body{
 	margin-top: 40px;
 
 	h4{
-		font-size: 1.5rem;
+		font-size: 1.4rem;
 		margin-bottom: 2px;
 	}
 
@@ -53,7 +53,8 @@ body{
 	}
 
 	#answers{
-		margin: 14px auto;
+		margin: 20px auto;
+		margin-bottom: 80px;
 		width: 80%;
 
 		.collection{
@@ -77,8 +78,8 @@ body{
 		}
 
 		#button{
-			float: left;
 			background-color: $color-link;
+			display: block;
 
 			&:active{
 				color: darken($color-link, 20%)

@@ -21,6 +21,15 @@
 			return call;
 		};
 
+		var getAllActive = function getAllActive() {
+			var call = $http({
+				method: 'GET',
+				url: domain + 'api/polls/active'
+			});
+
+			return call;
+		};
+
 		// ------------------------------------------------------------
 		// Name: getUserUpdateStatus
 		// desc...
@@ -53,7 +62,8 @@
 		return {
 			getAllPolls: getAllPolls,
 			getUserUpdateStatus: getUserUpdateStatus,
-			setGetUpdates: setGetUpdates
+			setGetUpdates: setGetUpdates,
+			getAllActive: getAllActive
 		};
 	});
 })();

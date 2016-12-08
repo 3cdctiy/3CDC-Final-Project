@@ -26,6 +26,17 @@
 			}
 
 
+			const getAllActive = function()
+			{
+				let call = $http({
+					method: 'GET',
+					url: domain + 'api/polls/active',
+				})
+
+				return call;
+			}
+
+
 
 			// ------------------------------------------------------------
 			// Name: getUserUpdateStatus
@@ -67,6 +78,7 @@
 				getAllPolls,
 				getUserUpdateStatus,
 				setGetUpdates,
+				getAllActive,
 			}
 
 
