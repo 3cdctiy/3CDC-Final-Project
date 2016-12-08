@@ -25,6 +25,8 @@
 					});
 
 					vm.selectedPoll = vm.pollList[0];
+
+					console.log(polls);
 				}).catch(function (error) {
 					throw new Error(error);
 				});
@@ -38,7 +40,5 @@
 		};
 
 		getAllPolls();
-
-		console.log(vm.pollList);
 	});
 })();

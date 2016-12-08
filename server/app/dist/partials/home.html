@@ -13,7 +13,6 @@
 		<!-- countdown clock -->
 		<div id='clock' class='col s12'>
 			<h4>Countdown to 2017</h4>
-			<!-- <h1>00:00:00</h1> -->
 			<clock></clock>
 		</div>
 		<!-- countdown clock -->
@@ -26,10 +25,10 @@
 
 			<div id='answers'>
 				<ul class="collection z-depth-1">
-					<a href="#" class="collection-item">A. Choice 1</a>
-					<a href="#" class="collection-item">B. Choice 2</a>
-					<a href="#" class="collection-item">C. Choice 3</a>
-					<a href="#" class="collection-item">D. Choice 4</a>
+					<li class="collection-item">A. Choice 1</li>
+					<li class="collection-item">B. Choice 2</li>
+					<li class="collection-item">C. Choice 3</li>
+					<li class="collection-item">D. Choice 4</li>
 				</ul>
 				<a id='button' class="waves-effect waves-light btn">submit</a>
 			</div>
@@ -41,28 +40,10 @@
 		<div id='previousQuestions' class='col s12'>
 			<h4>Previous Polls</h4>
 			<ul class="collapsible" data-collapsible="accordion">
-				<li>
-					<div class="collapsible-header">Poll 3<i class="material-icons">play_arrow</i></div>
+				<li ng-repeat="poll in controller.pollList">
+					<div class="collapsible-header truncate"><i class="material-icons">play_arrow</i>{{poll.pollQuestion}}</div>
 	                <div class="collapsible-body collection">
-	                	<p class="collection-item">A. Lorem ipsum dolor sit amet.</p>
-	                	<p class="collection-item">B. Lorem ipsum dolor sit amet.</p>
-	                	<p class="collection-item">C. Lorem ipsum dolor sit amet.</p>
-	                	<p class="collection-item">D. Lorem ipsum dolor sit amet.</p>
-	                </div>
-                </li>
-                <li>
-					<div class="collapsible-header">Poll 2<i class="material-icons">play_arrow</i></div>
-	                <div class="collapsible-body collection">
-	                	<p class="collection-item">A. Lorem ipsum dolor sit amet.</p>
-	                	<p class="collection-item">B. Lorem ipsum dolor sit amet.</p>
-	                </div>
-                </li>
-                <li>
-					<div class="collapsible-header">Poll 1<i class="material-icons">play_arrow</i></div>
-	                <div class="collapsible-body collection">
-	                	<p class="collection-item">A. Lorem ipsum dolor sit amet.</p>
-	                	<p class="collection-item">B. Lorem ipsum dolor sit amet.</p>
-	                	<p class="collection-item">C. Lorem ipsum dolor sit amet.</p>
+	                	<p class="collection-item" ng-repeat="option in poll._pollOptions">{{option.pollOption}}</p>
 	                </div>
                 </li>
 			</ul>
