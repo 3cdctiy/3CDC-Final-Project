@@ -10,6 +10,8 @@
 
 		vm.pollList = [];
 		vm.selectedPoll = null;
+		vm.billboardPoll = null;
+		vm.isBillboardPoll = false;
 
 		function getAllPolls() {
 			try {
@@ -21,7 +23,8 @@
 						vm.pollList.push(poll);
 					});
 
-					vm.selectedPoll = vm.pollList[0];
+					vm.billboardPoll = vm.pollList[0];
+					vm.setSelectedPoll(vm.pollList[0]);
 				}).catch(function (error) {
 					throw new Error(error);
 				});
@@ -30,8 +33,18 @@
 			}
 		}
 
-		vm.getSelectedPoll = function (poll) {
+		vm.setSelectedPoll = function (poll) {
 			vm.selectedPoll = poll;
+
+			if (poll._id === vm.billboardPoll._id) {
+				vm.isBillboardPoll = true;
+			} else {
+				vm.isBillboardPoll = false;
+			}
+		};
+
+		vm.setBillboardPoll = function (poll) {
+			vm.billboardPoll = poll;
 		};
 
 		getAllPolls();
