@@ -1,15 +1,5 @@
 <link rel="stylesheet" href="dist/css/landingpage.css">
 
-<div id="getUpdates" class="modal">
-  <div class="modal-content">
-    <h5>Do you want to get information on The Iron Yard?</h5>
-  </div>
-  <div class="modal-footer">
-    <a ng-click="controller.submitGetUpdates(false)"  class="modal-action modal-close waves-effect waves-green btn-flat">No thanks</a>
-    <a ng-click="controller.submitGetUpdates(true)" class="modal-action modal-close waves-effect waves-green btn-flat">Sign me up!</a>
-  </div>
-</div>
-
 <div class="landingpage-wrapper">
   <div class="row">
     <div class="background-image">
@@ -50,7 +40,7 @@
                 </div>
               </div>
               <div class="social-info-content" ng-hide="controller.isLoggedIn()">
-                <p class="early-access">Sign up for EARLY ACCESS to our #NYE513 event application!</p>
+                <p class="early-access">Sign up for EARLY ACCESS to our event application!</p>
                 <!-- Social Media Buttons -->
                 <div class="col s12 m6">
                   <div class="social-logins">
@@ -65,12 +55,16 @@
                 </div>
                 <!-- Twitter Sign in -->
                 <!-- Signup Form -->
-                <div class="col s12" ng-controller="CSignUp as signup">
-                  <form novalidate class="signup-form" name="signupForm" ng-submit="signup.signup(signupForm.$valid)">
+                <div class="col s12">
+                  <form novalidate class="signup-form" name="signupForm" ng-submit="controller.signup(signupForm.$valid)">
+                    <p class="update-agreement">
+                      <input type="checkbox" id="updates" ng-model="controller.user.getUpdates" />
+                      <label for="updates">Yep! Keep me updated on all things The Iron Yard.</label>
+                    </p>
                     <p class="email">or signup using EMAIL below</p>
                     <!-- Name -->
                     <div class="input-field">
-                      <input id="name" type="text" class="validate" name="name" ng-model="signup.user.displayName" ng-pattern="/^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u" ng-minlength="1" ng-maxlength="50" required>
+                      <input id="name" type="text" class="validate" name="name" ng-model="controller.user.displayName" ng-pattern="/^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u" ng-minlength="1" ng-maxlength="50" required>
                       <label for="name">Name</label>
                       <!-- Input Errors -->
                       <div class="help-block" ng-messages="signupForm.name.$error" ng-if="signupForm.name.$touched">
@@ -82,7 +76,7 @@
                     </div>
                     <!-- Email -->
                     <div class="input-field">
-                      <input id="email" type="email" class="validate" name="email" ng-model="signup.user.email" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" ng-minlength="5" ng-maxlength="50" required>
+                      <input id="email" type="email" class="validate" name="email" ng-model="controller.user.email" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" ng-minlength="5" ng-maxlength="50" required>
                       <label for="email">Email</label>
                       <!-- Input Errors -->
                       <div class="help-block" ng-messages="signupForm.email.$error" ng-if="signupForm.email.$touched">
@@ -94,7 +88,7 @@
                     </div>
                     <!-- Password 1 -->
                     <div class="input-field">
-                      <input id="password" type="password" class="validate" name="password" ng-model="signup.user.password" ng-minlength="6" ng-maxlength="50" required>
+                      <input id="password" type="password" class="validate" name="password" ng-model="controller.user.password" ng-minlength="6" ng-maxlength="50" required>
                       <label for="password">Password</label>
                       <!-- Input Errors -->
                       <div class="help-block" ng-messages="signupForm.password.$error" ng-if="signupForm.password.$touched">
@@ -105,16 +99,10 @@
                     </div>
                     <!-- Password 2 (Match Check) -->
                     <div class="input-field">
-                      <input password-match="signup.user.password" id="confirmPassword" type="password" class="validate" name="passwordMatch" ng-model="signup.confirmPassword" ng-minlength="6" ng-maxlength="50" required>
+                      <input password-match="controller.user.password" id="confirmPassword" type="password" class="validate" name="passwordMatch" ng-model="controller.confirmPassword" ng-minlength="6" ng-maxlength="50" required>
                       <label for="confirmPassword">Confirm Password</label>
                       <!-- Input Error -->
                       <span ng-show="!signupForm.passwordMatch.$valid && signupForm.passwordMatch.$dirty" class="input-error">Passwords must match</span>
-                    </div>
-                    <div class="input-field">
-                      <p class="update-agreement">
-                        <input type="checkbox" id="updates" ng-model="signup.user.getUpdates" />
-                        <label for="updates">Yep! Keep me updated on all things The Iron Yard.</label>
-                      </p>
                     </div>
                     <!-- Submit Button -->
                     <button class="btn waves-effect waves-light submit col s12 m6 offset-m3 button-border-radius signup-button" type="submit" name="action">
