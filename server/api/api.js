@@ -200,9 +200,7 @@ exports.toggleIsActive = ((req, res) => {
         return;
       };
 
-      toggleStatus ? toggleStatus = "active" : toggleStatus = "inactive";
-
-      res.send({success:"Question marked as " + toggleStatus})
+      res.send({activeState: toggleStatus})
     });
   })
 })

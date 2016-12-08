@@ -21,14 +21,15 @@
 							<h5>Toggle poll for users</h5>
 					    <label>
 					      Inactive
-					      <input type="checkbox">
+					      <input type="checkbox" ng-model="controller.isActivePoll" ng-change="controller.toggleIsActive()">
 					      <span class="lever"></span>
 					      Active
 					    </label>
 					  </div>
 					</div>
 					<div class="col s12 m6">
-					  <div class="switch">
+					<a class="waves-effect waves-light btn-large" ng-click="controller.setBillboardPoll()">View on big screen</a>
+					  <!-- <div class="switch">
 							<h5>Toggle poll for billboard</h5>
 					    <label>
 					      Inactive
@@ -36,7 +37,7 @@
 					      <span class="lever"></span>
 					      Active
 					    </label>
-					  </div>
+					  </div> -->
 					</div>
 				</div>
 				<div class="billboard">

@@ -61,12 +61,27 @@
 				return call;
 			}
 
+			const toggleIsActive = function(data)
+			{
+				let call = $http({
+					method: 'POST',
+					data: {
+						pollQuestionID: data
+					},
+					url: domain + `api/poll/toggle`,						// API Url
+				})
+
+				return call;
+			}
+
+
 
 
 			return {
 				getAllPolls,
 				getUserUpdateStatus,
 				setGetUpdates,
+				toggleIsActive
 			}
 
 

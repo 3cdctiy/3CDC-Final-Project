@@ -80,7 +80,7 @@
 		}).state('billboard', {
 			url: '/admin/billboard',
 			templateUrl: '../partials/billboard.html',
-			controller: 'CBillboard',
+			controller: 'CAdmin',
 			controllerAs: 'controller'
 		});
 

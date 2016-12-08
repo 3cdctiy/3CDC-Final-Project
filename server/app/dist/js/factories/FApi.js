@@ -50,10 +50,22 @@
 			return call;
 		};
 
+		var toggleIsActive = function toggleIsActive(data) {
+			var call = $http({
+				method: 'POST',
+				data: {
+					pollQuestionID: data
+				},
+				url: domain + 'api/poll/toggle' });
+
+			return call;
+		};
+
 		return {
 			getAllPolls: getAllPolls,
 			getUserUpdateStatus: getUserUpdateStatus,
-			setGetUpdates: setGetUpdates
+			setGetUpdates: setGetUpdates,
+			toggleIsActive: toggleIsActive
 		};
 	});
 })();
