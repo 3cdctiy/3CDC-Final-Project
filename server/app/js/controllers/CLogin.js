@@ -4,14 +4,38 @@
 
 	angular
 	.module('app')
-  .controller('CLogin', function($auth, $location, toastr, FFormUtilities) {
+  .controller('CLogin', function($auth, $location, toastr, FFormUtilities, FApi) {
 
   	let vm = this;
+  	let userID;
 
   	vm.showLogin = false;
 
   	// Initialize tabs
   	$('ul.tabs').tabs();
+
+  	// Initialize modals
+    $('.modal').modal();
+
+
+
+  	const checkOpenModal = function() {
+  		if ($auth.isAuthenticated()) {
+	      let promise = FApi.getUserUpdateStatus();
+	      promise.then(response => {
+	        let user = response.data;
+	        userID = response.data._id;
+
+	        if(!user.hasOwnProperty('isGettingUpdates')) {
+	          // Open getUpdates modal
+	          $('#getUpdates').modal('open');
+	        }
+	      })
+	      promise.catch(error => {
+	        toastr.error(response.data.message);
+	      })
+	    }
+  	}
 
 
 
@@ -62,11 +86,11 @@
 	  vm.authenticate = function(provider) {
 	    $auth.authenticate(provider)
       .then(function() {
+      	checkOpenModal();
         toastr.success('You have successfully signed in with ' + provider + '!');
         $location.path('/');
       })
       .catch(function(error) {
-      	console.log(error)
         if (error.message) {
           // Satellizer promise reject error.
           toastr.error(error.message);
@@ -78,6 +102,30 @@
         }
       });
 	  };
+
+
+
+	  // ------------------------------------------------------------
+		// Name: submitGetUpdates
+		// Submits a user's answer on getting TIY updates
+		// ------------------------------------------------------------
+    vm.submitGetUpdates = function(answer) {
+      
+      let data = {
+        userID: userID,
+        getUpdates: answer
+      }
+
+      let promise = FApi.setGetUpdates(data);
+      promise.then(response => {
+        console.log('setting successfully saved: ' + answer)
+      })
+      promise.catch(error => {
+        toastr.error(response.data.message);
+      })
+    }
+
+    checkOpenModal();
 
   });
 

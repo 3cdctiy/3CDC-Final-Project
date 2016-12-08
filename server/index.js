@@ -170,6 +170,34 @@ app.put('/api/me', ensureAuthenticated, function(req, res) {
 
 
 // ------------------------------------------------------------
+// POST: /api/me/setGetUpdates
+// Updates user status for isGettingUpdates
+// ------------------------------------------------------------
+app.post('/api/me/setGetUpdates', ensureAuthenticated, function(req, res) {
+
+  User
+  .findById(req.body.userID)
+  .exec((err, user) => {
+    console.log(req.body.userID);
+    console.log(user);
+    console.log(req.body.isGettingUpdates);
+    user.isGettingUpdates = req.body.isGettingUpdates;
+
+    // Initiate save to database
+    user.save(function(err,response){
+      if (err) {
+        res.send({error:err});
+        return;
+      };
+
+      res.send({success:"Thank you for signing up!"})
+    });
+  })
+})
+
+
+
+// ------------------------------------------------------------
 // POST: /auth/login
 // Log into app with email
 // ------------------------------------------------------------
@@ -207,7 +235,8 @@ app.post('/auth/signup', function(req, res) {
       email: req.body.email,
       password: req.body.password,
       isCheckedIn: false,
-      isAdministrator: false
+      isAdministrator: false,
+      isGettingUpdates: req.body.getUpdates,
     });
 
     // Was no password saved?
@@ -258,7 +287,7 @@ app.post('/auth/facebook', function(req, res) {
 
       if (req.header('Authorization')) {
         // Step 3a. Link user accounts.
-        User.findOne({ email: req.body.email }, function(err, existingUser) {
+        User.findOne({ email: profile.email }, function(err, existingUser) {
           if (existingUser) {
             return res.status(409).send({ message: 'There is already a Facebook account that belongs to you' });
           }
@@ -286,7 +315,7 @@ app.post('/auth/facebook', function(req, res) {
         });
       } else {
         // Step 3b. Create a new user account or return an existing one.
-        User.findOne({ email: req.body.email }, function(err, existingUser) {
+        User.findOne({ email: profile.email }, function(err, existingUser) {
           if (existingUser) {
             var token = createJWT(existingUser);
             return res.send({ token: token });
@@ -368,7 +397,7 @@ app.post('/auth/twitter', function(req, res) {
 
         // Step 5a. Link user accounts.
         if (req.header('Authorization')) {
-          User.findOne({ email: req.body.email }, function(err, existingUser) {
+          User.findOne({ email: profile.email }, function(err, existingUser) {
             if (existingUser) {
               return res.status(409).send({ message: 'There is already a Twitter account that belongs to you' });
             }
@@ -395,7 +424,7 @@ app.post('/auth/twitter', function(req, res) {
           });
         } else {
           // Step 5b. Create a new user account or return an existing one.
-          User.findOne({ email: req.body.email }, function(err, existingUser) {
+          User.findOne({ email: profile.email }, function(err, existingUser) {
             if (existingUser) {
               return res.send({ token: createJWT(existingUser) });
             }
@@ -412,6 +441,7 @@ app.post('/auth/twitter', function(req, res) {
                 res.status(500).send({ message: err.message });
                 return false;
               }
+
               res.send({ token: createJWT(user) });
             });
           });

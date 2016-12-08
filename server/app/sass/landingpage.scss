@@ -1,4 +1,4 @@
-/*GLOBAL STYLES*/
+/* GLOBAL STYLES */
 
 @import '_variables.scss';
 $colorAccent: #0abab5;
@@ -8,9 +8,9 @@ body {
   // background-color: black;
   font-family: 'Roboto', sans-serif; //400,400i,700,900
   color: white;
-  background-image: url("/images/shutterstock_315631490_rev2.png");
+  background-image: url("/images/shutterstock_315631490_large.jpg");
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: content;
   background-position: top center;
   background-color: white;
 }
@@ -27,6 +27,7 @@ body {
   background-color: rgba(87, 193, 232, .85);
   text-align: center;
   position: relative;
+  margin-top: 0px;
   // max-width: 58%;
   .fs-logo {
     color: #fff;
@@ -36,23 +37,29 @@ body {
   .main-info-content {
     img.hunt-logo {
       max-width: 60%;
+      margin-top: 9px;
     }
     .nye-logo {
       max-width: 35%;
-      margin-top: 32px;
+      margin-top: 44px;
     }
     h3 {
       letter-spacing: 1.4px;
-      line-height: 29px;
+      line-height: 25px;
       font-weight: 700;
-      font-size: 24px;
+      font-size: 29px;
       text-transform: uppercase;
-      color: #004D71;
+      color: white;
       margin-bottom: 3px;
       margin-top: 15px;
     }
     h3.location {
       margin-top: 10px;
+    }
+    h3.presents {
+      color: $color-primary2;
+      font-size: 16px;
+      margin-top: -3px;
     }
     h1 {
       font-weight: 700;
@@ -60,11 +67,11 @@ body {
     }
     h6.slogan {
       font-weight: 700;
-      font-size: 18px;
+      font-size: 16px;
       line-height: 26px;
       letter-spacing: 2px;
       text-transform: uppercase;
-      margin-bottom: 15px;
+      margin-bottom: 5px;
       margin-top: 0px;
     }
   }
@@ -77,6 +84,7 @@ body {
       font-weight: 700;
       font-size: 14px;
       line-height: 27px;
+      margin-bottom: 24px;
     }
     .demo-day-link {
       color: white;
@@ -87,23 +95,30 @@ body {
   }
 }
 
+
+/* LOG-IN USING SOCIAL MEDIA */
+
 .social-info {
   background-color: #000;
   position: relative;
   top: -165px;
-  padding: 15px 0;
-  margin: 15px 60px 274px;
-}
-
-p {
-  text-align: center;
-  font-size: 12px;
+  padding: 15px 0 5px;
+  margin: -16px 60px 320px;
 }
 
 .social-info-content {
   padding-left: 53px;
   padding-right: 53px;
-  padding-top: 12px;
+  .early-access {
+    font-size: 14px;
+    text-align: center;
+  }
+  p.email {
+    margin-top: -7px;
+    padding-bottom: 11px;
+    text-align: center;
+    font-size: 14px;
+  }
 }
 
 .social-logins {
@@ -145,16 +160,8 @@ button {
   }
 }
 
-.email {
-  margin-top: -7px;
-  padding-bottom: 11px;
-  text-align: center;
-}
-
 .tweet-us {
-  padding-bottom: 12px;
   clear: both;
-
   p {
     margin-top: 49px;
     text-align: center;
@@ -168,6 +175,31 @@ button {
 
 .signup-button {
   margin-top: 15px;
+}
+
+.update-agreement {
+  padding-bottom: 15px;
+}
+
+
+/* SUCCESSFULLY LOGGED-IN USING SOCIAL MEDIA */
+
+.thank-you {
+  text-align: center;
+  padding-top: 18px;
+  font-size: 16px;
+  margin-bottom: 33px;
+}
+
+.fakebook {
+  margin-bottom: 33px;
+}
+
+
+/* COUNTDOWN CLOCK */
+
+.landingpage-wrapper {
+  margin-top: -45px;
 }
 
 .container-fluid {
@@ -222,19 +254,19 @@ button {
     padding-bottom: 42px;
   }
   .clock-divider {
-     vertical-align: text-bottom;
+    vertical-align: text-bottom;
+  }
+  .tiy-credit {
+    color: $color-primary3;
+    text-align: center;
+    a {
+      color: $color-accent;
+    }
   }
 }
 
-.countdown-credit {
-  padding: 0 85px;
-  text-align: center;
-  margin-bottom: 20px;
-  font-size: 14px;
-  font-weight: 400;
-  margin-top: 20px;
-  color: $color-primary3;
-}
+
+/* FOOTER */
 
 .sponsors {
   background-color: white;
@@ -280,7 +312,29 @@ button {
   }
 }
 
-//media queries
+h5.address {
+  margin-bottom: 20px;
+  font-size: 12px;
+  font-weight: 400;
+  margin-top: 20px;
+  color: $color-primary2;
+  line-height: 5px;
+  a {
+    color: $color-primary1;
+  }
+}
+
+
+/* MEDIA QUERIES */
+
+
+/* MEDIA QUERIES : Materialize Breakpoint Desktop Devices 
+> 992px */
+
+
+/* MEDIA QUERIES : Materialize Breakpoint Tablet Devices 
+<= 992px */
+
 @media screen and (max-width: 890px) {
   #days,
   #hours,
@@ -290,45 +344,52 @@ button {
   }
 }
 
+
+/* MEDIA QUERIES : 800 */
+
 @media screen and (max-width: 800px) {
   .main-info {
-
     .main-info-content {
-
       h3.location {
         font-size: 18px;
       }
     }
   }
-
   .social-info {
     margin-bottom: 60px;
   }
 }
 
-@media screen and (max-width: 750px) {
+
+/* MEDIA QUERIES : iPad <= 768 */
+
+@media screen and (max-width: 768px) {
+  body {
+    background-image: url("/images/shutterstock_315631490_large.jpg");
+    background-size: cover;
+  }
   #days,
   #hours,
   #minutes,
   #seconds {
     font-size: 70px !important;
   }
-
   .social-info {
     margin-left: 0;
     margin-right: 0;
   }
-
   .main-info {
     .main-info-content {
       padding: 2px 0px 130px;
-
       h3.location {
         font-size: 18px;
       }
     }
   }
 }
+
+
+/* MEDIA QUERIES : 628 */
 
 @media screen and (max-width: 628px) {
   .clock-unit-label {
@@ -339,16 +400,59 @@ button {
   }
 }
 
+
+/* MEDIA QUERIES : Materialize Breakpoint Mobile Devices <= 600px */
+
 @media screen and (max-width: 600px) {
+  .main-info {
+    margin-top: 190px;
+  }
+  .main-info .fs-logo {
+    max-width: 12%;
+  }
+  .main-info .main-info-content img.hunt-logo {
+    max-width: 58%;
+  }
+  .main-info .main-info-content h3 {
+    font-size: 33px;
+    margin-bottom: 3px;
+    margin-top: 8px;
+    line-height: 34px;
+  }
+  .main-info .main-info-content .nye-logo {
+    max-width: 38%;
+    margin-top: 39px;
+  }
+  .main-info .main-info-content h6.slogan {
+    font-size: 18px;
+    line-height: 26px;
+    margin-bottom: 5px;
+    margin-top: 4px;
+  }
+  .row .remove-padding {
+    padding: 0px;
+  }
+  .social-info {
+    margin-bottom: -206px;
+  }
+  .countdown-clock .countdown-title {
+    font-size: 27px;
+    margin-top: 29px;
+    margin-bottom: -5px;
+  }
   #clockdiv {
     font-size: 50px !important;
     text-align: center;
     vertical-align: middle;
   }
+  .countdown-clock .tiy-credit {
+    font-size: 15px;
+    line-height: 33px;
+    margin-bottom: 35px;
+  }
   .top-box {
     margin-top: 10px;
   }
-  
   .social-info-content {
     padding: 12px 53px 0 53px;
   }
@@ -361,13 +465,189 @@ button {
   }
 }
 
+
+/* MEDIA QUERIES : iPhone 6plus <= 414 */
+
+@media screen and (max-width: 414px) {
+  .main-info {
+    margin-top: 203px;
+  }
+  .main-info .fs-logo {
+    max-width: 20%;
+  }
+  .main-info .main-info-content img.hunt-logo {
+    max-width: 75%;
+    margin-top: 9px;
+  }
+  .main-info .main-info-content h3 {
+    line-height: 30px;
+    font-size: 28px;
+    margin-bottom: 4px;
+    margin-top: 1px;
+  }
+  .main-info .main-info-content .nye-logo {
+    max-width: 51%;
+    margin-top: 32px;
+  }
+  .social-info {
+    margin-bottom: -207px;
+  }
+  .row .remove-padding {
+    padding: 0px;
+  }
+  .countdown-clock .countdown-title {
+    font-size: 18px;
+    margin-bottom: -15px;
+    margin-top: 33px;
+  }
+  .countdown-clock .tiy-credit {
+    color: #57C1E8;
+    text-align: center;
+    margin-top: -1px;
+    margin-bottom: 31px;
+    font-size: 13px;
+    line-height: 30px;
+  }
+}
+
+
+/* MEDIA QUERIES : iPhone 6 <= 375 */
+
 @media screen and (max-width: 375px) {
+  .main-info {
+    margin-top: 195px !important;
+    ;
+  }
+  .main-info .main-info-content h3 {
+    line-height: 27px;
+    font-size: 25px;
+    margin-bottom: 0;
+    margin-top: 7px;
+  }
+  .main-info .main-info-content .nye-logo {
+    max-width: 55%;
+    margin-top: 34px;
+  }
+  .main-info .main-info-content h6.slogan {
+    font-size: 23px;
+    line-height: 24px;
+    margin-bottom: 5px;
+    margin-top: 0;
+  }
+  .main-info .fs-logo {
+    color: #fff;
+    max-width: 20%;
+    margin-top: 30px;
+  }
+  .main-info .main-info-content img.hunt-logo {
+    max-width: 75%;
+    margin-top: 6px;
+  }
+  .social-info-content {
+    padding: 12px 20px 0 !important;
+  }
+  .social-info-content {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  .row .remove-padding {
+    padding: 0px;
+  }
+  .countdown-clock .countdown-title {
+    font-size: 18px;
+    text-transform: uppercase;
+    margin-top: 33px;
+    margin-bottom: -13px;
+  }
+  .social-info {
+    margin-bottom: -207px;
+  }
+  #days,
+  #hours,
+  #minutes,
+  #seconds {
+    font-size: 63px!important;
+  }
+  .countdown-clock .tiy-credit {
+    line-height: 29px;
+    margin-top: 1px;
+    margin-bottom: 28px;
+  }
+}
+
+
+/* MEDIA QUERIES : iPhone 5 <= 320 */
+
+@media screen and (max-width: 320px) {
+  #top-box-mobile {
+    padding: 0px;
+  }
+  #social-info-mobile {
+    padding: 0px;
+  }
+  .main-info .event-info p {
+    font-size: 14px !important;
+  }
+  .main-info {
+    margin-top: 10px;
+  }
+  .main-info .main-info-content img.hunt-logo {
+    max-width: 81%;
+    margin-top: 9px;
+  }
+  .main-info .event-info p {
+    font-size: 13px;
+    line-height: 23px;
+    margin-bottom: 24px;
+  }
+  .main-info .main-info-content h3 {
+    line-height: 25px;
+    font-size: 24px;
+    margin-bottom: 3px;
+    margin-top: 5px;
+  }
+  .main-info .main-info-content h3.location {
+    font-size: 14px;
+    margin-top: -2px;
+  }
+  .thank-you {
+    text-align: center;
+    padding: 10px 44px 0px;
+  }
+  .main-info .main-info-content .nye-logo {
+    max-width: 51%;
+    margin-top: 20px;
+  }
+  .main-info .main-info-content h6.slogan {
+    font-size: 20px;
+    line-height: 22px;
+    margin-bottom: 18px;
+    margin-top: -1px;
+  }
+  .main-info .main-info-content h3.presents {
+    color: #004D71;
+    font-size: 14px;
+    margin-top: 0px;
+  }
+  .main-info .main-info-content h3 {
+    font-size: 24px;
+  }
+  .landingpage-wrapper {
+    margin-bottom: -205px;
+  }
+  .container-fluid,
+  .countdown-clock {
+    background-color: #004D71;
+  }
+  .row .remove-padding {
+    padding: 0px;
+  }
   #days,
   #hours,
   #minutes,
   #seconds,
   .clock-divider {
-    font-size: 30px !important;
+    font-size: 53px !important;
   }
   .top-box {
     margin-top: 0;
@@ -381,17 +661,14 @@ button {
     font-size: 30px !important;
   }
   .countdown-clock .countdown-title {
-    text-align: center;
-    font-size: 18px;
-    text-transform: uppercase;
-    color: #CFDB00;
-    margin-top: 24px;
-    font-weight: 700;
-    letter-spacing: 5px;
-    margin-bottom: 14px;
+    font-size: 16px;
+    margin-bottom: -16px;
   }
   p {
     font-size: 12px;
+    line-height: 22px;
+    margin-top: 4px;
+    margin-bottom: 30px;
   }
   .social-info {
     background-color: #000;
