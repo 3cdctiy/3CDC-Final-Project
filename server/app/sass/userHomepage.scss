@@ -66,9 +66,12 @@ body{
 
 			li{
 				text-align: left;
-				color: $color-text;
-				&:focus{
-					color: $color-link;
+
+				a{
+					color: $color-text;
+					&:active{
+						color: $color-link;
+					}
 				}
 			}
 		}
@@ -93,7 +96,7 @@ body{
 			background-color: $color-background;
 			color: $color-text;
 
-			&:focus{
+			&:active{
 				color: $color-link;
 			}
 		}
