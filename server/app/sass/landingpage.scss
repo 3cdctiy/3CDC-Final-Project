@@ -427,12 +427,112 @@ h5.address {
 
 /* MEDIA QUERIES : iPhone 6plus <= 414 */
 
-@media screen and (max-width: 414px) {}
+@media screen and (max-width: 414px) {
+  .main-info {
+    margin-top: 203px;
+  }
+  .main-info .fs-logo {
+    max-width: 20%;
+  }
+  .main-info .main-info-content img.hunt-logo {
+    max-width: 75%;
+    margin-top: 9px;
+  }
+  .main-info .main-info-content h3 {
+    line-height: 30px;
+    font-size: 28px;
+    margin-bottom: 4px;
+    margin-top: 1px;
+  }
+  .main-info .main-info-content .nye-logo {
+    max-width: 51%;
+    margin-top: 32px;
+  }
+  .social-info {
+    margin-bottom: -207px;
+  }
+  .row .remove-padding {
+    padding: 0px;
+  }
+  .countdown-clock .countdown-title {
+    font-size: 18px;
+    margin-bottom: -15px;
+    margin-top: 33px;
+  }
+  .countdown-clock .tiy-credit {
+    color: #57C1E8;
+    text-align: center;
+    margin-top: -1px;
+    margin-bottom: 31px;
+    font-size: 13px;
+    line-height: 30px;
+  }
+}
 
 
 /* MEDIA QUERIES : iPhone 6 <= 375 */
 
-@media screen and (max-width: 375px) {}
+@media screen and (max-width: 375px) {
+  .main-info {
+    margin-top: 195px !important;
+    ;
+  }
+  .main-info .main-info-content h3 {
+    line-height: 27px;
+    font-size: 25px;
+    margin-bottom: 0;
+    margin-top: 7px;
+  }
+  .main-info .main-info-content .nye-logo {
+    max-width: 55%;
+    margin-top: 34px;
+  }
+  .main-info .main-info-content h6.slogan {
+    font-size: 23px;
+    line-height: 24px;
+    margin-bottom: 5px;
+    margin-top: 0;
+  }
+  .main-info .fs-logo {
+    color: #fff;
+    max-width: 20%;
+    margin-top: 30px;
+  }
+  .main-info .main-info-content img.hunt-logo {
+    max-width: 75%;
+    margin-top: 6px;
+  }
+  .social-info-content {
+    padding: 12px 20px 0 !important;
+  }
+  .social-info-content {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  .row .remove-padding {
+    padding: 0px;
+  }
+  .countdown-clock .countdown-title {
+    font-size: 18px;
+    text-transform: uppercase;
+    margin-top: 33px;
+    margin-bottom: -13px;
+  }
+  .social-info {
+    margin-bottom: -207px;
+  }
+  #days,
+  #hours,
+  #minutes,
+  #seconds {
+    font-size: 63px!important;
+  }
+  .countdown-clock .tiy-credit {
+    line-height: 29px;
+    margin-top: 1px;
+    margin-bottom: 28px;
+  }
+}
 
 
 /* MEDIA QUERIES : iPhone 5 <= 320 */
@@ -448,7 +548,7 @@ h5.address {
     font-size: 14px !important;
   }
   .main-info {
-    margin-top: 165px;
+    margin-top: 10px;
   }
   .main-info .main-info-content img.hunt-logo {
     max-width: 81%;
@@ -491,11 +591,9 @@ h5.address {
   .main-info .main-info-content h3 {
     font-size: 24px;
   }
-
   .landingpage-wrapper {
     margin-bottom: -205px;
   }
-
   .container-fluid,
   .countdown-clock {
     background-color: #004D71;
@@ -524,9 +622,6 @@ h5.address {
   .countdown-clock .countdown-title {
     font-size: 16px;
     margin-bottom: -16px;
-  }
-  .sponsor-logo-container {
-    height: 100px;
   }
   p {
     font-size: 12px;
