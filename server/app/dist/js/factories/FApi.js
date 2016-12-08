@@ -22,23 +22,38 @@
 		};
 
 		// ------------------------------------------------------------
-		// Name: functionName
+		// Name: getUserUpdateStatus
 		// desc...
 		// ------------------------------------------------------------
-		// const functionName = function(data)
-		// {
-		// 	let call = $http({
-		// 		method: 'POST',
-		// 		data: {},						// Insert Data Here
-		// 		url: ``,						// API Url
-		// 	})
+		var getUserUpdateStatus = function getUserUpdateStatus() {
+			var call = $http({
+				method: 'GET',
+				url: domain + 'api/me/'
+			});
 
-		// 	return call;
-		// }
+			return call;
+		};
 
+		// ------------------------------------------------------------
+		// Name: setGetUpdates
+		// desc...
+		// ------------------------------------------------------------
+		var setGetUpdates = function setGetUpdates(data) {
+			var call = $http({
+				method: 'POST',
+				data: {
+					userID: data.userID,
+					isGettingUpdates: data.getUpdates
+				},
+				url: domain + 'api/me/setGetUpdates' });
+
+			return call;
+		};
 
 		return {
-			getAllPolls: getAllPolls
+			getAllPolls: getAllPolls,
+			getUserUpdateStatus: getUserUpdateStatus,
+			setGetUpdates: setGetUpdates
 		};
 	});
 })();

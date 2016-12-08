@@ -4,14 +4,36 @@
 
 		'use strict';
 
-		angular.module('app').controller('CLogin', function ($auth, $location, toastr, FFormUtilities) {
+		angular.module('app').controller('CLogin', function ($auth, $location, toastr, FFormUtilities, FApi) {
 
 				var vm = this;
+				var userID = void 0;
 
 				vm.showLogin = false;
 
 				// Initialize tabs
 				$('ul.tabs').tabs();
+
+				// Initialize modals
+				$('.modal').modal();
+
+				var checkOpenModal = function checkOpenModal() {
+						if ($auth.isAuthenticated()) {
+								var promise = FApi.getUserUpdateStatus();
+								promise.then(function (response) {
+										var user = response.data;
+										userID = response.data._id;
+
+										if (!user.hasOwnProperty('isGettingUpdates')) {
+												// Open getUpdates modal
+												$('#getUpdates').modal('open');
+										}
+								});
+								promise.catch(function (error) {
+										toastr.error(response.data.message);
+								});
+						}
+				};
 
 				// ------------------------------------------------------------
 				// Name: login
@@ -55,10 +77,10 @@
 				// ------------------------------------------------------------
 				vm.authenticate = function (provider) {
 						$auth.authenticate(provider).then(function () {
+								checkOpenModal();
 								toastr.success('You have successfully signed in with ' + provider + '!');
 								$location.path('/');
 						}).catch(function (error) {
-								console.log(error);
 								if (error.message) {
 										// Satellizer promise reject error.
 										toastr.error(error.message);
@@ -70,5 +92,27 @@
 								}
 						});
 				};
+
+				// ------------------------------------------------------------
+				// Name: submitGetUpdates
+				// Submits a user's answer on getting TIY updates
+				// ------------------------------------------------------------
+				vm.submitGetUpdates = function (answer) {
+
+						var data = {
+								userID: userID,
+								getUpdates: answer
+						};
+
+						var promise = FApi.setGetUpdates(data);
+						promise.then(function (response) {
+								console.log('setting successfully saved: ' + answer);
+						});
+						promise.catch(function (error) {
+								toastr.error(response.data.message);
+						});
+				};
+
+				checkOpenModal();
 		});
 })();

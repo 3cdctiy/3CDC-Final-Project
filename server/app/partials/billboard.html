@@ -1,0 +1,22 @@
+<link rel="stylesheet" type="text/css" href="dist/css/billboard.css">
+
+<div class="row">
+
+    <!-- <div class="col s3 sidebar">
+      <ul class="poll-list">
+        <li ng-repeat="poll in controller.pollList" ng-click="controller.getSelectedPoll(poll)">
+          <h4 class="question-header">Poll {{ poll.pollQuestionSortOrder }}</h4>
+          <p class="question">{{ poll.pollQuestion }}</p>
+        </li>
+      </ul>
+    </div> -->
+
+    <div class="col s10 main-content">
+      
+      <div class="container" ng-repeat="poll in controller.pollList">
+        <h4>{{ controller.openPollQuestion }}</h4>
+        <p>{{ option.pollOption }}</p>
+      </div>
+    </div>
+
+  </div>

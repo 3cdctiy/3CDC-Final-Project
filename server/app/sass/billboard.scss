@@ -1,0 +1,20 @@
+.sidebar {
+  .poll-list {
+    list-style: none;
+    max-height: 100vh;
+    overflow-y: scroll;
+    li {
+      margin-bottom: 15px;
+      .question-header,
+      .question {
+        margin: 0;
+      }
+      .question {
+        max-height: 45px;
+        overflow: hidden;
+      }
+    }
+  }
+}
+
+.main-content {}

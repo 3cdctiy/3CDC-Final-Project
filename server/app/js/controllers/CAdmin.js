@@ -10,6 +10,7 @@
 		let vm = this;
 
 		vm.pollList = [];
+		vm.selectedPoll = null;
 
 
 		function getAllPolls() {
@@ -21,8 +22,9 @@
 
 					polls.forEach((poll, index) => {
 						vm.pollList.push(poll);
-						console.log(poll);
 					})
+
+					vm.selectedPoll = vm.pollList[0];
 				})
 				.catch((error) => {
 					throw new Error(error);
@@ -33,8 +35,7 @@
 		}
 
 		vm.getSelectedPoll = function(poll) {
-			vm.openPollQuestion = poll.pollQuestion;
-			vm.openPollOptions = poll._pollOptions;
+			vm.selectedPoll = poll;
 		}
 
 		getAllPolls();
