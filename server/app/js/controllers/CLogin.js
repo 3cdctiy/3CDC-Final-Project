@@ -27,12 +27,10 @@
   		if ($auth.isAuthenticated()) {
 	      let promise = FApi.getUserUpdateStatus();
 	      promise.then(response => {
-	      	console.log(response.data);
 	        let user = response.data;
 	        let userID = response.data._id;
 
 	        if(!user.hasOwnProperty('isGettingUpdates')) {
-	          // Open getUpdates modal
 	          submitGetUpdates(userID, vm.user.getUpdates)
 	        }
 	      })

@@ -24,12 +24,10 @@
       if ($auth.isAuthenticated()) {
         var promise = FApi.getUserUpdateStatus();
         promise.then(function (response) {
-          console.log(response.data);
           var user = response.data;
           var userID = response.data._id;
 
           if (!user.hasOwnProperty('isGettingUpdates')) {
-            // Open getUpdates modal
             submitGetUpdates(userID, vm.user.getUpdates);
           }
         });
