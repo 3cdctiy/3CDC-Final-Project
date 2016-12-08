@@ -1,4 +1,4 @@
-/*GLOBAL STYLES*/
+/* GLOBAL STYLES */
 
 @import '_variables.scss';
 $colorAccent: #0abab5;
@@ -96,7 +96,7 @@ body {
 }
 
 
-/*LOG-IN USING SOCIAL MEDIA*/
+/* LOG-IN USING SOCIAL MEDIA */
 
 .social-info {
   background-color: #000;
@@ -182,7 +182,7 @@ button {
 }
 
 
-/*SUCCESSFULLY LOGGED-IN USING SOCIAL MEDIA*/
+/* SUCCESSFULLY LOGGED-IN USING SOCIAL MEDIA */
 
 .thank-you {
   text-align: center;
@@ -196,7 +196,7 @@ button {
 }
 
 
-/*COUNTDOWN CLOCK*/
+/* COUNTDOWN CLOCK */
 
 .landingpage-wrapper {
   margin-top: -45px;
@@ -266,7 +266,7 @@ button {
 }
 
 
-/*FOOTER*/
+/* FOOTER */
 
 .sponsors {
   background-color: white;
@@ -324,7 +324,17 @@ h5.address {
   }
 }
 
-//media queries
+
+/* MEDIA QUERIES */
+
+
+/* MEDIA QUERIES : Materialize Breakpoint Desktop Devices 
+> 992px */
+
+
+/* MEDIA QUERIES : Materialize Breakpoint Tablet Devices 
+<= 992px */
+
 @media screen and (max-width: 890px) {
   #days,
   #hours,
@@ -333,6 +343,9 @@ h5.address {
     font-size: 90px !important;
   }
 }
+
+
+/* MEDIA QUERIES : 800 */
 
 @media screen and (max-width: 800px) {
   .main-info {
@@ -347,7 +360,10 @@ h5.address {
   }
 }
 
-@media screen and (max-width: 750px) {
+
+/* MEDIA QUERIES : iPad <= 768 */
+
+@media screen and (max-width: 768px) {
   body {
     background-image: url("/images/shutterstock_315631490_large.jpg");
     background-size: cover;
@@ -372,6 +388,9 @@ h5.address {
   }
 }
 
+
+/* MEDIA QUERIES : 628 */
+
 @media screen and (max-width: 628px) {
   .clock-unit-label {
     line-height: 2.2;
@@ -380,6 +399,9 @@ h5.address {
     line-height: 1;
   }
 }
+
+
+/* MEDIA QUERIES : Materialize Breakpoint Mobile Devices <= 600px */
 
 @media screen and (max-width: 600px) {
   #clockdiv {
@@ -401,6 +423,19 @@ h5.address {
     font-size: 12px !important;
   }
 }
+
+
+/* MEDIA QUERIES : iPhone 6plus <= 414 */
+
+@media screen and (max-width: 414px) {}
+
+
+/* MEDIA QUERIES : iPhone 6 <= 375 */
+
+@media screen and (max-width: 375px) {}
+
+
+/* MEDIA QUERIES : iPhone 5 <= 320 */
 
 @media screen and (max-width: 320px) {
   #top-box-mobile {
@@ -461,6 +496,9 @@ h5.address {
     background-color: #004D71;
     margin-top: -103px;
   }
+  .row .remove-padding {
+    padding: 0px;
+  }
   #days,
   #hours,
   #minutes,
@@ -482,6 +520,9 @@ h5.address {
   .countdown-clock .countdown-title {
     font-size: 16px;
     margin-bottom: -16px;
+  }
+  .sponsor-logo-container {
+    height: 100px;
   }
   p {
     font-size: 12px;
