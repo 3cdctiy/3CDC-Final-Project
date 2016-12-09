@@ -59,10 +59,10 @@
 			}
 		}
 
-		vm.vote = function (pollId, optionId) {
-			alert(pollId);
-			alert(optionId);
-		};
+		vm.vote = function (pollId, optionId) {}
+		// alert(pollId);
+		// alert(optionId);
+
 
 		// vm.openPoll = function(poll) {
 		// 	poll.forEach(function(item){
@@ -74,7 +74,7 @@
 		// 	console.log(vm.openPoll)
 		// }
 
-		getAllPolls();
+		;getAllPolls();
 		getOpenPolls();
 	});
 })();

@@ -67,8 +67,8 @@
 		}
 
 		vm.vote = function(pollId,optionId){
-			alert(pollId);
-			alert(optionId);
+			// alert(pollId);
+			// alert(optionId);
 		}
 
 		
