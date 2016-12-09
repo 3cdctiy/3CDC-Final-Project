@@ -21,6 +21,15 @@
 			return call;
 		};
 
+		var getAllActive = function getAllActive() {
+			var call = $http({
+				method: 'GET',
+				url: domain + 'api/polls/active'
+			});
+
+			return call;
+		};
+
 		// ------------------------------------------------------------
 		// Name: getUserUpdateStatus
 		// desc...
@@ -65,7 +74,11 @@
 			getAllPolls: getAllPolls,
 			getUserUpdateStatus: getUserUpdateStatus,
 			setGetUpdates: setGetUpdates,
+<<<<<<< HEAD
 			toggleIsActive: toggleIsActive
+=======
+			getAllActive: getAllActive
+>>>>>>> 645de3f305e67737dc7b1560930ac34768800c7a
 		};
 	});
 })();

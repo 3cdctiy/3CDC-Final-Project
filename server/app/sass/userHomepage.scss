@@ -32,6 +32,7 @@ body{
 	#clockdiv{
 		color: $color-link;
 		font-weight: 300;
+		font-size: 5rem;
 	}
 }
 
@@ -39,7 +40,7 @@ body{
 	margin-top: 40px;
 
 	h4{
-		font-size: 1.5rem;
+		font-size: 1.4rem;
 		margin-bottom: 2px;
 	}
 
@@ -52,7 +53,8 @@ body{
 	}
 
 	#answers{
-		margin: 14px auto;
+		margin: 20px auto;
+		margin-bottom: 80px;
 		width: 80%;
 
 		.collection{
@@ -63,18 +65,21 @@ body{
 
 			}
 
-			a{
+			li{
 				text-align: left;
-				color: $color-text;
-				&:focus{
-					color: $color-link;
+
+				a{
+					color: $color-text;
+					&:active{
+						background-color: $color-link;
+					}
 				}
 			}
 		}
 
 		#button{
-			float: left;
 			background-color: $color-link;
+			display: block;
 
 			&:active{
 				color: darken($color-link, 20%)
@@ -92,7 +97,7 @@ body{
 			background-color: $color-background;
 			color: $color-text;
 
-			&:focus{
+			&:active{
 				color: $color-link;
 			}
 		}

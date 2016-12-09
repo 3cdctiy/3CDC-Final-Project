@@ -12,29 +12,29 @@ const mongoose = require('mongoose');
 const moment = require('moment');
 const qs = require('querystring');
 const path = require('path');
-const server = require('http').Server(app);
-const io = require('socket.io')(server);
+const server = require('http').Server(app); // requires server connection
+const io = require('socket.io')(server); // requires socket
 
 require('dotenv').config();
 
 
-app.set('views',__dirname+'/views');
-app.engine('html',cons.mustache);
-app.set('view engine','html');
+app.set('views', __dirname + '/views');
+app.engine('html', cons.mustache);
+app.set('view engine', 'html');
 
-app.use(express.static(path.join(__dirname,'app')))
+app.use(express.static(path.join(__dirname, 'app')))
 
-const User          = require('./models/user');
-const PollQuestion  = require('./models/pollQuestion');
-const PollOption    = require('./models/pollOption');
+const User = require('./models/user');
+const PollQuestion = require('./models/pollQuestion');
+const PollOption = require('./models/pollOption');
 
 app.use(cors());
 
-app.use( bodyParser.json() );  
+app.use(bodyParser.json());
 
-app.use(bodyParser.urlencoded({     
+app.use(bodyParser.urlencoded({
   extended: true
-})); 
+}));
 
 mongoose.Promise = global.Promise;
 mongoose.connect(process.env.MONGO_URL);
@@ -44,11 +44,27 @@ mongoose.connect(process.env.MONGO_URL);
 // ------------------------------------------------------------
 // ------------------------------------------------------------
 //
-// POLL API
+// POLL API 
 //
 // ------------------------------------------------------------
 // ------------------------------------------------------------
 const API = require('./api/api');
+
+// SOCKET IO
+let connections = []; // Number of users
+
+io.on('connection', socket => {
+
+  connections.push(socket); // Adds users into the array
+  io.emit('connections', { data: connections.length }); // Tracks the number of users via length of array
+
+  socket.on('newPollVote', data => { // Adds answer directly into the database (because it is a socket)
+    let result = API.newPollVote(data)
+    io.emit(id, { data: result });
+  });
+
+
+});
 
 // ------------------------------------------------------------
 // GET: /api/polls
@@ -74,11 +90,11 @@ app.post('/api/poll', API.postQuestion);
 
 
 
-// ------------------------------------------------------------
-// POST: /api/poll/vote
-// Increments an options vote count by 1
-// ------------------------------------------------------------
-app.post('/api/poll/vote', API.voteQuestion);
+// // ------------------------------------------------------------
+// // POST: /api/poll/vote
+// // Increments an options vote count by 1
+// // ------------------------------------------------------------
+// app.post('/api/poll/vote', API.voteQuestion);
 
 
 
@@ -111,8 +127,7 @@ function ensureAuthenticated(req, res, next) {
   var payload = null;
   try {
     payload = jwt.decode(token, process.env.TOKEN_SECRET);
-  }
-  catch (err) {
+  } catch (err) {
     return res.status(401).send({ message: err.message });
   }
 
@@ -178,23 +193,23 @@ app.put('/api/me', ensureAuthenticated, function(req, res) {
 app.post('/api/me/setGetUpdates', ensureAuthenticated, function(req, res) {
 
   User
-  .findById(req.body.userID)
-  .exec((err, user) => {
-    console.log(req.body.userID);
-    console.log(user);
-    console.log(req.body.isGettingUpdates);
-    user.isGettingUpdates = req.body.isGettingUpdates;
+    .findById(req.body.userID)
+    .exec((err, user) => {
+      console.log(req.body.userID);
+      console.log(user);
+      console.log(req.body.isGettingUpdates);
+      user.isGettingUpdates = req.body.isGettingUpdates;
 
-    // Initiate save to database
-    user.save(function(err,response){
-      if (err) {
-        res.send({error:err});
-        return;
-      };
+      // Initiate save to database
+      user.save(function(err, response) {
+        if (err) {
+          res.send({ error: err });
+          return;
+        };
 
-      res.send({success:"Thank you for signing up!"})
-    });
-  })
+        res.send({ success: "Thank you for signing up!" })
+      });
+    })
 })
 
 
@@ -242,7 +257,7 @@ app.post('/auth/signup', function(req, res) {
     });
 
     // Was no password saved?
-    if(!user.password) {
+    if (!user.password) {
       // Let user know password is required
       return res.status(401).send({ message: 'A password is required' });
     }
@@ -302,9 +317,9 @@ app.post('/auth/facebook', function(req, res) {
               return res.status(400).send({ message: 'User not found' });
             }
 
-            user.displayName      = profile.name;          
-            user.email            = profile.email;
-            user.facebook         = profile.id;
+            user.displayName = profile.name;
+            user.email = profile.email;
+            user.facebook = profile.id;
             user.save(function(err) {
               if (err) {
                 res.status(500).send({ message: err.message });
@@ -322,13 +337,13 @@ app.post('/auth/facebook', function(req, res) {
             var token = createJWT(existingUser);
             return res.send({ token: token });
           }
-          
-          var user              = new User();
-          user.displayName      = profile.name;          
-          user.email            = profile.email;
-          user.facebook         = profile.id;
-          user.isCheckedIn      = false;
-          user.isAdministrator  = false;
+
+          var user = new User();
+          user.displayName = profile.name;
+          user.email = profile.email;
+          user.facebook = profile.id;
+          user.isCheckedIn = false;
+          user.isAdministrator = false;
 
           user.save(function(err) {
             if (err) {
@@ -412,9 +427,9 @@ app.post('/auth/twitter', function(req, res) {
                 return res.status(400).send({ message: 'User not found' });
               }
 
-              user.twitter      = profile.id;
-              user.email        = profile.email;
-              user.displayName  = profile.name;
+              user.twitter = profile.id;
+              user.email = profile.email;
+              user.displayName = profile.name;
               user.save(function(err) {
                 if (err) {
                   res.status(500).send({ message: err.message });
@@ -431,12 +446,12 @@ app.post('/auth/twitter', function(req, res) {
               return res.send({ token: createJWT(existingUser) });
             }
 
-            var user              = new User();
-            user.twitter          = profile.id;
-            user.email            = profile.email;
-            user.displayName      = profile.name;
-            user.isCheckedIn      = false;
-            user.isAdministrator  = false;
+            var user = new User();
+            user.twitter = profile.id;
+            user.email = profile.email;
+            user.displayName = profile.name;
+            user.isCheckedIn = false;
+            user.isAdministrator = false;
 
             user.save(function(err) {
               if (err) {
