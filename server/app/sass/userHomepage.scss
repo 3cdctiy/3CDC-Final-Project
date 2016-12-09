@@ -61,15 +61,15 @@ body{
 			
 			.collection-item{
 				background-color: $color-background;
-				border-color: $color-text;
+				border: none;
 					&:hover{
 						background-color: $color-link;
 					}
 					&:active{
-						background-color: darken($color-link, 15%);
+						background-color: darken($color-link, 10%);
 
 						a{
-							color: darken($color-text, 15%);
+							color: darken($color-text, 10%);
 						}
 					}
 
@@ -112,10 +112,10 @@ body{
 				background-color: $color-link;
 			}
 			&:active{
-				background-color: darken($color-link, 15%);
+				background-color: darken($color-link, 5%);
 
 				p{
-					color: darken($color-text, 15%);
+					color: darken($color-text, 5%);
 				}
 			}
 		}
@@ -123,7 +123,8 @@ body{
 		.collection{
 
 			.collection-item{
-			background-color: $color-background;
+			border: none;
+
 			}
 		}
 	}
