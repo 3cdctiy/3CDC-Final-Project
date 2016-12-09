@@ -23,19 +23,23 @@
       vm.pollResults = [];
 
 
-      // // Once we connect get the data;
-      // socket.on('connect', () => {
-      //     socket.emit('getPollResults');
-      // });
+       socket.on('getLiveResults', (data) => {
+        if(data.data) {
+        	vm.pollResults = data.data;
+        	$scope.$digest();
+        } else {
+        	toastr.error(data.error);
+        }
+      });
+
+
 
       socket.on(userId, (data) => {
       	if(data.success) {
       		toastr.success(data.success);
       	} else {
-      		toastr.error(data.error.message, data.error.name);
+      		toastr.error(data.error, data.error);
       	}
-        vm.pollResults = data;
-        $scope.$digest();
       });
 
 

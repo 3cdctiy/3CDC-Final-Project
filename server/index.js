@@ -53,10 +53,27 @@ const API = require('./api/api');
 // SOCKET IO
 let connections = []; // Number of users
 
+function getAllPollInfo(io) {
+  PollQuestion
+    .find()
+    .populate('_pollOptions')
+    .sort({ pollQuestionSortOrder: 1 })
+    .exec((err, response) => {
+      if (err) return {error: err};
+        io.emit('getLiveResults', { data:response  });
+    })
+}
+
 io.on('connection', socket => {
 
+  console.log("New Connection");
+
   connections.push(socket); // Adds users into the array
+
   io.emit('connections', { data: connections.length }); // Tracks the number of users via length of array
+
+  // Load initial information from database on new connection
+  getAllPollInfo(io)
 
   // Adds answer directly into the database (because it is a socket)
   socket.on('newPollVote', data => { 
@@ -84,8 +101,11 @@ io.on('connection', socket => {
             // Save option selection to database
             user.save(function(err, response) {
               if (err) { result = { error: err }};
-              result = response;
+              // Emit success response to user
               io.emit(data.userId, { success: 'Vote successfully counted' });
+
+              // Globally update for all connected users
+              getAllPollInfo(io);
             })
           })
       });
