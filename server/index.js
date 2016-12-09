@@ -12,6 +12,8 @@ const mongoose = require('mongoose');
 const moment = require('moment');
 const qs = require('querystring');
 const path = require('path');
+const server = require('http').Server(app);
+const io = require('socket.io')(server);
 
 require('dotenv').config();
 

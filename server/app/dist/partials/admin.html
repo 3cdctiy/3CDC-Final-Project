@@ -28,16 +28,7 @@
 					  </div>
 					</div>
 					<div class="col s12 m6">
-					<a class="waves-effect waves-light btn-large" ng-click="controller.setBillboardPoll()">View on big screen</a>
-					  <!-- <div class="switch">
-							<h5>Toggle poll for billboard</h5>
-					    <label>
-					      Inactive
-					      <input type="checkbox" ng-checked="controller.isBillboardPoll">
-					      <span class="lever"></span>
-					      Active
-					    </label>
-					  </div> -->
+						<a class="waves-effect waves-light btn-large" ng-click="controller.setBillboardPoll()">View on big screen</a>
 					</div>
 				</div>
 				<div class="billboard">
@@ -45,6 +36,7 @@
 					<p ng-repeat="option in controller.selectedPoll._pollOptions">
 						{{ option.pollOption }}
 					</p>
+					<canvas id="resultsChart" width="400" height="400"></canvas>
 				</div>
 			</div>
     </div>
