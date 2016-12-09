@@ -2,79 +2,88 @@
 
 (function () {
 
-	'use strict';
+  'use strict';
 
-	angular.module('app').controller('CHome', function ($state, $stateParams, toastr, $auth, $location, FApi) {
+  angular.module('app').controller('CHome', function ($state, $stateParams, toastr, $auth, $location, FApi) {
 
-		// initialize collapsable
-		$('.collapsible').collapsible();
+    var socket = io.connect(window.location.host); // Pulls in socket into controller
 
-		// initialize carousel
-		$('.carousel.carousel-slider').carousel({ full_width: true });
+    // initialize collapsable
+    $('.collapsible').collapsible();
 
-		var vm = this;
+    // initialize carousel
+    $('.carousel.carousel-slider').carousel({ full_width: true });
 
-		vm.pollList = [];
-		vm.openPolls = [];
+    var vm = this;
 
-		function getAllPolls() {
-			try {
-				var promise = FApi.getAllPolls();
-				promise.then(function (response) {
-					var polls = response.data;
+    vm.pollList = [];
+    vm.openPolls = [];
 
-					polls.forEach(function (poll, index) {
-						vm.pollList.push(poll);
-					});
+    function getAllPolls() {
+      try {
+        var promise = FApi.getAllPolls();
+        promise.then(function (response) {
+          var polls = response.data;
 
-					vm.selectedPoll = vm.pollList[0];
+          polls.forEach(function (poll, index) {
+            vm.pollList.push(poll);
+          });
 
-					console.log(vm.pollList);
-				}).catch(function (error) {
-					throw new Error(error);
-				});
-			} catch (error) {
-				toastr.error(error.message, error.name);
-			}
-		}
+          vm.selectedPoll = vm.pollList[0];
 
-		function getOpenPolls() {
-			try {
-				var promise = FApi.getAllActive();
-				promise.then(function (response) {
-					var openPolls = response.data;
+          console.log(vm.pollList);
+        }).catch(function (error) {
+          throw new Error(error);
+        });
+      } catch (error) {
+        toastr.error(error.message, error.name);
+      }
+    }
 
-					openPolls.forEach(function (poll, index) {
-						vm.openPolls.push(poll);
-					});
+    function getOpenPolls() {
+      try {
+        var promise = FApi.getAllActive();
+        promise.then(function (response) {
+          var openPolls = response.data;
 
-					vm.selectedPoll = vm.pollList[0];
+          openPolls.forEach(function (poll, index) {
+            vm.openPolls.push(poll);
+          });
 
-					console.log(vm.openPolls);
-				}).catch(function (error) {
-					throw new Error(error);
-				});
-			} catch (error) {
-				toastr.error(error.message, error.name);
-			}
-		}
+          vm.selectedPoll = vm.pollList[0];
 
-		vm.vote = function (pollId, optionId) {
-			alert(pollId);
-			alert(optionId);
-		};
+          console.log(vm.openPolls);
+        }).catch(function (error) {
+          throw new Error(error);
+        });
+      } catch (error) {
+        toastr.error(error.message, error.name);
+      }
+    }
 
-		// vm.openPoll = function(poll) {
-		// 	poll.forEach(function(item){
-		// 		if(poll.item.isActiveQuestion === true){
-		// 			vm.openPoll.push(item);
-		// 		};
-		// 	});
+    // ------------------------------------------------------------
+    // New vote sent to server using poll ID and option (answer) ID
+    // ------------------------------------------------------------
+    vm.vote = function (pollId, optionId) {
 
-		// 	console.log(vm.openPoll)
-		// }
+      var user = $auth.getPayload(); // Using payload to get user id
+      var userId = user.sub;
+      // console.log(userId);
 
-		getAllPolls();
-		getOpenPolls();
-	});
+      socket.emit('newPollVote', { userId: userId, pollId: pollId, optionId: optionId });
+    };
+
+    // vm.openPoll = function(poll) {
+    // 	poll.forEach(function(item){
+    // 		if(poll.item.isActiveQuestion === true){
+    // 			vm.openPoll.push(item);
+    // 		};
+    // 	});
+
+    // 	console.log(vm.openPoll)
+    // }
+
+    getAllPolls();
+    getOpenPolls();
+  });
 })();

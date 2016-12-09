@@ -92,7 +92,7 @@
 				getAllPolls,
 				getUserUpdateStatus,
 				setGetUpdates,
-				toggleIsActive
+				toggleIsActive,
 				getAllActive,
 			}
 
