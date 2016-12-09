@@ -58,12 +58,39 @@ io.on('connection', socket => {
   connections.push(socket); // Adds users into the array
   io.emit('connections', { data: connections.length }); // Tracks the number of users via length of array
 
-  socket.on('newPollVote', data => { // Adds answer directly into the database (because it is a socket)
-    let result = API.newPollVote(data)
-    io.emit(id, { data: result });
+  // Adds answer directly into the database (because it is a socket)
+  socket.on('newPollVote', data => { 
+    // let result = API.newPollVote(data)
+    let result = null;
+
+    PollOption
+    .findById(data.optionId)
+    .exec((err, option) => {
+      // if (err) return err;
+
+      // Increment poll option select count
+      option.pollOptionSelectCount += 1;
+
+      // Initiate save to database
+      option.save(function(err, response) {
+        if (err) { result = { error: err }};
+
+        User
+          .findById(data.userId)
+          .exec((err, user) => {
+            // Add option selection to user account
+            user._pollOptions.push(response);
+
+            // Save option selection to database
+            user.save(function(err, response) {
+              if (err) { result = { error: err }};
+              result = response;
+              io.emit(data.userId, { success: 'Vote successfully counted' });
+            })
+          })
+      });
+    })
   });
-
-
 });
 
 // ------------------------------------------------------------
@@ -481,6 +508,6 @@ app.get('/', function(req, res) {
 const port = process.env.PORT || 8000;
 
 // Initiate server 
-app.listen(port, () => {
+server.listen(port, () => {
   console.log('Server running on port ' + port + '!');
 })

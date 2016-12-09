@@ -4,7 +4,7 @@
 
   'use strict';
 
-  angular.module('app').controller('CHome', function ($state, $stateParams, toastr, $auth, $location, FApi) {
+  angular.module('app').controller('CHome', function ($state, $stateParams, $scope, toastr, $auth, $location, FApi) {
 
     var socket = io.connect(window.location.host); // Pulls in socket into controller
 
@@ -15,9 +15,26 @@
     $('.carousel.carousel-slider').carousel({ full_width: true });
 
     var vm = this;
+    var userId = $auth.getPayload().sub; // Using payload to get user id
 
     vm.pollList = [];
     vm.openPolls = [];
+    vm.pollResults = [];
+
+    // // Once we connect get the data;
+    // socket.on('connect', () => {
+    //     socket.emit('getPollResults');
+    // });
+
+    socket.on(userId, function (data) {
+      if (data.success) {
+        toastr.success(data.success);
+      } else {
+        toastr.error(data.error.message, data.error.name);
+      }
+      vm.pollResults = data;
+      $scope.$digest();
+    });
 
     function getAllPolls() {
       try {
@@ -65,11 +82,6 @@
     // New vote sent to server using poll ID and option (answer) ID
     // ------------------------------------------------------------
     vm.vote = function (pollId, optionId) {
-
-      var user = $auth.getPayload(); // Using payload to get user id
-      var userId = user.sub;
-      // console.log(userId);
-
       socket.emit('newPollVote', { userId: userId, pollId: pollId, optionId: optionId });
     };
 

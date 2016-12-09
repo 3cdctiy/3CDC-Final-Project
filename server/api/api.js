@@ -137,12 +137,13 @@ exports.postQuestion = ((req, res) => {
 // ------------------------------------------------------------
 // Name: voteQuestion
 // Increments an options vote count by 1
+// data = userId, pollId, optionId
 // ------------------------------------------------------------
 exports.newPollVote = (data => {
   console.log(data);
 
   PollOption
-    .findById(data.pollOptionID)
+    .findById(data.optionId)
     .exec((err, option) => {
       // if (err) return err;
 
@@ -154,18 +155,16 @@ exports.newPollVote = (data => {
         if (err) return { error: err };
 
         User
-          .findById(data.userID)
+          .findById(data.userId)
           .exec((err, user) => {
-
             // Add option selection to user account
             user._pollOptions.push(response);
 
             // Save option selection to database
             user.save(function(err, response) {
               if (err) return { error: err };
-
-
-              res.send({ success: "Vote successfully counted" })
+              console.log('should be returning data')
+              return { success: "Vote successfully counted" };
             })
           })
       });
