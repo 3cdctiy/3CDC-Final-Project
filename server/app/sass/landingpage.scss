@@ -19,7 +19,7 @@ body {
   color: white;
   background-image: url("/images/shutterstock_315631490_large.jpg");
   background-repeat: no-repeat;
-  background-size: content;
+  // background-size: cover;
   background-position: top center;
   background-color: white;
 }
@@ -147,7 +147,7 @@ body {
   position: relative;
   top: -165px;
   padding: 15px 0 5px;
-  margin: -16px 60px 320px;
+  margin: -16px 60px 175px;
 }
 
 .social-info-content {
@@ -263,7 +263,6 @@ button {
 
 .landingpage-wrapper {
   margin-top: -45px;
-  margin-bottom: -70px;
 }
 
 .container-fluid {
