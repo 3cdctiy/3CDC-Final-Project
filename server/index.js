@@ -80,35 +80,49 @@ io.on('connection', socket => {
     // let result = API.newPollVote(data)
     let result = null;
 
-    PollOption
-    .findById(data.optionId)
-    .exec((err, option) => {
-      // if (err) return err;
+    User
+    .findById(data.userId)
+    .populate('_pollOptions')
+    .exec((err, user) => {
 
-      // Increment poll option select count
-      option.pollOptionSelectCount += 1;
+      PollOption
+      .findById(data.optionId)
+      .exec((err, option) => {
+        if (err) { io.emit(data.userId, { error: err }) };
 
-      // Initiate save to database
-      option.save(function(err, response) {
-        if (err) { result = { error: err }};
+        let userOptions = user._pollOptions;
 
-        User
-          .findById(data.userId)
-          .exec((err, user) => {
+        // Look for question ID in user's selected option list
+        let userMatch = userOptions.filter(userOption => (userOption._pollQuestion.toString() === option._pollQuestion.toString()))
+
+        // Has the user voted on this question before?
+        if(userMatch.length < 1) {
+          // No, increment poll option select count
+          option.pollOptionSelectCount += 1;
+
+          // Initiate save to database
+          option.save(function(err, response) {
+            if (err) { io.emit(data.userId, { error: err }) };
+
             // Add option selection to user account
             user._pollOptions.push(response);
 
             // Save option selection to database
             user.save(function(err, response) {
-              if (err) { result = { error: err }};
+              if (err) { io.emit(data.userId, { error: err }) };
+            
               // Emit success response to user
               io.emit(data.userId, { data: 'Vote successfully counted' });
 
               // Globally update for all connected users
               getAllPollInfo(io);
             })
-          })
-      });
+          });
+        } else {
+          // Emit error response to user
+          io.emit(data.userId, { error: 'You\'ve already voted on this question.' });          
+        }
+      })
     })
   });
 });
