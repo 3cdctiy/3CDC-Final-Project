@@ -4,10 +4,12 @@
 
 	'use strict';
 
-	angular.module('app').controller('CAdmin', function ($state, $stateParams, $auth, $location, FApi, FAdmin) {
+	angular.module('app').controller('CAdmin', function ($scope, $state, $stateParams, $auth, $location, toastr, FApi, FAdmin) {
+
+		var socket = io.connect(window.location.host);
+		var $resultsChart = $('#resultsChart');
 
 		var vm = this;
-		var $resultsChart = $('#resultsChart');
 
 		vm.pollList = [];
 		vm.selectedPoll = null;
@@ -15,35 +17,11 @@
 		vm.isActivePoll = false;
 
 		// ------------------------------------------------------------
-		// Name: getAllPolls
-		// Gets all polls from API
-		// ------------------------------------------------------------
-		var getAllPolls = function getAllPolls() {
-			try {
-				var promise = FApi.getAllPolls();
-				promise.then(function (response) {
-					var polls = response.data;
-
-					polls.forEach(function (poll, index) {
-						vm.pollList.push(poll);
-					});
-
-					FAdmin.billboardPoll = vm.pollList[0];
-					vm.setSelectedPoll(vm.pollList[0]);
-				});
-				promise.catch(function (error) {
-					throw new Error(error);
-				});
-			} catch (error) {
-				toastr.error(error.message, error.name);
-			}
-		};
-
-		// ------------------------------------------------------------
 		// Name: setSelectedPoll
 		// Sets selected and isActivePoll boolean. Called on sidebar select
 		// ------------------------------------------------------------
 		vm.setSelectedPoll = function (poll) {
+			// Load variables with select poll states.
 			vm.selectedPoll = poll;
 			vm.isActivePoll = poll.isActiveQuestion;
 		};
@@ -53,7 +31,9 @@
 		// Sets billboardPoll as selected poll. Changes state to billboard
 		// ------------------------------------------------------------
 		vm.setBillboardPoll = function () {
+			// Load currently selected poll as billboard poll
 			FAdmin.billboardPoll = vm.selectedPoll;
+			// Go to billboard view (fullscreen)
 			$state.go('billboard');
 		};
 
@@ -63,13 +43,20 @@
 		// ------------------------------------------------------------
 		vm.toggleIsActive = function () {
 			try {
+				// Send isActive toggle request to server
 				var promise = FApi.toggleIsActive(vm.selectedPoll._id);
+
+				// Upon successful return...
 				promise.then(function (response) {
+					// Does response have data property?
 					if (response.hasOwnProperty('data')) {
+						// Yes, load data's activeState
 						vm.isActivePoll = response.data.activeState;
 					}
 				});
+				// Upon unsuccessful return...
 				promise.catch(function (error) {
+					// Throw error
 					throw new Error(error);
 				});
 			} catch (error) {
@@ -77,9 +64,11 @@
 			}
 		};
 
+		// ------------------------------------------------------------
+		// Name: loadBillboardChart
+		// Loads billboard chart with data and options
+		// ------------------------------------------------------------
 		var loadBillboardChart = function loadBillboardChart() {
-			var $resultsChart = $('#resultsChart');
-
 			var data = {
 				labels: ["January", "February", "March", "April", "May", "June", "July"],
 				datasets: [{
@@ -97,7 +86,27 @@
 			});
 		};
 
-		getAllPolls();
+		// Get live results of user votes
+		socket.on('getLiveResults', function (data) {
+			// Data returned?
+			if (data.data) {
+
+				// Yes, load data into pollList
+				vm.pollList = data.data;
+
+				// selectedPoll set?					No, load defaults
+				if (vm.selectedPoll == null) {
+					vm.setSelectedPoll(vm.pollList[0]);
+				};
+
+				// Reload view
+				$scope.$digest();
+			} else {
+				// No, return error to user
+				toastr.error(data.error);
+			}
+		});
+
 		// loadBillboardChart();
 
 	});

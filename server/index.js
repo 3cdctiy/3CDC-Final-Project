@@ -60,17 +60,17 @@ function getAllPollInfo(io) {
     .sort({ pollQuestionSortOrder: 1 })
     .exec((err, response) => {
       if (err) return {error: err};
-        io.emit('getLiveResults', { data:response  });
+        io.emit('getLiveResults', { data: response });
     })
 }
 
 io.on('connection', socket => {
 
-  console.log("New Connection");
+  // Adds users into the array
+  connections.push(socket);
 
-  connections.push(socket); // Adds users into the array
-
-  io.emit('connections', { data: connections.length }); // Tracks the number of users via length of array
+  // Tracks the number of users via length of array
+  io.emit('connections', { data: connections.length });
 
   // Load initial information from database on new connection
   getAllPollInfo(io)
@@ -102,7 +102,7 @@ io.on('connection', socket => {
             user.save(function(err, response) {
               if (err) { result = { error: err }};
               // Emit success response to user
-              io.emit(data.userId, { success: 'Vote successfully counted' });
+              io.emit(data.userId, { data: 'Vote successfully counted' });
 
               // Globally update for all connected users
               getAllPollInfo(io);

@@ -23,22 +23,33 @@
       vm.pollResults = [];
 
 
-       socket.on('getLiveResults', (data) => {
+      // Get live results of user votes
+      socket.on('getLiveResults', (data) => {
+      	// Data returned?
         if(data.data) {
+
+        	// Yes, collect data
         	vm.pollResults = data.data;
+        	
+        	// Reload view
         	$scope.$digest();
+        	
         } else {
+        	// No, display error to user
         	toastr.error(data.error);
         }
       });
 
 
-
+      // On user vote return
       socket.on(userId, (data) => {
-      	if(data.success) {
-      		toastr.success(data.success);
+      	// Data returned?
+      	if(data.data) {
+      		// Notify user of data
+      		toastr.success(data.data);
       	} else {
-      		toastr.error(data.error, data.error);
+      		// Notify user of error
+      		toastr.error(data.error);
       	}
       });
 
@@ -90,6 +101,7 @@
       }
 
       // ------------------------------------------------------------
+      // Name: vote
       // New vote sent to server using poll ID and option (answer) ID
       // ------------------------------------------------------------
       vm.vote = function(pollId, optionId) {
