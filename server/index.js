@@ -59,8 +59,8 @@ function getAllPollInfo(io) {
     .populate('_pollOptions')
     .sort({ pollQuestionSortOrder: 1 })
     .exec((err, response) => {
-      if (err) return {error: err};
-        io.emit('getLiveResults', { data: response });
+      if (err) { io.emit(data.userId, { error: err }) };
+      io.emit('getLiveResults', { data: response });
     })
 }
 
