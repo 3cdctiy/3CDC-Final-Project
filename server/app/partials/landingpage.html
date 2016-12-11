@@ -42,23 +42,27 @@
               <div class="social-info-content" ng-hide="controller.isLoggedIn()">
                 <p class="early-access">Please sign up for access to our event application!</p>
                 <!-- Social Media Buttons -->
+                <!-- Facebook Sign in -->
                 <div class="col s12 m6">
                   <div class="social-logins">
                     <button ng-click="controller.authenticate('facebook')" class="btn waves-effect waves-light facebook button-border-radius"><i class="fa fa-facebook" aria-hidden="true"></i>Sign in with Facebook</button>
                   </div>
                 </div>
-                <!-- Facebook Sign in -->
+                <!-- Twitter Sign in -->
                 <div class="col s12 m6">
                   <div class="social-logins">
                     <button ng-click="controller.authenticate('twitter')" class="btn waves-effect waves-light twitter button-border-radius"><i class="fa fa-twitter" aria-hidden="true"></i>Sign in with Twitter</button>
                   </div>
                 </div>
-                <!-- Twitter Sign in -->
-                <p class="update-agreement">
-                  <input type="checkbox" id="updates" ng-model="controller.user.getUpdates" />
-                  <label for="updates">Yep! Keep me updated on all things The Iron Yard.</label>
-                </p>
-                <p class="email">Or signup/login using email below</p>
+                <!-- Get Updates from TIY -->
+                <div class="col s12">
+                  <p class="update-agreement">
+                    <input type="checkbox" id="updates" ng-model="controller.user.getUpdates" />
+                    <label for="updates">Yep! Keep me updated on all things The Iron Yard.</label>
+                  </p>
+                  <p class="email">Or signup/login using email below</p>
+                </div>
+                <!-- Signup / Login toggle -->
                 <div class="col s12">
                   <div class="toggle-wrap">
                     <ul class="login-toggle" ng-class="{'active': controller.showLogin}">
