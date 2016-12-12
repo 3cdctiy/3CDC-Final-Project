@@ -112,12 +112,14 @@ body {
   .early-access {
     font-size: 14px;
     text-align: center;
+    color: $color-accent;
   }
   p.email {
     margin-top: -7px;
     padding-bottom: 11px;
     text-align: center;
     font-size: 14px;
+    color: $color-accent;
   }
 }
 
@@ -177,27 +179,33 @@ button {
   margin-top: 15px;
 }
 
+.tiy-white {
+  max-width: 18%;
+  margin: -20px auto -6px;
+}
+
 .update-agreement {
   display: block;
   padding-bottom: 15px;
   margin: 0 auto;
   text-align: center;
+  margin-bottom: 2px;
   label {
-    color: #666666;
+    color: white;
   }
 }
 
 [type="checkbox"]:checked + label::before {
-    backface-visibility: hidden;
-    border-color: transparent $color-primary1 $color-primary1 transparent;
-    border-style: solid;
-    border-width: 2px;
-    height: 22px;
-    left: -5px;
-    top: -4px;
-    transform: rotate(40deg);
-    transform-origin: 100% 100% 0;
-    width: 12px;
+  backface-visibility: hidden;
+  border-color: transparent white white transparent;
+  border-style: solid;
+  border-width: 2px;
+  height: 22px;
+  left: -5px;
+  top: -4px;
+  transform: rotate(40deg);
+  transform-origin: 100% 100% 0;
+  width: 12px;
 }
 
 
@@ -276,8 +284,9 @@ button {
     vertical-align: text-bottom;
   }
   .tiy-credit {
-    color: $color-primary3;
+    color: #57C1E8;
     text-align: center;
+    margin-bottom: 26px;
     a {
       color: $color-accent;
     }
