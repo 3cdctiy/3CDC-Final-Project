@@ -41,7 +41,21 @@
 		}
 	}
 
-	.control-panel {
-		padding: 40px;
+	.main-content {
+		padding-left: 40px;
+		padding-right: 40px;
+
+		.control-panel {
+			padding: 8px 0 20px;
+
+			.btn-billboard {
+				margin-top: 20px;
+				float: right;
+			}
+		}
+	}
+
+	.control-panel-nav {
+		padding: 0 40px;
 	}
 }

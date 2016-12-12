@@ -4,6 +4,19 @@
 
 	<div class="row">
 
+		<nav>
+	    <div class="nav-wrapper">
+	      <div class="col s3">
+					<span>Poll List</span>
+	      </div>
+	      <div class="col s9">
+					<div class="control-panel-nav">
+						<span>Poll Options</span>
+					</div>
+	      </div>
+	    </div>
+	  </nav>
+
     <div class="col s3 sidebar no-padding">
       <ul class="poll-list">
       	<li ng-repeat="poll in controller.pollList" ng-click="controller.setSelectedPoll(poll)" class="replace-col-padding">
@@ -28,15 +41,21 @@
 					  </div>
 					</div>
 					<div class="col s12 m6">
-						<a class="waves-effect waves-light btn-large" ng-click="controller.setBillboardPoll()">View on big screen</a>
+						<a class="waves-effect waves-light btn-large btn-billboard" ng-click="controller.setBillboardPoll()">View on big screen</a>
 					</div>
 				</div>
-				<div class="billboard">
-					<h4>{{ controller.selectedPoll.pollQuestion }}</h4>
-					<p ng-repeat="option in controller.selectedPoll._pollOptions">
-						{{ option.pollOption }}
-					</p>
-					<canvas id="resultsChart" width="400" height="400"></canvas>
+			</div>
+			<div class="billboard">
+				<div class="row">
+					<div class="col s12">
+						<div class="billboard">
+							<h4>{{ controller.selectedPoll.pollQuestion }}</h4>
+							<p ng-repeat="option in controller.selectedPoll._pollOptions">
+								{{ option.pollOption }}
+							</p>
+							<canvas id="resultsChart" width="400" height="400"></canvas>
+						</div>
+					</div>
 				</div>
 			</div>
     </div>
