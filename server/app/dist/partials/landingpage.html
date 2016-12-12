@@ -17,7 +17,7 @@
                 <div class="row">
                   <div class="col s12 m10 offset-m1">
                     <div class="event-info">
-                      <p>Sign up to use our app during the Huntington Bank New Year&rsquo;s Blast on Fountain Square to engage in fun and games while ringing in the New Year. This application was developed by The Iron Yard Front-End Web Development graduates of Cohort 2. If you’d like to know more about The Iron Yard front-end web development graduates or our work, please join us on <a href="https://www.eventbrite.com/e/the-iron-yard-demo-day-tickets-28835784608?aff=demoday2" target="_blank" class="demo-day-link">Demo Day</a>. Available for hire January 2017.</p>
+                      <p>Sign UP up to use our app during the Huntington Bank New Year&rsquo;s Blast on Fountain Square to engage in fun and games while ringing in the New Year. This application was developed by The Iron Yard Front-End Web Development graduates of Cohort 2. If you’d like to know more about The Iron Yard front-end web development graduates or our work, please join us on <a href="https://www.eventbrite.com/e/the-iron-yard-demo-day-tickets-28835784608?aff=demoday2" target="_blank" class="demo-day-link">Demo Day</a>. Available for hire January 2017.</p>
                     </div>
                   </div>
                 </div>
@@ -53,14 +53,6 @@
                     <button ng-click="controller.authenticate('twitter')" class="btn waves-effect waves-light twitter button-border-radius"><i class="fa fa-twitter" aria-hidden="true"></i>Sign in with Twitter</button>
                   </div>
                 </div>
-                <!-- Get Updates from TIY -->
-                <div class="col s12">
-                  <p class="update-agreement">
-                    <input type="checkbox" id="updates" ng-model="controller.user.getUpdates" />
-                    <label for="updates">Yep! Keep me updated on all things The Iron Yard.</label>
-                  </p>
-                  <p class="email">Or signup/login using email below</p>
-                </div>
                 <!-- Signup / Login toggle -->
                 <div class="col s12">
                   <div class="toggle-wrap">
@@ -73,31 +65,19 @@
                 <!-- Signup Form -->
                 <div class="col s12" ng-show="!controller.showLogin">
                   <form novalidate class="signup-form" name="signupForm" ng-submit="controller.signup(signupForm.$valid)">
-<<<<<<< HEAD
                     <div class="tiy-white"><img src="/images/TIIY-Logo-500px-white.png" alt=""></div>
                     <p class="update-agreement">
+                      <!-- Get Updates from TIY -->
                       <input type="checkbox" id="updates" ng-model="controller.user.getUpdates" />
                       <label for="updates">Yep! Keep me updated on all things The Iron Yard.</label>
                     </p>
                     <p class="email">or signup using EMAIL below</p>
-=======
->>>>>>> 54a6bc2f568fee2e1f0b41f4e0d11a9166216016
                     <!-- Name -->
                     <div class="input-field">
-                      <input id="name" 
-                             type="text" 
-                             class="validate" 
-                             name="name" 
-                             ng-model="controller.user.displayName" 
-                             ng-pattern="/^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u" 
-                             ng-minlength="1" 
-                             ng-maxlength="50" 
-                             required>
+                      <input id="name" type="text" class="validate" name="name" ng-model="controller.user.displayName" ng-pattern="/^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u" ng-minlength="1" ng-maxlength="50" required>
                       <label for="name">Name</label>
                       <!-- Input Errors -->
-                      <div class="help-block" 
-                           ng-messages="signupForm.name.$error" 
-                           ng-if="signupForm.name.$touched">
+                      <div class="help-block" ng-messages="signupForm.name.$error" ng-if="signupForm.name.$touched">
                         <span class="input-error" ng-message="pattern">Invalid characters in name.</span>
                         <span class="input-error" ng-message="minlength">Name is too short.</span>
                         <span class="input-error" ng-message="maxlength">Name is too long.</span>
@@ -106,15 +86,7 @@
                     </div>
                     <!-- Email -->
                     <div class="input-field">
-                      <input id="email" 
-                             type="email" 
-                             class="validate" 
-                             name="email" 
-                             ng-model="controller.user.email" 
-                             ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" 
-                             ng-minlength="5" 
-                             ng-maxlength="50" 
-                             required>
+                      <input id="email" type="email" class="validate" name="email" ng-model="controller.user.email" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" ng-minlength="5" ng-maxlength="50" required>
                       <label for="email">Email</label>
                       <!-- Input Errors -->
                       <div class="help-block" ng-messages="signupForm.email.$error" ng-if="signupForm.email.$touched">
@@ -126,14 +98,7 @@
                     </div>
                     <!-- Password 1 -->
                     <div class="input-field">
-                      <input id="password" 
-                             type="password" 
-                             class="validate" 
-                             name="password" 
-                             ng-model="controller.user.password" 
-                             ng-minlength="6" 
-                             ng-maxlength="50" 
-                             required>
+                      <input id="password" type="password" class="validate" name="password" ng-model="controller.user.password" ng-minlength="6" ng-maxlength="50" required>
                       <label for="password">Password</label>
                       <!-- Input Errors -->
                       <div class="help-block" ng-messages="signupForm.password.$error" ng-if="signupForm.password.$touched">
@@ -144,15 +109,7 @@
                     </div>
                     <!-- Password 2 (Match Check) -->
                     <div class="input-field">
-                      <input password-match="controller.user.password" 
-                             id="confirmPassword" 
-                             type="password" 
-                             class="validate" 
-                             name="passwordMatch" 
-                             ng-model="controller.confirmPassword" 
-                             ng-minlength="6" 
-                             ng-maxlength="50" 
-                             required>
+                      <input password-match="controller.user.password" id="confirmPassword" type="password" class="validate" name="passwordMatch" ng-model="controller.confirmPassword" ng-minlength="6" ng-maxlength="50" required>
                       <label for="confirmPassword">Confirm Password</label>
                       <!-- Input Error -->
                       <span ng-show="!signupForm.passwordMatch.$valid && signupForm.passwordMatch.$dirty" class="input-error">Passwords must match</span>
@@ -169,28 +126,13 @@
                   <form novalidate class="login-form" name="loginForm" ng-submit="controller.login(loginForm.$valid, loginForm)">
                     <!-- Email -->
                     <div class="input-field">
-                      <input id="email" 
-                             type="email" 
-                             class="validate" 
-                             name="email"
-                             ng-model="controller.user.email"
-                             ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/"
-                             ng-minlength="5"
-                             ng-maxlength="50"
-                             required>
+                      <input id="email" type="email" class="validate" name="email" ng-model="controller.user.email" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" ng-minlength="5" ng-maxlength="50" required>
                       <label for="email">Email</label>
                       <span ng-show="!loginForm.email.$valid && loginForm.email.$dirty" class="input-error">Please enter a valid email</span>
                     </div>
                     <!-- Password -->
                     <div class="input-field">
-                      <input id="password" 
-                             type="password" 
-                             class="validate" 
-                             name="password"
-                             ng-model="controller.user.password"
-                             ng-minlength="6"
-                             ng-maxlength="50"
-                             required>
+                      <input id="password" type="password" class="validate" name="password" ng-model="controller.user.password" ng-minlength="6" ng-maxlength="50" required>
                       <label for="password">Password</label>
                       <span ng-show="!loginForm.password.$valid && loginForm.password.$dirty" class="input-error">Password is invalid</span>
                     </div>
@@ -202,9 +144,9 @@
                 </div>
                 <!-- /loginForm -->
                 <div class="tweet-us">
-                <div class="col s12 center"><a href="https://twitter.com/intent/tweet?button_hashtag=NYE513" class="twitter-hashtag-button" data-size="large" data-show-count="false">Tweet #NYE513</a>
-                  <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-                </div>
+                  <div class="col s12 center"><a href="https://twitter.com/intent/tweet?button_hashtag=NYE513" class="twitter-hashtag-button" data-size="large" data-show-count="false">Tweet #NYE513</a>
+                    <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+                  </div>
                   <!-- <p>Tweet to us using #NYE513</p> -->
                 </div>
               </div>
