@@ -7,11 +7,13 @@
 		.factory('FAdmin', function($http)
 		{
 
-			let billboardPoll;
+			let billboardPollIndex,
+					billboardPoll;
+
 
 			return {
+				billboardPollIndex,
 				billboardPoll,
-				
 			}
 
 

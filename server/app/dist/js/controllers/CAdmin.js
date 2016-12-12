@@ -7,12 +7,14 @@
 	angular.module('app').controller('CAdmin', function ($scope, $state, $stateParams, $auth, $location, toastr, FApi, FAdmin) {
 
 		var socket = io.connect(window.location.host);
-		var $resultsChart = $('#resultsChart');
+		var $pollResultChart = $('#pollResultChart');
 
 		var vm = this;
 
 		vm.pollList = [];
+		vm.selectedPollIndex = null;
 		vm.selectedPoll = null;
+		vm.billboardPollIndex = FAdmin.billboardPollIndex;
 		vm.billboardPoll = FAdmin.billboardPoll;
 		vm.isActivePoll = false;
 
@@ -69,8 +71,26 @@
 		// ------------------------------------------------------------
 		vm.setSelectedPoll = function (poll) {
 			// Load variables with select poll states.
+			var index = vm.pollList.indexOf(poll);
+
+			vm.selectedPollIndex = index;
 			vm.selectedPoll = poll;
 			vm.isActivePoll = poll.isActiveQuestion;
+
+			vm.updateBillboardPoll();
+		};
+
+		// ------------------------------------------------------------
+		// Name: updateBillboardPoll
+		// Sets billboardPoll as selected poll. Changes state to billboard
+		// ------------------------------------------------------------
+		vm.updateBillboardPoll = function () {
+			// Load currently selected poll as billboard poll
+			FAdmin.billboardPollIndex = vm.selectedPollIndex;
+			vm.billboardPoll = vm.pollList[vm.selectedPollIndex];
+			FAdmin.billboardPoll = vm.billboardPoll;
+
+			updateChartData();
 		};
 
 		// ------------------------------------------------------------
@@ -78,8 +98,8 @@
 		// Sets billboardPoll as selected poll. Changes state to billboard
 		// ------------------------------------------------------------
 		vm.setBillboardPoll = function () {
-			// Load currently selected poll as billboard poll
-			FAdmin.billboardPoll = vm.selectedPoll;
+			vm.updateBillboardPoll();
+
 			// Go to billboard view (fullscreen)
 			$state.go('billboard');
 		};
@@ -91,7 +111,7 @@
 		vm.toggleIsActive = function () {
 			try {
 				// Send isActive toggle request to server
-				var promise = FApi.toggleIsActive(vm.selectedPoll._id);
+				var promise = FApi.toggleIsActive(vm.pollList[vm.selectedPollIndex]._id);
 
 				// Upon successful return...
 				promise.then(function (response) {
@@ -111,28 +131,6 @@
 			}
 		};
 
-		// ------------------------------------------------------------
-		// Name: loadBillboardChart
-		// Loads billboard chart with data and options
-		// ------------------------------------------------------------
-		var loadBillboardChart = function loadBillboardChart() {
-			var data = {
-				labels: ["January", "February", "March", "April", "May", "June", "July"],
-				datasets: [{
-					label: "My First dataset",
-					backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(255, 206, 86, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(153, 102, 255, 0.2)', 'rgba(255, 159, 64, 0.2)'],
-					borderColor: ['rgba(255,99,132,1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)', 'rgba(153, 102, 255, 1)', 'rgba(255, 159, 64, 1)'],
-					borderWidth: 1,
-					data: [65, 59, 80, 81, 56, 55, 40]
-				}]
-			};
-
-			var myBarChart = new Chart($resultsChart, {
-				type: 'horizontalBar',
-				data: data
-			});
-		};
-
 		// Get live results of user votes
 		socket.on('getLiveResults', function (data) {
 			// Data returned?
@@ -141,10 +139,13 @@
 				// Yes, load data into pollList
 				vm.pollList = data.data;
 
-				// selectedPoll set?					No, load defaults
-				if (vm.selectedPoll == null) {
+				// selectedPoll set?							 No, load defaults
+				if (vm.selectedPollIndex == null) {
 					vm.setSelectedPoll(vm.pollList[0]);
 				};
+
+				vm.updateBillboardPoll();
+				updateChartData();
 
 				// Reload view
 				$scope.$digest();
@@ -154,7 +155,31 @@
 			}
 		});
 
-		// loadBillboardChart();
+		var updateChartData = function updateChartData() {
+			var billboardOptions = vm.billboardPoll._pollOptions.map(function (option) {
+				return option.pollOption;
+			});
+			var billboardResults = vm.billboardPoll._pollOptions.map(function (option) {
+				return option.pollOptionSelectCount;
+			});
 
+			var data = {
+				labels: billboardOptions,
+				datasets: [{
+					backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(255, 206, 86, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(153, 102, 255, 0.2)', 'rgba(255, 159, 64, 0.2)'],
+					borderColor: ['rgba(255,99,132,1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)', 'rgba(153, 102, 255, 1)', 'rgba(255, 159, 64, 1)'],
+					borderWidth: 1,
+					data: billboardResults
+				}]
+			};
+
+			var myBarChart = new Chart($pollResultChart, {
+				type: 'horizontalBar',
+				data: data,
+				options: {
+					responsive: true
+				}
+			});
+		};
 	});
 })();

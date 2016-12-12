@@ -8,12 +8,14 @@
 	{
 
 		const socket = io.connect(window.location.host);
-		const $resultsChart = $('#resultsChart');
+		const $pollResultChart = $('#pollResultChart');
 
 		let vm = this;
 
 		vm.pollList = [];
+		vm.selectedPollIndex = null;
 		vm.selectedPoll = null;
+		vm.billboardPollIndex = FAdmin.billboardPollIndex;
 		vm.billboardPoll = FAdmin.billboardPoll;
 		vm.isActivePoll = false;
 
@@ -78,8 +80,28 @@
 		// ------------------------------------------------------------
 		vm.setSelectedPoll = function(poll) {
 			// Load variables with select poll states.
+			let index = vm.pollList.indexOf(poll);
+
+			vm.selectedPollIndex = index;
 			vm.selectedPoll = poll;
 			vm.isActivePoll = poll.isActiveQuestion;
+
+			vm.updateBillboardPoll();
+		}
+
+
+
+		// ------------------------------------------------------------
+		// Name: updateBillboardPoll
+		// Sets billboardPoll as selected poll. Changes state to billboard
+		// ------------------------------------------------------------
+		vm.updateBillboardPoll = function() {
+			// Load currently selected poll as billboard poll
+			FAdmin.billboardPollIndex = vm.selectedPollIndex;
+			vm.billboardPoll 					= vm.pollList[vm.selectedPollIndex];
+			FAdmin.billboardPoll 			= vm.billboardPoll;
+
+			updateChartData();
 		}
 
 
@@ -89,8 +111,8 @@
 		// Sets billboardPoll as selected poll. Changes state to billboard
 		// ------------------------------------------------------------
 		vm.setBillboardPoll = function() {
-			// Load currently selected poll as billboard poll
-			FAdmin.billboardPoll = vm.selectedPoll;
+			vm.updateBillboardPoll();
+
 			// Go to billboard view (fullscreen)
 			$state.go('billboard');
 		}
@@ -104,7 +126,7 @@
 		vm.toggleIsActive = function() {
 			try {
 				// Send isActive toggle request to server
-				let promise = FApi.toggleIsActive(vm.selectedPoll._id)
+				let promise = FApi.toggleIsActive(vm.pollList[vm.selectedPollIndex]._id)
 
 				// Upon successful return...
 				promise.then(response => {
@@ -125,48 +147,6 @@
 		} 
 
 
-
-		// ------------------------------------------------------------
-		// Name: loadBillboardChart
-		// Loads billboard chart with data and options
-		// ------------------------------------------------------------
-		const loadBillboardChart = function() {
-			var data = {
-			    labels: ["January", "February", "March", "April", "May", "June", "July"],
-			    datasets: [
-			        {
-			            label: "My First dataset",
-			            backgroundColor: [
-			                'rgba(255, 99, 132, 0.2)',
-			                'rgba(54, 162, 235, 0.2)',
-			                'rgba(255, 206, 86, 0.2)',
-			                'rgba(75, 192, 192, 0.2)',
-			                'rgba(153, 102, 255, 0.2)',
-			                'rgba(255, 159, 64, 0.2)'
-			            ],
-			            borderColor: [
-			                'rgba(255,99,132,1)',
-			                'rgba(54, 162, 235, 1)',
-			                'rgba(255, 206, 86, 1)',
-			                'rgba(75, 192, 192, 1)',
-			                'rgba(153, 102, 255, 1)',
-			                'rgba(255, 159, 64, 1)'
-			            ],
-			            borderWidth: 1,
-			            data: [65, 59, 80, 81, 56, 55, 40],
-			        }
-			    ]
-			};
-
-
-			var myBarChart = new Chart($resultsChart, {
-			    type: 'horizontalBar',
-			    data: data,
-			    // options: options
-			});
-		}
-
-
 		// Get live results of user votes
 		socket.on('getLiveResults', (data) => {
 			// Data returned?
@@ -175,9 +155,12 @@
       	// Yes, load data into pollList
       	vm.pollList = data.data;
 
-      	// selectedPoll set?					No, load defaults
-      	if(vm.selectedPoll == null) { vm.setSelectedPoll(vm.pollList[0]) };
+      	// selectedPoll set?							 No, load defaults
+      	if(vm.selectedPollIndex == null) { vm.setSelectedPoll(vm.pollList[0]) };
       	
+      	vm.updateBillboardPoll();
+      	updateChartData();
+
       	// Reload view
       	$scope.$digest();
 
@@ -187,7 +170,45 @@
       }
     });
 
-		// loadBillboardChart();
+
+		const updateChartData = function() {
+			let billboardOptions = vm.billboardPoll._pollOptions.map(option => option.pollOption);
+			let billboardResults = vm.billboardPoll._pollOptions.map(option => option.pollOptionSelectCount);
+
+	    var data = {
+	    labels: billboardOptions,
+	    datasets: [
+	        {
+	          backgroundColor: [
+	              'rgba(255, 99, 132, 0.2)',
+	              'rgba(54, 162, 235, 0.2)',
+	              'rgba(255, 206, 86, 0.2)',
+	              'rgba(75, 192, 192, 0.2)',
+	              'rgba(153, 102, 255, 0.2)',
+	              'rgba(255, 159, 64, 0.2)'
+	          ],
+	          borderColor: [
+	              'rgba(255,99,132,1)',
+	              'rgba(54, 162, 235, 1)',
+	              'rgba(255, 206, 86, 1)',
+	              'rgba(75, 192, 192, 1)',
+	              'rgba(153, 102, 255, 1)',
+	              'rgba(255, 159, 64, 1)'
+	          ],
+	          borderWidth: 1,
+	          data: billboardResults,
+	        }
+	    	]
+			};
+
+			var myBarChart = new Chart($pollResultChart, {
+		    type: 'horizontalBar',
+		    data: data,
+		    options: {
+		    	responsive: true
+		    }
+		});
+		}
 		
 
 	})

@@ -6,11 +6,12 @@
 
 	angular.module('app').factory('FAdmin', function ($http) {
 
-		var billboardPoll = void 0;
+		var billboardPollIndex = void 0,
+		    billboardPoll = void 0;
 
 		return {
+			billboardPollIndex: billboardPollIndex,
 			billboardPoll: billboardPoll
-
 		};
 	});
 })();
