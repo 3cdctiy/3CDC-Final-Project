@@ -22,7 +22,7 @@
 
     var socialSetUserUpdate = function socialSetUserUpdate() {
       if ($auth.isAuthenticated()) {
-        var promise = FApi.getUserUpdateStatus();
+        var promise = FApi.getUserDetails();
         promise.then(function (response) {
           var user = response.data;
           var userID = response.data._id;

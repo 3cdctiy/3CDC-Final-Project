@@ -20,6 +20,59 @@
 
 
 		// ------------------------------------------------------------
+		// Name: denyEntry
+		// User is not administrator... deal with them!
+		// ------------------------------------------------------------
+		const denyEntry = function() {
+			// Deny thy entry!!!
+    	$state.go('landing');
+    	toastr.error('You must be an administrator to access this page!');
+		}
+
+
+
+		// ------------------------------------------------------------
+		// Name: adminCheck
+		// Verify the user is an administrator
+		// ------------------------------------------------------------
+		const adminCheck = function() {
+			try {	
+				if($auth.isAuthenticated()) {
+					let promise = FApi.getUserDetails();
+
+					// Upon successful return...
+		      promise.then(response => {
+		        let user 		= response.data,
+		        		isAdmin = false;
+
+		        // Is user administrator?
+		        if(!user.isAdministrator) {
+		        	denyEntry();
+		        } else {
+		        	$('#adminCheck').hide();
+		        }
+		      })
+	      	// Upon unsuccessful return...
+					promise.catch((error) => {
+						// Throw error
+						throw new Error(error);
+					})
+				} else {
+					denyEntry();
+				}
+			} catch(error) {
+				toastr.error(error.message, error.name);
+			}
+		}
+
+
+
+		// Very user is admin before moving forward
+		adminCheck();
+
+
+
+		// ------------------------------------------------------------
 		// Name: setSelectedPoll
 		// Sets selected and isActivePoll boolean. Called on sidebar select
 		// ------------------------------------------------------------
@@ -121,7 +174,7 @@
 
       	// Yes, load data into pollList
       	vm.pollList = data.data;
-      	
+
       	// selectedPoll set?					No, load defaults
       	if(vm.selectedPoll == null) { vm.setSelectedPoll(vm.pollList[0]) };
       	

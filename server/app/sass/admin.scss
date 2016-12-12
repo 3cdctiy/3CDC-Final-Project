@@ -1,6 +1,23 @@
 @import '_variables';
 
+.admin-check {
+	width: 100vw;
+	height: 100vh;
+	overflow: hidden;
+	position: fixed;
+	top: 0;
+	left: 0;
+	background-color: lighten(black, 20);
+	color: darken(white, 20);
+	text-align: center;
+	z-index: 99999;
 
+	.admin-check-content {
+		position: relative;
+		top: 50%;
+		transform: translateY(-50%);
+	}
+}
 
 .no-padding {
 	padding: 0;

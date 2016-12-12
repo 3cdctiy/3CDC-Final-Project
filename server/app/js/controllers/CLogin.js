@@ -25,7 +25,7 @@
 
   	const socialSetUserUpdate = function() {
   		if ($auth.isAuthenticated()) {
-	      let promise = FApi.getUserUpdateStatus();
+	      let promise = FApi.getUserDetails();
 	      promise.then(response => {
 	        let user = response.data;
 	        let userID = response.data._id;

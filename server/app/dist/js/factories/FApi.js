@@ -31,10 +31,10 @@
 		};
 
 		// ------------------------------------------------------------
-		// Name: getUserUpdateStatus
+		// Name: getUserDetails
 		// desc...
 		// ------------------------------------------------------------
-		var getUserUpdateStatus = function getUserUpdateStatus() {
+		var getUserDetails = function getUserDetails() {
 			var call = $http({
 				method: 'GET',
 				url: domain + 'api/me/'
@@ -72,7 +72,7 @@
 
 		return {
 			getAllPolls: getAllPolls,
-			getUserUpdateStatus: getUserUpdateStatus,
+			getUserDetails: getUserDetails,
 			setGetUpdates: setGetUpdates,
 			toggleIsActive: toggleIsActive,
 			getAllActive: getAllActive

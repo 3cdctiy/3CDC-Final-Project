@@ -39,10 +39,10 @@
 
 
 			// ------------------------------------------------------------
-			// Name: getUserUpdateStatus
+			// Name: getUserDetails
 			// desc...
 			// ------------------------------------------------------------
-			const getUserUpdateStatus = function()
+			const getUserDetails = function()
 			{
 				let call = $http({
 					method: 'GET',
@@ -90,7 +90,7 @@
 
 			return {
 				getAllPolls,
-				getUserUpdateStatus,
+				getUserDetails,
 				setGetUpdates,
 				toggleIsActive,
 				getAllActive,

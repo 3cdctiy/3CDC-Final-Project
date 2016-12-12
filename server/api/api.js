@@ -143,7 +143,7 @@ exports.newPollVote = (data => {
   console.log(data);
 
   PollOption
-    .findById(data.optionId)
+    .findById(data.userId)
     .exec((err, option) => {
       // if (err) return err;
 
