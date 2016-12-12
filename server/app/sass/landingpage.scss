@@ -1,3 +1,12 @@
+// --------------------------------------------------
+// Mixins
+// --------------------------------------------------
+@mixin clearAfter() {
+  content:"";
+    display:table;
+    clear:both;
+}
+
 /* GLOBAL STYLES */
 
 @import '_variables.scss';
@@ -10,9 +19,44 @@ body {
   color: white;
   background-image: url("/images/shutterstock_315631490_large.jpg");
   background-repeat: no-repeat;
-  background-size: content;
+  // background-size: cover;
   background-position: top center;
   background-color: white;
+}
+
+.toggle-wrap {
+  width: 100%;
+  text-align: center;
+  background-color: $color-primary2;
+  color: darken(white, 10);
+  text-transform: uppercase;
+
+  .login-toggle {
+    background-image: linear-gradient(to left, $color-primary3 0%, $color-primary3 100%);
+    background-size: 50% auto;
+    background-position: left;
+    background-repeat: repeat-y;
+    transition: all 0.6s ease;
+
+    &:after {
+      @include clearAfter();
+    }
+
+    &.active {
+      background-position: right;
+    }
+
+    .toggle-tab {
+      width: 50%;
+      padding: 10px 0;
+      float: left;
+      cursor: pointer;
+    }
+
+    .active {
+      color: white;
+    }
+  }
 }
 
 .no-margin {
@@ -103,7 +147,7 @@ body {
   position: relative;
   top: -165px;
   padding: 15px 0 5px;
-  margin: -16px 60px 320px;
+  margin: -16px 60px 175px;
 }
 
 .social-info-content {
@@ -177,6 +221,7 @@ button {
 
 .signup-button {
   margin-top: 15px;
+  margin-bottom: 20px;
 }
 
 .tiy-white {
