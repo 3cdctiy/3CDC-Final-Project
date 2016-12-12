@@ -12,6 +12,7 @@
 	overflow: hidden;
 
 	.sidebar {
+		background-color: rgba(black, 0.02);
 
 		.poll-list {
 			list-style: none;
@@ -22,10 +23,15 @@
 			li {
 				padding-top: 20px;
 				padding-bottom: 20px;
+				border-bottom: 1px solid rgba(black, 0.04);
+
+				&:last-child {
+					border-bottom: none;
+				}
 
 				&:hover,
 				&.active {
-					background-color: rgba(black, 0.04);
+					background-color: rgba(black, 0.06);
 				}
 
 				.question-header,
@@ -46,7 +52,9 @@
 		padding-right: 40px;
 
 		.control-panel {
-			padding: 8px 0 20px;
+			padding: 8px 0 10px;
+			border-bottom: 1px solid rgba(black, 0.04);
+			margin-bottom: 10px;
 
 			.btn-billboard {
 				margin-top: 20px;
