@@ -17,6 +17,7 @@
 		vm.billboardPoll = FAdmin.billboardPoll;
 		vm.isActivePoll = false;
 		vm.voteTotal = 0;
+		vm.connections = 0;
 
 
 
@@ -78,15 +79,10 @@
 		// Sets selected and isActivePoll boolean. Called on sidebar select
 		// ------------------------------------------------------------
 		vm.setSelectedPoll = function(poll) {
-			if(!poll) { 
-				console.log('overriding poll')
-				poll = vm.pollList[0] 
-			};
+			if(!poll) { poll = vm.pollList[0] };
 
 			// Load variables with select poll states.
 			let index = vm.pollList.indexOf(poll);
-
-			console.log(poll.isActiveQuestion)
 
 			// Update local and factory stored data
 			vm.billboardPollIndex 		= index;
@@ -94,6 +90,7 @@
 			vm.isActivePoll 					= poll.isActiveQuestion;
 			FAdmin.billboardPollIndex = vm.billboardPollIndex;
 
+			// Update chart data
 			updateChartData();
 		}
 
@@ -111,6 +108,14 @@
 		}
 
 
+		socket.on('connections', (data) => {
+      if(data.data) {
+      	vm.connections = data.data;
+      	$scope.$digest();
+      }
+    });
+
+
 		// Get live results of user votes
 		socket.on('getLiveResults', (data) => {
 
@@ -120,18 +125,8 @@
       	// Yes, load data into pollList
       	vm.pollList = data.data;
 
-      	// selectedPoll set?
-      	if(vm.billboardPollIndex == null || vm.billboardPollIndex == undefined) { 
-
-      		// No, load defaults
-      		vm.setSelectedPoll(FAdmin.billboardPollIndex);
-
-      	} else {
-
-      		// Set billboardPoll with fresh data at index stored in FAdmin
-      		vm.setSelectedPoll(vm.pollList[FAdmin.billboardPollIndex]);
-
-      	}
+    		// Set billboardPoll with fresh data at index stored in FAdmin
+    		vm.setSelectedPoll(vm.pollList[FAdmin.billboardPollIndex]);
 
       	// Update the chart data
       	updateChartData();
