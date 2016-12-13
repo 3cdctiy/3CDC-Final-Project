@@ -58,11 +58,14 @@
 				<div class="row">
 					<div class="col s12">
 						<div class="billboard-content">
-							<h4>{{ controller.selectedPoll.pollQuestion }}</h4>
-							<p ng-repeat="option in controller.selectedPoll._pollOptions">
-								{{ option.pollOption }}
-							</p>
-							<div ng-controller="BarCtrl as bar">
+							<h4 class="poll-question">{{ controller.billboardPoll.pollQuestion }}</h4>
+							<div ng-repeat="option in controller.billboardPoll._pollOptions" class="option">
+								<p class="option-text">{{ option.pollOption }}</p>
+								<p class="option-percentage"></p>
+								<div id="{{'option' + option.pollOptionSortOrder}}" class="option-bg"></div>
+							</div>
+							<p class="total-reporting">Total Votes: {{ controller.voteTotal }}</p>
+							<div>
 								<canvas id="pollResultChart"></canvas>
 							</div>
 						</div>

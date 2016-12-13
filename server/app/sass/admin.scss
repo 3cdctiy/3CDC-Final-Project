@@ -43,7 +43,7 @@
 
 		.poll-list {
 			list-style: none;
-			max-height: 100vh;
+			height: 100vh;
 			overflow-x: hidden;
 			overflow-y: scroll;
 			margin-top: 0;
@@ -65,6 +65,10 @@
 				.question-header,
 				.question {
 					margin: 0;
+				}
+
+				.question-header {
+					font-size: 18px;
 				}
 
 				.question {
@@ -101,6 +105,66 @@
 				margin-top: 20px;
 				float: right;
 			}
+		}
+
+		.poll-question {
+			font-size: 24px;
+		}
+
+		.option {
+			width: 100%;
+			padding: 10px 0;
+			background-color: rgba(black, 0.1);
+			margin-bottom: 5px;
+			position: relative;
+
+			&:after {
+				content: '';
+				display: table;
+				clear: both;
+			}
+
+			p {
+				margin: 0;
+			}
+
+			.option-text {
+				width: 90%;
+				padding-left: 15px;
+				float: left;
+				position: relative;
+				z-index: 10;
+			}
+
+			.option-percentage {
+				width: 10%;
+				text-align: right;
+				padding-right: 15px;
+				float: right;
+				position: relative;
+				z-index: 10;
+			}
+
+			.option-bg {
+				width: 0px;
+				height: 100%;
+				background-color: rgba($color-primary2, 1);
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+			// .option-bg {
+			// 	width: 0px;
+			// 	height: 8px;
+			// 	background-color: $color-primary2;
+			// 	position: absolute;
+			// 	bottom: 0;
+			// 	left: 0;
+			// }
+		}
+
+		.total-reporting {
+			text-align: right;
 		}
 	}
 
