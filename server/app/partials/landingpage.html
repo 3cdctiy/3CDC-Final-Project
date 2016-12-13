@@ -1,15 +1,5 @@
 <link rel="stylesheet" href="dist/css/landingpage.css">
 
-<div id="getUpdates" class="modal">
-  <div class="modal-content">
-    <h5>Do you want to get information on The Iron Yard?</h5>
-  </div>
-  <div class="modal-footer">
-    <a ng-click="controller.submitGetUpdates(false)"  class="modal-action modal-close waves-effect waves-green btn-flat">No thanks</a>
-    <a ng-click="controller.submitGetUpdates(true)" class="modal-action modal-close waves-effect waves-green btn-flat">Sign me up!</a>
-  </div>
-</div>
-
 <div class="landingpage-wrapper">
   <div class="row">
     <div class="background-image">
@@ -28,7 +18,7 @@
                 <div class="row">
                   <div class="col s12 m10 offset-m1">
                     <div class="event-info">
-                      <p>Sign up to use our app during the Huntington Bank New Year&rsquo;s Eve Blast on Fountain Square to engage in fun and games while ringing in the New Year. If you’d like to know more about The Iron Yard front-end web development graduates or our work, please join us on <a href="https://www.eventbrite.com/e/the-iron-yard-demo-day-tickets-28835784608?aff=demoday2" target="_blank" class="demo-day-link">Demo Day</a> to see what we’ve been up to.</p>
+                      <p>Sign up to use our app during the Huntington Bank New Year&rsquo;s Blast on Fountain Square to engage in fun and games while ringing in the New Year. If you’d like to know more about The Iron Yard front-end web development graduates or our work, please join us on <a href="https://www.eventbrite.com/e/the-iron-yard-demo-day-tickets-28835784608?aff=demoday2" target="_blank" class="demo-day-link">Demo Day</a> to see what we’ve been up to.</p>
                     </div>
                   </div>
                 </div>
@@ -50,30 +40,56 @@
                 </div>
               </div>
               <div class="social-info-content" ng-hide="controller.isLoggedIn()">
-                <p class="early-access">Sign up for EARLY ACCESS to our #NYE513 event application!</p>
+                <p class="early-access">Please sign up for access to our event application!</p>
                 <!-- Social Media Buttons -->
+                <!-- Facebook Sign in -->
                 <div class="col s12 m6">
                   <div class="social-logins">
                     <button ng-click="controller.authenticate('facebook')" class="btn waves-effect waves-light facebook button-border-radius"><i class="fa fa-facebook" aria-hidden="true"></i>Sign in with Facebook</button>
                   </div>
                 </div>
-                <!-- Facebook Sign in -->
+                <!-- Twitter Sign in -->
                 <div class="col s12 m6">
                   <div class="social-logins">
                     <button ng-click="controller.authenticate('twitter')" class="btn waves-effect waves-light twitter button-border-radius"><i class="fa fa-twitter" aria-hidden="true"></i>Sign in with Twitter</button>
                   </div>
                 </div>
-                <!-- Twitter Sign in -->
+                <!-- Get Updates from TIY -->
+                <div class="col s12">
+                  <p class="update-agreement">
+                    <input type="checkbox" id="updates" ng-model="controller.user.getUpdates" />
+                    <label for="updates">Yep! Keep me updated on all things The Iron Yard.</label>
+                  </p>
+                  <p class="email">Or signup/login using email below</p>
+                </div>
+                <!-- Signup / Login toggle -->
+                <div class="col s12">
+                  <div class="toggle-wrap">
+                    <ul class="login-toggle" ng-class="{'active': controller.showLogin}">
+                      <li class="toggle-tab" ng-click="controller.showLogin = false" ng-class="{'active': !controller.showLogin}">Sign Up</li>
+                      <li class="toggle-tab" ng-click="controller.showLogin = true" ng-class="{'active': controller.showLogin}">Login</li>
+                    </ul>
+                  </div>
+                </div>
                 <!-- Signup Form -->
-                <div class="col s12" ng-controller="CSignUp as signup">
-                  <form novalidate class="signup-form" name="signupForm" ng-submit="signup.signup(signupForm.$valid)">
-                    <p class="email">or signup using EMAIL below</p>
+                <div class="col s12" ng-show="!controller.showLogin">
+                  <form novalidate class="signup-form" name="signupForm" ng-submit="controller.signup(signupForm.$valid)">
                     <!-- Name -->
                     <div class="input-field">
-                      <input id="name" type="text" class="validate" name="name" ng-model="signup.user.displayName" ng-pattern="/^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u" ng-minlength="1" ng-maxlength="50" required>
+                      <input id="name" 
+                             type="text" 
+                             class="validate" 
+                             name="name" 
+                             ng-model="controller.user.displayName" 
+                             ng-pattern="/^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u" 
+                             ng-minlength="1" 
+                             ng-maxlength="50" 
+                             required>
                       <label for="name">Name</label>
                       <!-- Input Errors -->
-                      <div class="help-block" ng-messages="signupForm.name.$error" ng-if="signupForm.name.$touched">
+                      <div class="help-block" 
+                           ng-messages="signupForm.name.$error" 
+                           ng-if="signupForm.name.$touched">
                         <span class="input-error" ng-message="pattern">Invalid characters in name.</span>
                         <span class="input-error" ng-message="minlength">Name is too short.</span>
                         <span class="input-error" ng-message="maxlength">Name is too long.</span>
@@ -82,7 +98,15 @@
                     </div>
                     <!-- Email -->
                     <div class="input-field">
-                      <input id="email" type="email" class="validate" name="email" ng-model="signup.user.email" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" ng-minlength="5" ng-maxlength="50" required>
+                      <input id="email" 
+                             type="email" 
+                             class="validate" 
+                             name="email" 
+                             ng-model="controller.user.email" 
+                             ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" 
+                             ng-minlength="5" 
+                             ng-maxlength="50" 
+                             required>
                       <label for="email">Email</label>
                       <!-- Input Errors -->
                       <div class="help-block" ng-messages="signupForm.email.$error" ng-if="signupForm.email.$touched">
@@ -94,7 +118,14 @@
                     </div>
                     <!-- Password 1 -->
                     <div class="input-field">
-                      <input id="password" type="password" class="validate" name="password" ng-model="signup.user.password" ng-minlength="6" ng-maxlength="50" required>
+                      <input id="password" 
+                             type="password" 
+                             class="validate" 
+                             name="password" 
+                             ng-model="controller.user.password" 
+                             ng-minlength="6" 
+                             ng-maxlength="50" 
+                             required>
                       <label for="password">Password</label>
                       <!-- Input Errors -->
                       <div class="help-block" ng-messages="signupForm.password.$error" ng-if="signupForm.password.$touched">
@@ -105,27 +136,66 @@
                     </div>
                     <!-- Password 2 (Match Check) -->
                     <div class="input-field">
-                      <input password-match="signup.user.password" id="confirmPassword" type="password" class="validate" name="passwordMatch" ng-model="signup.confirmPassword" ng-minlength="6" ng-maxlength="50" required>
+                      <input password-match="controller.user.password" 
+                             id="confirmPassword" 
+                             type="password" 
+                             class="validate" 
+                             name="passwordMatch" 
+                             ng-model="controller.confirmPassword" 
+                             ng-minlength="6" 
+                             ng-maxlength="50" 
+                             required>
                       <label for="confirmPassword">Confirm Password</label>
                       <!-- Input Error -->
                       <span ng-show="!signupForm.passwordMatch.$valid && signupForm.passwordMatch.$dirty" class="input-error">Passwords must match</span>
                     </div>
-                    <div class="input-field">
-                      <p class="update-agreement">
-                        <input type="checkbox" id="updates" ng-model="signup.user.getUpdates" />
-                        <label for="updates">Yep! Keep me updated on all things The Iron Yard.</label>
-                      </p>
-                    </div>
                     <!-- Submit Button -->
                     <button class="btn waves-effect waves-light submit col s12 m6 offset-m3 button-border-radius signup-button" type="submit" name="action">
-                      <i class="fa fa-paper-plane-o" aria-hidden="true"></i> Submit
+                      <i class="fa fa-paper-plane-o" aria-hidden="true"></i> Signup
                     </button>
-                    <div class="tweet-us">
-                      <p>Tweet to us using #NYE513</p>
-                    </div>
                   </form>
                 </div>
                 <!-- /signupForm -->
+                <!-- Login Form -->
+                <div class="col s12" ng-show="controller.showLogin">
+                  <form novalidate class="login-form" name="loginForm" ng-submit="controller.login(loginForm.$valid, loginForm)">
+                    <!-- Email -->
+                    <div class="input-field">
+                      <input id="email" 
+                             type="email" 
+                             class="validate" 
+                             name="email"
+                             ng-model="controller.user.email"
+                             ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/"
+                             ng-minlength="5"
+                             ng-maxlength="50"
+                             required>
+                      <label for="email">Email</label>
+                      <span ng-show="!loginForm.email.$valid && loginForm.email.$dirty" class="input-error">Please enter a valid email</span>
+                    </div>
+                    <!-- Password -->
+                    <div class="input-field">
+                      <input id="password" 
+                             type="password" 
+                             class="validate" 
+                             name="password"
+                             ng-model="controller.user.password"
+                             ng-minlength="6"
+                             ng-maxlength="50"
+                             required>
+                      <label for="password">Password</label>
+                      <span ng-show="!loginForm.password.$valid && loginForm.password.$dirty" class="input-error">Password is invalid</span>
+                    </div>
+                    <!-- Submit Button -->
+                    <button class="btn waves-effect waves-light submit col s12 m6 offset-m3 button-border-radius signup-button" type="submit" name="action">
+                      <i class="fa fa-paper-plane-o" aria-hidden="true"></i> Login
+                    </button>
+                  </form>
+                </div>
+                <!-- /loginForm -->
+                <div class="tweet-us">
+                  <p>Tweet to us using #NYE513</p>
+                </div>
               </div>
             </div>
           </div>

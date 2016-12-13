@@ -13,10 +13,12 @@
 
     <div class="col s10 main-content">
       
-      <div class="container" ng-repeat="poll in controller.pollList">
-        <h4>{{ controller.openPollQuestion }}</h4>
-        <p>{{ option.pollOption }}</p>
-      </div>
+      <div class="billboard">
+          <h4>{{ controller.billboardPoll.pollQuestion }}</h4>
+          <p ng-repeat="option in controller.billboardPoll._pollOptions">
+            {{ option.pollOption }}
+          </p>
+        </div>
     </div>
 
   </div>

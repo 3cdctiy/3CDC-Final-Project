@@ -31,10 +31,10 @@
 		};
 
 		// ------------------------------------------------------------
-		// Name: getUserUpdateStatus
+		// Name: getUserDetails
 		// desc...
 		// ------------------------------------------------------------
-		var getUserUpdateStatus = function getUserUpdateStatus() {
+		var getUserDetails = function getUserDetails() {
 			var call = $http({
 				method: 'GET',
 				url: domain + 'api/me/'
@@ -59,10 +59,22 @@
 			return call;
 		};
 
+		var toggleIsActive = function toggleIsActive(data) {
+			var call = $http({
+				method: 'POST',
+				data: {
+					pollQuestionID: data
+				},
+				url: domain + 'api/poll/toggle' });
+
+			return call;
+		};
+
 		return {
 			getAllPolls: getAllPolls,
-			getUserUpdateStatus: getUserUpdateStatus,
+			getUserDetails: getUserDetails,
 			setGetUpdates: setGetUpdates,
+			toggleIsActive: toggleIsActive,
 			getAllActive: getAllActive
 		};
 	});

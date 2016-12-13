@@ -7,9 +7,13 @@
   .controller('CLogin', function($auth, $location, toastr, FFormUtilities, FApi) {
 
   	let vm = this;
-  	let userID;
 
   	vm.showLogin = false;
+
+  	vm.user = {
+      getUpdates: true,
+    }
+
 
   	// Initialize tabs
   	$('ul.tabs').tabs();
@@ -19,16 +23,15 @@
 
 
 
-  	const checkOpenModal = function() {
+  	const socialSetUserUpdate = function() {
   		if ($auth.isAuthenticated()) {
-	      let promise = FApi.getUserUpdateStatus();
+	      let promise = FApi.getUserDetails();
 	      promise.then(response => {
 	        let user = response.data;
-	        userID = response.data._id;
+	        let userID = response.data._id;
 
 	        if(!user.hasOwnProperty('isGettingUpdates')) {
-	          // Open getUpdates modal
-	          $('#getUpdates').modal('open');
+	          submitGetUpdates(userID, vm.user.getUpdates)
 	        }
 	      })
 	      promise.catch(error => {
@@ -36,6 +39,51 @@
 	      })
 	    }
   	}
+
+
+
+  	// ------------------------------------------------------------
+		// Name: submitGetUpdates
+		// Submits a user's answer on getting TIY updates
+		// ------------------------------------------------------------
+    const submitGetUpdates = function(userID, answer) {
+      
+      let data = {
+        userID: userID,
+        getUpdates: answer
+      }
+
+      let promise = FApi.setGetUpdates(data);
+      promise.then(response => {
+        console.log('setting successfully saved: ' + answer)
+      })
+      promise.catch(error => {
+        toastr.error(response.data.message);
+      })
+    }
+
+
+
+    // ------------------------------------------------------------
+    // Name: signup
+    // Client side signup form handling
+    // ------------------------------------------------------------
+    vm.signup = function(isValid) {
+      try {
+        if(!isValid) { throw new Error ('Please ensure all form fields are valid') }
+        $auth.signup(vm.user)
+        .then(function(response) {
+          $auth.setToken(response);
+          $location.path('/');
+          toastr.info('You have successfully created a new account and have been signed-in');
+        })
+        .catch(function(response) {
+          toastr.error(response.data.message);
+        });
+      } catch(error) {
+        toastr.error(error.message, error.name);
+      }
+    };
 
 
 
@@ -86,7 +134,7 @@
 	  vm.authenticate = function(provider) {
 	    $auth.authenticate(provider)
       .then(function() {
-      	checkOpenModal();
+      	socialSetUserUpdate();
         toastr.success('You have successfully signed in with ' + provider + '!');
         $location.path('/');
       })
@@ -102,30 +150,6 @@
         }
       });
 	  };
-
-
-
-	  // ------------------------------------------------------------
-		// Name: submitGetUpdates
-		// Submits a user's answer on getting TIY updates
-		// ------------------------------------------------------------
-    vm.submitGetUpdates = function(answer) {
-      
-      let data = {
-        userID: userID,
-        getUpdates: answer
-      }
-
-      let promise = FApi.setGetUpdates(data);
-      promise.then(response => {
-        console.log('setting successfully saved: ' + answer)
-      })
-      promise.catch(error => {
-        toastr.error(response.data.message);
-      })
-    }
-
-    checkOpenModal();
 
   });
 

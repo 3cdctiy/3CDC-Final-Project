@@ -39,10 +39,10 @@
 
 
 			// ------------------------------------------------------------
-			// Name: getUserUpdateStatus
+			// Name: getUserDetails
 			// desc...
 			// ------------------------------------------------------------
-			const getUserUpdateStatus = function()
+			const getUserDetails = function()
 			{
 				let call = $http({
 					method: 'GET',
@@ -72,12 +72,27 @@
 				return call;
 			}
 
+			const toggleIsActive = function(data)
+			{
+				let call = $http({
+					method: 'POST',
+					data: {
+						pollQuestionID: data
+					},
+					url: domain + `api/poll/toggle`,						// API Url
+				})
+
+				return call;
+			}
+
+
 
 
 			return {
 				getAllPolls,
-				getUserUpdateStatus,
+				getUserDetails,
 				setGetUpdates,
+				toggleIsActive,
 				getAllActive,
 			}
 

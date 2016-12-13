@@ -33,12 +33,13 @@
 			return deferred.promise;
 		}];
 
-		var loginRequired = ['$q', '$location', '$auth', function ($q, $location, $auth) {
+		var loginRequired = ['$q', '$location', '$auth', 'toastr', function ($q, $location, $auth, toastr) {
 			var deferred = $q.defer();
 			if ($auth.isAuthenticated()) {
 					deferred.resolve();
 			} else {
-					$location.path('/login');
+				toastr.error('You must be logged in to access this page!')
+				$location.path('/');
 			}
 				
 			return deferred.promise;
@@ -52,7 +53,10 @@
 			url: '/admin',
 			templateUrl: '../partials/admin.html',
 			controller: 'CAdmin',
-			controllerAs: 'controller'
+			controllerAs: 'controller',
+			resolve: {
+				loginRequired: loginRequired
+			}
 		})
 		.state('home', {
 			url: '/home',
@@ -84,7 +88,7 @@
 		.state('billboard', {
 			url: '/admin/billboard',
 			templateUrl: '../partials/billboard.html',
-			controller: 'CBillboard',
+			controller: 'CAdmin',
 			controllerAs: 'controller'
 		})
 
