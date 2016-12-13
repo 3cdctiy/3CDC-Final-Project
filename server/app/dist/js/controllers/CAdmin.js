@@ -161,7 +161,7 @@
 					};
 
 					// Load data into view
-					$option.width(average);
+					$option.width(average + '%');
 					$option.siblings('.option-percentage').text(average + '%');
 				});
 
