@@ -14,15 +14,26 @@ var userSchema = new Schema({
 		required: true
 	},
 	password: {
-		type: String,
-		required: true
+		type: String
 	},
 	displayName: {
 		type: String,
 		required: true
 	},
+	isCheckedIn: {
+		type: Boolean,
+		default: false
+	},
+	isAdministrator: {
+		type: Boolean,
+		default: false
+	},
+	isGettingUpdates: {
+		type: Boolean
+	},
 	facebook: String,
 	twitter: String,
+	_pollOptions: [{type: Schema.Types.ObjectId, ref: 'PollOption'}],
 });
 
 

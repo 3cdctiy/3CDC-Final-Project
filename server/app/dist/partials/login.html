@@ -41,7 +41,7 @@
 				    			 class="validate" 
 				    			 name="email"
 				    			 ng-model="signup.user.email"
-				    			 ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/"
+				    			 ng-pattern="^([0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$"
 				    			 ng-minlength="5"
 				    			 ng-maxlength="50"
 				    			 required>

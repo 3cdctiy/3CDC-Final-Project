@@ -1,54 +1,257 @@
+@import '_variables.scss';
+
+body{
+	background-color: lighten($color-background, 5%);
+
+	h1,h2,h3,h4,h5,p{
+		color: $color-text;
+	}
+
+}
+.topBlock{
+	background-color: $color-primary2;
+}
+
+.header{
+	background-color: $color-primary2;
+	margin: 0;
+	padding: 5px 0;
+}
+
 #clock, #currentQuestion{
 	text-align: center;
 }
 
 
 #clock{
-	margin-top: 1.8rem;
+	background-color: $color-primary2;
+	color: $color-text;
+	padding: 60px 0;
+	padding-top: 20px;
+
 	h4{
-		font-size: 1.5rem;
-		margin-bottom: 0;
+		font-size: 1.4rem;
+		margin-bottom: -12px;
+		letter-spacing: 3px;
+		color: $color-accent;
+		text-transform: uppercase;
 	}
 
-	h1{
-		font-size: 5rem;
-		margin-top: -20px;
+	.clock-components {
+    text-align: center;
+    font-size: 3.3rem;
+    margin-top: 20px;
+    width: 30%;
+    display: inline-block;
+}
+  .clock-unit-label {
+    font-size: 0.8rem;
+    letter-spacing: 5px;
+    font-weight: 400;
+    margin-right: -5px;
+  }
+  .clock-days {
+    border-right: 2px solid $color-primary3;
+    padding: 8px;
+    margin-bottom: 20px;
+    display: none;
+  }
+  .clock-hours {
+    border-right: 2px solid $color-primary3;
+    padding: 8px;
+    margin-bottom: 20px;
+  }
+  .clock-minutes {
+    border-right: 2px solid $color-primary3;
+    padding: 8px;
+    margin-bottom: 20px;
+  }
+  .clock-seconds {
+    padding: 8px;
+    margin-bottom: 20px;
+  }
+  .clock-divider {
+    vertical-align: text-bottom;
+  }
+
+	#social{
+		width: 80%;
+		margin-left: auto;
+		margin-right: auto;
+
+		i{
+			font-size: 1.2rem;
+			margin-right: 10px;
+		}
+
+		.twitter{
+			display: block;
+			width: 80%;
+			margin-bottom: 8px;
+			margin-right: auto;
+			margin-left: auto;
+			background-color: $color-twitter;
+			border-radius: 10px;
+		}
+
+		.facebook{
+			display: inline-block;
+			background-color: $color-facebook;
+			border-radius: 10px;
+		}
 	}
 }
 
 #currentQuestion{
+	margin-top: 40px;
+
+	h3{
+		font-size: 2.3rem;
+		letter-spacing: 3px;
+	}
+
 	h4{
 		font-size: 1.5rem;
+		letter-spacing: 3px;
+	}
+
+	h5{
+		font-size: 1.2rem;
 		margin-bottom: 2px;
+		font-weight: 300;
+	}
+
+	p{
+		font-weight: 300;
+		margin-bottom: -10px;
+		font-size: 0.8rem;
 	}
 
 	#countdown{
 		width: 100%;
-		height: 5px;
-		background-color: black;
+		height: 8px;
+		border-radius: 20px;
+		margin: 20px auto;
+		background-color: $color-link;
 	}
 
 	#answers{
-		margin: 14px auto;
-		width: 80%;
+		margin: 20px auto;
+		margin-bottom: 80px;
+		width: 90%;
 
-		.collection{
+		li{
+			display: block;
+			margin: 20px;
+			background-color: $color-primary2;
+			overflow: visible !important;
+			height: auto;
+			line-height: 1.4rem;
+			padding: 10px;
+			border-radius: 10px;
+
+			&:active{
+				background-color: $color-accent;
+
+				a{
+					color: $color-primary2;
+					font-weight: 500;
+				}
+			}
+
 			a{
-				text-align: left;
+				color: $color-text; 
 			}
 		}
 
-		#button{
-			float: left;
-		}
 	}
 }
 
 #previousQuestions{
 	margin-top: 2.5rem;
 
+	.collapsible{
+
+		.collapsible-header{
+			background-color: $color-background;
+			color: $color-text;
+
+			&:hover{
+				background-color: $color-link;
+			}
+			&:active{
+				background-color: darken($color-link, 5%);
+
+				p{
+					color: darken($color-text, 5%);
+				}
+			}
+		}
+
+		.collection{
+
+			.collection-item{
+			border: none;
+
+			}
+		}
+	}
+
 	h4{
 		font-size: 1.5rem;
 		text-align: center;
+	}
+}
+
+@media(min-width: 768px){
+	#clock{
+		margin-top: 1.8rem;
+
+		h4{
+			font-size: 3rem;
+		}
+
+		.clock-components{
+			font-size: 8rem;
+		}
+
+		.clock-unit-label{
+			font-size: 2rem;
+		}
+
+		#social{
+			width: 50%;
+
+			a{
+				font-size: 1.4rem;
+				padding: 5px 15px;
+				height: auto !important;
+
+				i{
+					font-size: 1.4rem;
+				}
+			}
+		}
+	}
+
+	#currentQuestion{
+		h3{
+			font-size: 3.4rem;
+		}
+
+		h4{
+			font-size: 2.4rem;
+		}
+
+		h5{
+			font-size: 1.6rem;
+		}
+
+		#answers{
+			li{
+				font-size: 1.4rem;
+				padding: 15px;
+			}
+		}
 	}
 }

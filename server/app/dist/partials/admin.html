@@ -1,0 +1,52 @@
+<link rel="stylesheet" type="text/css" href="dist/css/admin.css">
+
+<div class="admin-viewport">
+
+	<div class="row">
+
+    <div class="col s3 sidebar no-padding">
+      <ul class="poll-list">
+      	<li ng-repeat="poll in controller.pollList" ng-click="controller.setSelectedPoll(poll)" class="replace-col-padding">
+      		<h5 class="question-header">Poll {{ poll.pollQuestionSortOrder }}</h5>
+      		<p class="question">{{ poll.pollQuestion }}</p>
+      	</li>
+      </ul>
+    </div>
+
+    <div class="col s9 main-content">
+    	<div class="control-panel">
+				<div class="row">
+					<div class="col s12 m6">
+						<div class="switch">
+							<h5>Toggle poll for users</h5>
+					    <label>
+					      Inactive
+					      <input type="checkbox">
+					      <span class="lever"></span>
+					      Active
+					    </label>
+					  </div>
+					</div>
+					<div class="col s12 m6">
+					  <div class="switch">
+							<h5>Toggle poll for billboard</h5>
+					    <label>
+					      Inactive
+					      <input type="checkbox" ng-checked="controller.isBillboardPoll">
+					      <span class="lever"></span>
+					      Active
+					    </label>
+					  </div>
+					</div>
+				</div>
+				<div class="billboard">
+					<h4>{{ controller.selectedPoll.pollQuestion }}</h4>
+					<p ng-repeat="option in controller.selectedPoll._pollOptions">
+						{{ option.pollOption }}
+					</p>
+				</div>
+			</div>
+    </div>
+
+  </div>
+</div>

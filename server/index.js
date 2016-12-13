@@ -22,7 +22,9 @@ app.set('view engine','html');
 
 app.use(express.static(path.join(__dirname,'app')))
 
-var User = require('./models/user');
+const User          = require('./models/user');
+const PollQuestion  = require('./models/pollQuestion');
+const PollOption    = require('./models/pollOption');
 
 app.use(cors());
 
@@ -38,6 +40,63 @@ mongoose.connect(process.env.MONGO_URL);
 
 
 // ------------------------------------------------------------
+// ------------------------------------------------------------
+//
+// POLL API
+//
+// ------------------------------------------------------------
+// ------------------------------------------------------------
+const API = require('./api/api');
+
+// ------------------------------------------------------------
+// GET: /api/polls
+// Returns all poll questions
+// ------------------------------------------------------------
+app.get('/api/polls', API.getAll);
+
+
+
+// ------------------------------------------------------------
+// GET: /api/polls/active
+// Returns all active poll questions
+// ------------------------------------------------------------
+app.get('/api/polls/active', API.getAllActive);
+
+
+
+// ------------------------------------------------------------
+// POST: /api/poll
+// Adds a new question and it's options to the database
+// ------------------------------------------------------------
+app.post('/api/poll', API.postQuestion);
+
+
+
+// ------------------------------------------------------------
+// POST: /api/poll/vote
+// Increments an options vote count by 1
+// ------------------------------------------------------------
+app.post('/api/poll/vote', API.voteQuestion);
+
+
+
+// ------------------------------------------------------------
+// POST: /api/poll/toggle
+// Toggles a question's isActiveQuestion state
+// ------------------------------------------------------------
+app.post('/api/poll/toggle', API.toggleIsActive);
+
+
+
+// ------------------------------------------------------------
+// ------------------------------------------------------------
+//
+// AUTHENTICATION
+//
+// ------------------------------------------------------------
+// ------------------------------------------------------------
+
+// ------------------------------------------------------------
 // Name: ensureAuthenticated
 // Middleware that ensures a user is logged in to progress
 // ------------------------------------------------------------
@@ -49,7 +108,7 @@ function ensureAuthenticated(req, res, next) {
 
   var payload = null;
   try {
-    payload = jwt.decode(token, config.TOKEN_SECRET);
+    payload = jwt.decode(token, process.env.TOKEN_SECRET);
   }
   catch (err) {
     return res.status(401).send({ message: err.message });
@@ -91,8 +150,6 @@ app.get('/api/me', ensureAuthenticated, function(req, res) {
 
 
 
-
-
 // ------------------------------------------------------------
 // PUT: /api/me
 // Updates logged in user's details
@@ -109,6 +166,34 @@ app.put('/api/me', ensureAuthenticated, function(req, res) {
     });
   });
 });
+
+
+
+// ------------------------------------------------------------
+// POST: /api/me/setGetUpdates
+// Updates user status for isGettingUpdates
+// ------------------------------------------------------------
+app.post('/api/me/setGetUpdates', ensureAuthenticated, function(req, res) {
+
+  User
+  .findById(req.body.userID)
+  .exec((err, user) => {
+    console.log(req.body.userID);
+    console.log(user);
+    console.log(req.body.isGettingUpdates);
+    user.isGettingUpdates = req.body.isGettingUpdates;
+
+    // Initiate save to database
+    user.save(function(err,response){
+      if (err) {
+        res.send({error:err});
+        return;
+      };
+
+      res.send({success:"Thank you for signing up!"})
+    });
+  })
+})
 
 
 
@@ -138,20 +223,34 @@ app.post('/auth/login', function(req, res) {
 // ------------------------------------------------------------
 app.post('/auth/signup', function(req, res) {
   User.findOne({ email: req.body.email }, function(err, existingUser) {
+    // Does user already exist?
     if (existingUser) {
+      // Let user know email is already used
       return res.status(409).send({ message: 'Email is already taken' });
     }
 
+    // Build uesr
     var user = new User({
       displayName: req.body.displayName,
       email: req.body.email,
-      password: req.body.password
+      password: req.body.password,
+      isCheckedIn: false,
+      isAdministrator: false,
+      isGettingUpdates: req.body.getUpdates,
     });
 
+    // Was no password saved?
+    if(!user.password) {
+      // Let user know password is required
+      return res.status(401).send({ message: 'A password is required' });
+    }
+
+    // Save user
     user.save(function(err, result) {
       if (err) {
         res.status(500).send({ message: err.message });
       }
+      // Send user their token
       res.send({ token: createJWT(result) });
     });
   });
@@ -188,23 +287,27 @@ app.post('/auth/facebook', function(req, res) {
 
       if (req.header('Authorization')) {
         // Step 3a. Link user accounts.
-        User.findOne({ email: req.body.email }, function(err, existingUser) {
+        User.findOne({ email: profile.email }, function(err, existingUser) {
           if (existingUser) {
             return res.status(409).send({ message: 'There is already a Facebook account that belongs to you' });
           }
 
           var token = req.header('Authorization').split(' ')[1];
-          var payload = jwt.decode(token, config.TOKEN_SECRET);
+          var payload = jwt.decode(token, process.env.TOKEN_SECRET);
 
           User.findById(payload.sub, function(err, user) {
             if (!user) {
               return res.status(400).send({ message: 'User not found' });
             }
 
-            user.displayName = profile.name;          
-            user.email       = profile.email;
-            user.facebook    = profile.id;
-            user.save(function() {
+            user.displayName      = profile.name;          
+            user.email            = profile.email;
+            user.facebook         = profile.id;
+            user.save(function(err) {
+              if (err) {
+                res.status(500).send({ message: err.message });
+                return false;
+              }
               var token = createJWT(user);
               res.send({ token: token });
             });
@@ -212,18 +315,24 @@ app.post('/auth/facebook', function(req, res) {
         });
       } else {
         // Step 3b. Create a new user account or return an existing one.
-        User.findOne({ email: req.body.email }, function(err, existingUser) {
+        User.findOne({ email: profile.email }, function(err, existingUser) {
           if (existingUser) {
             var token = createJWT(existingUser);
             return res.send({ token: token });
           }
           
-          var user          = new User();
-          user.displayName  = profile.name;          
-          user.email        = profile.email;
-          user.facebook     = profile.id;
+          var user              = new User();
+          user.displayName      = profile.name;          
+          user.email            = profile.email;
+          user.facebook         = profile.id;
+          user.isCheckedIn      = false;
+          user.isAdministrator  = false;
 
-          user.save(function() {
+          user.save(function(err) {
+            if (err) {
+              res.status(500).send({ message: err.message });
+              return false;
+            }
             var token = createJWT(user);
             res.send({ token: token });
           });
@@ -288,13 +397,13 @@ app.post('/auth/twitter', function(req, res) {
 
         // Step 5a. Link user accounts.
         if (req.header('Authorization')) {
-          User.findOne({ email: req.body.email }, function(err, existingUser) {
+          User.findOne({ email: profile.email }, function(err, existingUser) {
             if (existingUser) {
               return res.status(409).send({ message: 'There is already a Twitter account that belongs to you' });
             }
 
             var token = req.header('Authorization').split(' ')[1];
-            var payload = jwt.decode(token, config.TOKEN_SECRET);
+            var payload = jwt.decode(token, process.env.TOKEN_SECRET);
 
             User.findById(payload.sub, function(err, user) {
               if (!user) {
@@ -305,22 +414,34 @@ app.post('/auth/twitter', function(req, res) {
               user.email        = profile.email;
               user.displayName  = profile.name;
               user.save(function(err) {
+                if (err) {
+                  res.status(500).send({ message: err.message });
+                  return false;
+                }
                 res.send({ token: createJWT(user) });
               });
             });
           });
         } else {
           // Step 5b. Create a new user account or return an existing one.
-          User.findOne({ email: req.body.email }, function(err, existingUser) {
+          User.findOne({ email: profile.email }, function(err, existingUser) {
             if (existingUser) {
               return res.send({ token: createJWT(existingUser) });
             }
 
-            var user          = new User();
-            user.twitter      = profile.id;
-            user.email        = profile.email;
-            user.displayName  = profile.name;
-            user.save(function() {
+            var user              = new User();
+            user.twitter          = profile.id;
+            user.email            = profile.email;
+            user.displayName      = profile.name;
+            user.isCheckedIn      = false;
+            user.isAdministrator  = false;
+
+            user.save(function(err) {
+              if (err) {
+                res.status(500).send({ message: err.message });
+                return false;
+              }
+
               res.send({ token: createJWT(user) });
             });
           });
@@ -329,6 +450,8 @@ app.post('/auth/twitter', function(req, res) {
     });
   }
 });
+
+app.get('/polls')
 
 
 app.get('/', function(req, res) {
