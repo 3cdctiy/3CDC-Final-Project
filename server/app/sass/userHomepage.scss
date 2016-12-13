@@ -1,7 +1,7 @@
 @import '_variables.scss';
 
 body{
-	background-color: lighten($color-background, 5%);
+	background-color: $color-background;
 
 	h1,h2,h3,h4,h5,p{
 		color: $color-text;

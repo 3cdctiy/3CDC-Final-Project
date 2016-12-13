@@ -2,39 +2,60 @@
 
 // general text colors
 body{
-	background-color: #141414;
+	background-color: $color-background;
 
-	h1, h2, h3, h5, p{
+	h1, h2, h3, h4, h5, p{
 		color: #f7f7f7;
+		line-height: 1.4em;
+	}
+
+	p{
+		font-size: 1.6rem;
 	}
 
 	h2{
 		text-align: center;
 		font-weight: 300;
+		color: $color-accent;
+		text-transform: uppercase;
+		letter-spacing: 5px;
 	}
 
 	h4{
-		color: $color-link;
 		font-weight: 300;
-	}
-
-	a{
-		color: $color-link;
-
-		&:hover{
-			color: $color-link-hover;
-			text-decoration: none;
-		}
+		text-align: center;
 	}
 }
 // general text colors
 
 // layout styles
+#projectDescription{
+	padding-bottom: 80px;
+	border-bottom: 2px solid $color-primary1;
+	margin-bottom: 80px;
+}
+
 .person{
 
 	.description{
-		a{
-			margin-right: 30px;
+		text-align: center;
+
+		p{
+			font-weight: 300;
+		}
+
+		.links{
+			margin-bottom: 80px;
+
+			a{
+				color: $color-primary3;
+				font-weight: 500;
+				font-size: 1.4rem;
+
+				&:hover{
+					color: lighten($color-primary3, 25%);
+				}
+			}
 		}
 	}
 
@@ -43,10 +64,9 @@ body{
 		background-position: center;
 		height: 18rem;
 		padding: 1.2rem;
+		margin-left: 15%;
+		margin-right: 15%;
 		// border-radius: 5px;
-		position: relative;
-		top: 50%;
-		transform: translateY(28%);
 
   	}
 }
@@ -62,7 +82,6 @@ body{
 .john{
 	.headshot{
 		background-image: url('../images/john.jpg');
-		float: right;
 	}
 }
 
@@ -75,7 +94,6 @@ body{
 .michael{
 	.headshot{
 		background-image: url('../images/michael.jpg');
-		float: right;
 	}
 }
 // links headshot images
@@ -88,31 +106,30 @@ body{
 
 	.person{
 		padding: 20px 0;
+
 		.headshot{
-			text-align: center;
-			top: 0;
-			transform: translateY(0);
+			margin-left: 15%;
+			margin-right: 15%;
 		}
 
 		.description{
 			text-align: center;
 
+			p{
+				font-size: 1.2rem;
+				font-weight: 300;
+			}
+
 			.links{
 				margin: 10px auto;
+				margin-bottom: 80px;
 
 				a{
-					margin: 20px;
+					text-align: center;
 				}
 			}
 		}
 	}
 
-	// Centers headshots
-	.michael, .john{
-		.headshot{
-			float: none;
-		}
-	}
-	// Centers headshots
 }
 // layout styling on screen less than 600px

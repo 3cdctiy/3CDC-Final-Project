@@ -13,7 +13,7 @@ $color-twitter: #55acee;
 $color-link: #0abab5;
 $color-link-hover: lighten($color-link, 20%);
 
-$color-background: #141414;
+$color-background: lighten(#141414, 5%);
 $color-text: #f7f7f7;
 
 // 3CDC Color Theme
