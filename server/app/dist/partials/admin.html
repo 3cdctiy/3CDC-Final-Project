@@ -27,7 +27,7 @@
       <ul class="poll-list">
       	<li ng-repeat="poll in controller.pollList" 
       			ng-click="controller.setSelectedPoll(poll)" 
-      			ng-class="{'active': poll._id === controller.selectedPoll._id}"
+      			ng-class="{'active': poll._id === controller.billboardPoll._id}"
       			class="replace-col-padding">
       		<h5 class="question-header">Poll {{ poll.pollQuestionSortOrder }}</h5>
       		<p class="question">{{ poll.pollQuestion }}</p>
