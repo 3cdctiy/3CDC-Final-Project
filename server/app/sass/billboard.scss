@@ -1,5 +1,7 @@
 @import '_variables';
 
+* { box-sizing: border-box; }
+
 .no-padding {
   padding: 0;
 }
@@ -12,7 +14,7 @@
   overflow: hidden;
 }
 
-.sidebar {
+.billboard-sidebar {
   width: 25%;
   height: 100vh;
   background-color: rgba(black, 0.6);
@@ -21,12 +23,137 @@
   background-position: center;
   float: left;
   overflow: hidden;
+  position:relative;
+
+  .sidebar-content {
+    position: absolute;
+    bottom: 0;
+
+    .block1 {
+      width: 100%;
+      padding: 30px 20px;
+      background-color: rgba($color-primary3, 0.82);
+      margin-top: 20vh;
+
+      .fsq-logo {
+        width: 30%;
+        min-width: 60px;
+        display: block;
+        margin: 0 auto 20px;
+      }
+
+      .nye-logo {
+        width: 68%;
+        min-width: 100px;
+        display: block;
+        margin: 0 auto;
+      }
+    }
+
+    .block2 {
+      width: 100%;
+      padding: 40px 20px;
+      background-color: $color-primary2;
+
+      .countdown-title {
+        text-align: center;
+        font-size: 1vw;
+        text-transform: uppercase;
+        color: #CFDB00;
+        font-weight: 700;
+        letter-spacing: 5px;
+        margin: 0 0 6px;
+      }
+
+      .clock-container {
+
+        &:after {
+          content: '';
+          display: table;
+          clear: both;
+        }
+      }
+
+      .clock-components {
+        width: 33.334%;
+        text-align: center;
+        font-size: 3vw;
+        margin-top: 10px;
+        float: left;
+      }
+
+      .clock-days {
+        display: none;
+      }
+
+      .clock-unit-label {
+        font-size: 0.6vw;
+        letter-spacing: 2px;
+        font-weight: 400;
+        margin-top: -10px;
+      }
+
+      .clock-days,
+      .clock-hours,
+      .clock-minutes,
+      .clock-seconds {
+        font-weight: 500;
+        color: white;
+        border-right: 2px solid $color-primary3;
+        padding: 8px;
+
+        &:first-child,
+        &:last-child {
+          border-right: none;
+        }
+      }
+
+      .clock-divider {
+        vertical-align: text-bottom;
+      }
+    }
+
+    .block3 {
+      width: 100%;
+      padding: 30px 20px 20px;
+      background-color: white;
+
+      .huntington-logo {
+        width: 14vw;
+        display: block;
+        margin: 0 auto 16px;
+      }
+
+      .row2 {
+        display: inline-block;
+        position:relative;
+        left:50%;
+        transform: translateX(-50%);
+
+        .tiy-logo,
+        .threecdc-logo {
+          width: 6.5vw;
+          margin: 0px 10px;
+          text-align: center;
+          vertical-align: top;
+        }
+
+        .tiy-logo {
+          width: 5vw;
+        }
+
+        .threecdc-logo {
+          margin-top: 1vw;
+        }
+      }
+    }
+  }
 }
 
 .billboard {
   width: 75%;
   height: 100vh;
-  padding: 40px;
+  padding: 40px 80px;
   float: left;
   overflow: hidden;
   position: relative;
@@ -42,6 +169,7 @@
 
     .option {
       width: 100%;
+      font-size: 1.4vw;
       padding: 1.2vw 0;
       background-color: rgba(white, 0.06);
       margin-bottom: 1vw;
@@ -96,6 +224,7 @@
 
   .total-reporting {
     text-align: right;
+    font-size: 1vw;
   }
 }
 
