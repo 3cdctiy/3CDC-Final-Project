@@ -227,7 +227,7 @@
 			try {
 
 				// Send isActive toggle request to server
-				let promise = FApi.toggleIsActive(vm.pollList[vm.selectedPollIndex]._id)
+				let promise = FApi.toggleIsActive(vm.pollList[vm.billboardPollIndex]._id)
 
 				// Upon successful return...
 				promise.then(response => {

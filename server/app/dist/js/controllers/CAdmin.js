@@ -213,7 +213,7 @@
 			try {
 
 				// Send isActive toggle request to server
-				var promise = FApi.toggleIsActive(vm.pollList[vm.selectedPollIndex]._id);
+				var promise = FApi.toggleIsActive(vm.pollList[vm.billboardPollIndex]._id);
 
 				// Upon successful return...
 				promise.then(function (response) {

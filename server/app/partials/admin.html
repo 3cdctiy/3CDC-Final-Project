@@ -1,3 +1,4 @@
+<link rel="stylesheet" type="text/css" href="dist/css/billboard.css">
 <link rel="stylesheet" type="text/css" href="dist/css/admin.css">
 
 <div class="admin-viewport">
@@ -56,21 +57,17 @@
 				</div>
 			</div>
 			<div class="billboard">
-				<div class="row">
-					<div class="col s12">
-						<div class="billboard-content">
-							<h4 class="poll-question">{{ controller.billboardPoll.pollQuestion }}</h4>
-							<div ng-repeat="option in controller.billboardPoll._pollOptions" class="option">
-								<p class="option-text">{{ option.pollOption }}</p>
-								<p class="option-percentage"></p>
-								<div id="{{'option' + option.pollOptionSortOrder}}" class="option-bg"></div>
-							</div>
-							<p class="total-reporting">Total Votes: {{ controller.voteTotal }}</p>
-							<div>
-								<canvas id="pollResultChart"></canvas>
-							</div>
-						</div>
+				<div class="billboard-content">
+						<h4 class="poll-question">{{ controller.billboardPoll.pollQuestion }}</h4>
+					<div ng-repeat="option in controller.billboardPoll._pollOptions" class="option">
+						<p class="option-text">{{ option.pollOption }}</p>
+						<p class="option-percentage"></p>
+						<div id="{{'option' + option.pollOptionSortOrder}}" class="option-bg"></div>
 					</div>
+					<p class="total-reporting">Total Votes: {{ controller.voteTotal }}</p>
+					<!-- <div>
+						<canvas id="pollResultChart"></canvas>
+					</div> -->
 				</div>
 			</div>
     </div>
