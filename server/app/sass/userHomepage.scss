@@ -12,8 +12,12 @@ body{
 	background-color: $color-primary2;
 }
 
+.no-margin {
+	margin: 0;
+}
+
 .header{
-	background-color: $color-primary3;
+	background-color: $color-accent;
 	height: 60px;
 	width: 100%;
 	position: fixed;
@@ -242,7 +246,8 @@ body{
 }
 
 #previousQuestions{
-	margin-top: 2.5rem;
+	background-color: $color-primary3;
+	padding: 2.5rem 0;
 
 	.collapsible{
 
@@ -251,10 +256,10 @@ body{
 			color: $color-text;
 
 			&:hover{
-				background-color: $color-primary2;
+				background-color: $color-primary3;
 			}
 			&.active{
-				background-color: darken($color-primary2, 5%);
+				background-color: darken($color-primary3, 5%);
 
 				p{
 					color: darken($color-text, 5%);
