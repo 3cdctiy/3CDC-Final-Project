@@ -1,34 +1,57 @@
 <link rel="stylesheet" type="text/css" href="dist/css/userHomepage.css">
 
+<div class="topBlock">
+
+<!-- header -->
+<div class="header z-depth-3">
+	<div class="row">
+
+		<ul class="headerList right-align">
+			<li class="valign-wrapper"><a href="#/about">About Us</a></li>
+			<li class="valign-wrapper">
+				<div ng-controller="CLogout as logout">
+					<p ng-click="logout.logout()">Logout</p>
+				</div>
+			</li>
+		</ul>
+	</div>
+</div>
+<!-- header -->
+
+	<!-- countdown clock -->
+	<div id='clock' class='col s12'>
+		<h4>Countdown to 2017</h4>
+		<clocklanding></clocklanding>
+
+		<div id="social">
+			<a class="waves-effect waves-light btn twitter"><i class="fa fa-twitter"></i>Tweet #nye513</a>
+			<a class="waves-effect waves-light btn facebook"><i class="fa fa-thumbs-up"></i>Like</a>
+			<a class="waves-effect waves-light btn facebook"><i class="fa fa-facebook"></i>Share</a>
+		</div>
+
+	</div>
+	<!-- countdown clock -->
+</div>
+
 <div class="container">
 	<div class="row">
 
-
-		<div class="col s12">
-			<div ng-controller="CLogout as logout">
-				<p ng-click="logout.logout()">Logout</p>
-			</div>
-		</div>
-
-		<!-- countdown clock -->
-		<div id='clock' class='col s12'>
-			<h4>Countdown to 2017</h4>
-			<clock></clock>
-		</div>
-		<!-- countdown clock -->
-
 		<!-- current question -->
 		<div id='currentQuestion' class="col s12">
+			<h3>NEW YEAR'S BLAST</h3>
+
 			<div ng-repeat="poll in controller.openPolls">
-		      		<h4>{{poll.pollQuestion}}</h4>
-		      		<p>(tap one to vote)</p>
-		      		<div id='answers'>
-						<ul class="collection z-depth-1">
-							<li ng-click="controller.vote(poll._id,option._id)" class="collection-item" ng-repeat="option in poll._pollOptions">
-								<a>{{option.pollOption}}</a>
-							</li>
-						</ul>
-					</div>
+				<h4>Poll Question {{poll.pollQuestionSortOrder}}</h4>
+	      		<h5>{{poll.pollQuestion}}</h5>
+
+	      		<div id='answers'>
+					<ul>
+						<li ng-click="controller.vote(poll._id,option._id)" class="btn" ng-repeat="option in poll._pollOptions">
+							<a>{{option.pollOption}}</a>
+						</li>
+					</ul>
+				</div>
+
 	    	</div>
 		</div>
 		<!-- current question -->
@@ -44,8 +67,8 @@
 	                </div>
                 </li>
 			</ul>
-			
 		</div>
+		<!-- previous questions -->
 
 
 	</div>

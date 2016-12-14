@@ -1,52 +1,74 @@
 <link rel="stylesheet" type="text/css" href="dist/css/about.css">
 
+<!-- header -->
+<div class="header z-depth-3">
+	<div class="row">
+
+		<ul class="headerList right-align">
+			<li class="valign-wrapper"><a href="#/home">Home</a></li>
+			<li class="valign-wrapper">
+				<div ng-controller="CLogout as logout">
+					<p ng-click="logout.logout()">Logout</p>
+				</div>
+			</li>
+		</ul>
+	</div>
+</div>
+<!-- header -->
+
 <div class="container">
 	<h2>About Us</h2>
 
-	<div class="row person tom">
-		<div class="headshot col m4 s8 offset-s2"></div>
-		<div class="description col m7 offset-m1 s12">
-			<h4>Tom Gobich</h4>
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin nisl augue, tempor a lacus quis, fringilla hendrerit massa. Nunc faucibus risus ligula, in fermentum urna sollicitudin ac. Proin in justo ut tellus suscipit tristique eget quis augue. Etiam at ornare quam, et vulputate tellus. Etiam placerat congue nisi, at sagittis tortor vehicula in. Integer venenatis lobortis metus, sed pretium augue bibendum sodales. Aliquam interdum quis lectus non ultricies. Fusce interdum porttitor nulla, sit amet feugiat orci congue eu. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean mattis mattis urna eget commodo. Vestibulum nec nibh.</p>
-			<div class="links">
-				<a href="#">Link to Porfolio</a>
-				<a href="https://github.com/tomgobich">Link to GitHub</a>
+	<h4 id="projectDescription">Sign up to use our app during the Huntington Bank New Year’s Blast on Fountain Square to engage in fun and games while ringing in the New Year. This application was developed by The Iron Yard Front-End Web Development graduates of Cohort 2. If you’d like to know more about The Iron Yard front-end web development graduates or our work, please join us on Demo Day. Available for hire January 2017.</h4>
+
+	<div class="row">
+		<div class="person tom col s12 m6">
+			<div class="headshot"></div>
+			<div class="description">
+				<h4>Tom Gobich</h4>
+				<p>Tom is a Front-end Developer and a graduate from The Iron Yard. Aside from being a Front-end Developer, Tom also has educational experience with design and back-end technologies. He is a lover of technology (especially smartphones), a Sudoku guru, frequent Battlefielder, and continuous learner.</p>
+				<div class="links row">
+					<a class="col s6" href="#">Link to Porfolio</a>
+					<a class="col s6" href="https://github.com/tomgobich">Link to GitHub</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="person john col s12 m6">
+			<div class="headshot"></div>
+			<div class="description">
+				<h4>John Patterson</h4>
+				<p>John was born and raised in Cincinnati, OH.  He has a passion for technology and his passion lead him to The Iron Yard to pursue a career in technology.  He is currently looking to put that passion to work with a great company.  John also enjoys music, sports, and hanging with his wife and new baby girl.</p>
+				<div class="links row">
+					<a class="col s6" href="#">Link to Porfolio</a>
+					<a class="col s6" href="https://github.com/johncpatterson">Link to GitHub</a>
+				</div>
 			</div>
 		</div>
 	</div>
 
-	<div class="row person john">
-		<div class="headshot col m4 s8 offset-s2"></div>
-		<div class="description col m7 s12">
-			<h4>John Patterson</h4>
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin nisl augue, tempor a lacus quis, fringilla hendrerit massa. Nunc faucibus risus ligula, in fermentum urna sollicitudin ac. Proin in justo ut tellus suscipit tristique eget quis augue. Etiam at ornare quam, et vulputate tellus. Etiam placerat congue nisi, at sagittis tortor vehicula in. Integer venenatis lobortis metus, sed pretium augue bibendum sodales. Aliquam interdum quis lectus non ultricies. Fusce interdum porttitor nulla, sit amet feugiat orci congue eu. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean mattis mattis urna eget commodo. Vestibulum nec nibh.</p>
-			<div class="links">
-				<a href="#">Link to Porfolio</a>
-				<a href="https://github.com/johncpatterson">Link to GitHub</a>
+	<div class="row">
+		<div class="person kristie  col s12 m6">
+			<div class="headshot"></div>
+			<div class="description">
+				<h4>Kristie Bedgood</h4>
+				<p>Kristie Bedgood was born and raised in Mt. Healthy (H-Town! Go Owls!). She believes in the idea that “creative” is on a spectrum and she has a large range of it covered – in confetti (she is a self-proclaimed professional fan girl). Kristie is a designer and boasts over 20 years graphic design experience with a focus on CPG (consumer packaging goods) and the Beauty Care industries. As a recent graduate of The Iron Yard, her new coding skills in front-end web development brings her a step closer to transforming into the much sought after industry unicorn.</p>
+				<div class="links row">
+					<a class="col s6" href="#">Link to Porfolio</a>
+					<a class="col s6" href="https://github.com/KBedgood">Link to GitHub</a>
+				</div>
 			</div>
 		</div>
-	</div>
 
-	<div class="row person kristie">
-		<div class="headshot col m4 s8 offset-s2"></div>
-		<div class="description col m7 offset-m1 s12">
-			<h4>Kristie Bedgood</h4>
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin nisl augue, tempor a lacus quis, fringilla hendrerit massa. Nunc faucibus risus ligula, in fermentum urna sollicitudin ac. Proin in justo ut tellus suscipit tristique eget quis augue. Etiam at ornare quam, et vulputate tellus. Etiam placerat congue nisi, at sagittis tortor vehicula in. Integer venenatis lobortis metus, sed pretium augue bibendum sodales. Aliquam interdum quis lectus non ultricies. Fusce interdum porttitor nulla, sit amet feugiat orci congue eu. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean mattis mattis urna eget commodo. Vestibulum nec nibh.</p>
-			<div class="links">
-				<a href="#">Link to Porfolio</a>
-				<a href="https://github.com/KBedgood">Link to GitHub</a>
-			</div>
-		</div>
-	</div>
-
-	<div class="row person michael">
-		<div class="headshot col m4 s8 offset-s2"></div>
-		<div class="description col m7 s12">
-			<h4>Michael Savoia</h4>
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin nisl augue, tempor a lacus quis, fringilla hendrerit massa. Nunc faucibus risus ligula, in fermentum urna sollicitudin ac. Proin in justo ut tellus suscipit tristique eget quis augue. Etiam at ornare quam, et vulputate tellus. Etiam placerat congue nisi, at sagittis tortor vehicula in. Integer venenatis lobortis metus, sed pretium augue bibendum sodales. Aliquam interdum quis lectus non ultricies. Fusce interdum porttitor nulla, sit amet feugiat orci congue eu. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean mattis mattis urna eget commodo. Vestibulum nec nibh.</p>
-			<div class="links">
-				<a href="#">Link to Porfolio</a>
-				<a href="https://github.com/MichaelSavoia">Link to GitHub</a>
+		<div class="person michael col s12 m6">
+			<div class="headshot"></div>
+			<div class="description">
+				<h4>Michael Savoia</h4>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin nisl augue, tempor a lacus quis, fringilla hendrerit massa. Nunc faucibus risus ligula, in fermentum urna sollicitudin ac. Proin in justo ut tellus suscipit tristique eget quis augue. Etiam at ornare quam, et vulputate tellus. Etiam placerat congue nisi, at sagittis tortor vehicula in. Integer venenatis lobortis metus, sed pretium augue bibendum sodales. Aliquam interdum quis lectus non ultricies. Fusce interdum porttitor nulla, sit amet feugiat orci congue eu. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean mattis mattis urna eget commodo. Vestibulum nec nibh.</p>
+				<div class="links row">
+					<a class="col s6" href="#">Link to Porfolio</a>
+					<a class="col s6" href="https://github.com/MichaelSavoia">Link to GitHub</a>
+				</div>
 			</div>
 		</div>
 	</div>

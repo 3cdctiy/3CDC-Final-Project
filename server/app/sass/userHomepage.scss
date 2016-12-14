@@ -7,11 +7,33 @@ body{
 		color: $color-text;
 	}
 
-	a{
-		color: $color-link;
+}
+.topBlock{
+	background-color: $color-primary2;
+}
 
-		&:hover{
-			color: $color-link-hover;
+.header{
+	background-color: $color-primary3;
+	height: 60px;
+	width: 100%;
+	position: fixed;
+	top: 0;
+	color: white;
+	z-index: 999999;
+
+	.headerList{
+		margin-right: 20px;
+		margin-top: 0;
+		li{
+			font-size: 1.2rem;
+			text-transform: uppercase;
+			color: $color-text;
+			display: inline-block;
+			margin-left: 40px;
+			letter-spacing: 3px;
+			a{
+				color: $color-text;
+			}
 		}
 	}
 }
@@ -22,26 +44,107 @@ body{
 
 
 #clock{
-	margin-top: 1.8rem;
+	background-color: $color-primary2;
+	color: $color-text;
+	padding: 60px 0;
+	padding-top: 100px;
 
 	h4{
-		font-size: 1.6rem;
-		margin-bottom: 0;
+		font-size: 1.4rem;
+		margin-bottom: -12px;
+		letter-spacing: 3px;
+		color: $color-accent;
+		text-transform: uppercase;
 	}
 
-	#clockdiv{
-		color: $color-link;
-		font-weight: 300;
-		font-size: 4rem;
+	.clock-components {
+    text-align: center;
+    font-size: 3.3rem;
+    margin-top: 20px;
+    width: 30%;
+    display: inline-block;
+}
+  .clock-unit-label {
+    font-size: 0.8rem;
+    letter-spacing: 5px;
+    font-weight: 400;
+    margin-right: -5px;
+  }
+  .clock-days {
+    border-right: 2px solid $color-primary3;
+    padding: 8px;
+    margin-bottom: 20px;
+    display: none;
+  }
+  .clock-hours {
+    border-right: 2px solid $color-primary3;
+    padding: 8px;
+    margin-bottom: 20px;
+  }
+  .clock-minutes {
+    border-right: 2px solid $color-primary3;
+    padding: 8px;
+    margin-bottom: 20px;
+  }
+  .clock-seconds {
+    padding: 8px;
+    margin-bottom: 20px;
+  }
+  .clock-divider {
+    vertical-align: text-bottom;
+  }
+
+	#social{
+		width: 80%;
+		margin-left: auto;
+		margin-right: auto;
+
+		i{
+			font-size: 1.2rem;
+			margin-right: 10px;
+		}
+
+		.twitter{
+			display: block;
+			width: 80%;
+			margin-bottom: 8px;
+			margin-right: auto;
+			margin-left: auto;
+			background-color: $color-twitter;
+			border-radius: 10px;
+		}
+
+		.facebook{
+			display: inline-block;
+			background-color: $color-facebook;
+			border-radius: 10px;
+		}
 	}
 }
 
 #currentQuestion{
 	margin-top: 40px;
 
+	h3{
+		font-size: 2.3rem;
+		letter-spacing: 3px;
+	}
+
 	h4{
-		font-size: 1.4rem;
+		font-size: 1.5rem;
+		letter-spacing: 3px;
+	}
+
+	h5{
+		font-size: 1.2rem;
 		margin-bottom: 2px;
+		font-weight: 300;
+	}
+
+	p{
+		font-weight: 300;
+		margin-bottom: -10px;
+		font-size: 0.8rem;
 	}
 
 	#countdown{
@@ -55,47 +158,32 @@ body{
 	#answers{
 		margin: 20px auto;
 		margin-bottom: 80px;
-		width: 80%;
+		width: 90%;
 
-		.collection{
-			
-			.collection-item{
-				background-color: $color-background;
-				border: none;
-					&:hover{
-						background-color: $color-link;
-					}
-					&:active{
-						background-color: darken($color-link, 10%);
-
-						a{
-							color: darken($color-text, 10%);
-						}
-					}
-
-			}
-
-			li{
-				text-align: left;
-
-				a{
-					color: $color-text;
-				}
-			}
-		}
-
-		#button{
-			background-color: $color-link;
+		li{
 			display: block;
-
-			&:hover{
-				background-color: lighten($color-link, 10%)
-			}
+			margin: 20px;
+			background-color: $color-primary2;
+			overflow: visible !important;
+			height: auto;
+			line-height: 1.4rem;
+			padding: 10px;
+			border-radius: 10px;
 
 			&:active{
-				background-color: darken($color-link, 10%)
+				background-color: $color-accent;
+
+				a{
+					color: $color-primary2;
+					font-weight: 500;
+				}
+			}
+
+			a{
+				color: $color-text; 
 			}
 		}
+
 	}
 }
 
@@ -135,19 +223,55 @@ body{
 	}
 }
 
-@media(min-width: 800px){
+@media(min-width: 700px){
 	#clock{
-		margin-top: 1.8rem;
+		padding-top: 100px;
 
 		h4{
-			font-size: 1.6rem;
-			margin-bottom: -30px;
+			font-size: 3rem;
 		}
 
-		#clockdiv{
-			color: $color-link;
-			font-weight: 300;
-			font-size: 10rem;
+		.clock-components{
+			font-size: 8rem;
+		}
+
+		.clock-unit-label{
+			font-size: 2rem;
+		}
+
+		#social{
+			width: 50%;
+
+			a{
+				font-size: 1.4rem;
+				padding: 5px 15px;
+				height: auto !important;
+
+				i{
+					font-size: 1.4rem;
+				}
+			}
+		}
+	}
+
+	#currentQuestion{
+		h3{
+			font-size: 3.4rem;
+		}
+
+		h4{
+			font-size: 2.4rem;
+		}
+
+		h5{
+			font-size: 1.6rem;
+		}
+
+		#answers{
+			li{
+				font-size: 1.4rem;
+				padding: 15px;
+			}
 		}
 	}
 }
