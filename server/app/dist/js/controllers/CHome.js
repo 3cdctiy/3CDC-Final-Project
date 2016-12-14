@@ -95,8 +95,24 @@
     // Name: vote
     // New vote sent to server using poll ID and option (answer) ID
     // ------------------------------------------------------------
-    vm.vote = function (pollId, optionId) {
+    vm.vote = function (pollId, optionId, option) {
+      alert("TES");
+
       socket.emit('newPollVote', { userId: userId, pollId: pollId, optionId: optionId });
+
+      if (option.isSelected) {
+        option.isSelected = false;
+      } else {
+        option.isSelected = true;
+      }
+    };
+
+    vm.toggleClass = function (poll) {
+      if (poll.isSelected) {
+        poll.isSelected = false;
+      } else {
+        poll.isSelected = true;
+      }
     };
 
     // vm.openPoll = function(poll) {

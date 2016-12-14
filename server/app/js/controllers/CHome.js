@@ -12,8 +12,7 @@
       $('.collapsible').collapsible();
 
       // initialize carousel
-      $('.carousel.carousel-slider').carousel({ full_width: true });
-
+      $('.carousel.carousel-slider').carousel({full_width: true});
 
       let vm = this;
       let userId = $auth.getPayload().sub; // Using payload to get user id
@@ -104,8 +103,33 @@
       // Name: vote
       // New vote sent to server using poll ID and option (answer) ID
       // ------------------------------------------------------------
-      vm.vote = function(pollId, optionId) {
+      vm.vote = function(pollId, optionId, option) {
+         alert("TES");
+
         socket.emit('newPollVote', { userId, pollId, optionId });
+
+
+        if(option.isSelected)
+        {
+          option.isSelected = false;
+        }
+        else
+        {
+          option.isSelected = true;
+        }
+
+      }
+
+      vm.toggleClass = function(poll)
+      {
+        if(poll.isSelected)
+        {
+          poll.isSelected = false;
+        }
+        else
+        {
+          poll.isSelected = true;
+        }
       }
 
 
