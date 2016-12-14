@@ -406,6 +406,18 @@ h5.address {
 
 /* MEDIA QUERIES */
 
+@media screen and (min-width: 1380px) {
+  body {
+    background-size: cover;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .landingpage-wrapper {
+    margin-bottom: -4%;
+  }
+}
+
 
 /* MEDIA QUERIES : Materialize Breakpoint Desktop Devices 
 > 992px */

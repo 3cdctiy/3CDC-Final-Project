@@ -39,14 +39,16 @@
                 </div>
               </div>
               <div class="social-info-content" ng-hide="controller.isLoggedIn()">
-                <p class="early-access">Please sign up for access to our event application – or – signup using EMAIL below.</p>
+                <div class="col s12">
+                  <p class="early-access">Please sign up for access to our event application – or – signup using EMAIL below.</p>
 
-                <div class="tiy-white"><img src="/images/TIIY-Logo-500px-white.png" alt=""></div>
-                <p class="update-agreement">
-                  <!-- Get Updates from TIY -->
-                  <input type="checkbox" id="updates" ng-model="controller.user.getUpdates" />
-                  <label for="updates">Yep! Keep me updated on all things The Iron Yard.</label>
-                </p>
+                  <div class="tiy-white"><img src="/images/TIIY-Logo-500px-white.png" alt=""></div>
+                  <p class="update-agreement">
+                    <!-- Get Updates from TIY -->
+                    <input type="checkbox" id="updates" ng-model="controller.user.getUpdates" />
+                    <label for="updates">Get information about The Iron Yard.</label>
+                  </p>
+                </div>
 
                 <!-- Social Media Buttons -->
                 <!-- Facebook Sign in -->
