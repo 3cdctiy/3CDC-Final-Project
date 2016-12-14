@@ -134,10 +134,23 @@ body{
 @media (max-width: 600px){
 	h2{
 		text-align: center;
+		font-size: 2rem;
+	}
+
+	h4{
+		font-size: 1.2rem;
+	}
+
+	.container{
+		margin-top: 20px;
 	}
 
 	.person{
 		padding: 20px 0;
+
+		h4{
+			font-size: 1.8rem;
+		}
 
 		.headshot{
 			margin-left: 15%;
@@ -158,6 +171,7 @@ body{
 
 				a{
 					text-align: center;
+					font-size: 1rem;
 				}
 			}
 		}
