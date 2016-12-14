@@ -22,16 +22,6 @@ exports.getAll = ((req, res) => {
 
 
 // ------------------------------------------------------------
-// Name: getAllVotedOn
-// Returns all poll questions the user voted on
-// ------------------------------------------------------------
-exports.getAllVotedOn = ((req, res) => {
-  
-})
-
-
-
-// ------------------------------------------------------------
 // Name: getAllActive
 // Returns all active poll questions
 // ------------------------------------------------------------

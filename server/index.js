@@ -59,7 +59,7 @@ function getAllPollInfo(io) {
     .populate('_pollOptions')
     .sort({ pollQuestionSortOrder: 1 })
     .exec((err, response) => {
-      if (err) { io.emit(data.userId, { error: err }) };
+      if (err) { io.emit('getLiveResults', { error: err }) };
       io.emit('getLiveResults', { data: response });
     })
 }

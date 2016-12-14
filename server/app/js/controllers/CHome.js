@@ -23,13 +23,58 @@
       vm.pollResults = [];
 
 
+
+      // ------------------------------------------------------------
+			// Name: updateChartData
+			// Updates the data used to measure chart option vote percentage
+			// ------------------------------------------------------------
+			vm.updateChartData = function(poll) {
+
+				// Ensure our jQuery divs are ready to go
+				$(document).ready(() => {
+
+					// Reset vote total
+					let voteTotal = 0;
+
+					// Get vote total to calculate average
+					poll._pollOptions.forEach(option => {
+						voteTotal += option.pollOptionSelectCount;
+					})
+
+					// Perform calculations on this go around
+					poll._pollOptions.forEach(option => {
+						
+						// Capture option's div
+						let $option = $('#question' + poll.pollQuestionSortOrder + 'option' + option.pollOptionSortOrder);
+
+						// Calculate average for option
+						let average = ((option.pollOptionSelectCount / voteTotal) * 100).toFixed(2);
+
+						// If there are no votes default all averages to 0
+						if(voteTotal < 1) { average = 0 };
+
+						// Load data into view
+						$option.width(average + '%');
+						$option.siblings('.option-percentage').text(average + '%');
+					})
+
+					// Update vote total
+					vm.voteTotal = voteTotal;
+
+					// Reload view
+	      	$scope.$digest();
+				})
+			}
+
+
+
       // Get live results of user votes
       socket.on('getLiveResults', (data) => {
       	// Data returned?
         if(data.data) {
 
         	// Yes, collect data
-        	vm.pollResults = data.data;
+        	filterPollResults(data.data);
         	
         	// Reload view
         	$scope.$digest();
@@ -66,8 +111,6 @@
               })
 
               vm.selectedPoll = vm.pollList[0];
-
-              console.log(vm.pollList)
             })
             .catch((error) => {
               throw new Error(error);
@@ -89,8 +132,6 @@
               })
 
               vm.selectedPoll = vm.pollList[0];
-
-              console.log(vm.openPolls)
             })
             .catch((error) => {
               throw new Error(error);
@@ -106,6 +147,36 @@
       // ------------------------------------------------------------
       vm.vote = function(pollId, optionId) {
         socket.emit('newPollVote', { userId, pollId, optionId });
+      }
+
+
+
+      const filterPollResults = function(data) {
+      	let promise = FApi.getUserDetails();
+
+    		// Upon successful return...
+	      promise.then(response => {
+	        let user 		= response.data;
+					let userPollOptions = user._pollOptions;
+					let userQuestions = [];
+
+					data.forEach(pollQuestion => {
+						pollQuestion._pollOptions.forEach(pollOption => {
+							userPollOptions.forEach(userOption => {
+								if(pollOption._id === userOption) {
+									userQuestions.push(pollQuestion);
+								}
+							})
+						})
+					})
+
+					vm.pollResults = userQuestions;
+	      })
+      	// Upon unsuccessful return...
+				promise.catch((error) => {
+					// Throw error
+					toastr.error(error);
+				})
       }
 
 

@@ -187,6 +187,60 @@ body{
 	}
 }
 
+.option {
+  width: 100%;
+  font-size: 14px;
+  padding: 5px 0;
+  background-color: rgba(white, 0.06);
+  margin-bottom: 5px;
+  position: relative;
+
+  &:after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+
+  &:last-child {
+  	margin-bottom: 0;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  .option-text,
+  .option-percentage {
+  	padding: 4px 0;
+  }
+
+  .option-text {
+    width: 75%;
+    padding-left: 15px;
+    float: left;
+    position: relative;
+    z-index: 10;
+  }
+
+  .option-percentage {
+    width: 25%;
+    text-align: right;
+    padding-right: 15px;
+    float: right;
+    position: relative;
+    z-index: 10;
+  }
+
+  .option-bg {
+    width: 0px;
+    height: 4px;
+    background-color: rgba($color-accent, 0.8);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+}
+
 #previousQuestions{
 	margin-top: 2.5rem;
 
@@ -197,10 +251,10 @@ body{
 			color: $color-text;
 
 			&:hover{
-				background-color: $color-link;
+				background-color: $color-primary2;
 			}
-			&:active{
-				background-color: darken($color-link, 5%);
+			&.active{
+				background-color: darken($color-primary2, 5%);
 
 				p{
 					color: darken($color-text, 5%);

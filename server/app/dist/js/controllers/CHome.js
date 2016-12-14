@@ -21,13 +21,57 @@
     vm.openPolls = [];
     vm.pollResults = [];
 
+    // ------------------------------------------------------------
+    // Name: updateChartData
+    // Updates the data used to measure chart option vote percentage
+    // ------------------------------------------------------------
+    vm.updateChartData = function (poll) {
+
+      // Ensure our jQuery divs are ready to go
+      $(document).ready(function () {
+
+        // Reset vote total
+        var voteTotal = 0;
+
+        // Get vote total to calculate average
+        poll._pollOptions.forEach(function (option) {
+          voteTotal += option.pollOptionSelectCount;
+        });
+
+        // Perform calculations on this go around
+        poll._pollOptions.forEach(function (option) {
+
+          // Capture option's div
+          var $option = $('#question' + poll.pollQuestionSortOrder + 'option' + option.pollOptionSortOrder);
+
+          // Calculate average for option
+          var average = (option.pollOptionSelectCount / voteTotal * 100).toFixed(2);
+
+          // If there are no votes default all averages to 0
+          if (voteTotal < 1) {
+            average = 0;
+          };
+
+          // Load data into view
+          $option.width(average + '%');
+          $option.siblings('.option-percentage').text(average + '%');
+        });
+
+        // Update vote total
+        vm.voteTotal = voteTotal;
+
+        // Reload view
+        $scope.$digest();
+      });
+    };
+
     // Get live results of user votes
     socket.on('getLiveResults', function (data) {
       // Data returned?
       if (data.data) {
 
         // Yes, collect data
-        vm.pollResults = data.data;
+        filterPollResults(data.data);
 
         // Reload view
         $scope.$digest();
@@ -60,8 +104,6 @@
           });
 
           vm.selectedPoll = vm.pollList[0];
-
-          console.log(vm.pollList);
         }).catch(function (error) {
           throw new Error(error);
         });
@@ -81,8 +123,6 @@
           });
 
           vm.selectedPoll = vm.pollList[0];
-
-          console.log(vm.openPolls);
         }).catch(function (error) {
           throw new Error(error);
         });
@@ -97,6 +137,34 @@
     // ------------------------------------------------------------
     vm.vote = function (pollId, optionId) {
       socket.emit('newPollVote', { userId: userId, pollId: pollId, optionId: optionId });
+    };
+
+    var filterPollResults = function filterPollResults(data) {
+      var promise = FApi.getUserDetails();
+
+      // Upon successful return...
+      promise.then(function (response) {
+        var user = response.data;
+        var userPollOptions = user._pollOptions;
+        var userQuestions = [];
+
+        data.forEach(function (pollQuestion) {
+          pollQuestion._pollOptions.forEach(function (pollOption) {
+            userPollOptions.forEach(function (userOption) {
+              if (pollOption._id === userOption) {
+                userQuestions.push(pollQuestion);
+              }
+            });
+          });
+        });
+
+        vm.pollResults = userQuestions;
+      });
+      // Upon unsuccessful return...
+      promise.catch(function (error) {
+        // Throw error
+        toastr.error(error);
+      });
     };
 
     // vm.openPoll = function(poll) {
