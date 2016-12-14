@@ -13,9 +13,46 @@ body{
 }
 
 .header{
-	background-color: $color-primary2;
-	margin: 0;
-	padding: 5px 0;
+	background-color: $color-primary3;
+	height: 60px;
+	width: 100%;
+	position: fixed;
+	top: 0;
+	color: white;
+	z-index: 999999;
+
+	.checkIn{
+		position: absolute;
+		top: -8px;
+
+		i{
+			font-size: 1.8rem;
+		}
+
+		p{
+			font-size: 1.6rem;
+			margin-left: 4px;
+		}
+	}
+
+	.collapsible{
+		border: none;
+		background: none;
+
+		.collapsible-header{
+			background-color: $color-primary3;
+			border: none;
+			float: right;
+			position: absolute;
+			right: 0;
+			top: 9px;
+
+			i{
+				margin: 0;
+				font-size: 2rem;
+			}
+		}
+	}
 }
 
 #clock, #currentQuestion{
@@ -27,7 +64,7 @@ body{
 	background-color: $color-primary2;
 	color: $color-text;
 	padding: 60px 0;
-	padding-top: 20px;
+	padding-top: 100px;
 
 	h4{
 		font-size: 1.4rem;
@@ -205,7 +242,7 @@ body{
 
 @media(min-width: 768px){
 	#clock{
-		margin-top: 1.8rem;
+		padding-top: 100px;
 
 		h4{
 			font-size: 3rem;
