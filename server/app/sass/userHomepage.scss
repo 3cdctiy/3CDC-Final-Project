@@ -19,7 +19,17 @@ body{
 .question-block-wrapper {
 	
 	.question-block {
-		
+
+	}
+}
+
+.twitter-timeline-wrapper {
+	padding-top: 60px !important;
+
+	&:after {
+		content: '';
+		display: table;
+		clear: both;
 	}
 }
 
@@ -70,14 +80,15 @@ body{
 
 	.clock-components {
     text-align: center;
-    font-size: 3.3rem;
+    font-size: 4.4rem;
+    font-weight: 500;
     margin-top: 20px;
     width: 30%;
     display: inline-block;
 }
   .clock-unit-label {
-    font-size: 0.8rem;
-    letter-spacing: 5px;
+    font-size: 1.2rem;
+		letter-spacing: 1px;
     font-weight: 400;
     margin-right: -5px;
   }
@@ -293,7 +304,7 @@ body{
 	h4{
 		font-size: 1.5rem;
 		text-align: center;
-		color: darken(white, 20);
+		color: darken(white, 40);
 	}
 }
 
