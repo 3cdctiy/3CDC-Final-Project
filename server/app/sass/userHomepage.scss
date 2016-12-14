@@ -44,7 +44,7 @@ body{
 #clock{
 	background-color: $color-primary2;
 	color: $color-text;
-	padding: 60px 0;
+	padding: 40px 0;
 	padding-top: 20px;
 
 	h4{
@@ -96,6 +96,7 @@ body{
 		width: 80%;
 		margin-left: auto;
 		margin-right: auto;
+		margin-top: 20px;
 
 		i{
 			font-size: 1.2rem;
@@ -108,7 +109,7 @@ body{
 			margin-bottom: 8px;
 			margin-right: auto;
 			margin-left: auto;
-			background-color: $color-twitter;
+			// background-color: $color-twitter;
 			border-radius: 10px;
 		}
 
@@ -124,12 +125,13 @@ body{
 	margin-top: 40px;
 
 	h3{
-		font-size: 2.3rem;
+		font-size: 1.5rem;
 		letter-spacing: 3px;
+		color: $color-accent;
 	}
 
 	h4{
-		font-size: 1.5rem;
+		font-size: 1.7rem;
 		letter-spacing: 3px;
 	}
 
