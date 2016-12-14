@@ -21,6 +21,7 @@
       vm.pollList = [];
       vm.openPolls = [];
       vm.pollResults = [];
+      vm.activePollIndex = 0;
 
 
 
@@ -122,18 +123,18 @@
 
       function getOpenPolls() {
         try {
-          let promise = FApi.getAllActive();
-          promise
-            .then((response) => {
+          let promise = FApi.getAllActive(userId);
+          promise.then((response) => {
               let openPolls = response.data;
 
               openPolls.forEach((poll, index) => {
+              	poll.index = index;
                 vm.openPolls.push(poll);
               })
 
               vm.selectedPoll = vm.pollList[0];
             })
-            .catch((error) => {
+            promise.catch((error) => {
               throw new Error(error);
             })
         } catch (error) {
@@ -147,6 +148,7 @@
       // ------------------------------------------------------------
       vm.vote = function(pollId, optionId) {
         socket.emit('newPollVote', { userId, pollId, optionId });
+        vm.activePollIndex += 1;
       }
 
 

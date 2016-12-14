@@ -21,10 +21,10 @@
 			return call;
 		};
 
-		var getAllActive = function getAllActive() {
+		var getAllActive = function getAllActive(userId) {
 			var call = $http({
 				method: 'GET',
-				url: domain + 'api/polls/active'
+				url: domain + ('api/polls/active/' + userId)
 			});
 
 			return call;

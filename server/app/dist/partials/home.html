@@ -46,28 +46,26 @@
 
 <div class="container">
 	<div class="row">
-
 		<!-- current question -->
 		<div id='currentQuestion' class="col s12">
 			<h3>NEW YEAR'S BLAST</h3>
-
-			<div ng-repeat="poll in controller.openPolls">
-	      		<h5>{{poll.pollQuestion}}</h5>
-
-	      		<div id='answers'>
-					<ul>
-						<li ng-click="controller.vote(poll._id,option._id)" class="btn" ng-repeat="option in poll._pollOptions">
-							<a>{{option.pollOption}}</a>
-						</li>
-					</ul>
-				</div>
-
+			<div class="question-block-wrapper">
+				<div ng-repeat="poll in controller.openPolls">
+	    		<div class="question-block" ng-if="controller.activePollIndex == poll.index">
+						<h5>{{poll.pollQuestion}}</h5>
+		    		<div id='answers'>
+							<ul>
+								<li ng-click="controller.vote(poll._id,option._id)" class="btn" ng-repeat="option in poll._pollOptions">
+									<a>{{option.pollOption}}</a>
+								</li>
+							</ul>
+						</div>
+	    		</div>
 	    	</div>
+			</div>
 		</div>
 		<!-- current question -->
-
 	</div>
-
 </div>
 
 <div class="row no-margin">

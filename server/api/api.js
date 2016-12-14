@@ -26,15 +26,36 @@ exports.getAll = ((req, res) => {
 // Returns all active poll questions
 // ------------------------------------------------------------
 exports.getAllActive = ((req, res) => {
-  PollQuestion
-    .find()
-    .populate('_pollOptions')
-    .where('isActiveQuestion').equals(true)
-    .sort({ pollQuestionSortOrder: 1 })
-    .exec((err, response) => {
-      if (err) return res.send(err);
-      res.json(response);
-    })
+
+	let userId 		= req.params.userId;
+
+  User
+  	.findById(userId)
+  	.populate('_pollOptions')
+  	.exec((err, response) => {
+  		if (err) return res.send(err);
+
+  		let userQuestionIDs = [];
+
+  		let userOptionIDs = response._pollOptions;
+  		userOptionIDs.forEach(option => {
+  			userQuestionIDs.push(option._pollQuestion);
+  		})
+
+  		console.log(userQuestionIDs);
+
+  		PollQuestion
+		    .find( {_id : { $nin : userQuestionIDs } } )
+		    .populate('_pollOptions')
+		    .where('isActiveQuestion').equals(true)
+		    .sort({ pollQuestionSortOrder: 1 })
+		    .exec((err, response) => {
+		      if (err) return res.send(err);
+
+		      console.log(response);
+		      res.json(response);
+		    })
+  	})
 })
 
 

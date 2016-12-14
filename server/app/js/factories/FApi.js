@@ -26,11 +26,11 @@
 			}
 
 
-			const getAllActive = function()
+			const getAllActive = function(userId)
 			{
 				let call = $http({
 					method: 'GET',
-					url: domain + 'api/polls/active',
+					url: domain + `api/polls/active/${userId}`,
 				})
 
 				return call;

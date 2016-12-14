@@ -20,6 +20,7 @@
     vm.pollList = [];
     vm.openPolls = [];
     vm.pollResults = [];
+    vm.activePollIndex = 0;
 
     // ------------------------------------------------------------
     // Name: updateChartData
@@ -114,16 +115,18 @@
 
     function getOpenPolls() {
       try {
-        var promise = FApi.getAllActive();
+        var promise = FApi.getAllActive(userId);
         promise.then(function (response) {
           var openPolls = response.data;
 
           openPolls.forEach(function (poll, index) {
+            poll.index = index;
             vm.openPolls.push(poll);
           });
 
           vm.selectedPoll = vm.pollList[0];
-        }).catch(function (error) {
+        });
+        promise.catch(function (error) {
           throw new Error(error);
         });
       } catch (error) {
@@ -137,6 +140,7 @@
     // ------------------------------------------------------------
     vm.vote = function (pollId, optionId) {
       socket.emit('newPollVote', { userId: userId, pollId: pollId, optionId: optionId });
+      vm.activePollIndex += 1;
     };
 
     var filterPollResults = function filterPollResults(data) {

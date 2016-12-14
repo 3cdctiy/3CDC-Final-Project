@@ -144,7 +144,7 @@ app.get('/api/polls', API.getAll);
 // GET: /api/polls/active
 // Returns all active poll questions
 // ------------------------------------------------------------
-app.get('/api/polls/active', API.getAllActive);
+app.get('/api/polls/active/:userId', API.getAllActive);
 
 
 
