@@ -43,7 +43,7 @@
 
 		.poll-list {
 			list-style: none;
-			max-height: 100vh;
+			height: 100vh;
 			overflow-x: hidden;
 			overflow-y: scroll;
 			margin-top: 0;
@@ -67,12 +67,20 @@
 					margin: 0;
 				}
 
+				.question-header {
+					font-size: 18px;
+				}
+
 				.question {
 					max-height: 45px;
 					overflow: hidden;
 				}
 			}
 		}
+	}
+
+	.connected-users {
+		float: right;
 	}
 
 	.main-content {
@@ -103,8 +111,15 @@
 			}
 		}
 	}
+}
 
-	.control-panel-nav {
-		padding: 0 40px;
-	}
+.billboard {
+  width: 100%;
+  padding: 0px;
+
+  .billboard-content {
+  	top: 0;
+  	left: 0;
+  	transform: none;
+  }
 }

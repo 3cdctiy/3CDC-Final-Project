@@ -1,6 +1,5 @@
 <link rel="stylesheet" type="text/css" href="dist/css/billboard.css">
-
-<div class="row">
+<!-- <link rel="stylesheet" type="text/css" href="dist/css/admin.css"> -->
 
     <!-- <div class="col s3 sidebar">
       <ul class="poll-list">
@@ -11,7 +10,7 @@
       </ul>
     </div> -->
 
-    <div class="col s10 main-content">
+<!--     <div class="col s10 main-content">
       
       <div class="billboard">
           <h4>{{ controller.billboardPoll.pollQuestion }}</h4>
@@ -20,5 +19,40 @@
           </p>
         </div>
     </div>
+ -->
 
-  </div>
+<div class="billboard-container">
+	<div class="billboard-sidebar">
+		<div class="sidebar-content">
+			<div class="block1">
+				<img class="fsq-logo" src="images/fountain_sq_white_bg.svg" alt="Fountain Square">
+				<img class="nye-logo" src="images/NYE513.png" alt="#NYE513">
+			</div>
+			<div class="block2">
+				<h1 class="countdown-title">Countdown to 2017</h1>
+				<clocklanding></clocklanding>
+			</div>
+			<div class="block3">
+				<img class="huntington-logo" src="images/huntington-bank.jpg">
+				<div class="row2">
+					<img class="tiy-logo" src="images/TIY-Logo-500px.png">
+					<img class="threecdc-logo" src="images/3CDC-logo.png">
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="billboard">
+		<div class="billboard-content">
+				<h4 class="poll-question">{{ controller.billboardPoll.pollQuestion }}</h4>
+			<div ng-repeat="option in controller.billboardPoll._pollOptions" class="option">
+				<p class="option-text">{{ option.pollOption }}</p>
+				<p class="option-percentage"></p>
+				<div id="{{'option' + option.pollOptionSortOrder}}" class="option-bg"></div>
+			</div>
+			<p class="total-reporting">Total Votes: {{ controller.voteTotal }}</p>
+			<!-- <div>
+				<canvas id="pollResultChart"></canvas>
+			</div> -->
+		</div>
+	</div>
+</div>

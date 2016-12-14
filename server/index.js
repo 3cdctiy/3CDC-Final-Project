@@ -72,6 +72,11 @@ io.on('connection', socket => {
   // Tracks the number of users via length of array
   io.emit('connections', { data: connections.length });
 
+  socket.on('disconnect', function () {
+    connections.splice(connections.indexOf(socket),1);
+    io.emit('connections', { data: connections.length });
+  });
+
   // Load initial information from database on new connection
   getAllPollInfo(io)
 
