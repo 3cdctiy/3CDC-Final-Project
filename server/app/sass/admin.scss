@@ -1,5 +1,11 @@
 @import '_variables';
 
+nav {
+	i {
+		height: auto;
+	}
+}
+
 .admin-check {
 	width: 100vw;
 	height: 100vh;
@@ -29,6 +35,15 @@
 
 .admin-navigation {
 	background-color: $color-primary2;
+
+	.list-menu {
+		color: darken(white, 20);
+		cursor: pointer;
+
+		&.active {
+			color: $color-primary3;
+		}
+	}
 }
 
 .admin-viewport {
@@ -122,4 +137,31 @@
   	left: 0;
   	transform: none;
   }
+}
+
+
+
+@media screen and (max-width: 600px) {
+	.admin-viewport {
+
+		.connected-users {
+			float: right;
+		}
+
+		.main-content {
+			padding-left: 15px;
+			padding-right: 15px;
+
+			.control-panel {
+
+				.btn-billboard {
+					float: left;
+				}
+			}
+		}
+	}
+
+	.poll-options-nav {
+		display: none;
+	}
 }

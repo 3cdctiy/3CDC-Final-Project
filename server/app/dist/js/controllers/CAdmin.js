@@ -11,12 +11,20 @@
 
 		var vm = this;
 
+		vm.isListMenuActive = true;
 		vm.pollList = [];
 		vm.billboardPollIndex = FAdmin.billboardPollIndex;
 		vm.billboardPoll = FAdmin.billboardPoll;
 		vm.isActivePoll = false;
 		vm.voteTotal = 0;
 		vm.connections = 0;
+
+		$(window).resize(function () {
+			if ($(window).width() > 600) {
+				vm.isListMenuActive = true;
+				$scope.$digest();
+			}
+		});
 
 		// ------------------------------------------------------------
 		// Name: denyEntry
@@ -66,6 +74,14 @@
 		adminCheck();
 
 		// ------------------------------------------------------------
+		// Name: toggleListMenu
+		// Toggles the poll list selection menu
+		// ------------------------------------------------------------
+		vm.toggleListMenu = function () {
+			vm.isListMenuActive = vm.isListMenuActive ? false : true;
+		};
+
+		// ------------------------------------------------------------
 		// Name: setSelectedPoll
 		// Sets selected and isActivePoll boolean. Called on sidebar select
 		// ------------------------------------------------------------
@@ -85,6 +101,10 @@
 
 			// Update chart data
 			updateChartData();
+
+			if ($(window).width() <= 600) {
+				vm.toggleListMenu();
+			}
 		};
 
 		// ------------------------------------------------------------
