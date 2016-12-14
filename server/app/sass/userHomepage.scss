@@ -21,35 +21,18 @@ body{
 	color: white;
 	z-index: 999999;
 
-	.checkIn{
-		position: absolute;
-		top: -8px;
-
-		i{
-			font-size: 1.8rem;
-		}
-
-		p{
-			font-size: 1.6rem;
-			margin-left: 4px;
-		}
-	}
-
-	.collapsible{
-		border: none;
-		background: none;
-
-		.collapsible-header{
-			background-color: $color-primary3;
-			border: none;
-			float: right;
-			position: absolute;
-			right: 0;
-			top: 9px;
-
-			i{
-				margin: 0;
-				font-size: 2rem;
+	.headerList{
+		margin-right: 20px;
+		margin-top: 0;
+		li{
+			font-size: 1.2rem;
+			text-transform: uppercase;
+			color: $color-text;
+			display: inline-block;
+			margin-left: 40px;
+			letter-spacing: 3px;
+			a{
+				color: $color-text;
 			}
 		}
 	}
@@ -240,7 +223,7 @@ body{
 	}
 }
 
-@media(min-width: 768px){
+@media(min-width: 700px){
 	#clock{
 		padding-top: 100px;
 

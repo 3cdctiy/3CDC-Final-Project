@@ -29,6 +29,40 @@ body{
 // general text colors
 
 // layout styles
+.header{
+	background-color: $color-primary3;
+	height: 60px;
+	width: 100%;
+	position: fixed;
+	top: 0;
+	color: white;
+	z-index: 999999;
+
+	.headerList{
+		margin-right: 20px;
+		margin-top: 0;
+		li{
+			text-transform: uppercase;
+			color: $color-text;
+			display: inline-block;
+			margin-left: 40px;
+			letter-spacing: 3px;
+			p{
+				font-size: 1.2rem;
+			}
+
+			a{
+				color: $color-text;
+				font-size: 1.2rem;
+			}
+		}
+	}
+}
+
+.container{
+	margin-top: 100px;
+}
+
 #projectDescription{
 	padding-bottom: 80px;
 	border-bottom: 2px solid $color-primary1;
