@@ -36,7 +36,7 @@
       			ng-click="controller.setSelectedPoll(poll)" 
       			ng-class="{'active': poll._id === controller.billboardPoll._id}"
       			class="replace-col-padding">
-      		<h5 class="question-header">Poll {{ poll.pollQuestionSortOrder }}</h5>
+      		<h5 class="question-header"><i class="fa fa-times" aria-hidden="true"></i> Poll {{ poll.pollQuestionSortOrder }}</h5>
       		<p class="question">{{ poll.pollQuestion }}</p>
       	</li>
       </ul>
@@ -52,7 +52,7 @@
 					      Inactive
 					      <input type="checkbox" ng-model="controller.isActivePoll" ng-change="controller.toggleIsActive()">
 					      <span class="lever"></span>
-					      Active
+					      <strong>Active</strong>
 					    </label>
 					  </div>
 					</div>
