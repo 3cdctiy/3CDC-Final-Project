@@ -63,6 +63,13 @@ img {
 	background-color: $color-warn;
 }
 
+#toast-container {
+  pointer-events: none;
+  > div {
+    pointer-events: auto;
+  }
+}
+
 .input-error {
 	font-size: 0.8em;
 	color: $color-error;
