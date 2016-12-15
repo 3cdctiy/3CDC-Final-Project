@@ -62,8 +62,8 @@
 						</div>
 	    		</div>
 	    	</div>
-	    	<div class="no-more-question" ng-if="controller.activePollIndex >= controller.openPolls.length">
-					<p>No more questions</p>
+	    	<div class="all-polls-answered" ng-if="controller.activePollIndex >= controller.openPolls.length">
+					<h5>Thank you for participating! Be sure to watch for the results on the big screen!</h5>
     		</div>
 			</div>
 		</div>
@@ -73,20 +73,24 @@
 
 <div class="row no-margin">
 	<!-- previous questions -->
-	<div id='previousQuestions' class='col s12' ng-if="controller.pollResults.length >= 1">
-		<h4>Polls You've Voted On</h4>
-		<ul class="collapsible popout" data-collapsible="accordion">
-			<li ng-repeat="poll in controller.pollResults" ng-click="controller.updateChartData(poll)">
-				<div class="collapsible-header truncate">{{poll.pollQuestion}}</div>
-        <div class="collapsible-body collection">
-        	<div ng-repeat="option in poll._pollOptions" class="option">
-						<p class="option-text">{{ option.pollOption }}</p>
-						<p class="option-percentage"></p>
-						<div id="{{'question' + poll.pollQuestionSortOrder + 'option' + option.pollOptionSortOrder}}" class="option-bg"></div>
-					</div>
-        </div>
-      </li>
-		</ul>
+	<div id='previousQuestions' class='col s12'>
+		<div class="container">
+			<div class="row">
+				<h4>Polls You've Voted On</h4>
+				<ul class="collapsible popout" data-collapsible="accordion">
+					<li ng-repeat="poll in controller.pollResults" ng-click="controller.updateChartData(poll)">
+						<div class="collapsible-header truncate">{{poll.pollQuestion}}</div>
+		        <div class="collapsible-body collection">
+		        	<div ng-repeat="option in poll._pollOptions" class="option">
+								<p class="option-text">{{ option.pollOption }}</p>
+								<p class="option-percentage"></p>
+								<div id="{{'question' + poll.pollQuestionSortOrder + 'option' + option.pollOptionSortOrder}}" class="option-bg"></div>
+							</div>
+		        </div>
+		      </li>
+				</ul>
+			</div>
+		</div>
 	</div>
 	<!-- previous questions -->
 </div>
