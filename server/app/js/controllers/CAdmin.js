@@ -165,14 +165,15 @@
     });
 
 
+
+		// ------------------------------------------------------------
+		// Name: updateChartData
+		// Updates the data used to measure chart option vote percentage
+		// ------------------------------------------------------------
 		const updateChartData = function() {
 
 			// Ensure our jQuery divs are ready to go
 			$(document).ready(() => {
-
-				// Get array of required data for ChartsJS
-				// let billboardOptions = vm.billboardPoll._pollOptions.map(option => option.pollOption);
-				// let billboardResults = vm.billboardPoll._pollOptions.map(option => option.pollOptionSelectCount);
 
 				// Reset vote total
 				let voteTotal = 0;
@@ -204,40 +205,6 @@
 
 				// Reload view
       	$scope.$digest();
-
-		  //   var data = {
-		  //   labels: billboardOptions,
-		  //   datasets: [
-		  //       {
-		  //         backgroundColor: [
-		  //             'rgba(255, 99, 132, 0.2)',
-		  //             'rgba(54, 162, 235, 0.2)',
-		  //             'rgba(255, 206, 86, 0.2)',
-		  //             'rgba(75, 192, 192, 0.2)',
-		  //             'rgba(153, 102, 255, 0.2)',
-		  //             'rgba(255, 159, 64, 0.2)'
-		  //         ],
-		  //         borderColor: [
-		  //             'rgba(255,99,132,1)',
-		  //             'rgba(54, 162, 235, 1)',
-		  //             'rgba(255, 206, 86, 1)',
-		  //             'rgba(75, 192, 192, 1)',
-		  //             'rgba(153, 102, 255, 1)',
-		  //             'rgba(255, 159, 64, 1)'
-		  //         ],
-		  //         borderWidth: 1,
-		  //         data: billboardResults,
-		  //       }
-		  //   	]
-				// };
-
-				// var myBarChart = new Chart($pollResultChart, {
-			 //    type: 'horizontalBar',
-			 //    data: data,
-			 //    options: {
-			 //    	responsive: true
-			 //  	}
-				// });
 			})
 		}
 

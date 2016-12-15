@@ -4,7 +4,7 @@
 
   'use strict';
 
-  angular.module('app').controller('CLogin', function ($auth, $location, toastr, FFormUtilities, FApi) {
+  angular.module('app').controller('CLogin', function ($state, $auth, $location, toastr, FFormUtilities, FApi) {
 
     var vm = this;
 
@@ -68,7 +68,7 @@
         }
         $auth.signup(vm.user).then(function (response) {
           $auth.setToken(response);
-          $location.path('/');
+          $state.go('home');
           toastr.info('You have successfully created a new account and have been signed-in');
         }).catch(function (response) {
           toastr.error(response.data.message);
@@ -105,7 +105,7 @@
         }
         $auth.login(vm.user).then(function () {
           toastr.success('You have successfully signed in!');
-          $location.path('/');
+          $state.go('home');
         }).catch(function (error) {
           toastr.error(error.data.message, error.status);
         });
@@ -122,7 +122,7 @@
       $auth.authenticate(provider).then(function () {
         socialSetUserUpdate();
         toastr.success('You have successfully signed in with ' + provider + '!');
-        $location.path('/');
+        $state.go('home');
       }).catch(function (error) {
         if (error.message) {
           // Satellizer promise reject error.
