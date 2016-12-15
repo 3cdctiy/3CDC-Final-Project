@@ -13,6 +13,14 @@
 		// Angular Toast Configurations
 		// ------------------------------------------------------------
 		angular.extend(toastrConfig, {
+			autoDismiss: false,
+			containerId: 'toast-container',
+			maxOpened: 0,
+			newestOnTop: true,
+			positionClass: 'toast-top-right',
+			preventDuplicates: false,
+			preventOpenDuplicates: false,
+			target: 'body',
 			iconClasses: {
 				error: 'toast-error',
 				info: 'toast-info',
