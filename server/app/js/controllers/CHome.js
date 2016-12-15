@@ -11,6 +11,9 @@
       // initialize collapsable
       $('.collapsible').collapsible();
 
+      // initialize modal
+      $('.modal').modal();
+
       // initialize carousel
       $('.carousel.carousel-slider').carousel({ full_width: true });
 
@@ -22,6 +25,7 @@
       vm.openPolls = [];
       vm.pollResults = [];
       vm.activePollIndex = 0;
+      vm.selectedVoteOption = null;
 
 
 
@@ -142,12 +146,28 @@
         }
       }
 
+
+
+      // ------------------------------------------------------------
+      // Name: confirmVote
+      // opens modal to get confirmation
+      // ------------------------------------------------------------
+      vm.confirmVote = function(option) {
+        vm.selectedVoteOption = option;
+        $('#confirmVote').modal('open');
+      }
+
+
+
       // ------------------------------------------------------------
       // Name: vote
       // New vote sent to server using poll ID and option (answer) ID
       // ------------------------------------------------------------
-      vm.vote = function(pollId, optionId) {
-        socket.emit('newPollVote', { userId, pollId, optionId });
+      vm.vote = function(option) {
+      	let postId 		= option._pollQuestion,
+      			optionId 	= option._id;
+
+        socket.emit('newPollVote', { userId, postId, optionId });
         vm.activePollIndex += 1;
       }
 

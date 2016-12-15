@@ -11,6 +11,18 @@
 
 <div class="topBlock">
 
+<div id="confirmVote" class="modal">
+  <div class="modal-content">
+    <h4>Confirm Vote</h4>
+    <p>Are you sure you want to vote for {{ controller.selectedVoteOption.pollOption }}?</p>
+  </div>
+  <div class="modal-footer">
+  	<a class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+    <a ng-click="controller.vote(controller.selectedVoteOption)" 
+    	 class="modal-action modal-close waves-effect waves-green btn-flat">Confirm</a>
+  </div>
+</div>
+
 <!-- header -->
 <div class="header z-depth-4">
 	<div class="row">
@@ -54,7 +66,7 @@
 						<h5>{{poll.pollQuestion}}</h5>
 		    		<div id='answers'>
 							<ul>
-								<li ng-click="controller.vote(poll._id,option._id)" class="btn" ng-repeat="option in poll._pollOptions">
+								<li ng-click="controller.confirmVote(option)" class="btn" ng-repeat="option in poll._pollOptions">
 									<a>{{option.pollOption}}</a>
 								</li>
 							</ul>

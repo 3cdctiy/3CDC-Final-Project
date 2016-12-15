@@ -95,6 +95,14 @@ body{
 	}
 }
 
+#confirmVote {
+	h4,
+	p {
+		color: lighten(black, 10);
+		margin: 0;
+	}
+}
+
 #clock, #currentQuestion{
 	text-align: center;
 }
