@@ -14,7 +14,7 @@
     // ------------------------------------------------------------
     vm.logout = function () {
       $auth.logout();
-      $location.path('/login');
+      $location.path('/');
     };
   });
 })();

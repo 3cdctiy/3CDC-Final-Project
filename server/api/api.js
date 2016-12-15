@@ -42,8 +42,6 @@ exports.getAllActive = ((req, res) => {
   			userQuestionIDs.push(option._pollQuestion);
   		})
 
-  		console.log(userQuestionIDs);
-
   		PollQuestion
 		    .find( {_id : { $nin : userQuestionIDs } } )
 		    .populate('_pollOptions')
@@ -51,8 +49,6 @@ exports.getAllActive = ((req, res) => {
 		    .sort({ pollQuestionSortOrder: 1 })
 		    .exec((err, response) => {
 		      if (err) return res.send(err);
-
-		      console.log(response);
 		      res.json(response);
 		    })
   	})
