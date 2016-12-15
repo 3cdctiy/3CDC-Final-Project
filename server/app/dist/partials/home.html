@@ -73,7 +73,7 @@
 
 <div class="row no-margin">
 	<!-- previous questions -->
-	<div id='previousQuestions' class='col s12'>
+	<div id='previousQuestions' class='col s12' ng-if="controller.pollResults.length >= 1">
 		<h4>Polls You've Voted On</h4>
 		<ul class="collapsible popout" data-collapsible="accordion">
 			<li ng-repeat="poll in controller.pollResults" ng-click="controller.updateChartData(poll)">
