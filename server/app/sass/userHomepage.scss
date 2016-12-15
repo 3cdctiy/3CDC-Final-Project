@@ -17,9 +17,37 @@ body{
 }
 
 .question-block-wrapper {
+	position: relative;
+	overflow: hidden;
 	
 	.question-block {
 
+		&.ng-enter {
+      transition: .5s;
+      transform: translateX(1000px);
+			opacity: 0;
+			z-index: 10;
+    }
+
+    &.ng-enter-active {
+			transform: translateX(0px);
+      opacity: 1;
+			z-index: 10;
+    }
+
+		&.ng-leave {
+			transition: .5s;
+			position: absolute;
+			transform: translateX(0px);
+			opacity: 1;
+			z-index: 20;
+		}
+
+		&.ng-leave-active {
+			transform: translateX(1000px);
+			opacity: 0;
+			z-index: 20;
+		}
 	}
 }
 
