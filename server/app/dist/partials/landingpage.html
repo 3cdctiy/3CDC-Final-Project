@@ -39,8 +39,17 @@
                 </div>
               </div>
               <div class="social-info-content" ng-hide="controller.isLoggedIn()">
-                <p class="early-access">Please sign up for access to our event application – or – signup using EMAIL below.</p>
-             
+                <div class="col s12">
+                  <p class="early-access">Please sign up for access to our event application – or – signup using EMAIL below.</p>
+
+                  <div class="tiy-white"><img src="/images/TIIY-Logo-500px-white.png" alt=""></div>
+                  <p class="update-agreement">
+                    <!-- Get Updates from TIY -->
+                    <input type="checkbox" id="updates" ng-model="controller.user.getUpdates" />
+                    <label for="updates">Get information about The Iron Yard.</label>
+                  </p>
+                </div>
+
                 <!-- Social Media Buttons -->
                 <!-- Facebook Sign in -->
                 <div class="col s12 m6">
@@ -54,25 +63,20 @@
                     <button ng-click="controller.authenticate('twitter')" class="btn waves-effect waves-light twitter button-border-radius"><i class="fa fa-twitter" aria-hidden="true"></i>Sign in with Twitter</button>
                   </div>
                 </div>
+
                 <!-- Signup / Login toggle -->
                 <div class="col s12">
                   <div class="toggle-wrap">
                     <ul class="login-toggle" ng-class="{'active': controller.showLogin}">
-                      <li class="toggle-tab" ng-click="controller.showLogin = false" ng-class="{'active': !controller.showLogin}">Sign Up</li>
-                      <li class="toggle-tab" ng-click="controller.showLogin = true" ng-class="{'active': controller.showLogin}">Login</li>
+                      <li class="toggle-tab" ng-click="controller.showLogin = false">Sign Up</li>
+                      <li class="toggle-tab" ng-click="controller.showLogin = true">Login</li>
+                      <div class="toggle-hr" ng-class="{'active': controller.showLogin}"></div>
                     </ul>
                   </div>
                 </div>
                 <!-- Signup Form -->
-                <div class="col s12" ng-show="!controller.showLogin">
+                <div class="col s12 form-wrapper" ng-show="!controller.showLogin">
                   <form novalidate class="signup-form" name="signupForm" ng-submit="controller.signup(signupForm.$valid)">
-                    <div class="tiy-white"><img src="/images/TIIY-Logo-500px-white.png" alt=""></div>
-                    <p class="update-agreement">
-                      <!-- Get Updates from TIY -->
-                      <input type="checkbox" id="updates" ng-model="controller.user.getUpdates" />
-                      <label for="updates">Yep! Keep me updated on all things The Iron Yard.</label>
-                    </p>
-              
                     <!-- Name -->
                     <div class="input-field">
                       <input id="name" type="text" class="validate" name="name" ng-model="controller.user.displayName" ng-pattern="/^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u" ng-minlength="1" ng-maxlength="50" required>
@@ -123,7 +127,7 @@
                 </div>
                 <!-- /signupForm -->
                 <!-- Login Form -->
-                <div class="col s12" ng-show="controller.showLogin">
+                <div class="col s12 form-wrapper" ng-show="controller.showLogin">
                   <form novalidate class="login-form" name="loginForm" ng-submit="controller.login(loginForm.$valid, loginForm)">
                     <!-- Email -->
                     <div class="input-field">

@@ -20,6 +20,9 @@ var userSchema = new Schema({
 		type: String,
 		required: true
 	},
+	location: {
+		type: String
+	},
 	isCheckedIn: {
 		type: Boolean,
 		default: false
