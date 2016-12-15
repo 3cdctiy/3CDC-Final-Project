@@ -226,9 +226,10 @@
 					// Does response have data property?
 					if(response.hasOwnProperty('data')) {
 
+						vm.pollList[vm.billboardPollIndex].isActiveQuestion = vm.pollList[vm.billboardPollIndex].isActiveQuestion ? false : true;
+
 						// Yes, load data's activeState
 						vm.isActivePoll = response.data.activeState;
-
 					}
 				}) 
 
