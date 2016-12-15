@@ -36,7 +36,11 @@
       			ng-click="controller.setSelectedPoll(poll)" 
       			ng-class="{'active': poll._id === controller.billboardPoll._id}"
       			class="replace-col-padding">
-      		<h5 class="question-header"><i class="fa fa-times" aria-hidden="true"></i> Poll {{ poll.pollQuestionSortOrder }}</h5>
+      		<h5 class="question-header" ng-class="{'active': poll.isActiveQuestion}">
+      			<i class="fa fa-times" aria-hidden="true" ng-hide="poll.isActiveQuestion"></i> 
+      			<i class="fa fa-check" aria-hidden="true" ng-show="poll.isActiveQuestion"></i>
+      			Poll {{ poll.pollQuestionSortOrder }}
+      		</h5>
       		<p class="question">{{ poll.pollQuestion }}</p>
       	</li>
       </ul>
@@ -56,7 +60,7 @@
 					    </label>
 					  </div>
 					</div>
-					<div class="col s12 m6">
+					<div class="col s12 m6 hide-on-small-only">
 						<a class="waves-effect waves-light btn-large btn-billboard" ng-click="controller.setBillboardPoll()">View on big screen</a>
 					</div>
 				</div>
