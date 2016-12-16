@@ -35,22 +35,25 @@ exports.getAllActive = ((req, res) => {
   	.exec((err, response) => {
   		if (err) return res.send(err);
 
-  		let userQuestionIDs = [];
+  		if(response != null || response != undefined) {
 
-  		let userOptionIDs = response._pollOptions;
-  		userOptionIDs.forEach(option => {
-  			userQuestionIDs.push(option._pollQuestion);
-  		})
+  			let userQuestionIDs = [];
 
-  		PollQuestion
-		    .find( {_id : { $nin : userQuestionIDs } } )
-		    .populate('_pollOptions')
-		    .where('isActiveQuestion').equals(true)
-		    .sort({ pollQuestionSortOrder: 1 })
-		    .exec((err, response) => {
-		      if (err) return res.send(err);
-		      res.json(response);
-		    })
+	  		let userOptionIDs = response._pollOptions;
+	  		userOptionIDs.forEach(option => {
+	  			userQuestionIDs.push(option._pollQuestion);
+	  		})
+
+	  		PollQuestion
+			    .find( {_id : { $nin : userQuestionIDs } } )
+			    .populate('_pollOptions')
+			    .where('isActiveQuestion').equals(true)
+			    .sort({ pollQuestionSortOrder: 1 })
+			    .exec((err, response) => {
+			      if (err) return res.send(err);
+			      res.json(response);
+			    })
+  		}
   	})
 })
 
