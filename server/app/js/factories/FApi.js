@@ -7,7 +7,7 @@
 		.factory('FApi', function($http)
 		{
 
-			const domain = "http://localhost:8000/";
+			const domain = window.location.origin + "/";
 
 			
 

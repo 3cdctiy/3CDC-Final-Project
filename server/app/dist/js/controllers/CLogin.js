@@ -32,7 +32,7 @@
           }
         });
         promise.catch(function (error) {
-          toastr.error(response.data.message);
+          toastr.error(error);
         });
       }
     };
