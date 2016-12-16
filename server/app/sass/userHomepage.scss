@@ -1,138 +1,130 @@
 @import '_variables.scss';
-
-body{
-	background-color: $color-background;
-
-	h1,h2,h3,h4,h5,p{
-		color: $color-text;
-	}
-
+body {
+  background-color: $color-background;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  p {
+    color: $color-text;
+  }
 }
-.topBlock{
-	background-color: $color-primary2;
+
+.topBlock {
+  background-color: $color-primary2;
 }
 
 .no-margin {
-	margin: 0;
+  margin: 0;
 }
 
 .question-block-wrapper {
-	position: relative;
-	overflow: hidden;
-	
-	.question-block {
-
-		&.ng-enter {
+  position: relative;
+  overflow: hidden;
+  .question-block {
+    &.ng-enter {
       transition: .5s;
       transform: translateX(1000px);
-			opacity: 0;
-			z-index: 10;
+      opacity: 0;
+      z-index: 10;
     }
-
     &.ng-enter-active {
-			transform: translateX(0px);
+      transform: translateX(0px);
       opacity: 1;
-			z-index: 10;
+      z-index: 10;
     }
-
-		&.ng-leave {
-			transition: .5s;
-			position: absolute;
-			transform: translateX(0px);
-			opacity: 1;
-			z-index: 20;
-		}
-
-		&.ng-leave-active {
-			transform: translateX(1000px);
-			opacity: 0;
-			z-index: 20;
-		}
-	}
+    &.ng-leave {
+      transition: .5s;
+      position: absolute;
+      transform: translateX(0px);
+      opacity: 1;
+      z-index: 20;
+    }
+    &.ng-leave-active {
+      transform: translateX(1000px);
+      opacity: 0;
+      z-index: 20;
+    }
+  }
 }
 
 .all-polls-answered {
-
-	h5 {
-		padding: 0 0 40px;
-		margin: 0;
-	}
+  h5 {
+    padding: 0 0 40px;
+    margin: 0;
+  }
 }
 
 .twitter-timeline-wrapper {
-	padding-top: 60px !important;
-
-	&:after {
-		content: '';
-		display: table;
-		clear: both;
-	}
+  &:after {
+    content: '';
+    display: table;
+    clear: both;
+  }
 }
 
-.header{
-	background-color: $color-accent;
-	height: 60px;
-	width: 100%;
-	color: white;
-	z-index: 999999;
-
-	.headerList{
-		margin-right: 20px;
-		margin-top: 0;
-		li{
-			font-size: 1.2rem;
-			text-transform: uppercase;
-			color: $color-text;
-			display: inline-block;
-			margin-left: 20px;
-			padding: 18px 0;
-			font-weight:500;
-			letter-spacing: 1px;
-			a{
-				color: invert($color-text);
-			}
-		}
-	}
+.header {
+  background-color: $color-accent;
+  height: 60px;
+  width: 100%;
+  color: white;
+  z-index: 999999;
+  .headerList {
+    margin-right: 20px;
+    margin-top: 0;
+    li {
+      font-size: 1.2rem;
+      text-transform: uppercase;
+      color: $color-text;
+      display: inline-block;
+      margin-left: 20px;
+      padding: 18px 0;
+      font-weight: 500;
+      letter-spacing: 1px;
+      a {
+        color: invert($color-text);
+      }
+    }
+  }
 }
 
 #confirmVote {
-	h4,
-	p {
-		color: lighten(black, 10);
-		margin: 0;
-	}
+  h4,
+  p {
+    color: lighten(black, 10);
+    margin: 0;
+  }
 }
 
-#clock, #currentQuestion{
-	text-align: center;
+#clock,
+#currentQuestion {
+  text-align: center;
 }
 
-
-#clock{
-	background-color: $color-primary2;
-	color: $color-text;
-	padding: 40px 0;
-	padding-top: 20px;
-
-	h4{
-		font-size: 1.4rem;
-		margin-bottom: -12px;
-		letter-spacing: 3px;
-		color: $color-accent;
-		text-transform: uppercase;
-	}
-
-	.clock-components {
+#clock {
+  background-color: $color-primary2;
+  color: $color-text;
+  padding: 40px 0;
+  padding-top: 20px;
+  h4 {
+    font-size: 1.4rem;
+    margin-bottom: -12px;
+    letter-spacing: 3px;
+    color: $color-accent;
+    text-transform: uppercase;
+  }
+  .clock-components {
     text-align: center;
     font-size: 4.4rem;
     font-weight: 500;
     margin-top: 20px;
     width: 30%;
     display: inline-block;
-}
+  }
   .clock-unit-label {
     font-size: 1.2rem;
-		letter-spacing: 1px;
+    letter-spacing: 1px;
     font-weight: 400;
     margin-right: -5px;
   }
@@ -159,100 +151,85 @@ body{
   .clock-divider {
     vertical-align: text-bottom;
   }
-
-	#social{
-		width: 80%;
-		margin-left: auto;
-		margin-right: auto;
-		margin-top: 20px;
-
-		i{
-			font-size: 1.2rem;
-			margin-right: 10px;
-		}
-
-		.twitter{
-			display: block;
-			width: 80%;
-			margin-bottom: 8px;
-			margin-right: auto;
-			margin-left: auto;
-			// background-color: $color-twitter;
-			border-radius: 10px;
-		}
-
-		.facebook{
-			display: inline-block;
-			background-color: $color-facebook;
-			border-radius: 10px;
-		}
-	}
+  #social {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    i {
+      font-size: 1.2rem;
+      margin-right: 10px;
+    }
+    .twitter {
+      display: block;
+      width: 80%;
+      margin-bottom: 8px;
+      margin-right: auto;
+      margin-left: auto;
+      // background-color: $color-twitter;
+      border-radius: 10px;
+    }
+    .facebook {
+      display: inline-block;
+      background-color: $color-facebook;
+      border-radius: 10px;
+    }
+  }
 }
 
-#currentQuestion{
-	margin-top: 40px;
-
-	h3{
-		font-size: 1.5rem;
-		letter-spacing: 3px;
-		color: $color-accent;
-	}
-
-	h4{
-		font-size: 1.7rem;
-		letter-spacing: 3px;
-	}
-
-	h5{
-		font-size: 1.2rem;
-		margin-bottom: 2px;
-		font-weight: 300;
-	}
-
-	p{
-		font-weight: 300;
-		margin-bottom: -10px;
-		font-size: 0.8rem;
-	}
-
-	#countdown{
-		width: 100%;
-		height: 8px;
-		border-radius: 20px;
-		margin: 20px auto;
-		background-color: $color-link;
-	}
-
-	#answers{
-		margin: 20px auto;
-		margin-bottom: 80px;
-		width: 90%;
-
-		li{
-			display: block;
-			margin: 20px;
-			background-color: $color-primary2;
-			overflow: visible !important;
-			height: auto;
-			line-height: 1.4rem;
-			padding: 10px;
-			border-radius: 10px;
-
-			&:active{
-				background-color: $color-accent;
-
-				a{
-					color: $color-primary2;
-					font-weight: 500;
-				}
-			}
-
-			a{
-				color: $color-text; 
-			}
-		}
-
-	}
+#currentQuestion {
+  margin-top: 40px;
+  h3 {
+    font-size: 1.5rem;
+    letter-spacing: 3px;
+    color: $color-accent;
+  }
+  h4 {
+    font-size: 1.7rem;
+    letter-spacing: 3px;
+  }
+  h5 {
+    font-size: 1.2rem;
+    margin-bottom: 2px;
+    font-weight: 300;
+  }
+  p {
+    font-weight: 300;
+    margin-bottom: -10px;
+    font-size: 0.8rem;
+  }
+  #countdown {
+    width: 100%;
+    height: 8px;
+    border-radius: 20px;
+    margin: 20px auto;
+    background-color: $color-link;
+  }
+  #answers {
+    margin: 20px auto;
+    margin-bottom: 80px;
+    width: 90%;
+    li {
+      display: block;
+      margin: 20px;
+      background-color: $color-primary2;
+      overflow: visible !important;
+      height: auto;
+      line-height: 1.4rem;
+      padding: 10px;
+      border-radius: 10px;
+      &:active {
+        background-color: $color-accent;
+        a {
+          color: $color-primary2;
+          font-weight: 500;
+        }
+      }
+      a {
+        color: $color-text;
+      }
+    }
+  }
 }
 
 .option {
@@ -262,26 +239,21 @@ body{
   background-color: rgba(white, 0.06);
   margin-bottom: 5px;
   position: relative;
-
   &:after {
     content: '';
     display: table;
     clear: both;
   }
-
   &:last-child {
-  	margin-bottom: 0;
+    margin-bottom: 0;
   }
-
   p {
     margin: 0;
   }
-
   .option-text,
   .option-percentage {
-  	padding: 4px 0;
+    padding: 4px 0;
   }
-
   .option-text {
     width: 75%;
     padding-left: 15px;
@@ -289,7 +261,6 @@ body{
     position: relative;
     z-index: 10;
   }
-
   .option-percentage {
     width: 25%;
     text-align: right;
@@ -298,7 +269,6 @@ body{
     position: relative;
     z-index: 10;
   }
-
   .option-bg {
     width: 0px;
     height: 4px;
@@ -309,100 +279,123 @@ body{
   }
 }
 
-#previousQuestions{
-	background-color: lighten(black, 10);
-	padding: 2.5rem 0 4rem;
-
-	.collapsible{
-
-		.collapsible-header{
-			background-color: rgba(white, 0.06);
-			color: darken(white, 40);
-			border-bottom: 1px solid lighten(black, 20);
-
-			&:last-child {
-				border-bottom: none;
-			}
-
-			&:hover{
-				background-color: $color-primary3;
-				color: white;
-			}
-			&.active{
-				background-color: darken($color-primary3, 5%);
-				color: white;
-
-				p{
-					color: darken($color-text, 5%);
-				}
-			}
-		}
-
-		.collection{
-
-			.collection-item{
-				border: none;
-
-			}
-		}
-	}
-
-	h4{
-		font-size: 1.5rem;
-		text-align: center;
-		color: darken(white, 40);
-	}
+#previousQuestions {
+  background-color: lighten(black, 10);
+  padding: 2.5rem 0 4rem;
+  text-transform: uppercase;
+  font-size: 1.5rem;
+  letter-spacing: 2px;
+  .collapsible {
+    .collapsible-header {
+      background-color: rgba(white, 0.06);
+      color: darken(white, 40);
+      border-bottom: 1px solid lighten(black, 20);
+      &:last-child {
+        border-bottom: none;
+      }
+      &:hover {
+        background-color: $color-primary3;
+        color: white;
+      }
+      &.active {
+        background-color: darken($color-primary3, 5%);
+        color: white;
+        p {
+          color: darken($color-text, 5%);
+        }
+      }
+    }
+    .collection {
+      .collection-item {
+        border: none;
+      }
+    }
+  }
+  h4 {
+    font-size: 1.5rem;
+    text-align: center;
+    color: darken(white, 40);
+  }
 }
 
-@media(min-width: 700px){
-	#clock{
-		padding-top: 60px;
+#cincyFun {
+  h4 {
+    font-size: 1.5rem;
+    text-align: center;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: $color-accent;
+  }
+}
 
-		h4{
-			font-size: 3rem;
-		}
+#funFactsWrapper {
+  padding: 0px 10px 0px;
+  color: white;
+  font-size: 12px;
+}
 
-		.clock-components{
-			font-size: 8rem;
-		}
+.typed-cursor{
+    opacity: 1;
+    -webkit-animation: blink 0.7s infinite;
+    -moz-animation: blink 0.7s infinite;
+    animation: blink 0.7s infinite;
+}
+@keyframes blink{
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
+}
+@-webkit-keyframes blink{
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
+}
+@-moz-keyframes blink{
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
+}
 
-		.clock-unit-label{
-			font-size: 2rem;
-		}
-
-		#social{
-			width: 50%;
-
-			a{
-				font-size: 1.4rem;
-				padding: 5px 15px;
-				height: auto !important;
-
-				i{
-					font-size: 1.4rem;
-				}
-			}
-		}
-	}
-
-	#currentQuestion{
-		h3{
-			font-size: 3.4rem;
-		}
-
-		h4{
-			font-size: 2.4rem;
-		}
-
-		h5{
-			font-size: 1.6rem;
-		}
-
-		#answers{
-			li{
-				font-size: 1.4rem;
-				padding: 15px;
-			}
-		}
-	}
+@media(min-width: 700px) {
+  #clock {
+    padding-top: 60px;
+    h4 {
+      font-size: 3rem;
+    }
+    .clock-components {
+      font-size: 8rem;
+    }
+    .clock-unit-label {
+      font-size: 2rem;
+    }
+    #social {
+      width: 50%;
+      a {
+        font-size: 1.4rem;
+        padding: 5px 15px;
+        height: auto !important;
+        i {
+          font-size: 1.4rem;
+        }
+      }
+    }
+  }
+  #currentQuestion {
+    h3 {
+      font-size: 3.4rem;
+    }
+    h4 {
+      font-size: 2.4rem;
+    }
+    h5 {
+      font-size: 1.6rem;
+    }
+    #answers {
+      li {
+        font-size: 1.4rem;
+        padding: 15px;
+      }
+    }
+  }
 }

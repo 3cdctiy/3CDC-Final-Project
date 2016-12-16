@@ -1,121 +1,136 @@
 <link rel="stylesheet" type="text/css" href="dist/css/userHomepage.css">
-
 <div id="fb-root"></div>
-<script>(function(d, s, id) {
- var js, fjs = d.getElementsByTagName(s)[0];
- if (d.getElementById(id)) return;
- js = d.createElement(s); js.id = id;
- js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8&appId=950583835073331";
- fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-
+<script>
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s);
+  js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8&appId=950583835073331";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+</script>
 <div class="topBlock">
-
-<div id="confirmVote" class="modal">
-  <div class="modal-content">
-    <h4>Confirm Vote</h4>
-    <p>Are you sure you want to vote for {{ controller.selectedVoteOption.pollOption }}?</p>
+  <div id="confirmVote" class="modal">
+    <div class="modal-content">
+      <h4>Confirm Vote</h4>
+      <p>Are you sure you want to vote for {{ controller.selectedVoteOption.pollOption }}?</p>
+    </div>
+    <div class="modal-footer">
+      <a class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+      <a ng-click="controller.vote(controller.selectedVoteOption)" class="modal-action modal-close waves-effect waves-green btn-flat">Confirm</a>
+    </div>
   </div>
-  <div class="modal-footer">
-  	<a class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
-    <a ng-click="controller.vote(controller.selectedVoteOption)" 
-    	 class="modal-action modal-close waves-effect waves-green btn-flat">Confirm</a>
+  <!-- header -->
+  <div class="header z-depth-4">
+    <div class="row">
+      <ul class="headerList right-align">
+        <li class="valign-wrapper"><a href="#/about">Dev Team</a></li>
+        <li class="valign-wrapper">
+          <div ng-controller="CLogout as logout">
+            <a class="logout" ng-click="logout.logout()">Logout</a>
+          </div>
+        </li>
+      </ul>
+    </div>
   </div>
+  <!-- header -->
+  <!-- countdown clock -->
+  <div id='clock' class='col s12'>
+    <h4>Countdown to 2017</h4>
+    <clocklanding></clocklanding>
+    <div id="social">
+      <!-- <a class="waves-effect waves-light btn twitter" href="https://twitter.com/intent/tweet?button_hashtag=FSQLive"><i class="fa fa-twitter"></i>Tweet #FSQLive<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script></a> -->
+      <div class="twitter">
+        <a href="https://twitter.com/intent/tweet?button_hashtag=NYE513" class="twitter-hashtag-button" data-size="large" data-text="I'm attending the annual #Cincinnati New Year's Blast on @MyFountainSqr sponsored by @Huntington_Bank #3CDC and @TheIronYard #JoinMe" data-related="@MyFountainSqr,@TheIronYard" data-show-count="false">Tweet #NYE513</a>
+        <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+      </div>
+      <div class="fb-like col s12 center fakebook" data-href="http://www.fsqlive.com" data-layout="button" data-action="like" data-size="large" data-show-faces="true" data-share="true"></div>
+    </div>
+  </div>
+  <!-- countdown clock -->
 </div>
-
-<!-- header -->
-<div class="header z-depth-4">
-	<div class="row">
-		<ul class="headerList right-align">
-			<li class="valign-wrapper"><a href="#/about">Dev Team</a></li>
-			<li class="valign-wrapper">
-				<div ng-controller="CLogout as logout">
-					<a class="logout" ng-click="logout.logout()">Logout</a>
-				</div>
-			</li>
-		</ul>
-	</div>
-</div>
-<!-- header -->
-
-	<!-- countdown clock -->
-	<div id='clock' class='col s12'>
-		<h4>Countdown to 2017</h4>
-		<clocklanding></clocklanding>
-
-		<div id="social">
-			<!-- <a class="waves-effect waves-light btn twitter" href="https://twitter.com/intent/tweet?button_hashtag=FSQLive"><i class="fa fa-twitter"></i>Tweet #FSQLive<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script></a> -->
-			<div class="twitter">
-				<a href="https://twitter.com/intent/tweet?button_hashtag=NYE513" class="twitter-hashtag-button" data-size="large" data-text="I'm attending the annual #Cincinnati New Year's Blast on @MyFountainSqr sponsored by @Huntington_Bank #3CDC and @TheIronYard #JoinMe" data-related="@MyFountainSqr,@TheIronYard" data-show-count="false">Tweet #NYE513</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-			</div>
-			<div class="fb-like col s12 center fakebook" data-href="http://www.fsqlive.com" data-layout="button" data-action="like" data-size="large" data-show-faces="true" data-share="true"></div>
-		</div>
-
-	</div>
-	<!-- countdown clock -->
-</div>
-
 <div class="container">
-	<div class="row">
-		<!-- current question -->
-		<div id='currentQuestion' class="col s12">
-			<h3>NEW YEAR'S BLAST</h3>
-			<div class="question-block-wrapper">
-				<div ng-repeat="poll in controller.openPolls">
-	    		<div class="question-block" ng-if="controller.activePollIndex == poll.index">
-						<h5>{{poll.pollQuestion}}</h5>
-		    		<div id='answers'>
-							<ul>
-								<li ng-click="controller.confirmVote(option)" class="btn" ng-repeat="option in poll._pollOptions">
-									<a>{{option.pollOption}}</a>
-								</li>
-							</ul>
-						</div>
-	    		</div>
-	    	</div>
-	    	<div class="all-polls-answered" ng-if="controller.activePollIndex >= controller.openPolls.length">
-					<h5>
+  <div class="row">
+    <!-- current question -->
+    <div id='currentQuestion' class="col s12">
+      <h3>NEW YEAR'S BLAST</h3>
+      <div class="question-block-wrapper">
+        <div ng-repeat="poll in controller.openPolls">
+          <div class="question-block" ng-if="controller.activePollIndex == poll.index">
+            <h5>{{poll.pollQuestion}}</h5>
+            <div id='answers'>
+              <ul>
+                <li ng-click="controller.confirmVote(option)" class="btn" ng-repeat="option in poll._pollOptions">
+                  <a>{{option.pollOption}}</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="all-polls-answered" ng-if="controller.activePollIndex >= controller.openPolls.length">
+          <h5>
 						Please check back often to vote on our #NYE513 polls, 
 						and watch for the live results on the Fountain Square big screen!
 					</h5>
-    		</div>
-			</div>
-		</div>
-		<!-- current question -->
-	</div>
+        </div>
+      </div>
+    </div>
+    <!-- current question -->
+  </div>
 </div>
-
 <div class="row no-margin">
-	<!-- previous questions -->
-	<div id='previousQuestions' class='col s12'>
-		<div class="container">
-			<div class="row">
-				<h4>Polls You've Voted On</h4>
-				<ul class="collapsible popout" data-collapsible="accordion">
-					<li ng-repeat="poll in controller.pollResults" ng-click="controller.updateChartData(poll)">
-						<div class="collapsible-header truncate">{{poll.pollQuestion}}</div>
-		        <div class="collapsible-body collection">
-		        	<div ng-repeat="option in poll._pollOptions" class="option">
-								<p class="option-text">{{ option.pollOption }}</p>
-								<p class="option-percentage"></p>
-								<div id="{{'question' + poll.pollQuestionSortOrder + 'option' + option.pollOptionSortOrder}}" class="option-bg"></div>
-							</div>
-		        </div>
-		      </li>
-				</ul>
-			</div>
-		</div>
-	</div>
-	<!-- previous questions -->
+  <!-- previous questions -->
+  <div id='previousQuestions' class='col s12'>
+    <div class="container">
+      <div class="row">
+        <h4>Polls You've Voted On</h4>
+        <ul class="collapsible popout" data-collapsible="accordion">
+          <li ng-repeat="poll in controller.pollResults" ng-click="controller.updateChartData(poll)">
+            <div class="collapsible-header truncate">{{poll.pollQuestion}}</div>
+            <div class="collapsible-body collection">
+              <div ng-repeat="option in poll._pollOptions" class="option">
+                <p class="option-text">{{ option.pollOption }}</p>
+                <p class="option-percentage"></p>
+                <div id="{{'question' + poll.pollQuestionSortOrder + 'option' + option.pollOptionSortOrder}}" class="option-bg"></div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- cincinnati fun facts -->
+  <div id='cincyFun' class='col s12'>
+    <div class="container">
+      <div class="row">
+        <h4>Cincinnati Fun Facts</h4>
+        <div id="funFactsWrapper">
+          <span id="funFacts"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- twitter-timeline -->
 </div>
-
 <div class="row no-margin">
-	<div class="container twitter-timeline-wrapper">
-		<div class="row">
-			<div class="col s12 m6 offset-m3">
-				<a class="twitter-timeline" data-chrome="transparent"  href="https://twitter.com/hashtag/NYE513" data-widget-id="809126881119391745">#NYE513 Tweets</a>
-	      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-			</div>
-		</div>
-	</div>
+  <div class="container twitter-timeline-wrapper">
+    <div class="row">
+      <div class="col s12 m6 offset-m3">
+        <a class="twitter-timeline" data-chrome="transparent" href="https://twitter.com/hashtag/NYE513" data-widget-id="809126881119391745">#NYE513 Tweets</a>
+        <script>
+        ! function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0],
+            p = /^http:/.test(d.location) ? 'http' : 'https';
+          if (!d.getElementById(id)) {
+            js = d.createElement(s);
+            js.id = id;
+            js.src = p + "://platform.twitter.com/widgets.js";
+            fjs.parentNode.insertBefore(js, fjs);
+          }
+        }(document, "script", "twitter-wjs");
+        </script>
+      </div>
+    </div>
+  </div>
 </div>
