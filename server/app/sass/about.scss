@@ -1,181 +1,195 @@
 @import '_variables.scss';
+// general text colors
+body {
+  background-color: $color-background;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  p {
+    color: #f7f7f7;
+    line-height: 1.4em;
+    font-size: 14px;
+  }
+  p {
+    font-size: 14px;
+  }
+  .no-margin {
+    margin: 0;
+  }
+  .fa {
+    font-size: 21px;
+    &.fa-briefcase {
+      font-size: 18px;
+    }
+  }
+  h2 {
+    font-size: 1.5rem;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: $color-accent;
+    // text-align: center;
+    // font-weight: 300;
+    // color: $color-accent;
+    // text-transform: uppercase;
+    // letter-spacing: 5px;
+  }
+  h4 {
+    font-size: 1.5rem;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: $color-accent;
+  }
+}
+
+h5 {
+  font-size: 12px;
+  font-weight: 300;
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.title {
+  margin: 32px 0px 10px;
+}
 
 // general text colors
-body{
-	background-color: $color-background;
-
-	h1, h2, h3, h4, h5, p{
-		color: #f7f7f7;
-		line-height: 1.4em;
-	}
-
-	p{
-		font-size: 1.6rem;
-	}
-
-	h2{
-		text-align: center;
-		font-weight: 300;
-		color: $color-accent;
-		text-transform: uppercase;
-		letter-spacing: 5px;
-	}
-
-	h4{
-		font-weight: 300;
-		text-align: center;
-	}
+// layout styles
+.header {
+  background-color: $color-accent;
+  height: 60px;
+  width: 100%;
+  color: white;
+  z-index: 999999;
+  .headerList {
+    margin-right: 20px;
+    margin-top: 0;
+    li {
+      font-size: 1.2rem;
+      text-transform: uppercase;
+      color: $color-text;
+      display: inline-block;
+      margin-left: 20px;
+      padding: 18px 0;
+      font-weight: 500;
+      letter-spacing: 1px;
+      a {
+        color: invert($color-text);
+      }
+    }
+  }
 }
-// general text colors
+
+.container {
+  padding: 16px;
+}
+
+#projectDescription {
+  // padding-bottom: 80px;
+  // border-bottom: 2px solid $color-primary1;
+  // margin-bottom: 50px;
+}
+
+.intro {
+  background-color: $color-primary2;
+}
+
+.person {
+  margin-top: 60px;
+  .description {
+    text-align: center;
+    p {
+      font-weight: 300;
+      font-size: 14px !important;
+    }
+    .links {
+      margin-bottom: 22px;
+      a {
+        color: darken(white, 50);
+        font-weight: 400;
+        font-size: 1.4rem;
+        padding: 0px 7px;
+        &:hover {
+          color: lighten($color-primary3, 25%);
+        }
+      }
+    }
+  }
+  .headshot {
+    background-size: cover;
+    background-position: center;
+    height: 18rem;
+    padding: 1.2rem;
+    margin-left: 15%;
+    margin-right: 15%;
+    // border-radius: 5px;
+  }
+}
 
 // layout styles
-.header{
-	background-color: $color-accent;
-	height: 60px;
-	width: 100%;
-	color: white;
-	z-index: 999999;
-
-	.headerList{
-		margin-right: 20px;
-		margin-top: 0;
-
-		li{
-			font-size: 1.2rem;
-			text-transform: uppercase;
-			color: $color-text;
-			display: inline-block;
-			margin-left: 20px;
-			padding: 18px 0;
-			font-weight:500;
-			letter-spacing: 1px;
-			
-			a{
-				color: invert($color-text);
-			}
-		}
-	}
+// links headshot images
+.tom {
+  .headshot {
+    background-image: url('../images/tom.jpg');
+  }
 }
 
-.container{
-	margin-top: 100px;
+.john {
+  .headshot {
+    background-image: url('../images/john.jpg');
+  }
 }
 
-#projectDescription{
-	padding-bottom: 80px;
-	border-bottom: 2px solid $color-primary1;
-	margin-bottom: 80px;
+.kristie {
+  .headshot {
+    background-image: url('../images/kristie.jpg');
+  }
 }
 
-.person{
-
-	.description{
-		text-align: center;
-
-		p{
-			font-weight: 300;
-		}
-
-		.links{
-			margin-bottom: 80px;
-
-			a{
-				color: $color-primary3;
-				font-weight: 500;
-				font-size: 1.4rem;
-
-				&:hover{
-					color: lighten($color-primary3, 25%);
-				}
-			}
-		}
-	}
-
-	.headshot{
-		background-size: cover;
-		background-position: center;
-		height: 18rem;
-		padding: 1.2rem;
-		margin-left: 15%;
-		margin-right: 15%;
-		// border-radius: 5px;
-
-  	}
+.michael {
+  .headshot {
+    background-image: url('../images/michael.jpg');
+  }
 }
-// layout styles
 
 // links headshot images
-.tom{
-	.headshot{
-		background-image: url('../images/tom.jpg');
-	}
-}
-
-.john{
-	.headshot{
-		background-image: url('../images/john.jpg');
-	}
-}
-
-.kristie{
-	.headshot{
-		background-image: url('../images/kristie.jpg');
-	}
-}
-
-.michael{
-	.headshot{
-		background-image: url('../images/michael.jpg');
-	}
-}
-// links headshot images
-
 // layout styling on screen less than 600px
-@media (max-width: 600px){
-	h2{
-		text-align: center;
-		font-size: 2rem;
-	}
-
-	h4{
-		font-size: 1.2rem;
-	}
-
-	.container{
-		margin-top: 20px;
-	}
-
-	.person{
-		padding: 20px 0;
-
-		h4{
-			font-size: 1.8rem;
-		}
-
-		.headshot{
-			margin-left: 15%;
-			margin-right: 15%;
-		}
-
-		.description{
-			text-align: center;
-
-			p{
-				font-size: 1.2rem;
-				font-weight: 300;
-			}
-
-			.links{
-				margin: 10px auto;
-				margin-bottom: 80px;
-
-				a{
-					text-align: center;
-					font-size: 1rem;
-				}
-			}
-		}
-	}
-
+@media (max-width: 600px) {
+  h2 {
+    text-align: center;
+    font-size: 2rem;
+  }
+  h4 {
+    font-size: 1.2rem;
+  }
+  .container {
+    // margin-top: 20px;
+  }
+  .person {
+    padding: 20px 0;
+    h4 {
+      font-size: 1.8rem;
+    }
+    .headshot {
+      margin-left: 15%;
+      margin-right: 15%;
+    }
+    .description {
+      text-align: center;
+      p {
+        font-size: 1.2rem;
+        font-weight: 300;
+      }
+      .links {
+        padding: 10px auto 40px;
+        a {
+          text-align: center;
+          font-size: 1rem;
+        }
+      }
+    }
+  }
 }
-// layout styling on screen less than 600px
