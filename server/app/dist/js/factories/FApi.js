@@ -6,7 +6,7 @@
 
 	angular.module('app').factory('FApi', function ($http) {
 
-		var domain = "http://localhost:8000/";
+		var domain = window.location.origin + "/";
 
 		// ------------------------------------------------------------
 		// Name: getUserUpdateStatus
