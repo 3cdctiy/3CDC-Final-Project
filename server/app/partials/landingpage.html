@@ -32,10 +32,19 @@
             <div class="row" id="social-info-mobile">
               <div ng-show="controller.isLoggedIn()">
                 <p class="thank-you">Thank you for signing up – please check back often for updates!</p>
-                <div class="col s12 center"><a href="https://twitter.com/intent/tweet?button_hashtag=NYE513" class="twitter-hashtag-button" data-size="large" data-show-count="false">Tweet #NYE513</a>
-                  <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+                <!-- Twitter Button -->
+                <div class="col s12 center"><a href="https://twitter.com/intent/tweet?button_hashtag=NYE513" class="twitter-hashtag-button" data-size="large" data-text="I'm attending the annual #Cincinnati New Year's Blast on @MyFountainSqr sponsored by @Huntington_Bank #3CDC and @TheIronYard #JoinMe" data-related="@MyFountainSqr,@TheIronYard" data-show-count="false">Tweet #NYE513</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
                 </div>
-                <div class="fb-like col s12 center fakebook" data-href="http://www.nye513.com" data-layout="button" data-action="like" data-size="large" data-show-faces="true" data-share="true">
+                <!-- Facebook Button -->
+                <div id="fb-root"></div>
+                <script>(function(d, s, id) {
+                  var js, fjs = d.getElementsByTagName(s)[0];
+                  if (d.getElementById(id)) return;
+                  js = d.createElement(s); js.id = id;
+                  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8&appId=950583835073331";
+                  fjs.parentNode.insertBefore(js, fjs);
+                }(document, 'script', 'facebook-jssdk'));</script>
+                <div class="fb-like col s12 center fakebook" data-href="http://www.fsqlive.com" data-layout="button" data-action="like" data-size="large" data-show-faces="true" data-share="true">
                 </div>
               </div>
               <div class="social-info-content" ng-hide="controller.isLoggedIn()">
@@ -149,8 +158,7 @@
                 </div>
                 <!-- /loginForm -->
                 <div class="tweet-us">
-                  <div class="col s12 center"><a href="https://twitter.com/intent/tweet?button_hashtag=NYE513" class="twitter-hashtag-button" data-size="large" data-show-count="false">Tweet #NYE513</a>
-                    <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+                  <div class="col s12 center"><a href="https://twitter.com/intent/tweet?button_hashtag=NYE513" class="twitter-hashtag-button" data-size="large" data-text="I'm attending the annual #Cincinnati New Year's Blast on @MyFountainSqr sponsored by @Huntington_Bank #3CDC and @TheIronYard #JoinMe" data-related="@MyFountainSqr,@TheIronYard" data-show-count="false">Tweet #NYE513</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
                   </div>
                   <!-- <p>Tweet to us using #NYE513</p> -->
                 </div>
