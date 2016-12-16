@@ -35,7 +35,7 @@
 	        }
 	      })
 	      promise.catch(error => {
-	        toastr.error(response.data.message);
+	        toastr.error(error);
 	      })
 	    }
   	}
