@@ -157,7 +157,6 @@ exports.postQuestion = ((req, res) => {
 // data = userId, pollId, optionId
 // ------------------------------------------------------------
 exports.newPollVote = (data => {
-  console.log(data);
 
   PollOption
     .findById(data.userId)
@@ -180,7 +179,6 @@ exports.newPollVote = (data => {
             // Save option selection to database
             user.save(function(err, response) {
               if (err) return { error: err };
-              console.log('should be returning data')
               return { success: "Vote successfully counted" };
             })
           })

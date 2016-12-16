@@ -261,9 +261,6 @@ app.post('/api/me/setGetUpdates', ensureAuthenticated, function(req, res) {
   User
     .findById(req.body.userID)
     .exec((err, user) => {
-      console.log(req.body.userID);
-      console.log(user);
-      console.log(req.body.isGettingUpdates);
       user.isGettingUpdates = req.body.isGettingUpdates;
 
       // Initiate save to database

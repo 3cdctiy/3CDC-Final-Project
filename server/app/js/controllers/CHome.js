@@ -173,6 +173,10 @@
 
 
 
+      // ------------------------------------------------------------
+      // Name: filterPollResults
+      // Limits poll results to questions users have answered
+      // ------------------------------------------------------------
       const filterPollResults = function(data) {
       	let promise = FApi.getUserDetails();
 

@@ -159,6 +159,10 @@
       vm.activePollIndex += 1;
     };
 
+    // ------------------------------------------------------------
+    // Name: filterPollResults
+    // Limits poll results to questions users have answered
+    // ------------------------------------------------------------
     var filterPollResults = function filterPollResults(data) {
       var promise = FApi.getUserDetails();
 
