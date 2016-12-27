@@ -32,14 +32,19 @@
 
     <div class="col s12 m3 sidebar no-padding" ng-if="controller.isListMenuActive">
       <ul class="poll-list">
-      	<li ng-repeat="poll in controller.pollList" 
-      			ng-click="controller.setSelectedPoll(poll)" 
+      	<li ng-repeat="poll in controller.pollList"
+      			ng-click="controller.setSelectedPoll(poll)"
       			ng-class="{'active': poll._id === controller.billboardPoll._id}"
       			class="replace-col-padding">
       		<h5 class="question-header" ng-class="{'active': poll.isActiveQuestion}">
-      			<i class="fa fa-times" aria-hidden="true" ng-hide="poll.isActiveQuestion"></i> 
+      			<i class="fa fa-times" aria-hidden="true" ng-hide="poll.isActiveQuestion"></i>
       			<i class="fa fa-check" aria-hidden="true" ng-show="poll.isActiveQuestion"></i>
-      			Poll {{ poll.pollQuestionSortOrder }}
+                <span ng-if="poll.pollQuestionSortOrder == 1">
+                    Location Question
+                </span>
+                <span ng-if="poll.pollQuestionSortOrder > 1">
+                    Poll {{ poll.pollQuestionSortOrder - 1 }}
+                </span>
       		</h5>
       		<p class="question">{{ poll.pollQuestion }}</p>
       	</li>

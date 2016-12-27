@@ -23,7 +23,7 @@
 
 
 		$(window).resize(function() {
-			if ($(window).width() > 600) { 
+			if ($(window).width() > 600) {
 				vm.isListMenuActive = true;
 				$scope.$digest();
 			}
@@ -48,7 +48,7 @@
 		// Verify the user is an administrator
 		// ------------------------------------------------------------
 		const adminCheck = function() {
-			try {	
+			try {
 				if($auth.isAuthenticated()) {
 					let promise = FApi.getUserDetails();
 
@@ -185,7 +185,7 @@
 
 				// Perform calculations on this go around
 				vm.billboardPoll._pollOptions.forEach(option => {
-					
+
 					// Capture option's div
 					let $option = $('#option' + option.pollOptionSortOrder);
 
@@ -231,7 +231,7 @@
 						// Yes, load data's activeState
 						vm.isActivePoll = response.data.activeState;
 					}
-				}) 
+				})
 
 				// Upon unsuccessful return...
 				promise.catch((error) => {
@@ -243,8 +243,8 @@
 			} catch(error) {
 				toastr.error(error.message, error.name);
 			}
-		} 
-		
+		}
+
 
 	})
 
