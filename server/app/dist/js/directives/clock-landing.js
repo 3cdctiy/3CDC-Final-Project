@@ -53,7 +53,7 @@ angular.module('app').directive('clocklanding', function () {
 
           if (currentTime >= expirationTime) {
             //hide days ID when time reaches expirationDate
-            document.getElementById("days").style.display = 'none';
+            document.getElementById("hide-days").style.display = 'none';
           }
         }
 
