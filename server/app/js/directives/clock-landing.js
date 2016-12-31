@@ -48,7 +48,7 @@ angular.module('app')
             }
 
             if (currentTime >= expirationTime) { //hide days ID when time reaches expirationDate
-              document.getElementById("days").style.display = 'none';
+              document.getElementById("hide-days").style.display = 'none';
             }
           }
 
