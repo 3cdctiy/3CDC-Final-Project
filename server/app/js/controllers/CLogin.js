@@ -19,6 +19,10 @@
     {
       window.location = "http://www.fsqlive.com/";
     }
+    else 
+    {
+      console.log(window.location.hostname)
+    }
 
 
   	// Initialize tabs
