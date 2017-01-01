@@ -87,6 +87,17 @@
 	<script src="dist/js/controllers/CLogout.js"></script>
 	<script src="dist/js/controllers/CMain.js"></script>
 	<script src="dist/js/controllers/CAdmin.js"></script>
+
+	<script>
+	if(window.location.hostname == 'tiy3cdc.herokuapp.com')
+    {
+      window.location = "http://www.fsqlive.com/";
+    }
+    else 
+    {
+      console.log(window.location.hostname)
+    }
+    </script>
 </body>
 
 </html>

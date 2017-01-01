@@ -15,16 +15,6 @@
     }
 
 
-    if(window.location.hostname == 'tiy3cdc.herokuapp.com')
-    {
-      window.location = "http://www.fsqlive.com/";
-    }
-    else 
-    {
-      console.log(window.location.hostname)
-    }
-
-
   	// Initialize tabs
   	$('ul.tabs').tabs();
 
