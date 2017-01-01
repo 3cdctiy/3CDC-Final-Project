@@ -15,6 +15,12 @@
     }
 
 
+    if(window.location.hostname == 'tiy3cdc.herokuapp.com')
+    {
+      window.location = "http://www.fsqlive.com/";
+    }
+
+
   	// Initialize tabs
   	$('ul.tabs').tabs();
 
