@@ -54,6 +54,10 @@ angular.module('app').directive('clock', function () {
           if (currentTime >= expirationTime) {
             //hide days ID when time reaches expirationDate
             document.getElementById("days").style.display = 'none';
+            // document.getElementById("hours").innerHTML = '0';
+            // document.getElementById("minutes").innerHTML = '0';
+            // document.getElementById("seconds").innerHTML = '0';
+            $('#hours,#minutes,#seconds').html('0');
           }
         }
 
