@@ -7,8 +7,8 @@ angular.module('app')
         location: '@'
       },
       link: function(vm, element, attrs) {
-        var deadline = 'January 1 2017'; //set end date, in this case New Year's Day
-        var expirationTime = 1483160400000; //epoch time of expiration date (Dec 31, 00:00:00)
+        var deadline = 'February 5 2017 18:30:00'; //set end date, in this case New Year's Day
+        var expirationTime = 1484024400000; //epoch time of expiration date (Jan 10 2017, 00:00:00)
         var currentTime = Date.now(); //get current time
 
         function getTimeRemaining(endtime) {
@@ -49,9 +49,9 @@ angular.module('app')
 
             if (currentTime >= expirationTime) { //hide days ID when time reaches expirationDate
               document.getElementById("hide-days").style.display = 'none';
-              document.getElementById("hours").innerHTML = '0';
-              document.getElementById("minutes").innerHTML = '0';
-              document.getElementById("seconds").innerHTML = '0';
+              // document.getElementById("hours").innerHTML = '0';
+              // document.getElementById("minutes").innerHTML = '0';
+              // document.getElementById("seconds").innerHTML = '0';
             }
           }
 
