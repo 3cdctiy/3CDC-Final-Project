@@ -1,10 +1,10 @@
 # Capstone Project
 
-##### The Iron Yard - Week 10
+##### The Iron Yard
 
 This README.md provides the guidance and an overview of requirements for the final project.
 
-[View Live](http://xx)
+[View Live](http://fsqlive.com)
 
 ### Requirements
 **You must:**
