@@ -9,7 +9,7 @@ angular.module('app').directive('clock', function () {
     },
     link: function link(vm, element, attrs) {
       var deadline = 'February 5 2017 18:30:00'; //set end date, in this case New Year's Day
-      var expirationTime = 1484024400000; //epoch time of expiration date (Jan 10 2017, 00:00:00)
+      var expirationTime = 1514782799000; //epoch time of expiration date (Dec 31 2017, 23:59:59)
       var currentTime = Date.now(); //get current time
 
       function getTimeRemaining(endtime) {
