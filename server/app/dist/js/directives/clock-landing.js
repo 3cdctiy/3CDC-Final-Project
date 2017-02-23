@@ -8,8 +8,9 @@ angular.module('app').directive('clocklanding', function () {
       location: '@'
     },
     link: function link(vm, element, attrs) {
-      var deadline = 'February 5 2017 18:30:00'; //set end date, in this case New Year's Day
-      var expirationTime = 1514782799000; //epoch time of expiration date (Dec 31 2017, 23:59:59)
+      var deadline = 'January 1 2018 00:00:00'; //set end date
+      var expirationTime = 1514782799000; //epoch time of expiration date (Dec 31 2017, 23:59:59) if you want to hide elements 
+      //based on a certain date, e.g. if there are no days left in the countdown such as on the day of the event.
       var currentTime = Date.now(); //get current time
 
       function getTimeRemaining(endtime) {
@@ -51,14 +52,13 @@ angular.module('app').directive('clocklanding', function () {
             clearInterval(timeinterval);
           }
 
-          if (currentTime >= expirationTime) {
-            //hide days ID when time reaches expirationDate
-            document.getElementById("hide-days").style.display = 'none';
-            // document.getElementById("hours").innerHTML = '0';
-            // document.getElementById("minutes").innerHTML = '0';
-            // document.getElementById("seconds").innerHTML = '0';
-            // 
-          }
+          // if (currentTime >= expirationTime) { //hide days ID when time reaches expirationDate
+          //   document.getElementById("hide-days").style.display = 'none';
+          //   // document.getElementById("hours").innerHTML = '0';
+          //   // document.getElementById("minutes").innerHTML = '0';
+          //   // document.getElementById("seconds").innerHTML = '0';
+          //   // 
+          // }
         }
 
         updateClock();
